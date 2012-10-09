@@ -1,0 +1,13 @@
+= Cviceni 3 - 9. 10.=
+
+  * Odsouhlaseni class diagramu a use case diagramu
+  * Kurz se bude povinne skladat z nekolika nezavislych unikatnich lekci
+
+http://jazykova-skola.googlecode.com/files/uml-class-dia.png
+
+
+== Na priste ==
+pristi tyden prvni kontrolni bod, deadline v nedeli do pulnoci
+  # uml class diagram s entitama (vazby mezi entitami + atributy)
+  # bude poslan mail jeste
+  # dao tridy (obsahuje CRUD operace + operace pro vyhledani dle zakladnich kriterii)
