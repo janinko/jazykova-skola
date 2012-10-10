@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
-import java.util.Collection;
+import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
+import java.util.List;
 
 /**
  *
@@ -17,5 +14,6 @@ public interface CourseDAO {
     public Course update(Course course);
     public Course delete(Course course);
     
-    public Collection<Course> findAllCourses();
+    public List<Course> findAllCourses();
+    public List<Course> findCourseByLanguage(Language language);
 }
