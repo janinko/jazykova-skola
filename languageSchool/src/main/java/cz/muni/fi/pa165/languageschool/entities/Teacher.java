@@ -1,8 +1,11 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,20 +15,27 @@ import javax.persistence.Id;
  * @author xchrastk
  */
 @Entity
-public class Student implements Serializable {
+public class Teacher implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    public enum Language {AJ,NJ,FJ,RU}
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable=false, length=20)
     private String firstName;
     
     @Column(nullable=false, length=30)
     private String lastName;
     
-    private int age;        
-
+    @Enumerated(EnumType.STRING)
+    private Collection<Language> languages;
+    
+    @Enumerated(EnumType.STRING)
+    private Language nativeLanguage;
+    
     public Long getId() {
         return id;
     }
@@ -50,14 +60,22 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public Collection<Language> getLanguages() {
+        return languages;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setLanguages(Collection<Language> languages) {
+        this.languages = languages;
     }
 
+    public Language getNativeLanguage() {
+        return nativeLanguage;
+    }
+
+    public void setNativeLanguage(Language nativeLanguage) {
+        this.nativeLanguage = nativeLanguage;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -67,10 +85,10 @@ public class Student implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Student)) {
+        if (!(object instanceof Teacher)) {
             return false;
         }
-        Student other = (Student) object;
+        Teacher other = (Teacher) object;
         if (this.id == null || !this.id.equals(other.id)) {
             return false;
         }
@@ -79,6 +97,8 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + '}';
-    }    
+        return "Teacher{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+    }
+    
 }
+

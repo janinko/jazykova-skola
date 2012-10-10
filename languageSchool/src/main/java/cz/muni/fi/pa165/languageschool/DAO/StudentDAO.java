@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
+import cz.muni.fi.pa165.languageschool.entities.Lection;
 import cz.muni.fi.pa165.languageschool.entities.Student;
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -17,5 +14,7 @@ public interface StudentDAO {
     public Student update(Student course);
     public Student delete(Student course);
     
-    public Collection<Student> findAllStudents();
+    public List<Student> findAllStudents();
+    public List<Student> findStudentByName(String firstName, String lastName);
+    public List<Student> findStudentByLection(Lection lection);
 }
