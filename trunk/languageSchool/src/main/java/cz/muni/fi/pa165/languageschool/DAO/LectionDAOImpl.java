@@ -1,9 +1,7 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import java.util.ArrayList;
-import java.util.Collection;
+import cz.muni.fi.pa165.languageschool.entities.Lection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,10 +12,10 @@ import javax.persistence.Query;
  *
  * @author xchrastk
  */
-public class CourseDAOImpl implements CourseDAO {
+public class LectionDAOImpl implements LectionDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
     
-    public Course create(Course course) {
+    public Lection create(Lection course) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
@@ -25,16 +23,16 @@ public class CourseDAOImpl implements CourseDAO {
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return em.find(Lection.class, course.getId());
     }
 
-    public Course read(long id) {
+    public Lection read(long id) {
         EntityManager em = emf.createEntityManager();
         
-        return em.find(Course.class, id);
+        return em.find(Lection.class, id);
     }
 
-    public Course update(Course course) {
+    public Lection update(Lection course) {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
@@ -42,10 +40,10 @@ public class CourseDAOImpl implements CourseDAO {
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return em.find(Lection.class, course.getId());
     }
 
-    public Course delete(Course course) {
+    public Lection delete(Lection course) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
@@ -56,25 +54,21 @@ public class CourseDAOImpl implements CourseDAO {
         return course;
     }
 
-    public List<Course> findAllCourses() {
+    public List<Lection> findAllLections() {
         EntityManager em = emf.createEntityManager();
         
-        Query query = em.createQuery("SELECT c FROM Course c");
+        Query query = em.createQuery("SELECT l FROM Lection l");
         return query.getResultList();  
-    }  
-
-    public List<Course> findCourseByLanguage(Language language) {
-        EntityManager em = emf.createEntityManager();
+    }    
+    
+    
+    public List<Lection> findLectionByCourse(Course course) {
+        throw new UnsupportedOperationException("Not supported yet.");
+        /*EntityManager em = emf.createEntityManager();
         
-        Language[] languageArray = Language.values();
-        Collection<String> languages = new ArrayList<String>();
-        for(Language lang: languageArray) {
-            languages.add(lang.toString());
-        }
-        
-        Query query = em.createQuery("SELECT c FROM Course c WHERE c.languages IN {:languages}");        
-        query.setParameter("languages", languages);
-        
-        return query.getResultList();
-    }
+        Query query = em.createQuery("SELECT l FROM Lection l WHERE "
+            +"l.course LIKE :course");
+        query.setParameter("course", course);
+        return query.getResultList();*/
+    } 
 }

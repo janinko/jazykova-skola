@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
+import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,10 +14,10 @@ import javax.persistence.Query;
  *
  * @author xchrastk
  */
-public class CourseDAOImpl implements CourseDAO {
+public class TeacherDAOImpl implements TeacherDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
     
-    public Course create(Course course) {
+    public Teacher create(Teacher course) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
@@ -25,16 +25,16 @@ public class CourseDAOImpl implements CourseDAO {
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return em.find(Teacher.class, course.getId());
     }
 
-    public Course read(long id) {
+    public Teacher read(long id) {
         EntityManager em = emf.createEntityManager();
         
-        return em.find(Course.class, id);
+        return em.find(Teacher.class, id);
     }
 
-    public Course update(Course course) {
+    public Teacher update(Teacher course) {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
@@ -42,10 +42,10 @@ public class CourseDAOImpl implements CourseDAO {
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return em.find(Teacher.class, course.getId());
     }
 
-    public Course delete(Course course) {
+    public Teacher delete(Teacher course) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
@@ -56,14 +56,24 @@ public class CourseDAOImpl implements CourseDAO {
         return course;
     }
 
-    public List<Course> findAllCourses() {
+    public List<Teacher> findAllTeachers() {
         EntityManager em = emf.createEntityManager();
         
-        Query query = em.createQuery("SELECT c FROM Course c");
+        Query query = em.createQuery("SELECT t FROM Teacher t");
         return query.getResultList();  
-    }  
+    }    
 
-    public List<Course> findCourseByLanguage(Language language) {
+    public List<Teacher> findTeacherByName(String firstName, String lastName) {
+        EntityManager em = emf.createEntityManager();
+        
+        Query query = em.createQuery("SELECT t FROM Teacher t WHERE "
+            +"t.firstName LIKE :fistName AND t.lastName LIKE :lastName");
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+        return query.getResultList();
+    }   
+
+    public List<Teacher> findTeacherByLanguage(Language language) {
         EntityManager em = emf.createEntityManager();
         
         Language[] languageArray = Language.values();
@@ -72,9 +82,9 @@ public class CourseDAOImpl implements CourseDAO {
             languages.add(lang.toString());
         }
         
-        Query query = em.createQuery("SELECT c FROM Course c WHERE c.languages IN {:languages}");        
+        Query query = em.createQuery("SELECT t FROM Teacher t WHERE t.languages IN {:languages}");        
         query.setParameter("languages", languages);
         
         return query.getResultList();
-    }
+    }    
 }

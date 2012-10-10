@@ -1,11 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.entities;
 
+import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,15 +16,20 @@ import javax.persistence.Id;
  */
 @Entity
 public class Course implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    public enum Level {BEGINNER,INTERMEDIATE,ADVANCED}
+    
+    @Column(nullable=false, length=60)
     private String name;
     
-    private String language;
+    @Enumerated(EnumType.STRING)
+    private Language language;
     
+    @Enumerated(EnumType.ORDINAL)
     private int level;
 
     public Long getId() {
@@ -43,11 +48,11 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public String getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 
@@ -69,12 +74,11 @@ public class Course implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Course)) {
             return false;
         }
         Course other = (Course) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (this.id == null || !this.id.equals(other.id)) {
             return false;
         }
         return true;
@@ -82,7 +86,6 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "cz.muni.fi.pa165.languageschool.entities.Course[ id=" + id + " ]";
-    }
-    
+        return "Course{" + "id=" + id + ", name=" + name + ", language=" + language + ", level=" + level + '}';
+    }    
 }
