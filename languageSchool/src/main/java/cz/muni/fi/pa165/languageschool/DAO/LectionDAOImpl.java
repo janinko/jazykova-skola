@@ -15,15 +15,15 @@ import javax.persistence.Query;
 public class LectionDAOImpl implements LectionDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
     
-    public Lection create(Lection course) {
+    public Lection create(Lection lection) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.persist(course);
+        em.persist(lection);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Lection.class, course.getId());
+        return em.find(Lection.class, lection.getId());
     }
 
     public Lection read(long id) {
@@ -32,26 +32,26 @@ public class LectionDAOImpl implements LectionDAO {
         return em.find(Lection.class, id);
     }
 
-    public Lection update(Lection course) {
+    public Lection update(Lection lection) {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
-        em.persist(course);
+        em.persist(lection);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Lection.class, course.getId());
+        return em.find(Lection.class, lection.getId());
     }
 
-    public Lection delete(Lection course) {
+    public Lection delete(Lection lection) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.remove(course);
+        em.remove(lection);
         em.getTransaction().commit();
         em.close();
         
-        return course;
+        return lection;
     }
 
     public List<Lection> findAllLections() {

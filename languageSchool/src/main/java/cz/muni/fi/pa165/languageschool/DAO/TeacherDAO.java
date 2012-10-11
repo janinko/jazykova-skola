@@ -9,10 +9,10 @@ import java.util.List;
  * @author xchrastk
  */
 public interface TeacherDAO {
-    public Teacher create(Teacher course);
+    public Teacher create(Teacher teacher);
     public Teacher read(long id);
-    public Teacher update(Teacher course);
-    public Teacher delete(Teacher course);
+    public Teacher update(Teacher teacher);
+    public Teacher delete(Teacher teacher);
     
     public List<Teacher> findAllTeachers();
     public List<Teacher> findTeacherByName(String firstName, String lastName);
