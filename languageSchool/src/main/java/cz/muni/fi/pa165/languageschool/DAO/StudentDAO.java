@@ -11,8 +11,8 @@ import java.util.List;
 public interface StudentDAO {
     public Student create(Student cours);
     public Student read(long id);
-    public Student update(Student course);
-    public Student delete(Student course);
+    public Student update(Student student);
+    public Student delete(Student student);
     
     public List<Student> findAllStudents();
     public List<Student> findStudentByName(String firstName, String lastName);
