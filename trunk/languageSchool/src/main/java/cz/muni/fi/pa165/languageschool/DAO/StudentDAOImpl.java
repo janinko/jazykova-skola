@@ -15,15 +15,15 @@ import javax.persistence.Query;
 public class StudentDAOImpl implements StudentDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
     
-    public Student create(Student course) {
+    public Student create(Student student) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.persist(course);
+        em.persist(student);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Student.class, course.getId());
+        return em.find(Student.class, student.getId());
     }
 
     public Student read(long id) {
@@ -32,26 +32,26 @@ public class StudentDAOImpl implements StudentDAO {
         return em.find(Student.class, id);
     }
 
-    public Student update(Student course) {
+    public Student update(Student student) {
         EntityManager em = emf.createEntityManager();             
         
         em.getTransaction().begin();
-        em.persist(course);
+        em.persist(student);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Student.class, course.getId());
+        return em.find(Student.class, student.getId());
     }
 
-    public Student delete(Student course) {
+    public Student delete(Student student) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.remove(course);
+        em.remove(student);
         em.getTransaction().commit();
         em.close();
         
-        return course;
+        return student;
     }
 
     public List<Student> findAllStudents() {
