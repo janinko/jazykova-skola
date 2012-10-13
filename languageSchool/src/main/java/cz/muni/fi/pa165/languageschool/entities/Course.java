@@ -17,7 +17,7 @@ public class Course implements Serializable {
     
     public enum Level {BEGINNER,INTERMEDIATE,ADVANCED}
     
-    @Column(nullable=false, length=60)
+    //@Column(nullable=false, length=60)
     private String name;
     
     @Enumerated(EnumType.STRING)
