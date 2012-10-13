@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
+import org.hibernate.annotations.CollectionOfElements;
 
 /**
  *
@@ -24,7 +25,9 @@ public class Teacher implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
-    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Language.class) 
+	@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
+	@Column(name = "LANGUAGE_ID")
     private Collection<Language> languages;
     
     @Enumerated(EnumType.STRING)
