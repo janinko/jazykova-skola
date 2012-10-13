@@ -27,11 +27,22 @@ public class Teacher implements Serializable {
     
     @ElementCollection(targetClass = Language.class) 
 	@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
-	@Column(name = "LANGUAGE_ID")
     private Collection<Language> languages;
     
     @Enumerated(EnumType.STRING)
     private Language nativeLanguage;
+
+	public Teacher() {
+	}
+
+	
+	public Teacher(Long id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	
     
     public Long getId() {
         return id;
@@ -94,7 +105,7 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+        return "Teacher{" + "id=" + id + "," + firstName + lastName + "}";
     }
     
 }
