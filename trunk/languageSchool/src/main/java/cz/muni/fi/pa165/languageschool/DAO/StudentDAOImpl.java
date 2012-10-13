@@ -17,13 +17,15 @@ public class StudentDAOImpl implements StudentDAO {
     
     public Student create(Student student) {
         EntityManager em = emf.createEntityManager();
+		Student s;
         
         em.getTransaction().begin();
         em.persist(student);
         em.getTransaction().commit();
+		s = em.find(Student.class, student.getId());
         em.close();
         
-        return em.find(Student.class, student.getId());
+        return s;
     }
 
     public Student read(long id) {
