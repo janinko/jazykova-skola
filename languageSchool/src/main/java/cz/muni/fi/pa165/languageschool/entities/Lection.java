@@ -32,6 +32,15 @@ public class Lection implements Serializable {
     @ManyToOne
     private Teacher teacher;
 
+	public Lection() {
+	}
+
+	public Lection(Long id) {
+		this.id = id;
+	}
+	
+	
+
     public Long getId() {
         return id;
     }
