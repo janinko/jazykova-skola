@@ -23,7 +23,7 @@ public class Lection implements Serializable {
     private Date time;
         
     @ManyToOne
-    @Column(nullable=false)
+    //@Column(nullable=false)
     private Course course;
     
     @OneToMany    
