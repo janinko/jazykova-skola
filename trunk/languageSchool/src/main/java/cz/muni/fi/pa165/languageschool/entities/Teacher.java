@@ -41,7 +41,11 @@ public class Teacher implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
+	public Teacher(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 	
     
     public Long getId() {

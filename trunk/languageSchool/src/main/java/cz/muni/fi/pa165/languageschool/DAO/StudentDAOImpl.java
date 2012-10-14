@@ -47,9 +47,10 @@ public class StudentDAOImpl implements StudentDAO {
 
     public Student delete(Student student) {
         EntityManager em = emf.createEntityManager();
-        
+		
         em.getTransaction().begin();
-        em.remove(student);
+		Student s = em.find(Student.class, student.getId());
+        em.remove(s);
         em.getTransaction().commit();
         em.close();
         
@@ -67,7 +68,7 @@ public class StudentDAOImpl implements StudentDAO {
         EntityManager em = emf.createEntityManager();
         
         Query query = em.createQuery("SELECT s FROM Student s WHERE "
-            +"s.firstName LIKE :fistName AND s.lastName LIKE :lastName");
+            +"s.firstName LIKE :firstName AND s.lastName LIKE :lastName");
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         

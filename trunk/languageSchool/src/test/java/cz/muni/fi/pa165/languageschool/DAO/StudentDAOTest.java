@@ -5,9 +5,10 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
-import org.junit.Test;
+import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
@@ -15,7 +16,7 @@ import org.junit.Before;
  */
 public class StudentDAOTest {
 	
-	StudentDAO students;
+	private StudentDAO students;
 	
 	public StudentDAOTest() {
 	}
@@ -25,6 +26,7 @@ public class StudentDAOTest {
 		students = new StudentDAOImpl();
 	}
 
+	
 	@Test
 	public void testSomeMethod1() {
 		Student s1 = new Student("Radek", "Capek");
@@ -60,5 +62,76 @@ public class StudentDAOTest {
 		
 	}
 	
+	
+	@Test
+	public void testFindStudentByName1() {
+		students.create(new Student("Honza", "Siroky"));
+
+		List<Student> ls = students.findStudentByName("Honza", "Siroky");
+		Student s2 = ls.get(0);
+		
+		assertFalse(ls.isEmpty());
+		assertTrue(s2.getFirstName().equals("Honza"));
+		assertTrue(s2.getLastName().equals("Siroky"));
+	}
+	
+	
+	@Test
+	public void testFindStudentByName2() {
+		List<Student> ls = students.findStudentByName("Honza", "Siroky");
+		
+		assertTrue(ls.isEmpty());
+	}
+	
+	
+	@Test
+	public void testFindAllStudent1() {
+		students.create(new Student("Honza1", "Siroky1"));
+		students.create(new Student("Honza2", "Siroky2"));
+		students.create(new Student("Honza3", "Siroky3"));
+
+		List<Student> ls = students.findAllStudents();
+		Student s1 = ls.get(0);
+		Student s2 = ls.get(1);
+		Student s3 = ls.get(2);
+		
+		assertFalse(ls.isEmpty());
+		assertTrue(ls.size() == 3);
+		
+		assertTrue(s1.getFirstName().equals("Honza1"));
+		assertTrue(s1.getLastName().equals("Siroky1"));
+		assertTrue(s2.getFirstName().equals("Honza2"));
+		assertTrue(s2.getLastName().equals("Siroky2"));
+		assertTrue(s3.getFirstName().equals("Honza3"));
+		assertTrue(s3.getLastName().equals("Siroky3"));
+	}
+	
+
+	
+	@Test
+	public void testCreateAndDelete() {
+		students.create(new Student("Honza1", "Siroky1"));
+		students.create(new Student("Honza2", "Siroky2"));
+		students.create(new Student("Honza3", "Siroky3"));
+
+		List<Student> ls = students.findAllStudents();
+		
+		assertFalse(ls.isEmpty());
+		assertTrue(ls.size() == 3);
+		
+		Student s2 = ls.get(1);
+		System.out.println(s2);
+		students.delete(s2);
+		
+		ls = students.findAllStudents();
+		assertTrue(ls.size() == 2);
+		
+		Student s4 = ls.get(1);
+		assertTrue(s4.getFirstName().equals("Honza3"));
+		assertTrue(s4.getLastName().equals("Siroky3"));
+		
+		List<Student> ls2 = students.findStudentByName("Honza2", "Siroky2");
+		assertTrue(ls2.isEmpty());
+	}
 	
 }
