@@ -23,9 +23,10 @@ public class CourseDAOImpl implements CourseDAO {
         em.getTransaction().begin();
         em.persist(course);
         em.getTransaction().commit();
+		Course c = em.find(Course.class, course.getId());
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return c;
     }
 
     public Course read(long id) {
@@ -38,18 +39,20 @@ public class CourseDAOImpl implements CourseDAO {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
-        em.persist(course);
+		Course c = em.merge(course);
+        em.persist(c);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Course.class, course.getId());
+        return c;
     }
 
     public Course delete(Course course) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.remove(course);
+		Course c = em.find(Course.class, course.getId());
+        em.remove(c);
         em.getTransaction().commit();
         em.close();
         

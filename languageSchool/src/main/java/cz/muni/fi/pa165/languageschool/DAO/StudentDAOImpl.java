@@ -35,14 +35,15 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     public Student update(Student student) {
-        EntityManager em = emf.createEntityManager();             
+        EntityManager em = emf.createEntityManager();  
         
         em.getTransaction().begin();
-        em.persist(student);
+		Student s = em.merge(student);
+        em.persist(s);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Student.class, student.getId());
+        return s;
     }
 
     public Student delete(Student student) {
