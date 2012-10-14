@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.languageschool.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
-import org.hibernate.annotations.CollectionOfElements;
 
 /**
  *

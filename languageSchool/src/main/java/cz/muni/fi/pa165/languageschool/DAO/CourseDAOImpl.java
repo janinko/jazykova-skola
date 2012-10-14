@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -70,12 +71,10 @@ public class CourseDAOImpl implements CourseDAO {
         EntityManager em = emf.createEntityManager();
         
         Language[] languageArray = Language.values();
-        Collection<String> languages = new ArrayList<String>();
-        for(Language lang: languageArray) {
-            languages.add(lang.toString());
-        }
-        
-        Query query = em.createQuery("SELECT c FROM Course c WHERE c.languages IN {:languages}");        
+        Collection<Language> languages = new ArrayList<Language>();
+        languages.addAll(Arrays.asList(languageArray));
+
+        Query query = em.createQuery("SELECT c FROM Course c WHERE c.language IN (:languages)");        
         query.setParameter("languages", languages);
         
         return query.getResultList();

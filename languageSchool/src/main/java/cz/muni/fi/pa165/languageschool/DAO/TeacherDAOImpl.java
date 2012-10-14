@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -79,15 +80,11 @@ public class TeacherDAOImpl implements TeacherDAO {
     public List<Teacher> findTeacherByLanguage(Language language) {
         EntityManager em = emf.createEntityManager();
         
-        Language[] languageArray = Language.values();
-        Collection<String> languages = new ArrayList<String>();
-        for(Language lang: languageArray) {
-            languages.add(lang.toString());
-        }
-        
-        Query query = em.createQuery("SELECT t FROM Teacher t WHERE t.languages IN {:languages}");        
-        query.setParameter("languages", languages);
+        Query query = em.createQuery("SELECT t FROM Teacher t WHERE t.id IN "
+                +"(SELECT l.id FROM Languages l where l.languages=:language)");        
+        query.setParameter("language", language);
         
         return query.getResultList();
+        
     }    
 }
