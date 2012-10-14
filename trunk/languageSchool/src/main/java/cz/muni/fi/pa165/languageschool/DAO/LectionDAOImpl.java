@@ -17,13 +17,15 @@ public class LectionDAOImpl implements LectionDAO {
     
     public Lection create(Lection lection) {
         EntityManager em = emf.createEntityManager();
+		Lection l;
         
         em.getTransaction().begin();
         em.persist(lection);
         em.getTransaction().commit();
+		l = em.find(Lection.class, lection.getId());
         em.close();
         
-        return em.find(Lection.class, lection.getId());
+        return l;
     }
 
     public Lection read(long id) {
@@ -36,18 +38,20 @@ public class LectionDAOImpl implements LectionDAO {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
-        em.persist(lection);
+		Lection l = em.merge(lection);
+        em.persist(l);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Lection.class, lection.getId());
+        return l;
     }
 
     public Lection delete(Lection lection) {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.remove(lection);
+		Lection l = em.find(Lection.class, lection.getId());
+        em.remove(l);
         em.getTransaction().commit();
         em.close();
         
