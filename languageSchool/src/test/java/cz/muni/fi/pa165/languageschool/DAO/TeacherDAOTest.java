@@ -48,9 +48,6 @@ public class TeacherDAOTest {
 	
 	
 	
-	
-	
-	
 	@Test
 	public void testRead() {
 		Teacher t1 = new Teacher("Pavel", "Hanak");

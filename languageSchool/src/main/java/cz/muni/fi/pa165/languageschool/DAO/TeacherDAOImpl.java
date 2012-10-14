@@ -39,11 +39,12 @@ public class TeacherDAOImpl implements TeacherDAO {
         EntityManager em = emf.createEntityManager();       
         
         em.getTransaction().begin();
-        em.persist(teacher);
+		Teacher t = em.merge(teacher);
+        em.persist(t);
         em.getTransaction().commit();
         em.close();
         
-        return em.find(Teacher.class, teacher.getId());
+        return t;
     }
 
     public Teacher delete(Teacher teacher) {

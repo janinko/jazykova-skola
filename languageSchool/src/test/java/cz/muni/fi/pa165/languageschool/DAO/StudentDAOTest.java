@@ -25,7 +25,18 @@ public class StudentDAOTest {
 	public void setUp() {
 		students = new StudentDAOImpl();
 	}
-
+	
+	
+	@Test
+	public void testUpdate(){
+		Student s1 = new Student("Radek", "Capek");
+		students.create(s1);
+		
+		s1.setFirstName("Radek po uprave");
+		students.update(s1);
+	}
+	
+	/*
 	
 	@Test
 	public void testSomeMethod1() {
@@ -133,5 +144,6 @@ public class StudentDAOTest {
 		List<Student> ls2 = students.findStudentByName("Honza2", "Siroky2");
 		assertTrue(ls2.isEmpty());
 	}
+	*/
 	
 }
