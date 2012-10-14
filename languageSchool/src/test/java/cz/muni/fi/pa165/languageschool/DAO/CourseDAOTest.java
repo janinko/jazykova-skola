@@ -4,9 +4,6 @@
  */
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lection;
-import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -15,21 +12,16 @@ import org.junit.Before;
  *
  * @author fivekeyem
  */
-public class LectionDAOTest {
+public class CourseDAOTest {
 	
-	private LectionDAO lections;
+	private CourseDAO courses;
 	
-	public LectionDAOTest() {
+	public CourseDAOTest() {
 	}
+	
 	
 	@Before
 	public void setUp() {
-		lections = new LectionDAOImpl();
+		courses = new CourseDAOImpl();
 	}
-
-	@Test
-	public void testCreate() {
-		
-	}
-
 }
