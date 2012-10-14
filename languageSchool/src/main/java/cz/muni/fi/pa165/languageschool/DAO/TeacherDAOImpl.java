@@ -23,9 +23,10 @@ public class TeacherDAOImpl implements TeacherDAO {
         em.getTransaction().begin();
         em.persist(teacher);
         em.getTransaction().commit();
+		Teacher t = em.find(Teacher.class, teacher.getId());
         em.close();
         
-        return em.find(Teacher.class, teacher.getId());
+        return t;
     }
 
     public Teacher read(long id) {
@@ -49,7 +50,8 @@ public class TeacherDAOImpl implements TeacherDAO {
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        em.remove(teacher);
+		Teacher t = em.find(Teacher.class, teacher.getId());
+        em.remove(t);
         em.getTransaction().commit();
         em.close();
         
@@ -67,7 +69,7 @@ public class TeacherDAOImpl implements TeacherDAO {
         EntityManager em = emf.createEntityManager();
         
         Query query = em.createQuery("SELECT t FROM Teacher t WHERE "
-            +"t.firstName LIKE :fistName AND t.lastName LIKE :lastName");
+            +"t.firstName LIKE :firstName AND t.lastName LIKE :lastName");
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         return query.getResultList();
