@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lection;
 import java.util.List;
-import org.junit.Test;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
@@ -18,13 +16,16 @@ import org.junit.Before;
 public class LectionDAOTest {
 	
 	private LectionDAO lections;
+    private CourseDAO courses;
 	
 	public LectionDAOTest() {
 	}
 	
 	@Before
 	public void setUp() {
-		lections = new LectionDAOImpl();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+		lections = new LectionDAOImpl(emf);
+        courses = new CourseDAOImpl(emf);
 	}
 
 	@Test
@@ -75,7 +76,30 @@ public class LectionDAOTest {
 		assertEquals(l1.getId(), l2.getId());
 	}
 	
+    @Test
+    public void testFindLectionByCourse() {   
 
+        Lection l1 = new Lection();                
+        Lection l2 = new Lection();
+        Lection l3 = new Lection();
+        Course c1 = new Course();
+        Course c2 = new Course();
+        l1.setCourse(c1);
+        l2.setCourse(c2);
+        l3.setCourse(c1);
+
+        courses.create(c1);
+        courses.create(c2);
+        lections.create(l1);
+        lections.create(l2);
+        lections.create(l3);
+
+        List<Lection> list = lections.findLectionByCourse(c1);
+
+        assertTrue(list.contains(l1));
+        assertTrue(list.contains(l3));
+        assertFalse(list.contains(l2));
+    }             
 	
 	@Test
 	public void testCreateAndDelete() {

@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -25,7 +23,8 @@ public class CourseDAOTest {
 	
 	@Before
 	public void setUp() {
-		courses = new CourseDAOImpl();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+		courses = new CourseDAOImpl(emf);
 	}
 	
 	

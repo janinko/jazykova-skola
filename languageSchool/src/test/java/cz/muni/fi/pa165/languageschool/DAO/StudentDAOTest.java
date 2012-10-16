@@ -1,11 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +21,8 @@ public class StudentDAOTest {
 	
 	@Before
 	public void setUp() {
-		students = new StudentDAOImpl();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+		students = new StudentDAOImpl(emf);
 	}
 	
 	
@@ -36,7 +35,7 @@ public class StudentDAOTest {
 		students.update(s1);
 	}
 	
-	/*
+	
 	
 	@Test
 	public void testSomeMethod1() {
@@ -144,6 +143,6 @@ public class StudentDAOTest {
 		List<Student> ls2 = students.findStudentByName("Honza2", "Siroky2");
 		assertTrue(ls2.isEmpty());
 	}
-	*/
+	
 	
 }

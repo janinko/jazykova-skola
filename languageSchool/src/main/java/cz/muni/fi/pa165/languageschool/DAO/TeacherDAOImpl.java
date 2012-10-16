@@ -2,13 +2,9 @@ package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -16,7 +12,11 @@ import javax.persistence.Query;
  * @author xchrastk
  */
 public class TeacherDAOImpl implements TeacherDAO {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+    private EntityManagerFactory emf;
+    
+    public TeacherDAOImpl(EntityManagerFactory emf) {
+         this.emf = emf;
+    }   
     
     public Teacher create(Teacher teacher) {
         EntityManager em = emf.createEntityManager();
@@ -80,8 +80,8 @@ public class TeacherDAOImpl implements TeacherDAO {
     public List<Teacher> findTeacherByLanguage(Language language) {
         EntityManager em = emf.createEntityManager();
         
-        Query query = em.createQuery("SELECT t FROM Teacher t WHERE t.id IN "
-                +"(SELECT l.id FROM Languages l where l.languages=:language)");        
+        Query query = em.createQuery("SELECT t FROM Teacher t WHERE "
+                +":language in t.languages");        
         query.setParameter("language", language);
         
         return query.getResultList();

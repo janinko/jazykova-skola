@@ -1,15 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.List;
-import org.junit.Test;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
@@ -24,7 +21,9 @@ public class TeacherDAOTest {
 
 	@Before
 	public void setUp() {
-		teachers = new TeacherDAOImpl();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+        teachers = new TeacherDAOImpl(emf);
+        
 	}
 	
 	@Test
@@ -104,7 +103,31 @@ public class TeacherDAOTest {
 		assertTrue(t3.getLastName().equals("Siroky3"));
 	}
 	
-
+//    @Test
+//    public void testFindTeacherByLanguage() {            
+//        Teacher t1 = new Teacher("Honza1", "Siroky1");                
+//        Teacher t2 = new Teacher("Honza2", "Siroky2");
+//        Teacher t3 = new Teacher("Honza3", "Siroky3");
+//        Collection<Language> languages = new ArrayList<Language>();
+//        languages.add(Language.AJ);
+//        languages.add(Language.NJ);
+//        t1.setLanguages(languages);
+//        languages.add(Language.RU);
+//        t3.setLanguages(languages);
+//        languages.remove(Language.NJ);
+//        languages.add(Language.FJ);
+//        t2.setLanguages(languages);
+//
+//        teachers.create(t1);
+//        teachers.create(t2);
+//        teachers.create(t3);
+//
+//        List<Teacher> list = teachers.findTeacherByLanguage(Language.NJ);
+//
+//        assertTrue(list.contains(t1));
+//        assertTrue(list.contains(t3));
+//        assertFalse(list.contains(t2));
+//    }  
 	
 	@Test
 	public void testCreateAndDelete() {
