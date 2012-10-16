@@ -13,7 +13,11 @@ import javax.persistence.Query;
  * @author xchrastk
  */
 public class StudentDAOImpl implements StudentDAO {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+    private EntityManagerFactory emf;
+    
+    public StudentDAOImpl(EntityManagerFactory emf) {
+         this.emf = emf;
+    }   
     
     public Student create(Student student) {
         EntityManager em = emf.createEntityManager();

@@ -13,7 +13,11 @@ import javax.persistence.Query;
  * @author xchrastk
  */
 public class LectionDAOImpl implements LectionDAO {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+    private EntityManagerFactory emf;
+    
+    public LectionDAOImpl(EntityManagerFactory emf) {
+         this.emf = emf;
+    }   
     
     public Lection create(Lection lection) {
         EntityManager em = emf.createEntityManager();
@@ -48,7 +52,7 @@ public class LectionDAOImpl implements LectionDAO {
 
     public Lection delete(Lection lection) {
         EntityManager em = emf.createEntityManager();
-        
+                
         em.getTransaction().begin();
 		Lection l = em.find(Lection.class, lection.getId());
         em.remove(l);
@@ -66,13 +70,12 @@ public class LectionDAOImpl implements LectionDAO {
     }    
     
     
-    public List<Lection> findLectionByCourse(Course course) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        /*EntityManager em = emf.createEntityManager();
+    public List<Lection> findLectionByCourse(Course course) {        
+        EntityManager em = emf.createEntityManager();
         
         Query query = em.createQuery("SELECT l FROM Lection l WHERE "
-            +"l.course LIKE :course");
+            +"l.course = :course");
         query.setParameter("course", course);
-        return query.getResultList();*/
+        return query.getResultList();
     } 
 }
