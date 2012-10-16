@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -23,10 +24,9 @@ public class Lection implements Serializable {
     private Date time;
         
     @ManyToOne
-    //@Column(nullable=false)
     private Course course;
     
-    @OneToMany    
+    @ManyToMany    
     private List<Student> students;
     
     @ManyToOne

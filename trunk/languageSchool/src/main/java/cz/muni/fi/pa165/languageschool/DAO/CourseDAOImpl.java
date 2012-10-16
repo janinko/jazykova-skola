@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -16,7 +15,11 @@ import javax.persistence.Query;
  * @author xchrastk
  */
 public class CourseDAOImpl implements CourseDAO {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
+    private EntityManagerFactory emf;
+    
+    public CourseDAOImpl(EntityManagerFactory emf) {
+         this.emf = emf;
+    }   
     
     public Course create(Course course) {
         EntityManager em = emf.createEntityManager();
