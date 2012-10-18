@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -32,22 +31,13 @@ public class Lection implements Serializable {
     @ManyToOne
     private Teacher teacher;
 
-	public Lection() {
-	}
-
-	public Lection(Long id) {
-		this.id = id;
-	}
-	
-	
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }   
 
     public Date getDate() {
         return date;
@@ -111,5 +101,5 @@ public class Lection implements Serializable {
     @Override
     public String toString() {
         return "Lection{" + "id=" + id + ", date=" + date + ", time=" + time + ", course=" + course + ", students=" + students + ", teacher=" + teacher + '}';
-    }   
+    }       
 }

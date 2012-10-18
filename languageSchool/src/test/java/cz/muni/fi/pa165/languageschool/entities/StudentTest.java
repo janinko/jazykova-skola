@@ -4,8 +4,8 @@
  */
 package cz.muni.fi.pa165.languageschool.entities;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -21,10 +21,12 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEquals1() {
-		Student t1 = new Student(new Long(1), "Pepa", "Novak");
-		Student t2 = new Student(new Long(1), "Pepa", "Novak");
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(new Long(1));
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(new Long(1));
 		
-		assertEquals(t1, t2);
+		assertEquals(s1, s2);
 	}
 	
 	
@@ -33,10 +35,12 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEquals2() {
-		Student t1 = new Student(new Long(1), "Pepa", "Novak");
-		Student t2 = new Student(new Long(2), "Pepa", "Novak");
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(new Long(1));
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(new Long(2));
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(s1.equals(s2));
 	}
 	
 	
@@ -45,10 +49,12 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEquals3() {
-		Student t1 = new Student(null, "Pepa", "Novak");
-		Student t2 = new Student(null, "Pepa", "Novak");
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(null);
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(null);
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(s1.equals(s2));
 	}
 
 	
@@ -57,10 +63,10 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEquals4() {
-		Student t1 = new Student();
-		Student t2 = new Student();
+		Student s1 = new Student();
+		Student s2 = new Student();
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(s1.equals(s2));
 	}
 
 }

@@ -4,8 +4,8 @@
  */
 package cz.muni.fi.pa165.languageschool.entities;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -22,10 +22,12 @@ public class CourseTest {
 	 */
 	@Test
 	public void testEquals1() {
-		Course t1 = new Course(new Long(1), "Anglictina pro zacatecniky");
-		Course t2 = new Course(new Long(1), "Anglictina pro zacatecniky");
+		Course c1 = new Course("Anglictina pro zacatecniky");
+                c1.setId(new Long(1));
+		Course c2 = new Course("Anglictina pro zacatecniky");
+                c1.setId(new Long(1));
 		
-		assertEquals(t1, t2);
+		assertEquals(c1, c2);
 	}
 	
 	
@@ -34,10 +36,12 @@ public class CourseTest {
 	 */
 	@Test
 	public void testEquals2() {
-		Course t1 = new Course(new Long(1), "Anglictina pro zacatecniky");
-		Course t2 = new Course(new Long(2), "Anglictina pro zacatecniky");
+		Course c1 = new Course("Anglictina pro zacatecniky");
+                c1.setId(new Long(1));
+		Course c2 = new Course("Anglictina pro zacatecniky");
+                c2.setId(new Long(2));
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(c1.equals(c2));
 	}
 	
 	
@@ -46,10 +50,12 @@ public class CourseTest {
 	 */
 	@Test
 	public void testEquals3() {
-		Course t1 = new Course(null, "Anglictina pro zacatecniky");
-		Course t2 = new Course(null, "Anglictina pro zacatecniky");
+		Course c1 = new Course("Anglictina pro zacatecniky");
+                c1.setId(null);
+		Course c2 = new Course("Anglictina pro zacatecniky");
+                c2.setId(null);
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(c1.equals(c2));
 	}
 
 	
@@ -58,9 +64,9 @@ public class CourseTest {
 	 */
 	@Test
 	public void testEquals4() {
-		Course t1 = new Course();
-		Course t2 = new Course();
+		Course c1 = new Course();
+		Course c2 = new Course();
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(c1.equals(c2));
 	}
 }
