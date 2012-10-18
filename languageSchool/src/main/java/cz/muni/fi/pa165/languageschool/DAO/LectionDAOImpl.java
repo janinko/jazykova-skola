@@ -5,7 +5,6 @@ import cz.muni.fi.pa165.languageschool.entities.Lection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -21,12 +20,12 @@ public class LectionDAOImpl implements LectionDAO {
     
     public Lection create(Lection lection) {
         EntityManager em = emf.createEntityManager();
-		Lection l;
+	Lection l;
         
         em.getTransaction().begin();
         em.persist(lection);
         em.getTransaction().commit();
-		l = em.find(Lection.class, lection.getId());
+	l = em.find(Lection.class, lection.getId());
         em.close();
         
         return l;

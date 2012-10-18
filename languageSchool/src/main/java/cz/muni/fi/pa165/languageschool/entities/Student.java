@@ -20,7 +20,7 @@ public class Student implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
-    private int age;     
+    private int age;    
 
 	
 	public Student() {
@@ -29,16 +29,7 @@ public class Student implements Serializable {
 	public Student(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
-	
-	
-
-	public Student(Long id, String firstName, String lastName) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
+	}	
 	
 
     public Long getId() {

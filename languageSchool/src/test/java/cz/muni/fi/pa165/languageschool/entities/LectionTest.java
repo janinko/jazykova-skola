@@ -4,8 +4,8 @@
  */
 package cz.muni.fi.pa165.languageschool.entities;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -22,10 +22,12 @@ public class LectionTest {
 	 */
 	@Test
 	public void testEquals1() {
-		Lection t1 = new Lection(new Long(1));
-		Lection t2 = new Lection(new Long(1));
+		Lection l1 = new Lection();
+                l1.setId(new Long(1));
+		Lection l2 = new Lection();
+                l2.setId(new Long(1));
 		
-		assertEquals(t1, t2);
+		assertEquals(l1, l2);
 	}
 	
 	
@@ -34,10 +36,12 @@ public class LectionTest {
 	 */
 	@Test
 	public void testEquals2() {
-		Lection t1 = new Lection(new Long(1));
-		Lection t2 = new Lection(new Long(2));
+		Lection l1 = new Lection();
+                l1.setId(new Long(1));
+		Lection l2 = new Lection();
+                l2.setId(new Long(2));
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(l1.equals(l2));
 	}
 	
 	
@@ -46,10 +50,12 @@ public class LectionTest {
 	 */
 	@Test
 	public void testEquals3() {
-		Lection t1 = new Lection(null);
-		Lection t2 = new Lection(null);
+		Lection l1 = new Lection();
+                l1.setId(null);
+		Lection l2 = new Lection();
+                l2.setId(null);
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(l1.equals(l2));
 	}
 
 	
@@ -58,9 +64,9 @@ public class LectionTest {
 	 */
 	@Test
 	public void testEquals4() {
-		Lection t1 = new Lection();
-		Lection t2 = new Lection();
+		Lection l1 = new Lection();
+		Lection l2 = new Lection();
 		
-		assertFalse(t1.equals(t2));
+		assertFalse(l1.equals(l2));
 	}
 }
