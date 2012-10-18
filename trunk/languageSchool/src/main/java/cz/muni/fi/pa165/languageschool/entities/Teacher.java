@@ -24,21 +24,15 @@ public class Teacher implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
+    @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Language.class) 
-	@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
+    @CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
     private Collection<Language> languages;
     
     @Enumerated(EnumType.STRING)
     private Language nativeLanguage;
 
 	public Teacher() {
-	}
-
-	
-	public Teacher(Long id, String firstName, String lastName) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
 	}
 
 	public Teacher(String firstName, String lastName) {
@@ -108,8 +102,7 @@ public class Teacher implements Serializable {
 
     @Override
     public String toString() {
-        return "Teacher{" + "id=" + id + "," + firstName + lastName + "}";
-    }
-    
+        return "Teacher{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+    }    
 }
 

@@ -28,8 +28,10 @@ public class TeacherTest {
 	 */
 	@Test
 	public void testEquals1() {
-		Teacher t1 = new Teacher(new Long(1), "Martin", "Novak");
-		Teacher t2 = new Teacher(new Long(1), "Martin", "Novak");
+		Teacher t1 = new Teacher("Martin", "Novak");
+                t1.setId(new Long(1));
+		Teacher t2 = new Teacher("Martin", "Novak");
+                t2.setId(new Long(1));
 		
 		assertEquals(t1, t2);
 	}
@@ -40,8 +42,10 @@ public class TeacherTest {
 	 */
 	@Test
 	public void testEquals2() {
-		Teacher t1 = new Teacher(new Long(1), "Martin", "Novak");
-		Teacher t2 = new Teacher(new Long(2), "Martin", "Novak");
+		Teacher t1 = new Teacher("Martin", "Novak");
+                t1.setId(new Long(1));
+		Teacher t2 = new Teacher("Martin", "Novak");
+                t2.setId(new Long(2));
 		
 		assertFalse(t1.equals(t2));
 	}
@@ -52,8 +56,10 @@ public class TeacherTest {
 	 */
 	@Test
 	public void testEquals3() {
-		Teacher t1 = new Teacher(null, "Martin", "Novak");
-		Teacher t2 = new Teacher(null, "Martin", "Novak");
+		Teacher t1 = new Teacher("Martin", "Novak");
+                t1.setId(null);
+		Teacher t2 = new Teacher("Martin", "Novak");
+                t2.setId(null);
 		
 		assertFalse(t1.equals(t2));
 	}
