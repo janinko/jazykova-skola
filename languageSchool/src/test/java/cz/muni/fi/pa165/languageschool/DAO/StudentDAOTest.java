@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +28,11 @@ public class StudentDAOTest {
         students = new StudentDAOImpl(emf);
         courses = new CourseDAOImpl(emf);
     }
+	
+	@After
+	public void tearDown() {
+	}
+	
 
     @Test
     public void testUpdate() {
@@ -40,7 +46,7 @@ public class StudentDAOTest {
     }
 
     @Test
-    public void testSomeMethod1() {
+    public void testCreate1() {
         Student s1 = new Student("Radek", "Capek");
         Student s2 = students.create(s1);
 
@@ -53,7 +59,7 @@ public class StudentDAOTest {
     }
 
     @Test
-    public void testSomeMethod2() {
+    public void testCreate2() {
         Student s1 = new Student("Radek", "Capek");
         assertTrue(s1.getId() == null);
         students.create(s1);
@@ -63,7 +69,7 @@ public class StudentDAOTest {
     }
 
     @Test
-    public void testSomeMethod3() {
+    public void testRead1() {
         Student s1 = new Student("Radek", "Capek");
         students.create(s1);
 
