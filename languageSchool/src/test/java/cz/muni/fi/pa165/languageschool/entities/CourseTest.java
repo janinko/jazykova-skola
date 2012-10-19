@@ -25,7 +25,8 @@ public class CourseTest {
 		Course c1 = new Course("Anglictina pro zacatecniky");
                 c1.setId(new Long(1));
 		Course c2 = new Course("Anglictina pro zacatecniky");
-                c1.setId(new Long(1));
+                c2.setId(new Long(1));
+			
 		
 		assertEquals(c1, c2);
 	}
