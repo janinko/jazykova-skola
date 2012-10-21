@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -64,6 +65,9 @@ public class Lection implements Serializable {
     }
 
     public List<Student> getStudents() {
+		if(students == null){
+			students = new ArrayList<Student>();
+		}
         return students;
     }
 
