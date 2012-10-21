@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
+import cz.muni.fi.pa165.languageschool.entities.Lection;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -18,6 +19,7 @@ public class StudentDAOTest {
 
     private StudentDAO students;
     private CourseDAO courses;
+	private LectionDAO lections;
 
     public StudentDAOTest() {
     }
@@ -27,6 +29,7 @@ public class StudentDAOTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
         students = new StudentDAOImpl(emf);
         courses = new CourseDAOImpl(emf);
+		lections = new LectionDAOImpl(emf);
     }
 	
 	@After
@@ -173,6 +176,42 @@ public class StudentDAOTest {
         students.delete(s2);
         students.delete(s3);
     }
+	
+	@Test
+	public void testFindStudentsByLection(){
+        Student s1 = students.create(new Student("Honza1", "Siroky1"));
+        Student s2 = students.create(new Student("Honza2", "Siroky2"));
+        Student s3 = students.create(new Student("Honza3", "Siroky3"));
+        Student s4 = students.create(new Student("Honza4", "Siroky4"));
+		
+        Lection l1 = lections.create(new Lection());
+        Lection l2 = lections.create(new Lection());
+        Lection l3 = lections.create(new Lection());
+		
+		List<Student> ls1 = l1.getStudents();
+		ls1.add(s1);
+		ls1.add(s2);
+		ls1.add(s3);
+		ls1.add(s4);
+		l1.setStudents(ls1);
+		lections.update(l1);
+		
+		List<Student> ls2 = l2.getStudents();
+		ls2.add(s2);
+		ls2.add(s4);
+		l2.setStudents(ls2);
+		lections.update(l2);
+		
+		List<Student> ls3 = l3.getStudents();
+		
+		List<Student> students1 = students.findStudentByLection(l1);
+		List<Student> students2 = students.findStudentByLection(l2);
+		List<Student> students3 = students.findStudentByLection(l3);
+		
+		assertEquals(ls1, students1);
+		assertEquals(ls2, students2);
+		assertEquals(ls3, students3);
+	}
     
     @Test
     public void testCreateAndDelete() {
