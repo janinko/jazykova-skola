@@ -64,9 +64,9 @@ public class StudentDAOTest {
     @Test
     public void testCreate2() {
         Student s1 = new Student("Radek", "Capek");
-        assertTrue(s1.getId() == null);
+        assertNull(s1.getId());
         students.create(s1);
-        assertFalse(s1.getId() == null);
+        assertNotNull(s1.getId());
 
         students.delete(s1);
     }
@@ -211,6 +211,14 @@ public class StudentDAOTest {
 		assertEquals(ls1, students1);
 		assertEquals(ls2, students2);
 		assertEquals(ls3, students3);
+
+		lections.delete(l1);
+		lections.delete(l2);
+		lections.delete(l3);
+		students.delete(s1);
+		students.delete(s2);
+		students.delete(s3);
+		students.delete(s4);
 	}
     
     @Test
