@@ -42,11 +42,11 @@ public class CourseDAOTest {
     public void testCreate2() {
         Course c1 = new Course("Anglictina pro pokrocile");
 
-        assertTrue(c1.getId() == null);
+        assertNull(c1.getId());
         Course c2 = courses.create(c1);
 
-        assertFalse(c1.getId() == null);
-        assertFalse(c2.getId() == null);
+        assertNotNull(c1.getId());
+        assertNotNull(c2.getId());
 
         courses.delete(c1);
     }
