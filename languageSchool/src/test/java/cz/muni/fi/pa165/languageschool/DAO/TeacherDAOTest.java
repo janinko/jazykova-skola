@@ -45,9 +45,9 @@ public class TeacherDAOTest {
     @Test
     public void testCreate2() {
         Teacher t1 = new Teacher("Pavel", "Hanak");
-        assertTrue(t1.getId() == null);
+        assertNull(t1.getId());
         teachers.create(t1);
-        assertFalse(t1.getId() == null);
+        assertNotNull(t1.getId());
 
         teachers.delete(t1);
     }

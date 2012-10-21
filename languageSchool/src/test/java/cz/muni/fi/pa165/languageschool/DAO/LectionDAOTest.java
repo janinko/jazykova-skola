@@ -43,12 +43,12 @@ public class LectionDAOTest {
     public void testCreate2() {
         Lection l1 = new Lection();
 
-        assertTrue(l1.getId() == null);
+        assertNull(l1.getId());
 
         Lection l2 = lections.create(l1);
 
-        assertFalse(l1.getId() == null);
-        assertFalse(l2.getId() == null);
+        assertNotNull(l1.getId());
+        assertNotNull(l2.getId());
 
         lections.delete(l1);
     }
