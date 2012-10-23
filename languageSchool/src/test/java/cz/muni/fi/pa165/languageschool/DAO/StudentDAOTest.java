@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lection;
 import cz.muni.fi.pa165.languageschool.entities.Student;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -208,9 +209,10 @@ public class StudentDAOTest {
 		List<Student> students2 = students.findStudentByLection(l2);
 		List<Student> students3 = students.findStudentByLection(l3);
 		
-		assertEquals(ls1, students1);
-		assertEquals(ls2, students2);
-		assertEquals(ls3, students3);
+		// org.hibernate.collection.internal.PersistentBag (ls1) does not respect the collection API in equals.
+		assertEquals(new ArrayList<Student>(ls1), students1);
+		assertEquals(new ArrayList<Student>(ls2), students2);
+		assertEquals(new ArrayList<Student>(ls3), students3);
 
 		lections.delete(l1);
 		lections.delete(l2);

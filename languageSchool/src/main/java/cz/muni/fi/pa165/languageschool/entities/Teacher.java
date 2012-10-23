@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -27,7 +28,7 @@ public class Teacher implements Serializable {
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Language.class) 
     @CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
-    private Collection<Language> languages;
+    private Set<Language> languages = new HashSet<Language>();
     
     @Enumerated(EnumType.STRING)
     private Language nativeLanguage;
@@ -65,11 +66,11 @@ public class Teacher implements Serializable {
         this.lastName = lastName;
     }
 
-    public Collection<Language> getLanguages() {
+    public Set<Language> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(Collection<Language> languages) {
+    public void setLanguages(Set<Language> languages) {
         this.languages = languages;
     }
 

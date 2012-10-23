@@ -2,9 +2,9 @@ package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import static org.junit.Assert.*;
@@ -130,7 +130,7 @@ public class TeacherDAOTest {
         Teacher t2 = new Teacher("Honza2", "Siroky2");
         Teacher t3 = new Teacher("Honza3", "Siroky3");
         
-        Collection<Language> languages = new ArrayList<Language>();
+        Set<Language> languages = new HashSet<Language>();
         languages.add(Language.AJ);
         languages.add(Language.NJ);
         t1.setLanguages(languages);
