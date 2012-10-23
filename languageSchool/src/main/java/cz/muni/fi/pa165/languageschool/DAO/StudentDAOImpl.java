@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Lection;
+import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -80,11 +80,11 @@ public class StudentDAOImpl implements StudentDAO {
         return query.getResultList();
     }
 
-    public List<Student> findStudentByLection(Lection lection) {
+    public List<Student> findStudentByLesson(Lesson lesson) {
         EntityManager em = emf.createEntityManager();
 
-        Query query = em.createQuery("SELECT l.students FROM Lection l WHERE l.id=:id");
-        query.setParameter("id", lection.getId());
+        Query query = em.createQuery("SELECT l.students FROM Lesson l WHERE l.id=:id");
+        query.setParameter("id", lesson.getId());
 
         return query.getResultList();
     }

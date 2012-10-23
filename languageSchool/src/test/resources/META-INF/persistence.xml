@@ -5,7 +5,7 @@
         <class>cz.muni.fi.pa165.languageschool.entities.Student</class>
         <class>cz.muni.fi.pa165.languageschool.entities.Course</class>
         <class>cz.muni.fi.pa165.languageschool.entities.Teacher</class>
-        <class>cz.muni.fi.pa165.languageschool.entities.Lection</class>
+        <class>cz.muni.fi.pa165.languageschool.entities.Lesson</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:testdb"/>

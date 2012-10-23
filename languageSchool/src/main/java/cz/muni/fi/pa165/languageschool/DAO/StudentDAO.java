@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Lection;
+import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
 
@@ -65,11 +65,11 @@ public interface StudentDAO {
     public List<Student> findStudentByName(String firstName, String lastName);
 	
 	/**
-	 * This method return list of students for the lection.
+	 * This method return list of students for the lesson.
 	 * 
-	 * @param lection which students have registered
+	 * @param lesson which students have registered
 	 * @return one or more students
-	 * @throws IllegalArgumentException if lection is null
+	 * @throws IllegalArgumentException if lesson is null
 	 */
-    public List<Student> findStudentByLection(Lection lection);
+    public List<Student> findStudentByLesson(Lesson lesson);
 }
