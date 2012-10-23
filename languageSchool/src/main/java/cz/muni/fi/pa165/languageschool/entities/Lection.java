@@ -27,7 +27,7 @@ public class Lection implements Serializable {
     private Course course;
     
     @ManyToMany    
-    private List<Student> students;
+    private List<Student> students = new ArrayList<Student>();
     
     @ManyToOne
     private Teacher teacher;
@@ -65,9 +65,6 @@ public class Lection implements Serializable {
     }
 
     public List<Student> getStudents() {
-		if(students == null){
-			students = new ArrayList<Student>();
-		}
         return students;
     }
 

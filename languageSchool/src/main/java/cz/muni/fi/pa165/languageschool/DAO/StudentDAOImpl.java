@@ -86,6 +86,6 @@ public class StudentDAOImpl implements StudentDAO {
         Query query = em.createQuery("SELECT l.students FROM Lection l WHERE l.id=:id");
         query.setParameter("id", lection.getId());
 
-        return (List<Student>) query.getResultList();
+        return query.getResultList();
     }
 }
