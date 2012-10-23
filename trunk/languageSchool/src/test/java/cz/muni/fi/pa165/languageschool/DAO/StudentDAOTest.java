@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lection;
+import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class StudentDAOTest {
 
     private StudentDAO students;
     private CourseDAO courses;
-	private LectionDAO lections;
+	private LessonDAO lessons;
 
     public StudentDAOTest() {
     }
@@ -30,7 +30,7 @@ public class StudentDAOTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
         students = new StudentDAOImpl(emf);
         courses = new CourseDAOImpl(emf);
-		lections = new LectionDAOImpl(emf);
+		lessons = new LessonDAOImpl(emf);
     }
 	
 	@After
@@ -144,7 +144,7 @@ public class StudentDAOTest {
     }
 
     @Test
-    public void testFindStudentByLection() {
+    public void testFindStudentByLesson() {
         Course c1 = new Course();
         Course c2 = new Course();
         Course c3 = new Course();
@@ -179,15 +179,15 @@ public class StudentDAOTest {
     }
 	
 	@Test
-	public void testFindStudentsByLection(){
+	public void testFindStudentsByLesson(){
         Student s1 = students.create(new Student("Honza1", "Siroky1"));
         Student s2 = students.create(new Student("Honza2", "Siroky2"));
         Student s3 = students.create(new Student("Honza3", "Siroky3"));
         Student s4 = students.create(new Student("Honza4", "Siroky4"));
 		
-        Lection l1 = lections.create(new Lection());
-        Lection l2 = lections.create(new Lection());
-        Lection l3 = lections.create(new Lection());
+        Lesson l1 = lessons.create(new Lesson());
+        Lesson l2 = lessons.create(new Lesson());
+        Lesson l3 = lessons.create(new Lesson());
 		
 		List<Student> ls1 = l1.getStudents();
 		ls1.add(s1);
@@ -195,28 +195,28 @@ public class StudentDAOTest {
 		ls1.add(s3);
 		ls1.add(s4);
 		l1.setStudents(ls1);
-		lections.update(l1);
+		lessons.update(l1);
 		
 		List<Student> ls2 = l2.getStudents();
 		ls2.add(s2);
 		ls2.add(s4);
 		l2.setStudents(ls2);
-		lections.update(l2);
+		lessons.update(l2);
 		
 		List<Student> ls3 = l3.getStudents();
 		
-		List<Student> students1 = students.findStudentByLection(l1);
-		List<Student> students2 = students.findStudentByLection(l2);
-		List<Student> students3 = students.findStudentByLection(l3);
+		List<Student> students1 = students.findStudentByLesson(l1);
+		List<Student> students2 = students.findStudentByLesson(l2);
+		List<Student> students3 = students.findStudentByLesson(l3);
 		
 		// org.hibernate.collection.internal.PersistentBag (ls1) does not respect the collection API in equals.
 		assertEquals(new ArrayList<Student>(ls1), students1);
 		assertEquals(new ArrayList<Student>(ls2), students2);
 		assertEquals(new ArrayList<Student>(ls3), students3);
 
-		lections.delete(l1);
-		lections.delete(l2);
-		lections.delete(l3);
+		lessons.delete(l1);
+		lessons.delete(l2);
+		lessons.delete(l3);
 		students.delete(s1);
 		students.delete(s2);
 		students.delete(s3);
