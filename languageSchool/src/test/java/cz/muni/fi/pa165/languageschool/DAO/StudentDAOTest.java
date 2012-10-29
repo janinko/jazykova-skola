@@ -11,6 +11,7 @@ import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -19,7 +20,11 @@ import org.junit.Test;
 public class StudentDAOTest {
 
     private StudentDAO students;
-    private CourseDAO courses;
+	
+	/*
+	@Autowired
+    private CourseDAO courseDao;
+	*/
 	private LessonDAO lessons;
 
     public StudentDAOTest() {
@@ -29,7 +34,7 @@ public class StudentDAOTest {
     public void setUp() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
         students = new StudentDAOImpl(emf);
-        courses = new CourseDAOImpl(emf);
+        //courses = new CourseDAOImpl(emf);
 		lessons = new LessonDAOImpl(emf);
     }
 	

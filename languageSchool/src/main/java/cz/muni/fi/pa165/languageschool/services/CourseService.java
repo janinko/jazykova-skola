@@ -11,7 +11,7 @@ public interface CourseService {
     /*
      * @return updated lection
      */
-    Course addLection(Lesson lection);
+    Course addLection(Lesson lesson);
     
     //+ CRUD operace
 }

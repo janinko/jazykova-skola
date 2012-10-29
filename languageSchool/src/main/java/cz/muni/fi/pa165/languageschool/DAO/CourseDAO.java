@@ -36,7 +36,7 @@ public interface CourseDAO {
      * @return the updated course
      * @throws IllegalArgumentException if the course is null
      */
-    public Course update(Course course);
+    public void update(Course course);
     
     /*
      * Deleted a course from the database.
@@ -45,7 +45,7 @@ public interface CourseDAO {
      * @return the deleted course
      * @throws NullPointerException if the course is null
      */
-    public Course delete(Course course);
+    public void delete(Course course);
     
     /*
      * Retrieves all courses stored in the database.

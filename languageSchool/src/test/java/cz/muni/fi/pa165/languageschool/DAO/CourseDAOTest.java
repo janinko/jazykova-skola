@@ -3,11 +3,12 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -15,27 +16,32 @@ import org.junit.Test;
  */
 public class CourseDAOTest {
 
-    private CourseDAO courses;
+	
+    private CourseDAO courseDao;
 
     public CourseDAOTest() {
     }
 
+
+	
+	
+
     @Before
     public void setUp() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
-        courses = new CourseDAOImpl(emf);
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		courseDao = context.getBean(CourseDAO.class);
     }
 
     @Test
     public void testCreate1() {
         Course c1 = new Course("Anglictina pro pokrocile");
-        Course c2 = courses.create(c1);
+        Course c2 = courseDao.create(c1);
 
         assertEquals(c1, c2);
         assertEquals(c1.getId(), c2.getId());
         assertEquals(c1.getName(), c2.getName());
 
-        courses.delete(c1);
+        courseDao.delete(c1);
     }
 
     @Test
@@ -43,35 +49,35 @@ public class CourseDAOTest {
         Course c1 = new Course("Anglictina pro pokrocile");
 
         assertNull(c1.getId());
-        Course c2 = courses.create(c1);
+        Course c2 = courseDao.create(c1);
 
         assertNotNull(c1.getId());
         assertNotNull(c2.getId());
 
-        courses.delete(c1);
+        courseDao.delete(c1);
     }
 
     @Test
     public void testRead() {
         Course c1 = new Course("Anglictina pro pokrocile");
 
-        courses.create(c1);
+        courseDao.create(c1);
 
-        Course c2 = courses.read(c1.getId());
+        Course c2 = courseDao.read(c1.getId());
 
         assertEquals(c1.getId(), c2.getId());
         assertEquals(c1.getName(), c2.getName());
 
-        courses.delete(c1);
+        courseDao.delete(c1);
     }
 
     @Test
     public void testFindAllCourses() {
         Course c1 = new Course("Anglictina pro pokrocile");
 
-        courses.create(c1);
+        courseDao.create(c1);
 
-        List<Course> ls = courses.findAllCourses();
+        List<Course> ls = courseDao.findAllCourses();
         Course c2 = ls.get(0);
 
         assertFalse(ls.isEmpty());
@@ -79,7 +85,7 @@ public class CourseDAOTest {
         assertEquals(c1.getId(), c2.getId());
         assertEquals(c1.getName(), c2.getName());
 
-        courses.delete(c1);
+        courseDao.delete(c1);
     }
 
     @Test
@@ -91,36 +97,36 @@ public class CourseDAOTest {
         Course c3 = new Course("Nemcina pro pokrocile");
         c3.setLanguage(Teacher.Language.NJ);
 
-        courses.create(c1);
-        courses.create(c2);
-        courses.create(c3);
+        courseDao.create(c1);
+        courseDao.create(c2);
+        courseDao.create(c3);
 
-        List<Course> ls = courses.findCourseByLanguage(Teacher.Language.FJ);
+        List<Course> ls = courseDao.findCourseByLanguage(Teacher.Language.FJ);
         Course c4 = ls.get(0);
         
         assertTrue(ls.size()==1);
         assertTrue(c4.getName().equals("Francouzstina pro zacatecniky"));
 
-        courses.delete(c1);
-        courses.delete(c2);
-        courses.delete(c3);
+        courseDao.delete(c1);
+        courseDao.delete(c2);
+        courseDao.delete(c3);
     }
 
     @Test
     public void testCreateAndDelete() {
-        courses.create(new Course("Anglictina pro pokrocile"));
-        courses.create(new Course("Afrikanstina pro pokrocile"));
-        courses.create(new Course("Cestina pro pokrocile"));
+        courseDao.create(new Course("Anglictina pro pokrocile"));
+        courseDao.create(new Course("Afrikanstina pro pokrocile"));
+        courseDao.create(new Course("Cestina pro pokrocile"));
 
-        List<Course> ls = courses.findAllCourses();
+        List<Course> ls = courseDao.findAllCourses();
 
         assertFalse(ls.isEmpty());
         assertTrue(ls.size() == 3);
 
         Course c2 = ls.get(1);
-        courses.delete(c2);
+        courseDao.delete(c2);
 
-        ls = courses.findAllCourses();
+        ls = courseDao.findAllCourses();
         assertTrue(ls.size() == 2);
 
         Course c4 = ls.get(1);
