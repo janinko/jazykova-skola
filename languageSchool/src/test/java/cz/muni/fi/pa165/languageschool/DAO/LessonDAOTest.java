@@ -16,7 +16,7 @@ import org.junit.Test;
 public class LessonDAOTest {
 
     private LessonDAO lessons;
-    private CourseDAO courses;
+    //private CourseDAO courses;
 
     public LessonDAOTest() {
     }
@@ -25,7 +25,7 @@ public class LessonDAOTest {
     public void setUp() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
         lessons = new LessonDAOImpl(emf);
-        courses = new CourseDAOImpl(emf);
+        //courses = new CourseDAOImpl(emf);
     }
 
     @Test
@@ -81,6 +81,8 @@ public class LessonDAOTest {
         lessons.delete(l1);
     }
 
+	
+	/*
     @Test
     public void testFindLessonByCourse() {
         Lesson l1 = new Lesson();
@@ -110,6 +112,7 @@ public class LessonDAOTest {
         courses.delete(c1);
         courses.delete(c2);
     }
+	*/
 
     @Test
     public void testCreateAndDelete() {
