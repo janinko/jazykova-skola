@@ -30,13 +30,15 @@ public class HibernateTemplateCourseDaoImlp implements CourseDAO {
 		return hibernateTemplate.get(Course.class, id);
 	}
 
-	public void update(Course course) {
+	public Course update(Course course) {
 		hibernateTemplate.merge(course);
+		return course;
 	}
 
-	public void delete(Course course) {
+	public Course delete(Course course) {
 		hibernateTemplate.delete(course);
 		hibernateTemplate.flush();
+		return course;
 	}
 
 	public List<Course> findAllCourses() {
