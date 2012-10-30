@@ -16,13 +16,11 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
  * @author jbrazdil
  */
 public class HibernateTemplateCourseDaoImlp implements CourseDAO {
-	private HibernateTemplate hibernateTemplate;
 	
 	@Autowired
-	private void setSessionFactory(SessionFactory sessionFactory){
-		hibernateTemplate = new HibernateTemplate(sessionFactory);
-	}
-
+	private HibernateTemplate hibernateTemplate;
+	
+	
 	public Course create(Course course) {
 		hibernateTemplate.persist(course);
 		return course;
