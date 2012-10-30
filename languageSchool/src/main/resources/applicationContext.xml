@@ -52,5 +52,7 @@
 
 	<bean id="teacherDao" class="cz.muni.fi.pa165.languageschool.DAO.TeacherDAOImpl" /-->
 
-    
+    <bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
+        <property name="teacherDao" ref="teacherDao"/>
+    </bean>
 </beans>
