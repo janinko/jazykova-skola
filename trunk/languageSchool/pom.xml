@@ -127,6 +127,7 @@
 			<artifactId>spring-struts</artifactId>
 			<version>3.1.1.RELEASE</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
