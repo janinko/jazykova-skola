@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
+import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.List;
@@ -7,29 +8,21 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
  * @author fivekeyem
  */
-public class CourseDAOTest {
+public class CourseDAOTest extends AbstractSpringTest{
 
-	
+	@Autowired
     private CourseDAO courseDao;
 
     public CourseDAOTest() {
     }
 
-
-	
-	
-
     @Before
     public void setUp() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		courseDao = context.getBean(CourseDAO.class);
     }
 
     @Test
@@ -114,22 +107,29 @@ public class CourseDAOTest {
 
     @Test
     public void testCreateAndDelete() {
-        courseDao.create(new Course("Anglictina pro pokrocile"));
-        courseDao.create(new Course("Afrikanstina pro pokrocile"));
-        courseDao.create(new Course("Cestina pro pokrocile"));
-
-        List<Course> ls = courseDao.findAllCourses();
+		List<Course> ls;
+		Course course;
+        Course c1 = courseDao.create(new Course("Anglictina pro pokrocile"));
+        Course c2 = courseDao.create(new Course("Afrikanstina pro pokrocile"));
+        Course c3 = courseDao.create(new Course("Cestina pro pokrocile"));
+		
+		ls = courseDao.findAllCourses();
 
         assertFalse(ls.isEmpty());
         assertTrue(ls.size() == 3);
 
-        Course c2 = ls.get(1);
-        courseDao.delete(c2);
+        course = ls.get(1);
+        courseDao.delete(course);
 
         ls = courseDao.findAllCourses();
         assertTrue(ls.size() == 2);
 
-        Course c4 = ls.get(1);
-        assertTrue(c4.getName().equals("Cestina pro pokrocile"));
+
+        course = ls.get(1);
+		assertEquals("Cestina pro pokrocile", course.getName());
+		
+		courseDao.delete(c1);
+		// c2 already deleted
+		courseDao.delete(c3);
     }
 }
