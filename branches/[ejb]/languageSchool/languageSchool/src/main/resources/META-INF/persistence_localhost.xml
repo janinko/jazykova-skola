@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/ persistence http://java.sun.com/xml/ns/persistence/ persistence_1_0.xsd">
+  <persistence-unit name="lsPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>cz.muni.fi.pa165.languageschool.entities.Student</class>
+    <class>cz.muni.fi.pa165.languageschool.entities.Course</class>
+    <class>cz.muni.fi.pa165.languageschool.entities.Teacher</class>
+    <class>cz.muni.fi.pa165.languageschool.entities.Lesson</class>
+    <properties>
+      <property name="hibernate.connection.username" value="adm"/>
+      <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="hibernate.connection.password" value="pass"/>
+      <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/lsDB"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,72 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cz.muni.fi.pa165.languageschool.entities;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+/**
+ *
+ * @author fivekeyem
+ */
+public class StudentTest {
+	
+	public StudentTest() {
+	}
+
+	/**
+	 * Test equals method
+	 */
+	@Test
+	public void testEquals1() {
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(new Long(1));
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(new Long(1));
+		
+		assertEquals(s1, s2);
+	}
+	
+	
+	/**
+	 * Test equals method
+	 */
+	@Test
+	public void testEquals2() {
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(new Long(1));
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(new Long(2));
+		
+		assertFalse(s1.equals(s2));
+	}
+	
+	
+	/**
+	 * Test equals method
+	 */
+	@Test
+	public void testEquals3() {
+		Student s1 = new Student("Pepa", "Novak");
+                s1.setId(null);
+		Student s2 = new Student("Pepa", "Novak");
+                s2.setId(null);
+		
+		assertFalse(s1.equals(s2));
+	}
+
+	
+	/**
+	 * Test equals method
+	 */
+	@Test
+	public void testEquals4() {
+		Student s1 = new Student();
+		Student s2 = new Student();
+		
+		assertFalse(s1.equals(s2));
+	}
+
+}
