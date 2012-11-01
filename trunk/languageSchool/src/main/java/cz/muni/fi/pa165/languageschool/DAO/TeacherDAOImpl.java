@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -76,29 +75,5 @@ public class TeacherDAOImpl implements TeacherDAO {
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
         return query.getResultList();
-    }
-
-    public List<Teacher> findTeacherByLanguage(Language language) {
-        EntityManager em = emf.createEntityManager();
-
-        Query query = em.createQuery("SELECT t FROM Teacher t");
-        List<Teacher> teachers = query.getResultList();
-
-        boolean success;
-        for (int i = 0; i < teachers.size(); i++) {
-            Teacher t = teachers.get(i);
-            success = false;
-            for (Language l : t.getLanguages()) {
-                if (l.equals(language)) {
-                    success = true;
-                }
-            }
-            if (!success) {
-                teachers.remove(t);
-                i--;
-            }
-        }
-
-        return teachers;
     }
 }

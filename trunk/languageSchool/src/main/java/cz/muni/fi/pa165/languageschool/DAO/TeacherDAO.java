@@ -62,12 +62,4 @@ public interface TeacherDAO {
      * @return list of teachers with the first and last name
      */
     public List<Teacher> findTeacherByName(String firstName, String lastName);
-    
-    /*
-     * Retrieves teachers who teach the language.
-     * 
-     * @param language the language to find teachers who teach it
-     * @return list of teachers who teach the language
-     */
-    public List<Teacher> findTeacherByLanguage(Language language);
 }
