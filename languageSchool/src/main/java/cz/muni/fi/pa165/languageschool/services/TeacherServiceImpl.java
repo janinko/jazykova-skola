@@ -12,7 +12,6 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
     
     private TeacherDAO dao;
-
     
     public void setDao(TeacherDAO dao) {
         this.dao = dao;
