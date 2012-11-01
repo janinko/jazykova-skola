@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -28,11 +29,13 @@ public class LessonServiceImpl implements LessonService {
 		this.lessonDao = lessonDao;
 	}
 	
+	@Transactional
 	public void removeLesson(Lesson l) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lessonDao.delete(lesson);
 	}
 
+	@Transactional
 	public void removeStudent(Lesson l, Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		List<Student> students = lesson.getStudents();
@@ -41,15 +44,18 @@ public class LessonServiceImpl implements LessonService {
 		lessonDao.update(lesson);
 	}
 
+	@Transactional
 	public void addStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lessonDao.delete(lesson);
 	}
 	
+	@Transactional
 	public Set<Student> findStudentsByLesson(Lesson lesson) {
 		return new HashSet<Student>(studentDao.findStudentByLesson(lesson));
 	}
 
+	@Transactional
 	public Set<Lesson> getAllLessons() {
 		return new HashSet<Lesson>(lessonDao.findAllLessons());
 	}

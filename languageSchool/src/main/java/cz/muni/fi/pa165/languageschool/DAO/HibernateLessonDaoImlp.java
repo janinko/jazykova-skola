@@ -14,9 +14,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HibernateLessonDaoImlp implements LessonDAO {
 	
-	@Autowired
 	private SessionFactory sessionFactory;
+
 	
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	public Lesson create(Lesson lesson) {
 		sessionFactory.getCurrentSession().persist(lesson);
