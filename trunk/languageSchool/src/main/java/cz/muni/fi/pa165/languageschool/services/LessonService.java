@@ -10,22 +10,16 @@ import java.util.Set;
  * @author xchrastk
  */
 public interface LessonService {
-    /*
-     *@return true if student was actually removed 
-     */
-    boolean removeStudent(Lesson l,Student student);
     
-    void addStudent(Lesson l,Student student);  
+    void createLesson(Lesson lesson);
     
-    /*
-     * @return list of students signed at this lection
-     */
-    List<Student> findAllStudents(Lesson l);
-	
-	void addLesson(Lesson l);
-	
+    void removeLesson(Lesson lesson);
+    
+    void removeStudent(Lesson lesson,Student student);
+    
+    void addStudent(Lesson lesson,Student student);  
+    
+    List<Student> findStudentsByLesson(Lesson lesson);
+		
 	Set<Lesson> getAllLessons();
-    
-    
-    //+ CRUD operace
 }
