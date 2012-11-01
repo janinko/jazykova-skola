@@ -20,13 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class LessonServiceImpl implements LessonService {
 	
 	private LessonDAO lessonDao;
-	
-	@Autowired
 	private	StudentDAO studentDao;
 
 	@Autowired
 	public void setLessonDao(LessonDAO lessonDao) {
 		this.lessonDao = lessonDao;
+	}
+
+	@Autowired
+	public void setStudentDao(StudentDAO studentDao) {
+		this.studentDao = studentDao;
 	}
 	
 	@Transactional
