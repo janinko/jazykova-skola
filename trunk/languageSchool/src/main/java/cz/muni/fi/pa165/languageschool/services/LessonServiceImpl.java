@@ -17,8 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class LessonServiceImpl implements LessonService {
 	
-	@Autowired
 	private LessonDAO lessonDao;
+
+	@Autowired
+	public void setLessonDao(LessonDAO lessonDao) {
+		this.lessonDao = lessonDao;
+	}
 
 	public boolean removeStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
