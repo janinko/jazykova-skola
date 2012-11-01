@@ -26,7 +26,7 @@ public class Lesson implements Serializable {
     @ManyToOne
     private Course course;
     
-    @ManyToMany    
+    @ManyToMany(fetch= FetchType.EAGER)
     private List<Student> students = new ArrayList<Student>();
     
     @ManyToOne

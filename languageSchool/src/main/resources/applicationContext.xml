@@ -11,8 +11,6 @@
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
         
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-    
-	<bean id="fooService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl"/>
 
   <!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean below) -->
   <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -102,5 +100,7 @@
         <property name="teacherDao" ref="teacherDao"/>
     </bean-->
 
-	<!--bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl"/-->
+	<bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl">
+		<property name="lessonDao" ref="lessonDao"/>
+	</bean>
 </beans>
