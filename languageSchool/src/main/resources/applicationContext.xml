@@ -96,12 +96,7 @@
 
 	<bean id="teacherDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateTeacherDaoImlp" />
 
-    <!--bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
-        <property name="teacherDao" ref="teacherDao"/>
-    </bean-->
-
-
-
+    
 
 	<!-- SERVICE BEANs -->
 
@@ -111,5 +106,5 @@
 
 	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl" />
 		
-	
+	<bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl"/>
 </beans>

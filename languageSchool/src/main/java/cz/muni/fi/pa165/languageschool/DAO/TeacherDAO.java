@@ -62,4 +62,12 @@ public interface TeacherDAO {
      * @return list of teachers with the first and last name
      */
     public List<Teacher> findTeacherByName(String firstName, String lastName);
+    
+    /*
+     * Retrieves teachers of the given email.
+     *      
+     * @param email email of the teacher
+     * @return list of teachers with the first and last name
+     */
+    public Teacher findTeacherByEmail(String email);
 }
