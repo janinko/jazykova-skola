@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import org.hibernate.annotations.CollectionOfElements;
+//import org.hibernate.annotations.CollectionOfElements;
 
 /**
  *
@@ -26,10 +26,15 @@ public class Teacher implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
-    //@Enumerated(EnumType.STRING)
+    //@Enumerated//(EnumType.STRING)
     //@ElementCollection(targetClass = Language.class) 
     //@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
-	@CollectionOfElements
+	//@CollectionOfElements
+	//@JoinTable(name = "LANGUAGES",
+	//		   joinColumns = {@JoinColumn(name="teacherid")},
+	//		   inverseJoinColumns={@JoinColumn(name="studentid")})
+	//@OneToMany
+	@ElementCollection(targetClass = Language.class)
     private Set<Language> languages = new HashSet<Language>();
     
     @Enumerated(EnumType.STRING)
