@@ -49,4 +49,12 @@ public class HibernateTeacherDaoImlp implements TeacherDAO {
 				             .setParameter("lastName", lastName)
 				             .list();
 	}
+
+    public Teacher findTeacherByEmail(String email) {
+        return (Teacher) sessionFactory.getCurrentSession()
+				             .createQuery("SELECT t FROM Teacher t WHERE t.email = :email")
+							 .setParameter("email", email)
+				             .list().get(0);
+    }
+    
 }

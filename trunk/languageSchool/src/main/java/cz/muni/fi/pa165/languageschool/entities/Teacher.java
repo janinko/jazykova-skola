@@ -26,6 +26,9 @@ public class Teacher implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
+    @Column(nullable=false, length=30, unique=true)
+    private String email;
+    
     //@Enumerated//(EnumType.STRING)
     //@ElementCollection(targetClass = Language.class) 
     //@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
@@ -71,6 +74,14 @@ public class Teacher implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Language> getLanguages() {
