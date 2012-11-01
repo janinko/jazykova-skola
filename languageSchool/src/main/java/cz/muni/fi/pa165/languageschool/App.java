@@ -19,7 +19,7 @@ public class App
         System.out.println( "Hello World!" );
 		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		LessonService lessonService = (LessonService) ctx.getBean("fooService");
+		LessonService lessonService = ctx.getBean(LessonService.class);
 		lessonService.addLesson(new Lesson());
 		
 		
