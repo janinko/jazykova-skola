@@ -112,7 +112,7 @@ public class CourseDAOTest extends AbstractSpringTest{
         Course c1 = courseDao.create(new Course("Anglictina pro pokrocile"));
         Course c2 = courseDao.create(new Course("Afrikanstina pro pokrocile"));
         Course c3 = courseDao.create(new Course("Cestina pro pokrocile"));
-		
+
 		ls = courseDao.findAllCourses();
 
         assertFalse(ls.isEmpty());

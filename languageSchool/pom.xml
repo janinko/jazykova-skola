@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.4.0.GA</version>
+            <version>4.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
@@ -49,16 +49,10 @@
             <version>10.1.1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.4.0.GA</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.2.8</version>
-            <scope>test</scope>
+            <version>2.2.9</version>
+	    <!--scope>test</scope-->
         </dependency>
 
 
@@ -139,6 +133,16 @@
         <artifactId>slf4j-log4j12</artifactId>
         <version>1.5.2</version>
     </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.1.1.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.5.3</version>
+        </dependency>
     </dependencies>
 </project>
