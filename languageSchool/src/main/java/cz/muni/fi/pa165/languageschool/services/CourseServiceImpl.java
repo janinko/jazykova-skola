@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.CourseDAO;
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
@@ -22,11 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CourseServiceImpl implements CourseService {
 
+	private	CourseDAO courseDao;
+	private LessonDAO lessonDao;
+
 	@Autowired
-	CourseDAO courseDao;
-	
+	public void setCourseDao(CourseDAO courseDao) {
+		this.courseDao = courseDao;
+	}
+
 	@Autowired
-	LessonDAO lessonDao;
+	public void setLessonDao(LessonDAO lessonDao) {
+		this.lessonDao = lessonDao;
+	}
+
 	
 	@Transactional
 	public void createCourse(Course course) {

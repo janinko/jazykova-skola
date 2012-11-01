@@ -60,6 +60,7 @@
 
 	<bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl">
 		<property name="lessonDao" ref="lessonDao"/>
+		<property name="studentDao" ref="studentDao"/>
 	</bean>
 
 	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl">
