@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
@@ -22,7 +21,6 @@ public class CourseDAOImpl implements CourseDAO {
 	
     public Course create(Course course) {
         em.persist(course);
-		
 		return course;
     }
 
