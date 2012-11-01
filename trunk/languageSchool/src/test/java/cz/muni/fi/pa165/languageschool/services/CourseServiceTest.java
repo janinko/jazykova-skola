@@ -1,15 +1,18 @@
 package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.entities.Course;
+import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
+import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.Set;
+import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -29,7 +32,17 @@ public class CourseServiceTest {
     @Before
     public void setUp() {
     }
-
+	
+	@After
+	public void tearDown(){
+		for(Course c: courseService.getAllCourses()){
+			courseService.deleteCourse(c);
+		}
+		for(Lesson l: lessonService.getAllLessons()){
+			lessonService.removeLesson(l);
+		}
+	}
+	
     @Test
     public void testCreateCourse() {
 		Course c1 = new Course("Anglictina pro mirne zacatecniky");
@@ -53,7 +66,6 @@ public class CourseServiceTest {
 		
 		courseService.deleteCourse(c2);
 	}
-	
 	
 
     @Test
@@ -92,6 +104,95 @@ public class CourseServiceTest {
 		courses = courseService.getAllCourses();
 		assertTrue(courses.isEmpty());
 		assertFalse(courses.contains(c1));
+	}
+	
+	
+    @Test
+    public void testCoursesByLanguage() {
+		Course c1 = new Course("Anglictina pro zacatecniky"); c1.setLanguage(Language.AJ);
+		Course c2 = new Course("Anglictina pro pokrocile"); c2.setLanguage(Language.AJ);
+		Course c3 = new Course("Francouzstina pro zacatecniky"); c3.setLanguage(Language.FJ);
+		
+		courseService.createCourse(c1);
+		courseService.createCourse(c2);
+		courseService.createCourse(c3);
+		
+		Set<Course> coursesAJ = courseService.getCoursesByLanguage(Language.AJ);
+		Set<Course> coursesFJ = courseService.getCoursesByLanguage(Language.FJ);
+		Set<Course> coursesNJ = courseService.getCoursesByLanguage(Language.NJ);
+		
+		assertTrue(coursesAJ.size() == 2);
+		assertTrue(coursesFJ.size() == 1);
+		assertTrue(coursesNJ.isEmpty());
+		
+		assertTrue(coursesAJ.contains(c1));
+		assertTrue(coursesAJ.contains(c2));
+		assertTrue(coursesFJ.contains(c3));
+		
+		
+		courseService.deleteCourse(c1);
+		courseService.deleteCourse(c2);
+		courseService.deleteCourse(c3);
+	}
+	
+    @Test
+    public void testAddLessonToCourse() {
+		Course c1 = new Course("Anglictina pro zacatecniky");
+		Lesson l1 = new Lesson();
+		Lesson l2 = new Lesson();
+		
+		courseService.createCourse(c1);
+		courseService.addLessonToCourse(c1, l1);
+		
+		Set<Lesson> lessons = lessonService.getAllLessons();
+		assertTrue(lessons.size() == 1);
+		assertEquals(l1, lessons.iterator().next());
+		
+		courseService.addLessonToCourse(c1, l2);
+		lessons = lessonService.getAllLessons();
+		assertTrue(lessons.size() == 2);
+		assertEquals(c1,l1.getCourse());
+		
+		courseService.deleteCourse(c1);
+	}
+	
+	// When course is deleted, lessons binded to it must be deleted too
+    @Test
+    public void testDeleteCourseWithLessons() {
+		Course c1 = new Course("Anglictina pro zacatecniky");
+		Course c2 = new Course("Anglictina pro pokrocile");
+		Lesson l1 = new Lesson();
+		Lesson l2 = new Lesson();
+		Set<Lesson> lessons;
+		
+		courseService.createCourse(c1);
+		courseService.addLessonToCourse(c1, l1);
+		lessons = lessonService.getAllLessons();
+		assertTrue(lessons.size() == 1);
+		assertTrue(lessons.contains(l1));
+		assertFalse(lessons.contains(l2));
+		
+		
+		courseService.createCourse(c2);
+		courseService.addLessonToCourse(c2, l2);
+		lessons = lessonService.getAllLessons();
+		assertTrue(lessons.size() == 2);
+		assertTrue(lessons.contains(l1));
+		assertTrue(lessons.contains(l2));
+		
+		
+		courseService.deleteCourse(c1);
+		lessons = lessonService.getAllLessons();
+		assertTrue(lessons.size() == 1);
+		assertFalse(lessons.contains(l1));
+		assertTrue(lessons.contains(l2));
+		
+		
+		courseService.deleteCourse(c1);
+		lessons = lessonService.getAllLessons();
+		assertTrue(lessons.isEmpty());
+		assertFalse(lessons.contains(l1));
+		assertFalse(lessons.contains(l2));
 	}
 	
 }
