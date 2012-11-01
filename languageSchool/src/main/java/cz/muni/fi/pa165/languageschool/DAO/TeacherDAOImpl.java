@@ -76,4 +76,13 @@ public class TeacherDAOImpl implements TeacherDAO {
         query.setParameter("lastName", lastName);
         return query.getResultList();
     }
+    
+    public Teacher findTeacherByEmail(String email) {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createQuery("SELECT t FROM Teacher t WHERE "
+                + "t.email = :email");
+        query.setParameter("email", email);
+        return (Teacher) query.getSingleResult();
+    }
 }
