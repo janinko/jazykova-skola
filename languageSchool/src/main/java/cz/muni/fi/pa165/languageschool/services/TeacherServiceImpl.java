@@ -14,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author xchrastk
  */
-public class TeacherServiceImpl implements TeacherService {
+
+public class TeacherServiceImpl { /*implements TeacherService{
     @Autowired
     private TeacherDAO teacherDao;
     @Autowired
@@ -65,4 +66,4 @@ public class TeacherServiceImpl implements TeacherService {
     }
     
     
-}
+*/}

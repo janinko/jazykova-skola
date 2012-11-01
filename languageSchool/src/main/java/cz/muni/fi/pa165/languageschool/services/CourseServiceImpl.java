@@ -20,13 +20,28 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class CourseServiceImpl implements CourseService {
 
-	@Autowired
 	CourseDAO courseDao;
 	
-	@Autowired
 	LessonDAO lessonDao;
+
+	
+	@Autowired
+	public void setCourseDao(CourseDAO courseDao) {
+		this.courseDao = courseDao;
+	}
+
+	@Autowired
+	public void setLessonDao(LessonDAO lessonDao) {
+		this.lessonDao = lessonDao;
+	}
+	
+	
+	
 	
 	public void createCourse(Course course) {
+		if (lessonDao == null) {
+			System.out.println("je to null!!");
+		}
 		courseDao.create(course);
 	}
 

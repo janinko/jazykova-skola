@@ -104,7 +104,10 @@
 		<property name="lessonDao" ref="lessonDao"/>
 	</bean>
 
-	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl" />
+	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl">
+		<property name="courseDao" ref="courseDao"/>
+		<property name="lessonDao" ref="lessonDao"/>
+	</bean>
 		
 	<bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl"/>
 </beans>
