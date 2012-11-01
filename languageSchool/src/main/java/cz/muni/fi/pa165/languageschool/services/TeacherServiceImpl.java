@@ -15,14 +15,19 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author xchrastk
  */
 
-public class TeacherServiceImpl { /*implements TeacherService{
-    @Autowired
-    private TeacherDAO teacherDao;
-    @Autowired
-    private LessonDAO lessonDao;
+public class TeacherServiceImpl implements TeacherService{
     
-    public void setDao(TeacherDAO teacherDao) {
+    private TeacherDAO teacherDao;
+    private LessonDAO lessonDao;
+	
+    @Autowired
+    public void setTeacherDao(TeacherDAO teacherDao) {
         this.teacherDao = teacherDao;
+    }
+	
+    @Autowired
+    public void setLessonDao(LessonDAO lessonDao) {
+        this.lessonDao = lessonDao;
     }
 
     public void createTeacher(Teacher teacher) {
@@ -65,5 +70,4 @@ public class TeacherServiceImpl { /*implements TeacherService{
         return teachers;
     }
     
-    
-*/}
+}

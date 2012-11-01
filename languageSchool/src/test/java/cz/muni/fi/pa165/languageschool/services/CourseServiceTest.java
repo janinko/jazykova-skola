@@ -54,4 +54,44 @@ public class CourseServiceTest {
 		courseService.deleteCourse(c2);
 	}
 	
+	
+
+    @Test
+    public void testDeleteCourse() {
+		Course c1 = new Course("Anglictina pro uplne zacatecniky");
+		Course c2 = new Course("Anglictina pro mirne zacatecniky");
+		Course c3 = new Course("Anglictina pro stredni zacatecniky");
+		Set<Course> courses;
+		
+		courseService.createCourse(c1);
+		courseService.createCourse(c2);
+		courseService.createCourse(c3);
+		
+		courses = courseService.getAllCourses();
+		assertTrue(courses.size() == 3);
+		
+		
+		assertTrue(courses.contains(c2));
+		courseService.deleteCourse(c2);
+		courses = courseService.getAllCourses();
+		assertTrue(courses.size() == 2);
+		assertFalse(courses.contains(c2));
+		for(Course c : courses){
+			assertFalse(c2.getName().equals(c.getName()));
+		}
+		
+		
+		assertTrue(courses.contains(c1));
+		courseService.deleteCourse(c1);
+		courses = courseService.getAllCourses();
+		assertTrue(courses.size() == 1);
+		assertFalse(courses.contains(c1));
+		
+		assertTrue(courses.contains(c3));
+		courseService.deleteCourse(c3);
+		courses = courseService.getAllCourses();
+		assertTrue(courses.isEmpty());
+		assertFalse(courses.contains(c1));
+	}
+	
 }
