@@ -5,6 +5,7 @@
 package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import java.util.Date;
 import java.util.Set;
@@ -14,7 +15,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import static org.junit.Assert.*;
 
 /**
@@ -23,14 +23,13 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-@TransactionConfiguration(defaultRollback = true)
 public class LessonServiceTest {
 	
 	@Autowired
 	private LessonService lessonService;
 	
 	@Autowired
-	private LessonDAO lessonDao;
+	private CourseService courseService;
 	
 	
 	
@@ -39,11 +38,14 @@ public class LessonServiceTest {
     }
 
     @Test
-    public void test1() {		
+    public void test1() {
+		Course c1 = new Course("Anglictina pro zacatecniky.");
+		courseService.createCourse(c1);
+		
 		Lesson l1 = new Lesson();
 		l1.setTime(new Date());
 		
-		lessonDao.create(l1);
+		courseService.addLessonToCourse(c1, l1);
 		
 		Set<Lesson> lessons = lessonService.getAllLessons();
 		System.out.println(lessons);
