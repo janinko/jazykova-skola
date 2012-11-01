@@ -4,9 +4,10 @@
  */
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
+import java.util.Date;
+import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -29,7 +30,7 @@ public class LessonServiceTest {
 	private LessonService lessonService;
 	
 	@Autowired
-	private StudentDAO studentDao;
+	private LessonDAO lessonDao;
 	
 	
 	
@@ -40,13 +41,18 @@ public class LessonServiceTest {
     @Test
     public void test1() {		
 		Lesson l1 = new Lesson();
+		l1.setTime(new Date());
 		
-		lessonService.addLesson(l1);
-		Lesson l2 = lessonService.getAllLessons().iterator().next();
+		lessonDao.create(l1);
 		
-		System.out.println("Lesson l1" + l1 + " ~ " + l1.getId());
-		System.out.println("Lesson l2" + l2 + " ~ " + l2.getId());
+		Set<Lesson> lessons = lessonService.getAllLessons();
+		System.out.println(lessons);
+		assertTrue(lessons.size() == 1);
 		
+		Lesson l2 = lessons.iterator().next();
+		System.out.println(l2);
+		
+		assertEquals(l1.getId(), l2.getId());		
 	}
 	
 	/*@Test
