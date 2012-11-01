@@ -11,15 +11,13 @@ import java.util.Set;
  */
 public interface LessonService {
     
-    void createLesson(Lesson lesson);
-    
     void removeLesson(Lesson lesson);
     
     void removeStudent(Lesson lesson,Student student);
     
     void addStudent(Lesson lesson,Student student);  
     
-    List<Student> findStudentsByLesson(Lesson lesson);
+    Set<Student> findStudentsByLesson(Lesson lesson);
 		
 	Set<Lesson> getAllLessons();
 }
