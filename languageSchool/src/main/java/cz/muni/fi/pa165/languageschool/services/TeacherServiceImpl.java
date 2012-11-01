@@ -45,9 +45,5 @@ public class TeacherServiceImpl implements TeacherService {
     
     public List<Teacher> findTeacherByName(String firstName, String lastName){
         return dao.findTeacherByName(firstName, lastName);
-    }
-    
-    public List<Teacher> findTeacherByLanguage(Language language){
-        return dao.findTeacherByLanguage(language);
-    } 
+    }   
 }
