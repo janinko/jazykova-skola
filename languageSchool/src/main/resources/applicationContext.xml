@@ -94,13 +94,22 @@
 
 	<bean id="studentDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateStudentDaoImlp" />
 
-	<!--bean id="teacherDao" class="cz.muni.fi.pa165.languageschool.DAO.TeacherDAOImpl" /-->
+	<bean id="teacherDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateTeacherDaoImlp" />
 
     <!--bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
         <property name="teacherDao" ref="teacherDao"/>
     </bean-->
 
+
+
+
+	<!-- SERVICE BEANs -->
+
 	<bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl">
 		<property name="lessonDao" ref="lessonDao"/>
 	</bean>
+
+	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl" />
+		
+	
 </beans>
