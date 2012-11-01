@@ -1,10 +1,7 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import static org.junit.Assert.*;
@@ -124,42 +121,6 @@ public class TeacherDAOTest {
         teachers.delete(t3);
     }
 
-    @Test
-    public void testFindTeacherByLanguage() {            
-        Teacher t1 = new Teacher("Honza1", "Siroky1");                
-        Teacher t2 = new Teacher("Honza2", "Siroky2");
-        Teacher t3 = new Teacher("Honza3", "Siroky3");
-        
-        Set<Language> languages = new HashSet<Language>();
-        languages.add(Language.AJ);
-        languages.add(Language.NJ);
-        t1.setLanguages(languages);
-        teachers.create(t1);        
-        
-        languages.clear();
-        languages.add(Language.AJ);
-        languages.add(Language.RU);
-        languages.add(Language.FJ);
-        t2.setLanguages(languages);
-        teachers.create(t2); 
-        
-        languages.clear();
-        languages.add(Language.AJ);
-        languages.add(Language.NJ);
-        languages.add(Language.RU);
-        t3.setLanguages(languages);
-        teachers.create(t3);
-
-        List<Teacher> list = teachers.findTeacherByLanguage(Language.NJ);
-        
-        assertTrue(list.contains(t1));
-        assertTrue(list.contains(t3));
-        assertFalse(list.contains(t2));
-        
-        teachers.delete(t1);
-        teachers.delete(t2);
-        teachers.delete(t3);
-    }  
     
     @Test
     public void testCreateAndDelete() {
