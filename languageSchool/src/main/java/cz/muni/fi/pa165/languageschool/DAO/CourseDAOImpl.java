@@ -30,12 +30,14 @@ public class CourseDAOImpl implements CourseDAO {
         return em.find(Course.class, id);
     }
 
-    public void update(Course course) {
+    public Course update(Course course) {
         em.merge(course);
+		return course;
     }
 
-    public void delete(Course course) {
+    public Course delete(Course course) {
         em.remove(em.find(Course.class, course.getId()));
+		return course;
     }
 
     public List<Course> findAllCourses() {
