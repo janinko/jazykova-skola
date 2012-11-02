@@ -1,8 +1,9 @@
 package cz.muni.fi.pa165.languageschool.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -18,10 +19,10 @@ public class Lesson implements Serializable {
     private Long id;    
     
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private Date lessonDate;
     
     @Temporal(TemporalType.TIME)
-    private Date time;
+    private Time lessonTime;
         
     @ManyToOne
     private Course course;
@@ -41,19 +42,19 @@ public class Lesson implements Serializable {
     }   
 
     public Date getDate() {
-        return date;
+        return lessonDate;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.lessonDate = date;
     }
 
-    public Date getTime() {
-        return time;
+    public Time getTime() {
+        return lessonTime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setTime(Time time) {
+        this.lessonTime = time;
     }
     
     public Course getCourse() {
@@ -101,6 +102,6 @@ public class Lesson implements Serializable {
 
     @Override
     public String toString() {
-        return "Lesson{" + "id=" + id + ", date=" + date + ", time=" + time + ", course=" + course + ", students=" + students + ", teacher=" + teacher + '}';
+        return "Lesson{" + "id=" + id + ", date=" + lessonDate + ", time=" + lessonTime + ", course=" + course + ", students=" + students + ", teacher=" + teacher + '}';
     }       
 }
