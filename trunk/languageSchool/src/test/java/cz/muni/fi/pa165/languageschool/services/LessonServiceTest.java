@@ -1,9 +1,8 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import java.util.Date;
+import java.sql.Time;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +38,7 @@ public class LessonServiceTest {
 		courseService.createCourse(c1);
 		
 		Lesson l1 = new Lesson();
-		l1.setTime(new Date());
+		l1.setTime(new Time(44430));
 		
 		courseService.addLessonToCourse(c1, l1);
 		
