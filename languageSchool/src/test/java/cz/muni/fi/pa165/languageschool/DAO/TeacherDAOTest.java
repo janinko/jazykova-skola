@@ -1,65 +1,63 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
+import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author fivekeyem
  */
-public class TeacherDAOTest {
+public class TeacherDAOTest extends AbstractSpringTest{
 
-    private TeacherDAO teachers;
+	@Autowired
+    private TeacherDAO teacherDao;
 
     public TeacherDAOTest() {
     }
 
     @Before
     public void setUp() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
-        teachers = new TeacherDAOImpl(emf);
-
     }
 
     @Test
     public void testCreate1() {
         Teacher t1 = new Teacher("Pavel", "Hanak");
-        Teacher t2 = teachers.create(t1);
+        Teacher t2 = teacherDao.create(t1);
 
         assertEquals(t1, t2);
         assertEquals(t1.getFirstName(), t2.getFirstName());
         assertEquals(t1.getLastName(), t2.getLastName());
         assertEquals(t1.getId(), t2.getId());
 
-        teachers.delete(t1);
+        teacherDao.delete(t1);
     }
 
     @Test
     public void testCreate2() {
         Teacher t1 = new Teacher("Pavel", "Hanak");
         assertNull(t1.getId());
-        teachers.create(t1);
+        teacherDao.create(t1);
         assertNotNull(t1.getId());
 
-        teachers.delete(t1);
+        teacherDao.delete(t1);
     }
 
     @Test
     public void testRead() {
         Teacher t1 = new Teacher("Pavel", "Hanak");
         Teacher t2;
-        teachers.create(t1);
+        teacherDao.create(t1);
 
-        t2 = teachers.read(t1.getId());
+        t2 = teacherDao.read(t1.getId());
 
         assertTrue(t2.getId().equals(t2.getId()));
 
-        teachers.delete(t1);
+        teacherDao.delete(t1);
     }
 
     @Test
@@ -68,25 +66,25 @@ public class TeacherDAOTest {
         Teacher t2 = new Teacher("Honza2", "Siroky2");
         Teacher t3 = new Teacher("Honza3", "Siroky3");
 
-        teachers.create(t1);
-        teachers.create(t2);
-        teachers.create(t3);
+        teacherDao.create(t1);
+        teacherDao.create(t2);
+        teacherDao.create(t3);
 
-        List<Teacher> ls = teachers.findTeacherByName("Honza2", "Siroky2");
+        List<Teacher> ls = teacherDao.findTeacherByName("Honza2", "Siroky2");
         Teacher t4 = ls.get(0);
 
         assertTrue(ls.size()==1);
         assertTrue(t4.getFirstName().equals("Honza2"));
         assertTrue(t4.getLastName().equals("Siroky2"));
 
-        teachers.delete(t1);
-        teachers.delete(t2);
-        teachers.delete(t3);
+        teacherDao.delete(t1);
+        teacherDao.delete(t2);
+        teacherDao.delete(t3);
     }
 
     @Test
     public void testFindTeacherByName2() {
-        List<Teacher> ls = teachers.findTeacherByName("Honza", "Siroky");
+        List<Teacher> ls = teacherDao.findTeacherByName("Honza", "Siroky");
 
         assertTrue(ls.isEmpty());
     }
@@ -97,11 +95,11 @@ public class TeacherDAOTest {
         Teacher t2 = new Teacher("Honza2", "Siroky2");
         Teacher t3 = new Teacher("Honza3", "Siroky3");
 
-        teachers.create(t1);
-        teachers.create(t2);
-        teachers.create(t3);
+        teacherDao.create(t1);
+        teacherDao.create(t2);
+        teacherDao.create(t3);
         
-        List<Teacher> ls = teachers.findAllTeachers();
+        List<Teacher> ls = teacherDao.findAllTeachers();
         Teacher t4 = ls.get(0);
         Teacher t5 = ls.get(1);
         Teacher t6 = ls.get(2);
@@ -116,9 +114,9 @@ public class TeacherDAOTest {
         assertTrue(t6.getFirstName().equals("Honza3"));
         assertTrue(t6.getLastName().equals("Siroky3"));
 
-        teachers.delete(t1);
-        teachers.delete(t2);
-        teachers.delete(t3);
+        teacherDao.delete(t1);
+        teacherDao.delete(t2);
+        teacherDao.delete(t3);
     }
 
     
@@ -128,29 +126,29 @@ public class TeacherDAOTest {
         Teacher t2 = new Teacher("Honza2", "Siroky2");
         Teacher t3 = new Teacher("Honza3", "Siroky3");
 
-        teachers.create(t1);
-        teachers.create(t2);
-        teachers.create(t3);
+        teacherDao.create(t1);
+        teacherDao.create(t2);
+        teacherDao.create(t3);
 
-        List<Teacher> ls = teachers.findAllTeachers();
+        List<Teacher> ls = teacherDao.findAllTeachers();
 
         assertFalse(ls.isEmpty());
         assertTrue(ls.size() == 3);
 
         Teacher t4 = ls.get(1);
-        teachers.delete(t4);
+        teacherDao.delete(t4);
 
-        ls = teachers.findAllTeachers();
+        ls = teacherDao.findAllTeachers();
         assertTrue(ls.size() == 2);
 
         Teacher t5 = ls.get(1);
         assertTrue(t5.getFirstName().equals("Honza3"));
         assertTrue(t5.getLastName().equals("Siroky3"));
 
-        List<Teacher> lt2 = teachers.findTeacherByName("Honza2", "Siroky2");
+        List<Teacher> lt2 = teacherDao.findTeacherByName("Honza2", "Siroky2");
         assertTrue(lt2.isEmpty());
         
-        teachers.delete(t1);
-        teachers.delete(t3);
+        teacherDao.delete(t1);
+        teacherDao.delete(t3);
     }
 }
