@@ -27,12 +27,12 @@ public class Course implements Serializable {
     private int level;
 
 	
-        public Course() {
-        }
+	public Course() {
+	}
 
-        public Course(String name) {
-                this.name = name;
-        }
+	public Course(String name) {
+			this.name = name;
+	}
 	
 
     public Long getId() {

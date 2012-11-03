@@ -34,6 +34,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	
+	
 	@Transactional
 	public void createCourse(Course course) {
 		courseDao.create(course);
@@ -55,12 +56,12 @@ public class CourseServiceImpl implements CourseService {
 		lessonDao.create(lesson);
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Set<Course> getCoursesByLanguage(Language language) {
 		return new HashSet<Course>(courseDao.findCourseByLanguage(language));
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Set<Course> getAllCourses() {
 		return new HashSet<Course>(courseDao.findAllCourses());
 	}
