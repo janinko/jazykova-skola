@@ -60,12 +60,12 @@ public class CourseDto {
 	
 	
 	
-	public Course adaptToEntity(CourseDto courseDto) {
+	public Course adaptToEntity() {
 		Course c = new Course();
-		c.setId(Long.parseLong(courseDto.getId()));
-		c.setName(courseDto.getName());
-		c.setLanguage(Teacher.Language.valueOf(courseDto.getLanguage().toString()));
-		c.setLevel(courseDto.getLevel());
+		c.setId(Long.parseLong(getId()));
+		c.setName(getName());
+		c.setLanguage(Teacher.Language.valueOf(getLanguage().toString()));
+		c.setLevel(getLevel());
 		
 		return c;
 	}
