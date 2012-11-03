@@ -20,15 +20,15 @@ public class CourseDtoAdapter {
 	
 	
     public void createCourse(CourseDto courseDto) {
-		courseService.createCourse(courseDto.adaptToEntity(courseDto));
+		courseService.createCourse(courseDto.adaptToEntity());
 	}
 	
 	public void deleteCourse(CourseDto courseDto) {
-		courseService.deleteCourse(courseDto.adaptToEntity(courseDto));
+		courseService.deleteCourse(courseDto.adaptToEntity());
 	}
 	
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
-		courseService.addLessonToCourse(courseDto.adaptToEntity(courseDto), lessonDto.adaptToEntity(lessonDto));
+		courseService.addLessonToCourse(courseDto.adaptToEntity(), lessonDto.adaptToEntity());
 	}
 	
 	public Set<CourseDto> getCourseByLanguage(Language language) {
