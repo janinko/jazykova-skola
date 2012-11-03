@@ -56,8 +56,10 @@ public class LessonServiceTest extends AbstractJUnit4SpringContextTests{
 	public void removeStudent(){
 		// STUB
 		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(876)).getMock();
-		Lesson lesson2 = when(lessonDao.read(876)).thenReturn(mock(Lesson.class)).getMock();
-		List<Student> students = when(lesson2.getStudents()).thenReturn(mock(List.class)).getMock();
+		Lesson lesson2 = mock(Lesson.class);
+		List<Student> students = mock(List.class);
+		when(lessonDao.read(876)).thenReturn(lesson2).getMock();
+		when(lesson2.getStudents()).thenReturn(students).getMock();
 		Student student = mock(Student.class);
 		
 		// RUN
@@ -72,8 +74,10 @@ public class LessonServiceTest extends AbstractJUnit4SpringContextTests{
 	public void testAddStudent(){
 		// STUB		
 		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(8696)).getMock();
-		Lesson lesson2 = when(lessonDao.read(8696)).thenReturn(mock(Lesson.class)).getMock();
-		List<Student> students = when(lesson2.getStudents()).thenReturn(mock(List.class)).getMock();
+		Lesson lesson2 = mock(Lesson.class);
+		List<Student> students = mock(List.class);
+		when(lessonDao.read(8696)).thenReturn(lesson2).getMock();
+		when(lesson2.getStudents()).thenReturn(students).getMock();
 		Student student = mock(Student.class);
 		
 		// RUN
