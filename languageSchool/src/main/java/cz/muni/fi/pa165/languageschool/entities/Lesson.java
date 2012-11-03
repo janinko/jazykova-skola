@@ -18,10 +18,7 @@ public class Lesson implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;    
     
-    @Temporal(TemporalType.DATE)
     private Date lessonDate;
-    
-    @Temporal(TemporalType.TIME)
     private Time lessonTime;
         
     @ManyToOne

@@ -1,70 +1,109 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
+import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import java.sql.Time;
+import cz.muni.fi.pa165.languageschool.entities.Student;
+import java.util.List;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.kubek2k.springockito.annotations.ReplaceWithMock;
+import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
+import static org.mockito.Mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import static org.junit.Assert.*;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
  *
  * @author jbrazdil
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class LessonServiceTest {
+//@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(loader = SpringockitoContextLoader.class, 
+		locations = {"classpath:applicationContext.xml"})
+public class LessonServiceTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private LessonService lessonService;
 	
+	@ReplaceWithMock
 	@Autowired
-	private CourseService courseService;
+	private LessonDAO lessonDao;
 	
+	@ReplaceWithMock
+	@Autowired
+	private StudentDAO studentDao;
 	
 	
     @Before
     public void setUp() {
     }
-
-    @Test
-    public void test1() {
-		Course c1 = new Course("Anglictina pro zacatecniky.");
-		courseService.createCourse(c1);
+	
+	@Test
+	public void testRemoveLesson(){
+		Lesson lesson = mock(Lesson.class);
+		Lesson lesson2 = mock(Lesson.class);
+		when(lesson.getId()).thenReturn(Long.valueOf(1));
+		when(lessonDao.read(1)).thenReturn(lesson2);
 		
-		Lesson l1 = new Lesson();
-		l1.setTime(new Time(44430));
+		lessonService.removeLesson(lesson);
 		
-		courseService.addLessonToCourse(c1, l1);
-		
-		Set<Lesson> lessons = lessonService.getAllLessons();
-		System.out.println(lessons);
-		assertTrue(lessons.size() == 1);
-		
-		Lesson l2 = lessons.iterator().next();
-		System.out.println(l2);
-		
-		assertEquals(l1.getId(), l2.getId());		
+		verify(lessonDao).delete(lesson2);
 	}
 	
-	/*@Test
-    public void test1() {
-		Student s1 = studentDao.create(new Student("Franta", "Novák"));
-		Student s2 = studentDao.create(new Student("Pepa", "Novotný"));
+	@Test
+	public void removeStudent(){
+		// STUB
+		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(876)).getMock();
+		Lesson lesson2 = when(lessonDao.read(876)).thenReturn(mock(Lesson.class)).getMock();
+		List<Student> students = when(lesson2.getStudents()).thenReturn(mock(List.class)).getMock();
+		Student student = mock(Student.class);
 		
-		Lesson l1 = new Lesson();
-		l1.getStudents().add(s1);
+		// RUN
+		lessonService.removeStudent(lesson,student);
 		
-		lessonService.addLesson(l1);
-		Lesson l2 = lessonService.getAllLessons().iterator().next();
+		// ASSERT
+		verify(students).remove(student);
+		verify(lessonDao).update(lesson2);
+	}
+	
+	@Test
+	public void testAddStudent(){
+		// STUB		
+		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(8696)).getMock();
+		Lesson lesson2 = when(lessonDao.read(8696)).thenReturn(mock(Lesson.class)).getMock();
+		List<Student> students = when(lesson2.getStudents()).thenReturn(mock(List.class)).getMock();
+		Student student = mock(Student.class);
 		
-		System.out.println("Lesson l1" + l1 + " ~ " + l1.getStudents());
-		System.out.println("Lesson l2" + l2 + " ~ " + l2.getStudents());
+		// RUN
+		lessonService.addStudent(lesson, student);
 		
-	}*/
+		// ASSERT
+		verify(students).add(student);
+		verify(lessonDao).update(lesson2);
+	}
+	
+	@Test
+	public void testFindStudentsByLesson(){
+		// STUB
+		Lesson lesson = mock(Lesson.class);
+		
+		// RUN
+		lessonService.findStudentsByLesson(lesson);
+		
+		// ASSERT
+		verify(studentDao).findStudentByLesson(lesson);
+	}
+	
+	@Test
+	public void testGetAllLessons(){
+		// STUB
+		
+		// RUN
+		lessonService.getAllLessons();
+		
+		// ASSERT
+		verify(lessonDao).findAllLessons();
+	}
 }
