@@ -10,9 +10,9 @@ import cz.muni.fi.pa165.languageschool.entities.Course;
  *
  * @author jbrazdil
  */
-class CourseTO {
+class CourseDto {
 
-	CourseTO(Course course) {
+	CourseDto(Course course) {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	
