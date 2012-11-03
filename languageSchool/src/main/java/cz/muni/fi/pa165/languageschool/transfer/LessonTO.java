@@ -5,7 +5,7 @@
 package cz.muni.fi.pa165.languageschool.transfer;
 
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import java.sql.Date;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,7 +13,8 @@ import java.util.GregorianCalendar;
  *
  * @author jbrazdil
  */
-public class LessonTO {
+public class LessonTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	Long id;
 	Calendar date;
