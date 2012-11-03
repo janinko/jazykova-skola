@@ -94,7 +94,7 @@ public class LessonDto implements Serializable{
 		this.teacherId = teacherId;
 	}
 	
-	public Lesson adaptToEntity(LessonDto courseDto) {
+	public Lesson adaptToEntity() {
 		Lesson l = new Lesson();
 		throw new UnsupportedOperationException("StudentTO is not yet implemented");
 		
