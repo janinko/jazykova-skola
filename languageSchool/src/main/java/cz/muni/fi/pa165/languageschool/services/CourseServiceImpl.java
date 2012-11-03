@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,11 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public void deleteCourse(Course course) {
 		courseDao.delete(course);
+		List<Lesson> l = lessonDao.findLessonByCourse(course);
+		
+		for (Lesson lesson : l) {
+			lessonDao.delete(lesson);
+		}
 	}
 
 	@Transactional

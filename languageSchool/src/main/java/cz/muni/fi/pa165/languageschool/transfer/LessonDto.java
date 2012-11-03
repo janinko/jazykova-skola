@@ -13,12 +13,12 @@ import java.util.GregorianCalendar;
  *
  * @author jbrazdil
  */
-public class LessonTO implements Serializable{
+public class LessonDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	Long id;
 	Calendar date;
-	CourseTO course;
+	CourseDto course;
 	String teacherName;
 	Long teacherId;
 
@@ -27,7 +27,7 @@ public class LessonTO implements Serializable{
 	 * @param date Date and time of lesson start.
 	 * @param teacherEmail Email of teacher who is teaching this lesson.
 	 */
-	public LessonTO(Lesson lesson) {
+	public LessonDto(Lesson lesson) {
 		id = lesson.getId();
 		
 		date = new GregorianCalendar();
@@ -39,7 +39,7 @@ public class LessonTO implements Serializable{
 		date.set(Calendar.SECOND, tcal.get(Calendar.SECOND));
 		date.set(Calendar.MILLISECOND, tcal.get(Calendar.MILLISECOND));
 		
-		course = new CourseTO(lesson.getCourse());
+		course = new CourseDto(lesson.getCourse());
 		
 		teacherName = lesson.getTeacher().getFirstName() + " " + lesson.getTeacher().getLastName();
 		teacherId = lesson.getTeacher().getId();
@@ -50,7 +50,7 @@ public class LessonTO implements Serializable{
 	 * @param date Date and time of lesson start.
 	 * @param teacherEmail Email of teacher who is teaching this lesson.
 	 */
-	public LessonTO(Calendar date, String teacherEmail){
+	public LessonDto(Calendar date, String teacherEmail){
 		
 	}
 
@@ -70,11 +70,11 @@ public class LessonTO implements Serializable{
 		this.date = date;
 	}
 
-	public CourseTO getCourse() {
+	public CourseDto getCourse() {
 		return course;
 	}
 
-	public void setCourse(CourseTO course) {
+	public void setCourse(CourseDto course) {
 		this.course = course;
 	}
 
