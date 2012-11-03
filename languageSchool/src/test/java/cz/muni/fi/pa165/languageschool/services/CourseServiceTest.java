@@ -188,7 +188,7 @@ public class CourseServiceTest {
 		assertTrue(lessons.contains(l2));
 		
 		
-		courseService.deleteCourse(c1);
+		courseService.deleteCourse(c2);
 		lessons = lessonService.getAllLessons();
 		assertTrue(lessons.isEmpty());
 		assertFalse(lessons.contains(l1));
