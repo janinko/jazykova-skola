@@ -10,9 +10,9 @@ import cz.muni.fi.pa165.languageschool.entities.Student;
  *
  * @author jbrazdil
  */
-public class StudentTO {
+public class StudentDto {
 
-	public StudentTO(Student s) {
+	public StudentDto(Student s) {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
