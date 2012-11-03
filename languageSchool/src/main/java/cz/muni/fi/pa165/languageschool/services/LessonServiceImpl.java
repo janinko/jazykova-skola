@@ -53,12 +53,12 @@ public class LessonServiceImpl implements LessonService {
 		lessonDao.delete(lesson);
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Set<Student> findStudentsByLesson(Lesson lesson) {
 		return new HashSet<Student>(studentDao.findStudentByLesson(lesson));
 	}
 
-	@Transactional
+	@Transactional(readOnly=true)
 	public Set<Lesson> getAllLessons() {
 		return new HashSet<Lesson>(lessonDao.findAllLessons());
 	}
