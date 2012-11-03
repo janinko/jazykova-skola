@@ -46,9 +46,10 @@ public class Teacher implements Serializable {
 	public Teacher() {
 	}
 
-	public Teacher(String firstName, String lastName) {
+	public Teacher(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+        this.email = email;
 	}
 	
     

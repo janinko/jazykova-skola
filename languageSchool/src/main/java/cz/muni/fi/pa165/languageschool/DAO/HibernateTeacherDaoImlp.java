@@ -8,13 +8,17 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author jbrazdil
+ * @author xchrastk
  */
 @Repository
 public class HibernateTeacherDaoImlp implements TeacherDAO {
-	
-	@Autowired
+
 	private SessionFactory sessionFactory;
+    
+    @Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	
 	public Teacher create(Teacher teacher) {
