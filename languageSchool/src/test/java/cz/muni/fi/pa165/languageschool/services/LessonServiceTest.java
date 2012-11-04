@@ -43,12 +43,10 @@ public class LessonServiceTest {
 	public void testRemoveLesson(){
 		Long id = Long.valueOf(1);
 		Lesson lesson = new Lesson(); lesson.setId(id);
-		Lesson lesson2 = new Lesson(); lesson2.setId(id);
-		when(lessonDao.read(id)).thenReturn(lesson2);
 		
 		lessonService.removeLesson(lesson);
 		
-		verify(lessonDao).delete(lesson2);
+		verify(lessonDao).delete(lesson);
 	}
 	
 	@Test
