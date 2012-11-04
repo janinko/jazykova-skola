@@ -20,7 +20,7 @@ public class LessonDto implements Serializable{
 	Calendar date;
 	CourseDto course;
 	String teacherName;
-	Long teacherId;
+	String teacherEmail;
 
 	/**
 	 * Create new lesson transfer object from lesson entity for sending data to frontend.
@@ -42,7 +42,7 @@ public class LessonDto implements Serializable{
 		course = new CourseDto(lesson.getCourse());
 		
 		teacherName = lesson.getTeacher().getFirstName() + " " + lesson.getTeacher().getLastName();
-		teacherId = lesson.getTeacher().getId();
+		teacherEmail = lesson.getTeacher().getEmail();
 	}
 	
 	/**
@@ -51,7 +51,11 @@ public class LessonDto implements Serializable{
 	 * @param teacherEmail Email of teacher who is teaching this lesson.
 	 */
 	public LessonDto(Calendar date, String teacherEmail){
-		
+		this.id = null;
+		this.date = (Calendar) date.clone();
+		this.course = null;
+		this.teacherName = null;
+		this.teacherEmail = teacherEmail;
 	}
 
 	public Long getId() {
@@ -86,12 +90,12 @@ public class LessonDto implements Serializable{
 		this.teacherName = teacherName;
 	}
 
-	public Long getTeacherEmail() {
-		return teacherId;
+	public String getTeacherEmail() {
+		return teacherEmail;
 	}
 
-	public void setTeacherEmail(Long teacherId) {
-		this.teacherId = teacherId;
+	public void setTeacherEmail(String teacherEmail) {
+		this.teacherEmail = teacherEmail;
 	}
 	
 	public Lesson adaptToEntity() {
