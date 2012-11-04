@@ -2,11 +2,11 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
-import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 
 
 /**
@@ -78,7 +79,36 @@ public class StudentServiceTest {
 	
 		
 	@Test
-    public void getAllLessons() {
+    public void testGetAllLessons() {
+		Student s1 = createMockStudent(333L);
+		Student s2 = createMockStudent(334L);
+		Lesson lesson1 = new Lesson();
+		Lesson lesson2 = new Lesson();
+		Lesson lesson3 = new Lesson();
+		Lesson lesson4 = new Lesson();
+		lesson1.getStudents().add(s1);
+		lesson1.getStudents().add(s2);
+		lesson2.getStudents().add(s1);
+		lesson3.getStudents().add(s2);
+		lesson4.getStudents().add(s2);
+		
+		List<Lesson> lessons = new ArrayList<Lesson>();
+		lessons.add(lesson1);
+		lessons.add(lesson2);
+		lessons.add(lesson3);
+		
+		doReturn(lessons).when(lessonDao).findAllLessons();
+		
+		Set<Lesson> ls1 = studentService.getAllLessons(s1);
+		Set<Lesson> ls2 = studentService.getAllLessons(s2);
+		
+		assertTrue(ls1.size() == 2);
+		assertTrue(ls2.size() == 3);
+		assertTrue(ls1.contains(lesson1));
+		assertTrue(ls1.contains(lesson2));
+		assertTrue(ls2.contains(lesson1));
+		assertTrue(ls2.contains(lesson3));
+		assertTrue(ls2.contains(lesson4));
 		
     }
 	
@@ -124,24 +154,5 @@ public class StudentServiceTest {
 		
 		return lesson;
 	}
-	
-	
-	private List<Lesson> createMockLessons() {
-		List<Student> ls = new ArrayList<Student>();
-		ls.add(createMockStudent(333L));
-		ls.add(createMockStudent(334L));
-		
-		Lesson lesson1 = new Lesson();
-		lesson1.setStudents(ls);
-		Lesson lesson2 = new Lesson();
-		lesson2.setStudents(ls);
-		
-		List<Lesson> lessons = new ArrayList<Lesson>();
-		lessons.add(lesson1);
-		lessons.add(lesson2);
-		
-		return lessons;
-	}
-	
 
 }
