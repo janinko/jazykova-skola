@@ -59,17 +59,23 @@
 	<!-- SERVICE BEANs -->
 
 	<bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl">
-		<property name="lessonDao" ref="lessonDao"/>
-		<property name="studentDao" ref="studentDao"/>
+            <property name="lessonDao" ref="lessonDao"/>
+            <property name="studentDao" ref="studentDao"/>
 	</bean>
 
 	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl">
-		<property name="courseDao" ref="courseDao"/>
-		<property name="lessonDao" ref="lessonDao"/>
+            <property name="courseDao" ref="courseDao"/>
+            <property name="lessonDao" ref="lessonDao"/>
 	</bean>
 		
-    <bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
-        <property name="teacherDao" ref="teacherDao"/>
-		<property name="lessonDao" ref="lessonDao"/>
-    </bean>
+        <bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
+            <property name="teacherDao" ref="teacherDao"/>
+            <property name="lessonDao" ref="lessonDao"/>
+        </bean>
+        
+        <bean id="studentService" class="cz.muni.fi.pa165.languageschool.services.StudentServiceImpl">
+            <property name="studentDao" ref="studentDao"/>
+            <property name="lessonDao" ref="lessonDao"/>
+        </bean>
+        
 </beans>
