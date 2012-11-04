@@ -28,8 +28,7 @@ public class LessonDtoAdapter {
     public void removeStudent(LessonDto lesson,StudentDto student){
 		Lesson l = new Lesson();
 		l.setId(lesson.getId());
-		Student s = new Student();
-		s.setId(student.getId());
+		Student s = student.adaptToEntity();
 		lessonService.removeStudent(l,s);
 	}
     
