@@ -76,12 +76,19 @@ public class StudentServiceTest {
 		verify(studentDao).read(Long.valueOf(1));
     }
 	
-	
+		
 	@Test
     public void getAllLessons() {
 		
     }
 	
+	
+	@Test
+    public void lessonEnroll() {
+		studentService.lessonEnroll(student, createMockLesson(1L));
+		
+		verify(lessonDao).update(createMockLesson(1L));
+    }
 	 
 	
 	
@@ -98,6 +105,13 @@ public class StudentServiceTest {
 		return student;
 	}
 	
+	
+	private Lesson createMockLesson(Long id) {
+		Lesson lesson = new Lesson();
+		lesson.setId(id);
+		
+		return lesson;
+	}
 	
 	
 	private List<Lesson> createMockLessons() {
