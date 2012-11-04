@@ -107,9 +107,7 @@ public class StudentServiceTest {
 	
 	
 	private Student createMockStudent() {
-		Student student = new Student("Martin", "Nitram");
-		student.setId(Long.valueOf(546));
-		return student;
+		return createMockStudent(546L);
 	}
 	
 	
