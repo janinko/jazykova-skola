@@ -91,6 +91,20 @@ public class StudentServiceTest {
     }
 	 
 	
+	@Test
+    public void lessonCancel() {
+		studentService.lessonCancel(student, createMockLesson(1L));
+		
+		verify(lessonDao).update(createMockLesson(1L));
+    }
+	
+	@Test
+    public void removeStudent() {
+		studentService.removeStudent(student);
+		
+		verify(studentDao).delete(student);
+    }
+	
 	
 	private Student createMockStudent() {
 		Student student = new Student("Martin", "Nitram");
