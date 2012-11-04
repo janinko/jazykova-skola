@@ -5,24 +5,25 @@ import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
-import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.kubek2k.springockito.annotations.ReplaceWithMock;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
 import static org.mockito.Mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author jbrazdil
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class, 
 		locations = {"classpath:applicationContext.xml"})
-public class LessonServiceTest extends AbstractJUnit4SpringContextTests{
+public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private LessonService lessonService;
@@ -38,6 +39,7 @@ public class LessonServiceTest extends AbstractJUnit4SpringContextTests{
 	
     @Before
     public void setUp() {
+		reset(lessonDao, studentDao);
     }
 	
 	@Test
