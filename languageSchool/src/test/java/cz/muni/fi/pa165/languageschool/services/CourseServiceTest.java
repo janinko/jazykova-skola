@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +44,15 @@ public class CourseServiceTest {
     public void setUp() throws Exception {
 		course = createMockCourse();
 		lesson = createMockLesson(Long.valueOf(1));
-	}	
+	}
+	
+	@After
+	public void tearDown(){
+		reset(courseDao, lessonDao, lesson1);
+		for(Course c : courseService.getAllCourses()){
+			courseService.deleteCourse(c);
+		}
+	}
     
     @Test
     public void testCreateCourse() {
