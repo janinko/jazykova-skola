@@ -50,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
         Set<Lesson> studentsLessons = new HashSet<Lesson>();
         List<Lesson> lessons = lessonDao.findAllLessons();  
         for(Lesson l: lessons) {
-            if(studentDao.findStudentByLesson(l).equals(student)){
+            if(l.getStudents().contains(student)){
                 studentsLessons.add(l);
             }
         }
