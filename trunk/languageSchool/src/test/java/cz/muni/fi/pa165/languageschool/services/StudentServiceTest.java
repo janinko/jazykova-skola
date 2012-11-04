@@ -96,6 +96,7 @@ public class StudentServiceTest {
 		lessons.add(lesson1);
 		lessons.add(lesson2);
 		lessons.add(lesson3);
+		lessons.add(lesson4);
 		
 		doReturn(lessons).when(lessonDao).findAllLessons();
 		
