@@ -68,7 +68,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public void removeStudent(Student s){
-        Student student = studentDao.read(s.getId());
-        studentDao.delete(student);
+        studentDao.delete(s);
     }
 }
