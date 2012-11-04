@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class, 
 		locations = {"classpath:applicationContext.xml"})
-public class UnrankedTests {//extends AbstractJUnit4SpringContextTests{
+public class UnrankedTest {//extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	private LessonService lessonService;
