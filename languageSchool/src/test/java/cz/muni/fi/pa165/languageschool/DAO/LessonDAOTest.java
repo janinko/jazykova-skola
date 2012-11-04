@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -136,4 +137,15 @@ public class LessonDAOTest extends AbstractSpringTest{
         lessonDao.delete(l1);
         lessonDao.delete(l3);
     }
+	
+	@Test
+	public void testDataAccessExceptionThrowning(){
+		Lesson l = new Lesson();l.setId(Long.valueOf(-1));
+		try{
+			lessonDao.create(l);
+			fail("DataAccessException was expected.");
+		}catch(DataAccessException ex){
+			//ok
+		}
+	}
 }
