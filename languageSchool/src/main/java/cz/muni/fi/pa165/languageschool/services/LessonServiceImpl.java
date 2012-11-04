@@ -34,8 +34,7 @@ public class LessonServiceImpl implements LessonService {
 	
 	@Transactional
 	public void removeLesson(Lesson l) {
-		Lesson lesson = lessonDao.read(l.getId());
-		lessonDao.delete(lesson);
+		lessonDao.delete(l);
 	}
 
 	@Transactional
