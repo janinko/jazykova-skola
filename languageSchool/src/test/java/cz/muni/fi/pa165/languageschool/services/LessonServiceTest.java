@@ -5,49 +5,46 @@ import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.List;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kubek2k.springockito.annotations.ReplaceWithMock;
-import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import static org.mockito.Mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
  * @author jbrazdil
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = SpringockitoContextLoader.class, 
-		locations = {"classpath:applicationContext.xml"})
-public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
+@RunWith(MockitoJUnitRunner.class)
+public class LessonServiceTest {
 	
-	@Autowired
-	private LessonService lessonService;
-	
-	@ReplaceWithMock
-	@Autowired
+	@Mock
 	private LessonDAO lessonDao;
 	
-	@ReplaceWithMock
-	@Autowired
+	@Mock
 	private StudentDAO studentDao;
 	
+	@InjectMocks
+	private LessonService lessonService = new LessonServiceImpl();
 	
     @Before
     public void setUp() {
+    }
+	
+    @After
+    public void tearDown() {
 		reset(lessonDao, studentDao);
     }
 	
 	@Test
 	public void testRemoveLesson(){
-		Lesson lesson = mock(Lesson.class);
-		Lesson lesson2 = mock(Lesson.class);
-		when(lesson.getId()).thenReturn(Long.valueOf(1));
-		when(lessonDao.read(1)).thenReturn(lesson2);
+		Long id = Long.valueOf(1);
+		Lesson lesson = new Lesson(); lesson.setId(id);
+		Lesson lesson2 = new Lesson(); lesson2.setId(id);
+		when(lessonDao.read(id)).thenReturn(lesson2);
 		
 		lessonService.removeLesson(lesson);
 		
@@ -57,12 +54,14 @@ public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
 	@Test
 	public void removeStudent(){
 		// STUB
-		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(876)).getMock();
+		Long id = Long.valueOf(9868);
+		Lesson lesson = new Lesson(); lesson.setId(id);		
 		Lesson lesson2 = mock(Lesson.class);
 		List<Student> students = mock(List.class);
-		when(lessonDao.read(876)).thenReturn(lesson2).getMock();
-		when(lesson2.getStudents()).thenReturn(students).getMock();
 		Student student = mock(Student.class);
+		
+		when(lessonDao.read(id)).thenReturn(lesson2);
+		when(lesson2.getStudents()).thenReturn(students);
 		
 		// RUN
 		lessonService.removeStudent(lesson,student);
@@ -74,13 +73,15 @@ public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
 	
 	@Test
 	public void testAddStudent(){
-		// STUB		
-		Lesson lesson = when(mock(Lesson.class).getId()).thenReturn(Long.valueOf(8696)).getMock();
+		// STUB
+		Long id = Long.valueOf(4684);
+		Lesson lesson = new Lesson(); lesson.setId(id);		
 		Lesson lesson2 = mock(Lesson.class);
 		List<Student> students = mock(List.class);
-		when(lessonDao.read(8696)).thenReturn(lesson2).getMock();
-		when(lesson2.getStudents()).thenReturn(students).getMock();
 		Student student = mock(Student.class);
+		
+		when(lessonDao.read(id)).thenReturn(lesson2);
+		when(lesson2.getStudents()).thenReturn(students);
 		
 		// RUN
 		lessonService.addStudent(lesson, student);
@@ -93,7 +94,8 @@ public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
 	@Test
 	public void testFindStudentsByLesson(){
 		// STUB
-		Lesson lesson = mock(Lesson.class);
+		Long id = Long.valueOf(6546);
+		Lesson lesson = new Lesson(); lesson.setId(id);
 		
 		// RUN
 		lessonService.findStudentsByLesson(lesson);
@@ -103,9 +105,7 @@ public class LessonServiceTest {//extends AbstractJUnit4SpringContextTests{
 	}
 	
 	@Test
-	public void testGetAllLessons(){
-		// STUB
-		
+	public void testGetAllLessons(){		
 		// RUN
 		lessonService.getAllLessons();
 		

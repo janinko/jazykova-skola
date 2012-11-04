@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.services;
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
+import org.junit.After;
 import org.junit.Test;
 import org.kubek2k.springockito.annotations.WrapWithSpy;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
@@ -34,6 +35,11 @@ public class UnrankedTest {//extends AbstractJUnit4SpringContextTests{
 	
     @Before
     public void setUp() {
+    }
+	
+    @After
+    public void tearDown() {
+		reset(lessonDao);
     }
 	
 	/**
