@@ -3,8 +3,10 @@ package cz.muni.fi.pa165.languageschool.adapters;
 import cz.muni.fi.pa165.languageschool.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.entities.Course;
+import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschool.services.CourseService;
+import cz.muni.fi.pa165.languageschool.services.TeacherService;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class CourseDtoAdapter {
 	@Autowired
 	CourseService courseService;
 	
+	@Autowired
+	TeacherService teacherService;
+	
 	
     public void createCourse(CourseDto courseDto) {
 		courseService.createCourse(courseDto.adaptToEntity());
@@ -28,7 +33,8 @@ public class CourseDtoAdapter {
 	}
 	
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
-		courseService.addLessonToCourse(courseDto.adaptToEntity(), lessonDto.adaptToEntity());
+		Teacher teacher = teacherService.readTeacher(lessonDto.getTeacherEmail());
+		courseService.addLessonToCourse(courseDto.adaptToEntity(), lessonDto.adaptToEntity(teacher));
 	}
 	
 	public Set<CourseDto> getCourseByLanguage(Language language) {

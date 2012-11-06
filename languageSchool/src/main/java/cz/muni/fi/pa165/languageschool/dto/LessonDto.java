@@ -5,9 +5,13 @@
 package cz.muni.fi.pa165.languageschool.dto;
 
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.entities.Student;
+import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
@@ -98,9 +102,34 @@ public class LessonDto implements Serializable{
 		this.teacherEmail = teacherEmail;
 	}
 	
+	
 	public Lesson adaptToEntity() {
+		return adaptToEntity(null);
+	}
+	
+	public Lesson adaptToEntity(Teacher teacher) {
 		Lesson l = new Lesson();
-		throw new UnsupportedOperationException("StudentTO is not yet implemented");
+		if(course != null){
+			l.setCourse(course.adaptToEntity());
+		}
+		if(date != null){
+			Calendar day = (Calendar) date.clone();
+			day.set(Calendar.HOUR_OF_DAY, 0);
+			day.set(Calendar.MINUTE, 0);
+			day.set(Calendar.SECOND, 0);
+			day.set(Calendar.MILLISECOND, 0);
+			l.setDate(new Date(day.getTimeInMillis()));
+
+			l.setDate(new Date(date.getTimeInMillis() - day.getTimeInMillis()));
+		}
+		l.setId(id);
+		l.setTeacher(teacher);
 		
+		
+		// studends are not setted, when lesson is created, students are epmty,
+		// students can themselve enroll and cancel
+		// lesson isn't updatable
+		
+		return l;
 	}
 }

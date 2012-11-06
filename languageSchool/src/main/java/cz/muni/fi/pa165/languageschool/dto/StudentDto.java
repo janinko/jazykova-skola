@@ -12,23 +12,23 @@ import cz.muni.fi.pa165.languageschool.entities.Student;
  */
 public class StudentDto {
 	
-	private String id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private int age;
 
 	public StudentDto(Student s) {
-		this.id = s.getId().toString();
+		this.id = s.getId();
 		this.firstName = s.getFirstName();
 		this.lastName = s.getLastName();
 		this.age = s.getAge();
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,7 +59,7 @@ public class StudentDto {
 	
 	public Student adaptToEntity() {
 		Student s = new Student();
-		s.setId(Long.parseLong(getId()));
+		s.setId(getId());
 		s.setFirstName(getFirstName());
 		s.setLastName(getLastName());
 		s.setAge(getAge());
