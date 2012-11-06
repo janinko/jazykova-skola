@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 	
-	@Autowired
 	TeacherService teacherService;
 	
+	@Autowired
     public void setTeacherService(TeacherService teacherService) {
         this.teacherService = teacherService;
     }
