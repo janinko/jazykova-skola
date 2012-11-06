@@ -15,15 +15,19 @@ import java.util.Set;
  */
 public class TeacherDto {
 
-    private String id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private Set<String> languages;
     private String nativeLanguage;
+	
+	public TeacherDto(){
+		
+	}
 
     public TeacherDto(Teacher teacher) {
-        this.id = teacher.getId().toString();
+        this.id = teacher.getId();
         this.firstName = teacher.getFirstName();
         this.lastName = teacher.getLastName();
         this.email = teacher.getEmail();
@@ -34,11 +38,11 @@ public class TeacherDto {
         }
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -85,7 +89,7 @@ public class TeacherDto {
     
     public Teacher adaptToEntity() {
         Teacher t = new Teacher();
-        t.setId(Long.parseLong(getId()));
+        t.setId(id);
         t.setFirstName(firstName);
         t.setLastName(lastName);
         t.setEmail(email);

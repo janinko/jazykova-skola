@@ -13,24 +13,24 @@ import cz.muni.fi.pa165.languageschool.entities.Teacher;
  */
 public class CourseDto {
 
-	private String id;
+	private Long id;
 	private String name;
 	private String language;
 	private int level;
 	
 	
 	public CourseDto(Course course) {
-		this.id = course.getId().toString();
+		this.id = course.getId();
 		this.name = course.getName();
 		this.language = course.getLanguage().toString();
 		this.level = course.getLevel();
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -62,7 +62,7 @@ public class CourseDto {
 	
 	public Course adaptToEntity() {
 		Course c = new Course();
-		c.setId(Long.parseLong(getId()));
+		c.setId(getId());
 		c.setName(getName());
 		c.setLanguage(Teacher.Language.valueOf(getLanguage().toString()));
 		c.setLevel(getLevel());

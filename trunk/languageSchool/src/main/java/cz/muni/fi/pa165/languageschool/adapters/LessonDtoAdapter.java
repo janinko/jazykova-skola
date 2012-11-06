@@ -20,46 +20,30 @@ public class LessonDtoAdapter {
 	
 	
     public void removeLesson(LessonDto lesson){
-		Lesson l = new Lesson();
-		l.setId(lesson.getId());
-		lessonService.removeLesson(l);
+		lessonService.removeLesson(lesson.adaptToEntity());
 	}
     
     public void removeStudent(LessonDto lesson,StudentDto student){
-		Lesson l = new Lesson();
-		l.setId(lesson.getId());
-		Student s = student.adaptToEntity();
-		lessonService.removeStudent(l,s);
+		lessonService.removeStudent(lesson.adaptToEntity(),student.adaptToEntity());
 	}
     
     public void addStudent(LessonDto lesson,StudentDto student){
-		Lesson l = new Lesson();
-		l.setId(lesson.getId());
-		Student s = new Student();
-		s.setAge(student.getAge());
-		throw new UnsupportedOperationException("StudentTO is not yet implemented");
-		//s.setFirstName();
+		lessonService.addStudent(lesson.adaptToEntity(), student.adaptToEntity());
 	}  
     
     public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
-		Lesson l = new Lesson();
-		l.setId(lesson.getId());
-		Set<Student> students = lessonService.findStudentsByLesson(l);
 		Set<StudentDto> studentTOs = new HashSet<StudentDto>();
-		for(Student s : students){
+		for(Student s : lessonService.findStudentsByLesson(lesson.adaptToEntity())){
 			studentTOs.add(new StudentDto(s));
 		}
-		
 		return studentTOs; 
 	}
 		
 	public Set<LessonDto> getAllLessons(){
-		Set<Lesson> lessons = lessonService.getAllLessons();
 		Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
-		for(Lesson l : lessons){
+		for(Lesson l : lessonService.getAllLessons()){
 			lessonTOs.add(new LessonDto(l));
 		}
-		
 		return lessonTOs;
 	}
 	
