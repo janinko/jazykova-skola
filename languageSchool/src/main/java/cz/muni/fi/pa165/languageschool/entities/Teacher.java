@@ -37,7 +37,7 @@ public class Teacher implements Serializable {
 	//		   joinColumns = {@JoinColumn(name="teacherid")},
 	//		   inverseJoinColumns={@JoinColumn(name="studentid")})
 	//@OneToMany
-	@ElementCollection(targetClass = Language.class)
+	@ElementCollection(targetClass = Language.class, fetch= FetchType.EAGER)
     private Set<Language> languages = new HashSet<Language>();
     
     @Enumerated(EnumType.STRING)
