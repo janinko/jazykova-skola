@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author jbrazdil
  */
 @Repository
-public class HibernateLessonDaoImlp implements HibernateLessonDao {
+public class HibernateLessonDaoImlp implements LessonDAO {
 	
 	private SessionFactory sessionFactory;
 
