@@ -1,55 +1,72 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.dto.StudentDto;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.services.StudentService;
-import java.util.HashSet;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author jbrazdil
+ * StudentDtoAdapter is used for manipulation with the Student entity
+ * via injected student service using adapter design pattern. 
+ * It can create studentss in the database, update, retrieve and delete them. 
+ * It allows to retrieve all lessons of a given student and to enroll or
+ * cancel lesson of a given student.
+ * 
+ * @author xschlem1
  */
-public class StudentDtoAdapter {
-	
-	@Autowired
-	StudentService studentService;
-	
-	public void createStudent(StudentDto student){
-		studentService.createStudent(student.adaptToEntity());
-	}
+public interface StudentDtoAdapter {
+
+    /**
+     * Creates a new student. The new student must not be null
+     * 
+     * @param student student to be created
+     * @throws IllegalArgumentException if the student parameter is null
+     */
+    void createStudent(StudentDto student);
+
+    /**
+     * Retrieves set of all lessons of a given student
+     * 
+     * @param student student whose lessons will be retrieved
+     * @return set of all lessons of a given student
+     */
+    Set<LessonDto> getAllLessons(StudentDto student);
+
+    /**
+     * Calcels lesson for a given student
+     * 
+     * @param student student for which lesson will be cancelled
+     * @param lesson lesson to be calcelled
+     */
+    void lessonCancel(StudentDto student, LessonDto lesson);
+
+    /**
+     * Enrolls students to lesson
+     * 
+     * @param student student to be enrolled
+     * @param lesson lesson to enroll
+     */
+    void lessonEnroll(StudentDto student, LessonDto lesson);
+
+    /**
+     * Retrieves a one specific student from a database
+     * 
+     * @param id id of a desired student
+     * @return student with a given id
+     */
+    StudentDto read(long id);
+
+    /**
+     * Removes a one specific student from a database
+     * 
+     * @param id id of a student to be removed
+     */
+    void removeStudent(StudentDto student);
+
+    /**
+     * Updates student
+     * 
+     * @param student student to be updated
+     */
+    void update(StudentDto student);
     
-    public void update(StudentDto student){
-		studentService.update(student.adaptToEntity());
-	}
-	
-    public StudentDto read(long id){
-		return new StudentDto(studentService.read(id));
-	}
-	
-    public Set<LessonDto> getAllLessons(StudentDto student){
-		Set lessons = new HashSet<LessonDto>();
-		for(Lesson l : studentService.getAllLessons(student.adaptToEntity())){
-			lessons.add(new LessonDto(l));
-		}
-		return lessons;
-	}
-	
-    public void lessonEnroll(StudentDto student, LessonDto lesson){
-		studentService.lessonEnroll(student.adaptToEntity(), lesson.adaptToEntity());
-	}
-	
-    public void lessonCancel(StudentDto student, LessonDto lesson){
-		studentService.lessonCancel(student.adaptToEntity(), lesson.adaptToEntity());
-	}
-    
-    public void removeStudent(StudentDto student){
-		studentService.removeStudent(student.adaptToEntity());
-	}
 }

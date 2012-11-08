@@ -1,50 +1,55 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
-import cz.muni.fi.pa165.languageschool.services.LessonService;
 import cz.muni.fi.pa165.languageschool.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.dto.StudentDto;
-import java.util.HashSet;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author jbrazdil
+ * LessonDtoAdapter is used for manipulation with the Lesson entity
+ * via injected lesson service using adapter design pattern. 
+ * It can retrieve and delete lessons, retrieve all lessons of a given student 
+ * and enroll or cancel lesson of a given student.
+ * 
+ * @author xschlem1
  */
-public class LessonDtoAdapter {
-	
-	@Autowired
-	LessonService lessonService;
-	
-	
-    public void removeLesson(LessonDto lesson){
-		lessonService.removeLesson(lesson.adaptToEntity());
-	}
+public interface LessonDtoAdapter {
+
+    /**
+     * Adds student to lesson
+     * 
+     * @param lesson lesson to which student will be added
+     * @param student student to be added
+     */
+    void addStudent(LessonDto lesson, StudentDto student);
+
+    /**
+     * Retrieves all students enrolled in a given lesson
+     * 
+     * @param lesson lesson the students of which will be retrieved
+     * @return set of all students enrolled in the given lesson
+     */
+    Set<StudentDto> findStudentsByLesson(LessonDto lesson);
+
+    /**
+     * Retrieves lessons available in a database
+     * 
+     * @return set of all lessons
+     */
+    Set<LessonDto> getAllLessons();
+
+    /**
+     * Removes a one specific lesson from a database
+     * 
+     * @param lesson lesson to be removed
+     */
+    void removeLesson(LessonDto lesson);
+
+    /**
+     * Removes student from a specific lesson
+     * 
+     * @param lesson lesson from which student will be removed
+     * @param student student to be removed
+     */
+    void removeStudent(LessonDto lesson, StudentDto student);
     
-    public void removeStudent(LessonDto lesson,StudentDto student){
-		lessonService.removeStudent(lesson.adaptToEntity(),student.adaptToEntity());
-	}
-    
-    public void addStudent(LessonDto lesson,StudentDto student){
-		lessonService.addStudent(lesson.adaptToEntity(), student.adaptToEntity());
-	}  
-    
-    public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
-		Set<StudentDto> studentTOs = new HashSet<StudentDto>();
-		for(Student s : lessonService.findStudentsByLesson(lesson.adaptToEntity())){
-			studentTOs.add(new StudentDto(s));
-		}
-		return studentTOs; 
-	}
-		
-	public Set<LessonDto> getAllLessons(){
-		Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
-		for(Lesson l : lessonService.getAllLessons()){
-			lessonTOs.add(new LessonDto(l));
-		}
-		return lessonTOs;
-	}
-	
 }
