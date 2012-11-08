@@ -6,50 +6,62 @@ import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.Set;
 
 /**
- *
+ * TeacherService provides methods for manipulation with Teacher entity.
+ * It allows to create, update, delete or retrieve teachers and retrieve
+ * lessons or courses of a teacher. It uses injected TeacherDAO 
+ * and LessonDAO object.
+ * 
  * @author xchrastk
  */
 public interface TeacherService {
     /*
-     * Create teacher.
+     * Creates a teacher.
+     * 
      * @param teacher teacher to be created
      */
     void createTeacher(Teacher teacher);
     
     /*
-     * Read teacher with given email.
-     * @param email
-     * @return teacher teacher who has the email
+     * Retrieves a teacher with a given email.
+     * 
+     * @param email email of a retrieved teacher
+     * @return teacher teacher who has the given email
      */
     Teacher readTeacher(String email);
     
     /*
-     * Updates the teacher.
-     * @param teacher updated teacher
+     * Updates a teacher.
+     * 
+     * @param teacher teacher to be updated
      */
     void updateTeacher(Teacher teacher);    
     
     /*
      * Deletes the teacher.
+     * 
+     * @param teacher teacher to be deleted
      */
     void deleteTeacher(Teacher teacher);
     
     /*
-     * Returns all teachers from the school.
-     * @return all teachers
+     * Retrieves all teachers from the database
+     * .
+     * @return set of all teachers
      */
     Set<Teacher> getAllTeachers();
     
      /*
-     * Finds all lessons the teacher teaches.
-     * @param teacher
-     * @return lessons the teacher teaches
+     * Retrieves all lessons taught by the given teacher.
+     * 
+     * @param teacher teacher the lessons of which will be retrieved
+     * @return set of lessons the teacher teaches
      */
     Set<Lesson> getTeachersLessons(Teacher teacher);
     
     /*
-     * Finds all courses the teacher teaches.
-     * @param teacher
+     * Retrieves all courses taught by the given teacher.
+     * 
+     * @param teacher teacher the courses of which will be retrieved
      * @return courses the teacher teaches
      */
     Set<Course> getTeachersCourses(Teacher teacher);
