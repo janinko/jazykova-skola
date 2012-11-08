@@ -2,62 +2,55 @@ package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import cz.muni.fi.pa165.languageschool.services.CourseService;
-import cz.muni.fi.pa165.languageschool.services.TeacherService;
-import java.util.HashSet;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author fivekeyem
+ * CourseDtoAdapter is used for manipulation with the Course entity
+ * via injected course service using adapter design pattern. 
+ * It can create courses in the database, retrieve and delete them. 
+ * It allows to add lesson to a course or retrieve a course by given
+ * language
+ * 
+ * @author xschlem1
  */
-public class CourseDtoAdapter {
-	
-	@Autowired
-	CourseService courseService;
-	
-	@Autowired
-	TeacherService teacherService;
-	
-	
-    public void createCourse(CourseDto courseDto) {
-		courseService.createCourse(courseDto.adaptToEntity());
-	}
-	
-	public void deleteCourse(CourseDto courseDto) {
-		courseService.deleteCourse(courseDto.adaptToEntity());
-	}
-	
-	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
-		Teacher teacher = teacherService.readTeacher(lessonDto.getTeacherEmail());
-		courseService.addLessonToCourse(courseDto.adaptToEntity(), lessonDto.adaptToEntity(teacher));
-	}
-	
-	public Set<CourseDto> getCourseByLanguage(Language language) {
-		Set<Course> courses = courseService.getCoursesByLanguage(language);
-		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
-		
-		for (Course c : courses) {
-			courseDTOs.add(new CourseDto(c));
-		}
-		
-		return courseDTOs;
-	}
-	
-	public Set<CourseDto> getAllCourses() {
-		Set<Course> courses = courseService.getAllCourses();
-		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
-		
-		for (Course c : courses) {
-			courseDTOs.add(new CourseDto(c));
-		}
-		
-		return courseDTOs;
-	}
+public interface CourseDtoAdapter {
 
-	
+    /**
+     * Adds lesson to a course
+     * 
+     * @param courseDto course to which the lesson will be added
+     * @param lessonDto lesson which will be added to the given course
+     */
+    void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto);
+
+    /**
+     * Creates a course
+     * 
+     * @param courseDto course to be created
+     */
+    void createCourse(CourseDto courseDto);
+
+    /**
+     * Deletes a course
+     * 
+     * @param courseDto course to be deleted
+     */
+    void deleteCourse(CourseDto courseDto);
+
+    /**
+     * Retrieves courses available in a database
+     * 
+     * @return set of all courses
+     */
+    Set<CourseDto> getAllCourses();
+
+    /**
+     * Retrieves all courses that focus on a given language
+     * 
+     * @param language language which courses focus on
+     * @return set of all courses that focus on the given language
+     */
+    Set<CourseDto> getCourseByLanguage(Language language);
+    
 }
