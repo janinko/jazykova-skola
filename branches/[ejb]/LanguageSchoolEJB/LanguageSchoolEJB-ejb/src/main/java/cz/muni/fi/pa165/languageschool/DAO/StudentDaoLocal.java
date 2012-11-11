@@ -9,7 +9,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author fivekeyem 1
+ * @author fivekeyem
  */
 @Local
 public interface StudentDaoLocal {
