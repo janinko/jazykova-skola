@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author xchrastk
  */
-@Stateless
+@Stateless(mappedName="StudentDAOImpl")
 public class StudentDAOImpl implements StudentDAOLocal {
 
 	@PersistenceContext(unitName = "lsPU")
