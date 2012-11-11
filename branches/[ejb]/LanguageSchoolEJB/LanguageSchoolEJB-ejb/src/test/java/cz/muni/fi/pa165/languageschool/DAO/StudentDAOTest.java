@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
-import javax.ejb.EJB;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -13,14 +14,19 @@ import org.junit.Test;
  */
 public class StudentDAOTest {
 
-	@EJB
-    private StudentDaoLocal students;
+	private StudentDAOLocal students;
 	
     public StudentDAOTest() {
     }
 
     @Before
     public void setUp() {
+        try {
+        InitialContext ctx = new InitialContext();
+        students = (StudentDAOLocal) ctx.lookup("StudentDAOImpl");
+        } catch (NamingException ex) {
+            System.err.println("StudentDAOImpl not found.");
+        }
     }
 	
 	@After
@@ -59,6 +65,4 @@ public class StudentDAOTest {
         assertTrue(s2.getId().equals(s2.getId()));
 
     }
-
-
 }
