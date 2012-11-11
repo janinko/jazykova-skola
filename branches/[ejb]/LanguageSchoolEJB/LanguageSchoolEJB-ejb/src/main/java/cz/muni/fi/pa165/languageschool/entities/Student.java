@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Table(name="ourStudents")
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,8 +22,7 @@ public class Student implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
-    private int age;    
-
+    private Integer age;
 	
 	public Student() {
 	}
@@ -57,11 +57,11 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
