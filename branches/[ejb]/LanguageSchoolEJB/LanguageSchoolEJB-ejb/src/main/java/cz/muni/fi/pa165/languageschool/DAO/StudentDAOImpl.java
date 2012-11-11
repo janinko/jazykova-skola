@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
  * @author xchrastk
  */
 @Stateless
-public class StudentDAOImpl implements StudentDaoLocal {
+public class StudentDAOImpl implements StudentDAOLocal {
 
 	@PersistenceContext(unitName = "lsPU")
     private EntityManager em;

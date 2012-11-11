@@ -12,7 +12,7 @@ import javax.ejb.Local;
  * @author fivekeyem
  */
 @Local
-public interface StudentDaoLocal {
+public interface StudentDAOLocal {
 	
 	/**
 	 * This method save new student.
