@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.junit.After;
@@ -22,10 +24,10 @@ public class StudentDAOTest {
     @Before
     public void setUp() {
         try {
-        InitialContext ctx = new InitialContext();
-        students = (StudentDAOLocal) ctx.lookup("StudentDAOImpl");
+            InitialContext ctx = new InitialContext();
+            students = (StudentDAOLocal) ctx.lookup("StudentDAOImpl");
         } catch (NamingException ex) {
-            System.err.println("StudentDAOImpl not found.");
+            Logger.getLogger(StudentDAOTest.class.getName()).log(Level.SEVERE, "StudentDAOImpl not found.", ex);
         }
     }
 	
