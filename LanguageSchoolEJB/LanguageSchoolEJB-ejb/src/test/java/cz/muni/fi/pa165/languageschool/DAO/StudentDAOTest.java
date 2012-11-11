@@ -1,8 +1,12 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.embeddable.EJBContainer;
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.junit.After;
@@ -18,21 +22,27 @@ public class StudentDAOTest {
 
 	private StudentDAOLocal students;
 	
+	private EJBContainer ejbC;
+	
     public StudentDAOTest() {
     }
 
     @Before
     public void setUp() {
         try {
-            InitialContext ctx = new InitialContext();
-            students = (StudentDAOLocal) ctx.lookup("StudentDAOImpl");
+			ejbC = EJBContainer.createEJBContainer();
+            Context ctx = ejbC.getContext();
+            students = (StudentDAOLocal) ctx.lookup("java:global/classes/StudentDAOImpl");
         } catch (NamingException ex) {
             Logger.getLogger(StudentDAOTest.class.getName()).log(Level.SEVERE, "StudentDAOImpl not found.", ex);
+			ejbC.close();
+			throw new RuntimeException(ex);
         }
     }
 	
 	@After
 	public void tearDown() {
+		ejbC.close();
 	}
 	
 
