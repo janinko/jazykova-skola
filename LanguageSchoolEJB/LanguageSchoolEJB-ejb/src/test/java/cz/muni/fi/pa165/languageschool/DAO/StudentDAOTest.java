@@ -1,8 +1,7 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.ejb.EJB;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -14,15 +13,14 @@ import org.junit.Test;
  */
 public class StudentDAOTest {
 
-    private StudentDAO students;
+	@EJB
+    private StudentDaoLocal students;
 	
     public StudentDAOTest() {
     }
 
     @Before
     public void setUp() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lsPU");
-        students = new StudentDAOImpl(emf);
     }
 	
 	@After

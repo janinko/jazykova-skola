@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class StudentDAOImpl implements StudentDaoLocal {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "lsPU")
     private EntityManager em;
 
 
@@ -20,11 +20,8 @@ public class StudentDAOImpl implements StudentDaoLocal {
     public Student create(Student student) {
         Student s;
 
-        em.getTransaction().begin();
         em.persist(student);
-        em.getTransaction().commit();
         s = em.find(Student.class, student.getId());
-        em.close();
 
         return s;
     }
