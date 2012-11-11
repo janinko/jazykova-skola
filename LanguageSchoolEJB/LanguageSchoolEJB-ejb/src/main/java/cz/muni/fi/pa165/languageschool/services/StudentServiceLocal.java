@@ -1,15 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.entities.Student;
+import javax.ejb.Local;
 
 /**
  *
  * @author fivekeyem
  */
+@Local
 public interface StudentServiceLocal {
 	void createStudent(Student student);
     
