@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.DAO.TeacherDAO;
+import cz.muni.fi.pa165.languageschool.category.Mocked;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.kubek2k.springockito.annotations.ReplaceWithMock;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
 import static org.mockito.Mockito.*;
@@ -23,6 +25,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 //@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class, 
 		locations = {"classpath:applicationContext.xml"})
+@Category(Mocked.class)
 public class TeacherServiceTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
