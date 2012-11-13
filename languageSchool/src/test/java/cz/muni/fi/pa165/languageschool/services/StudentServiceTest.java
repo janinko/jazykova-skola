@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.category.Mocked;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import org.junit.experimental.categories.Category;
 
 
 /**
@@ -23,6 +25,7 @@ import static org.junit.Assert.*;
  * @author fivekeyem
  */
 @RunWith(MockitoJUnitRunner.class)
+@Category(Mocked.class)
 public class StudentServiceTest {
 	
 	private Student student;

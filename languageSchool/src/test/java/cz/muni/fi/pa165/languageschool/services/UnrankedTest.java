@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.category.Broken;
+import cz.muni.fi.pa165.languageschool.category.Mocked;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import org.junit.After;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,6 +25,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class, 
 		locations = {"classpath:applicationContext.xml"})
+@Category(Mocked.class)
 public class UnrankedTest {//extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
@@ -47,6 +51,7 @@ public class UnrankedTest {//extends AbstractJUnit4SpringContextTests{
 	 * and then if transaction is performed correctly when isn't.
 	 */
 	@Test
+	@Category(Broken.class)
 	public void testCourseDeleteRollback(){
 		// setup
 		Course c = new Course("Angličtina pro začátečníky");
