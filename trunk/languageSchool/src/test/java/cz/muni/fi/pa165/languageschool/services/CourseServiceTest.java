@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.DAO.CourseDAO;
 import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.category.Mocked;
 import cz.muni.fi.pa165.languageschool.entities.Course;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Teacher;
@@ -10,6 +11,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,6 +24,7 @@ import static org.mockito.Mockito.*;
  * @author fivekeyem
  */
 @RunWith(MockitoJUnitRunner.class)
+@Category(Mocked.class)
 public class CourseServiceTest {
 	
 	private Course course;
