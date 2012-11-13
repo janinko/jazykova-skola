@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author xschlem1
  */
+@Transactional
 public class StudentServiceImpl implements StudentService {
 
     private StudentDAO studentDao;
@@ -29,7 +30,6 @@ public class StudentServiceImpl implements StudentService {
             this.lessonDao = lessonDao;
     }
     
-    @Transactional
     public void createStudent(Student student){
         studentDao.create(student);
     }
