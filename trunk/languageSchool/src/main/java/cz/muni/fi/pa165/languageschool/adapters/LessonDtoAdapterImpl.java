@@ -1,39 +1,55 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
+import cz.muni.fi.pa165.languageschool.dto.LessonDto;
+import cz.muni.fi.pa165.languageschool.dto.StudentDto;
 import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.entities.Student;
 import cz.muni.fi.pa165.languageschool.services.LessonService;
-import cz.muni.fi.pa165.languageschool.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.dto.StudentDto;
+import cz.muni.fi.pa165.languageschool.services.TeacherService;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author jbrazdil
  */
+@Service
 public class LessonDtoAdapterImpl implements LessonDtoAdapter {
-	
+
     @Autowired
-    LessonService lessonService;
+    private LessonService lessonService;
+
+    @Autowired
+    private TeacherService teacherService;
+
+	@Autowired
+	private CourseDtoAdapterImpl courseDtoAdapter;
+
+	@Autowired
+	private StudentDtoAdapterImpl studentDtoAdapter;
 	
     public void removeLesson(LessonDto lesson){
-            lessonService.removeLesson(lesson.adaptToEntity());
+            lessonService.removeLesson(dto2e(lesson));
     }
     
     public void removeStudent(LessonDto lesson,StudentDto student){
-            lessonService.removeStudent(lesson.adaptToEntity(),student.adaptToEntity());
+            lessonService.removeStudent(dto2e(lesson),studentDtoAdapter.dto2e(student));
     }
     
     public void addStudent(LessonDto lesson,StudentDto student){
-            lessonService.addStudent(lesson.adaptToEntity(), student.adaptToEntity());
+            lessonService.addStudent(dto2e(lesson), studentDtoAdapter.dto2e(student));
     }  
     
     public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
             Set<StudentDto> studentTOs = new HashSet<StudentDto>();
-            for(Student s : lessonService.findStudentsByLesson(lesson.adaptToEntity())){
-                    studentTOs.add(new StudentDto(s));
+            for(Student s : lessonService.findStudentsByLesson(dto2e(lesson))){
+                    studentTOs.add(studentDtoAdapter.e2dto(s));
             }
             return studentTOs; 
     }
@@ -41,9 +57,48 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
     public Set<LessonDto> getAllLessons(){
             Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
             for(Lesson l : lessonService.getAllLessons()){
-                    lessonTOs.add(new LessonDto(l));
+                    lessonTOs.add(e2dto(l));
             }
             return lessonTOs;
     }
-	
+
+
+	LessonDto e2dto(Lesson entity) {
+		LessonDto dto = new LessonDto();
+		dto.setId(entity.getId());
+
+		Calendar date = new GregorianCalendar(); date.setTimeInMillis(entity.getDate().getTime() + entity.getTime().getTime());
+		dto.setDate(date);
+
+		dto.setCourse(courseDtoAdapter.e2dto(entity.getCourse()));
+
+		dto.setTeacherName(entity.getTeacher().getFirstName() + " " + entity.getTeacher().getLastName());
+		dto.setTeacherEmail(entity.getTeacher().getEmail());
+		return dto;
+	}
+
+	Lesson dto2e(LessonDto dto) {
+		Lesson entity = new Lesson();
+		entity.setId(dto.getId());
+
+		if(dto.getCourse() != null){
+			entity.setCourse(courseDtoAdapter.dto2e(dto.getCourse()));
+		}
+		if(dto.getDate() != null){
+			Calendar time = (Calendar) dto.getDate().clone();
+
+			time.set(1970,Calendar.JANUARY,1);
+			entity.setTime(new Time(time.getTimeInMillis()));
+
+			entity.setDate(new Date(dto.getDate().getTimeInMillis() - time.getTimeInMillis()));
+		}
+		entity.setTeacher(teacherService.readTeacher(dto.getTeacherEmail()));
+
+
+		// studends are not setted, when lesson is created, students are epmty,
+		// students can themselve enroll and cancel
+		// lesson isn't updatable
+
+		return entity;
+	}	
 }

@@ -79,5 +79,11 @@
             <property name="studentDao" ref="studentDao"/>
             <property name="lessonDao" ref="lessonDao"/>
         </bean>
+
+    <!-- ADAPTER BEANs -->
+	<bean class="cz.muni.fi.pa165.languageschool.adapters.CourseDtoAdapterImpl" />
+	<bean class="cz.muni.fi.pa165.languageschool.adapters.StudentDtoAdapterImpl" />
+	<bean class="cz.muni.fi.pa165.languageschool.adapters.LessonDtoAdapterImpl" />
+	<bean class="cz.muni.fi.pa165.languageschool.adapters.TeacherDtoAdapterImpl" />
         
 </beans>

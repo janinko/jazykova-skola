@@ -1,11 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.dto;
-
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
 
 /**
  *
@@ -17,14 +10,6 @@ public class CourseDto {
 	private String name;
 	private String language;
 	private int level;
-	
-	
-	public CourseDto(Course course) {
-		this.id = course.getId();
-		this.name = course.getName();
-		this.language = course.getLanguage().toString();
-		this.level = course.getLevel();
-	}
 
 	public Long getId() {
 		return id;
@@ -56,18 +41,5 @@ public class CourseDto {
 
 	public void setLevel(int level) {
 		this.level = level;
-	}
-	
-	
-	
-	public Course adaptToEntity() {
-		Course c = new Course();
-		c.setId(getId());
-		c.setName(getName());
-		c.setLanguage(Teacher.Language.valueOf(getLanguage().toString()));
-		c.setLevel(getLevel());
-		
-		return c;
-	}
-		
+	}		
 }

@@ -18,26 +18,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	
 	@Autowired
-	CourseService courseService;
+	private CourseService courseService;
 	
 	@Autowired
-	TeacherService teacherService;
-	
+	private TeacherService teacherService;
+
+	@Autowired
+	private LessonDtoAdapterImpl lessonDtoAdapter;
 	
     @Override
     public void createCourse(CourseDto courseDto) {
-		courseService.createCourse(courseDto.adaptToEntity());
+		courseService.createCourse(dto2e(courseDto));
 	}
 	
     @Override
 	public void deleteCourse(CourseDto courseDto) {
-		courseService.deleteCourse(courseDto.adaptToEntity());
+		courseService.deleteCourse(dto2e(courseDto));
 	}
 	
     @Override
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
 		Teacher teacher = teacherService.readTeacher(lessonDto.getTeacherEmail());
-		courseService.addLessonToCourse(courseDto.adaptToEntity(), lessonDto.adaptToEntity(teacher));
+		courseService.addLessonToCourse(dto2e(courseDto), lessonDtoAdapter.dto2e(lessonDto));
 	}
 	
     @Override
@@ -46,7 +48,7 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
 		
 		for (Course c : courses) {
-			courseDTOs.add(new CourseDto(c));
+			courseDTOs.add(e2dto(c));
 		}
 		
 		return courseDTOs;
@@ -58,11 +60,30 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
 		
 		for (Course c : courses) {
-			courseDTOs.add(new CourseDto(c));
+			courseDTOs.add(e2dto(c));
 		}
 		
 		return courseDTOs;
 	}
 
+	CourseDto e2dto(Course entity){
+		CourseDto dto = new CourseDto();
+		dto.setId(entity.getId());
+		dto.setLanguage(entity.getLanguage().toString());
+		dto.setName(entity.getName());
+		dto.setLevel(entity.getLevel());
+
+		return dto;
+	}
 	
+	Course dto2e(CourseDto dto){
+		Course entity = new Course();
+
+		entity.setId(dto.getId());
+		entity.setName(dto.getName());
+		entity.setLanguage(Teacher.Language.valueOf(dto.getLanguage().toString()));
+		entity.setLevel(dto.getLevel());
+
+		return entity;
+	}
 }
