@@ -58,7 +58,7 @@ public class HibernateTeacherDaoImlp implements TeacherDAO {
         return (Teacher) sessionFactory.getCurrentSession()
 				             .createQuery("SELECT t FROM Teacher t WHERE t.email = :email")
 							 .setParameter("email", email)
-				             .list().get(0);
+				             .uniqueResult();
     }
     
 }
