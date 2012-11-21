@@ -1,12 +1,13 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
-import cz.muni.fi.pa165.languageschool.dto.CourseDto;
-import cz.muni.fi.pa165.languageschool.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
-import cz.muni.fi.pa165.languageschool.services.CourseService;
-import cz.muni.fi.pa165.languageschool.services.TeacherService;
+import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
+import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.services.CourseService;
+import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;

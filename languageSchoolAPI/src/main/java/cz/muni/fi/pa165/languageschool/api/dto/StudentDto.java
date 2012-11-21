@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.languageschool.dto;
+package cz.muni.fi.pa165.languageschool.api.dto;
 
 /**
  *

@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.languageschool;
 
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.services.LessonService;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import java.util.Set;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

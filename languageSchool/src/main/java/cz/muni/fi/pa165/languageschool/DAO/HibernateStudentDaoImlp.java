@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

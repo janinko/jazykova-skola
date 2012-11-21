@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.services.CourseService;
+import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import java.util.Set;
 import org.junit.After;
 import static org.junit.Assert.*;

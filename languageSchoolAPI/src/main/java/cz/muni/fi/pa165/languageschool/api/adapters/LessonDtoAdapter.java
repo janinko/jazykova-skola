@@ -1,7 +1,7 @@
-package cz.muni.fi.pa165.languageschool.adapters;
+package cz.muni.fi.pa165.languageschool.api.adapters;
 
-import cz.muni.fi.pa165.languageschool.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.dto.StudentDto;
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
+import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import java.util.Set;
 
 /**

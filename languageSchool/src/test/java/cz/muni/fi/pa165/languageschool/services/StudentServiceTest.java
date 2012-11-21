@@ -1,23 +1,24 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
-import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.services.StudentService;
 import cz.muni.fi.pa165.languageschool.category.Mocked;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-import org.junit.experimental.categories.Category;
+import org.mockito.runners.MockitoJUnitRunner;
 
 
 /**

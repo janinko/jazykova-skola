@@ -1,10 +1,11 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
-import cz.muni.fi.pa165.languageschool.DAO.TeacherDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.TeacherDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
+import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import cz.muni.fi.pa165.languageschool.category.Mocked;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

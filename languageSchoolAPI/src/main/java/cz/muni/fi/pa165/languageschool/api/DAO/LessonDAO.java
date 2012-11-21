@@ -1,7 +1,7 @@
-package cz.muni.fi.pa165.languageschool.DAO;
+package cz.muni.fi.pa165.languageschool.api.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import java.util.List;
 
 /**

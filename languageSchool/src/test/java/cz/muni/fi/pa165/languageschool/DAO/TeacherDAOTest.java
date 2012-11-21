@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
-import cz.muni.fi.pa165.languageschool.entities.Teacher;
+import cz.muni.fi.pa165.languageschool.api.DAO.TeacherDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
