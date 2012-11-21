@@ -4,13 +4,10 @@
       xml:lang="en"  
       lang="en"> 
     <head> 
-        <wicket:head> 
-            <title>Wicket Example</title> 
-        </wicket:head> 
     </head> 
-    <body> 
-        <wicket:extend> 
-            <h1 wicket:id="message">This gets replaced</h1>
-        </wicket:extend> 
-    </body> 
+    <body>
+        <wicket:panel>
+            <span wicket:id="footerpanel_text">This gets replaced</span>
+        </wicket:panel>
+    </body>
 </html>
