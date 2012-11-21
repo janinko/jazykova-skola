@@ -5,12 +5,16 @@
       lang="en"> 
     <head> 
         <wicket:head> 
-            <title>Wicket Example</title> 
+            <wicket:link> 
+                <link rel="stylesheet" type="text/css" href="style.css"/> 
+            </wicket:link> 
         </wicket:head> 
     </head> 
     <body> 
-        <wicket:extend> 
-            <h1 wicket:id="message">This gets replaced</h1>
-        </wicket:extend> 
+        <header wicket:id="headerpanel" />
+        <section class="content_container"> 
+            <wicket:child/> 
+        </section> 
+        <footer wicket:id="footerpanel" /> 
     </body> 
 </html>
