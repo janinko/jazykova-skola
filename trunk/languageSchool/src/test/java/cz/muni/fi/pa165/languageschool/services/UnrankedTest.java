@@ -1,21 +1,23 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.services.CourseService;
+import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import cz.muni.fi.pa165.languageschool.category.Broken;
 import cz.muni.fi.pa165.languageschool.category.Mocked;
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
 import org.junit.After;
-import org.junit.Test;
-import org.kubek2k.springockito.annotations.WrapWithSpy;
-import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
+import org.kubek2k.springockito.annotations.WrapWithSpy;
 import static org.mockito.Mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**

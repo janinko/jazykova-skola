@@ -1,9 +1,10 @@
 package cz.muni.fi.pa165.languageschool.services;
 
-import cz.muni.fi.pa165.languageschool.DAO.LessonDAO;
-import cz.muni.fi.pa165.languageschool.DAO.StudentDAO;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.services.StudentService;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

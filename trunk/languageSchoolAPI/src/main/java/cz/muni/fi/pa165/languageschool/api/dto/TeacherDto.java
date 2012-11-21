@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.languageschool.dto;
+package cz.muni.fi.pa165.languageschool.api.dto;
 
 import java.util.Set;
 

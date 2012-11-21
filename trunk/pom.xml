@@ -9,9 +9,9 @@
 
     <name>Language School</name>
     <modules>
+      <module>languageSchoolAPI</module>
       <module>languageSchool</module>
       <module>languageSchoolWeb</module>
-      <module>languageSchoolAPI</module>
     </modules>
 
 </project>

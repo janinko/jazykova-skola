@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
+import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;

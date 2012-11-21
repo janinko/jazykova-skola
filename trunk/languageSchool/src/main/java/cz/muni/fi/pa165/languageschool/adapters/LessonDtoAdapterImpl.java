@@ -1,11 +1,12 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
-import cz.muni.fi.pa165.languageschool.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.dto.StudentDto;
-import cz.muni.fi.pa165.languageschool.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.entities.Student;
-import cz.muni.fi.pa165.languageschool.services.LessonService;
-import cz.muni.fi.pa165.languageschool.services.TeacherService;
+import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
+import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
+import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.services.LessonService;
+import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;

@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

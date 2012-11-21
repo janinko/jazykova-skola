@@ -1,12 +1,14 @@
 package cz.muni.fi.pa165.languageschool.DAO;
 
-import cz.muni.fi.pa165.languageschool.entities.Course;
-import cz.muni.fi.pa165.languageschool.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import java.lang.NullPointerException;
 
 /**
  *
