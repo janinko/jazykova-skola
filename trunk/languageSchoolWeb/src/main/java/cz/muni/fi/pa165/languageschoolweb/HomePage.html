@@ -4,13 +4,25 @@
       xml:lang="en"  
       lang="en"> 
     <head> 
-        <wicket:head> 
-            <title>Wicket Example</title> 
-        </wicket:head> 
     </head> 
     <body> 
         <wicket:extend> 
-            <h1 wicket:id="message">This gets replaced</h1>
+            <table cellspacing="0" class="lessons">
+                <tr>
+                    <!--th>Actions</th-->
+                    <th>Datum</th>
+                    <th>Čas</th>
+                    <th>Název</th>
+                    <th>Lektor</th>
+                    
+                </tr>
+                <tr wicket:id="repeating">
+                    <td><span wicket:id="date">[edit]</span></td>
+                    <td><span wicket:id="time">[contactid]</span> </td>
+                    <td><span wicket:id="name">[firstname]</span></td>
+                    <td><span wicket:id="teacher">[firstname]</span></td>                    
+                </tr>
+            </table>  
         </wicket:extend> 
     </body> 
 </html>

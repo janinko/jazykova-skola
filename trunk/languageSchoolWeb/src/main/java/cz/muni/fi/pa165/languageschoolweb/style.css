@@ -70,17 +70,17 @@ pre {
 }
 
 th {
-	background: #C3C3C3;
+	background: #C3A3C3;
 	color: white;
 	font-weight: bold;
 }
 
 tr.b {
-	background: #F5F5F5;
+	background: #FAF5F5;
 }
 
 tr.a {
-	background: #E6E6E5;
+	background: #E6A6E5;
 }
 
 tr.none {
@@ -121,3 +121,5 @@ a.none {
 #siteSelection {
 	width: 200px;
 }
+
+
