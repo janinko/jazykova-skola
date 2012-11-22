@@ -63,10 +63,30 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	ArrayList<Student> students = new ArrayList<Student>();
 
-	@Autowired TeacherService teacherService;
-	@Autowired StudentService studentService;
-	@Autowired CourseService courseService;
-	@Autowired LessonService lessonService;
+	private TeacherService teacherService;
+	private StudentService studentService;
+	private CourseService courseService;
+	private LessonService lessonService;
+
+	@Autowired
+	public void setTeacherService(TeacherService teacherService) {
+		this.teacherService = teacherService;
+	}
+
+	@Autowired
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
+
+	@Autowired
+	public void setCourseService(CourseService courseService) {
+		this.courseService = courseService;
+	}
+
+	@Autowired
+	public void setLessonService(LessonService lessonService) {
+		this.lessonService = lessonService;
+	}
 
 	public void generateData(int courses, int lessons, int students, int techers) {
 		genTeachers(techers);
