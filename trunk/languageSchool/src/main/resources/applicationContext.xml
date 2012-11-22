@@ -80,6 +80,9 @@
             <property name="lessonDao" ref="lessonDao"/>
         </bean>
 
+
+    <bean class="cz.muni.fi.pa165.languageschool.services.GenerateDataServiceImpl">
+
     <!-- ADAPTER BEANs -->
 	<bean class="cz.muni.fi.pa165.languageschool.adapters.CourseDtoAdapterImpl" />
 	<bean class="cz.muni.fi.pa165.languageschool.adapters.StudentDtoAdapterImpl" />
