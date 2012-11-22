@@ -20,6 +20,9 @@ public class Student implements Serializable {
     @Column(nullable=false, length=30)
     private String lastName;
     
+    @Column(nullable=false, length=30, unique=true)
+    private String email;
+    
     private int age;    
 
 	
@@ -56,6 +59,14 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public int getAge() {
         return age;
     }
