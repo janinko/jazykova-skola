@@ -7,22 +7,27 @@
     </head> 
     <body> 
         <wicket:extend> 
-            <table cellspacing="0" class="lessons">
-                <tr>
-                    <!--th>Actions</th-->
-                    <th>Datum</th>
-                    <th>Čas</th>
-                    <th>Název</th>
-                    <th>Lektor</th>
-                    
-                </tr>
-                <tr wicket:id="repeating">
-                    <td><span wicket:id="date">[edit]</span></td>
-                    <td><span wicket:id="time">[contactid]</span> </td>
-                    <td><span wicket:id="name">[firstname]</span></td>
-                    <td><span wicket:id="teacher">[firstname]</span></td>                    
-                </tr>
-            </table>  
+            <form wicket:id="form">
+                <table cellspacing="0" class="lessons">
+                    <tr>
+                        <!--th>Actions</th-->
+                        <th>Datum</th>
+                        <th>Čas</th>
+                        <th>Název</th>
+                        <th>Lektor</th>
+                        <th>Přihlášen</th>
+
+                    </tr>
+                    <tr wicket:id="repeating">
+                        <td><span wicket:id="date">[edit]</span></td>
+                        <td><span wicket:id="time">[contactid]</span> </td>
+                        <td><span wicket:id="name">[firstname]</span></td>
+                        <td><span wicket:id="teacher">[firstname]</span></td>  
+                        <td><input type="checkbox" wicket:id="bool" /></td>
+                    </tr>
+                </table>  
+                <input wicket:id="sign" type="submit" value="Změnit" />
+            </form>
         </wicket:extend> 
     </body> 
 </html>
