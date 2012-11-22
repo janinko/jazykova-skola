@@ -54,7 +54,8 @@
 	@gridColumns:		16;
 	@gridColumnWidth:	50px;
 	@gridGutterWidth:	10px;
-	@siteWidth:			(@gridColumns * @gridColumnWidth) + ((@gridColumns + 1) * @gridGutterWidth); // 970px
+	//@siteWidth:			(@gridColumns * @gridColumnWidth) + ((@gridColumns + 1) * @gridGutterWidth); // 970px
+	@siteWidth:			60%;
 
 
 
@@ -175,6 +176,17 @@ section { .clearfix; }
 	#fold {
 	
 	} // #fold
+
+	.left {
+		.fl;
+		width: 20%;
+		
+	}
+
+	.right {
+		.fr;
+		width: 80%;
+	}
 } // #page
 
 
@@ -182,6 +194,8 @@ section { .clearfix; }
 // Header
 header.main {
 	.clearfix;
+
+	height: 150px;
 	
 } // header.main
 
@@ -190,7 +204,28 @@ header.main {
 
 .content {
 
-	
+	nav.main {
+		position: fixed;
+		top: 40px;
+
+		ul {
+			.reset;
+
+			li {
+				.reset;
+				
+				a {
+					.tdn;
+					.btn
+				}
+			}
+		}
+	}
+
+	.content_container {
+		height: 800px;
+		
+	}
 
 
 } // .content

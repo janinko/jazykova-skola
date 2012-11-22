@@ -251,12 +251,21 @@ section:after {
   clear: both;
 }
 #page {
-  width: 970px;
+  width: 60%;
   margin: 0 auto;
   position: relative;
 }
+#page .left {
+  float: left;
+  width: 20%;
+}
+#page .right {
+  float: right;
+  width: 80%;
+}
 header.main {
   zoom: 1;
+  height: 150px;
 }
 header.main:before, header.main:after {
   display: table;
@@ -265,6 +274,23 @@ header.main:before, header.main:after {
 }
 header.main:after {
   clear: both;
+}
+.content .content_container {
+  height: 800px;
+}
+.content nav.main {
+  position: fixed;
+  top: 40px;
+}
+.content nav.main ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.content nav.main ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 footer.main {
   zoom: 1;
