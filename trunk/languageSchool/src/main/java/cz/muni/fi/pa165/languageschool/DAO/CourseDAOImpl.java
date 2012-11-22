@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author xchrastk
  */
-@Repository
+//@Repository
 public class CourseDAOImpl implements CourseDAO {
 
 	@PersistenceContext

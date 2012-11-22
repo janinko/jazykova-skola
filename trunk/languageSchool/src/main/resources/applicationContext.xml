@@ -3,12 +3,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
     http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:component-scan base-package="cz.muni.fi.pa165.languageschool"/>
         
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
@@ -46,52 +50,4 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-	<bean id="courseDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateCourseDaoImlp"/>
-
-	<bean id="lessonDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateLessonDaoImlp" >
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-
-	<bean id="studentDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateStudentDaoImlp" />
-
-	<bean id="teacherDao" class="cz.muni.fi.pa165.languageschool.DAO.HibernateTeacherDaoImlp" />
-
-    
-
-	<!-- SERVICE BEANs -->
-
-	<bean id="lessonService" class="cz.muni.fi.pa165.languageschool.services.LessonServiceImpl">
-            <property name="lessonDao" ref="lessonDao"/>
-            <property name="studentDao" ref="studentDao"/>
-	</bean>
-
-	<bean id="courseService" class="cz.muni.fi.pa165.languageschool.services.CourseServiceImpl">
-            <property name="courseDao" ref="courseDao"/>
-            <property name="lessonDao" ref="lessonDao"/>
-	</bean>
-		
-        <bean id="teacherService" class="cz.muni.fi.pa165.languageschool.services.TeacherServiceImpl">
-            <property name="teacherDao" ref="teacherDao"/>
-            <property name="lessonDao" ref="lessonDao"/>
-        </bean>
-        
-        <bean id="studentService" class="cz.muni.fi.pa165.languageschool.services.StudentServiceImpl">
-            <property name="studentDao" ref="studentDao"/>
-            <property name="lessonDao" ref="lessonDao"/>
-        </bean>
-
-
-    <bean class="cz.muni.fi.pa165.languageschool.services.GenerateDataServiceImpl">
-            <property name="studentService" ref="studentService"/>
-            <property name="teacherService" ref="teacherService"/>
-            <property name="courseService" ref="courseService"/>
-            <property name="lessonService" ref="lessonService"/>
-    </bean>
-
-    <!-- ADAPTER BEANs -->
-	<bean class="cz.muni.fi.pa165.languageschool.adapters.CourseDtoAdapterImpl" />
-	<bean class="cz.muni.fi.pa165.languageschool.adapters.StudentDtoAdapterImpl" />
-	<bean class="cz.muni.fi.pa165.languageschool.adapters.LessonDtoAdapterImpl" />
-	<bean class="cz.muni.fi.pa165.languageschool.adapters.TeacherDtoAdapterImpl" />
-        
 </beans>
