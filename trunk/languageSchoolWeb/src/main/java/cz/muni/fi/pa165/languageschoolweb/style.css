@@ -70,9 +70,17 @@ pre {
 }
 
 th {
-	background: #C3A3C3;
+	background: #003300;
 	color: white;
 	font-weight: bold;
+}
+
+tr:nth-child(even){
+	background: #FFFF99;
+}
+
+tr:nth-child(even) {
+    background: #99FF99;
 }
 
 tr.b {
