@@ -82,6 +82,11 @@
 
 
     <bean class="cz.muni.fi.pa165.languageschool.services.GenerateDataServiceImpl">
+            <property name="studentService" ref="studentService"/>
+            <property name="teacherService" ref="teacherService"/>
+            <property name="courseService" ref="courseService"/>
+            <property name="lessonService" ref="lessonService"/>
+    </bean>
 
     <!-- ADAPTER BEANs -->
 	<bean class="cz.muni.fi.pa165.languageschool.adapters.CourseDtoAdapterImpl" />
