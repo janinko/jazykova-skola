@@ -1,0 +1,241 @@
+//
+// LESS CSS rules (see http://lesscss.org/)
+//
+
+// Variables ----------------------------------------------
+
+@img:				"../images/";
+
+// Base Colors
+@blue:				#0058aa;
+@twitter:			#049CDB;
+@blueDark:			#0064CD;
+@green:				#46a546;
+@red:				#9d261d;
+@yellow:			#ffc40d;
+@orange:			#f89406;
+@pink:				#c3325f;
+@purple:			#7a43b6;
+@facebook:			#304984;
+@sova:				#BED632;
+@gay:				#FF0080;
+@okurka:			#7CAE15;
+@toxic:				#86F716;
+
+// Grays
+@black:				#000;
+@grayDark:			lighten(@black, 25%);
+@gray:				lighten(@black, 50%);
+@grayLight:			lighten(@black, 75%);
+@grayLighter:		lighten(@black, 90%);
+
+
+// DEFINE SECTION, always edit, please
+	@baseColor:			#fbc901; // base color for whole web
+	@bodyColor:			#ffffff; // background
+	
+	@linkColor:			@baseColor;
+	@linkColorHover:	darken(@linkColor, 15);
+
+	@mainRadius:		3px;
+
+	// txt
+	@txtContentColor:	#272727; // common text
+	@baseFont:			12px;
+	@baseLine:			14px;
+
+	// Typical Grid for mobile
+	//@gridColumns:		6;
+	//@gridColumnWidth:	44px;
+	//@gridGutterWidth:	8px;
+	//@siteWidth:		(@gridColumns * @gridColumnWidth) + ((@gridColumns + 1) * @gridGutterWidth); // 320px
+
+	// Typical Grid for desktop
+	@gridColumns:		16;
+	@gridColumnWidth:	50px;
+	@gridGutterWidth:	10px;
+	@siteWidth:			(@gridColumns * @gridColumnWidth) + ((@gridColumns + 1) * @gridGutterWidth); // 970px
+
+
+
+
+@complement:		spin(@baseColor, 180);  // Determine a complementary color
+@split1:			spin(@baseColor, 158);  // Split complements
+@split2:			spin(@baseColor, -158);
+@triad1:			spin(@baseColor, 135);  // Triads colors
+@triad2:			spin(@baseColor, -135);
+@tetra1:			spin(@baseColor, 90);   // Tetra colors
+@tetra2:			spin(@baseColor, -90);
+@analog1:			spin(@baseColor, 22);   // Analogs colors
+@analog2:			spin(@baseColor, -22);
+
+
+// Mixins -------------------------------------------------
+@import "mixins.less";
+
+// Colors debug
+.cx { background-color: @baseColor !important; }
+.c0 { background-color: @complement !important; }
+.c1 { background-color: @split1 !important; }
+.c2 { background-color: @split2 !important; }
+.c3 { background-color: @triad1 !important; }
+.c4 { background-color: @triad2 !important; }
+.c5 { background-color: @tetra1 !important; }
+.c6 { background-color: @tetra2 !important; }
+.c7 { background-color: @analog1 !important; }
+.c8 { background-color: @analog2 !important; }
+
+// Grid
+.grid {
+	.clearfix;
+	.span1 { .columns(1); }
+	.span2 { .columns(2); }
+	.span3 { .columns(3); }
+	.span4 { .columns(4); }
+	.span5 { .columns(5); }
+	.span6 { .columns(6); }
+	.span7 { .columns(7); }
+	.span8 { .columns(8); }
+	.span9 { .columns(9); }
+	.span10 { .columns(10); }
+	.span11 { .columns(11); }
+	.span12 { .columns(12); }
+	.span13 { .columns(13); }
+	.span14 { .columns(14); }
+	.span15 { .columns(15); }
+	.span16 { .columns(16); }
+	&.show-grid {
+		height: 200px;
+		margin-bottom: 20px;
+		div, a {
+			.bgc(red);
+			min-height: 200px;
+		}
+	}
+}
+
+.spc {
+	padding: @gridGutterWidth;
+}
+
+.todo {
+	.c(red);
+	.border(red);
+	margin: 5px;
+}
+
+//
+// LAYOUT RULES
+// ------------
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+
+// General rules
+body {
+	.reset;
+	.bgc(@baseColor);
+	.c(@txtContentColor);
+	#font > .sans-serif; // using sans-serif family font with baseFont and baseLine
+}
+
+a {
+	.tdu;
+	outline: none;
+}
+
+a:hover {
+	.tdu;
+	color: @linkColorHover;
+}
+
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+section { .clearfix; }
+
+
+
+
+.hidden { display: none; }
+.cleaner { clear: both; }
+
+
+
+
+// Specific Rules
+#page { 
+	.center-block; 
+	
+	#fold {
+	
+	} // #fold
+} // #page
+
+
+
+// Header
+header.main {
+	.clearfix;
+	
+} // header.main
+
+
+
+
+.content {
+
+	
+
+
+} // .content
+
+
+
+
+
+// Footer
+footer.main {
+	.clearfix;
+	clear: both;
+
+	.copy {
+		.fl;
+	}
+
+	.author {
+		.fr;
+	}
+} // footer.main
+
+
+
+
+// ===========
+// = Helpers =
+// ===========
+
+
+
+// centered pagination
+@margin-top-bottom: 20px;
+div.pagination {
+	display: table;
+	margin: @margin-top-bottom auto;
+	
+	ul {
+		.reset;
+		display: table-row;
+
+		li {
+			.reset;
+			.fl;
+			margin: 0 5px;
+		}
+	}
+}

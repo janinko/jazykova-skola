@@ -28,7 +28,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
+	//	getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 		
 		// add your configuration here
 	}

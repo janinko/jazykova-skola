@@ -6,15 +6,30 @@
     <head> 
         <wicket:head> 
             <wicket:link> 
-                <link rel="stylesheet" type="text/css" href="style.css"/> 
+                <link rel="stylesheet" type="text/css" href="styles/layout.css"/> 
             </wicket:link> 
         </wicket:head> 
     </head> 
     <body> 
-        <header wicket:id="headerpanel" />
-        <section class="content_container"> 
-            <wicket:child/> 
-        </section> 
-        <footer wicket:id="footerpanel" /> 
+		<div id="page">
+			<header wicket:id="headerpanel" />
+			<div class="content">
+				<div class="left">
+					<nav>
+						<ul>
+							<li>Menu 1</li>
+							<li>Menu 3</li>
+							<li>Menu 3</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="right">
+					<section class="content_container"> 
+						<wicket:child/> 
+					</section> 
+				</div>
+			</div>
+			<footer wicket:id="footerpanel" /> 
+		</div>
     </body> 
 </html>

@@ -1,0 +1,303 @@
+.reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.reset-outline {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+.clearfix:after {
+  clear: both;
+}
+.ttu {
+  text-transform: uppercase;
+}
+.ttn {
+  text-transform: none;
+}
+.tdn {
+  text-decoration: none;
+}
+.tdu {
+  text-decoration: underline;
+}
+.fwb {
+  font-weight: bold;
+}
+.fwn {
+  font-weight: normal;
+}
+.fsi {
+  font-style: italic;
+}
+.fsn {
+  font-style: normal;
+}
+.tal {
+  text-align: left;
+}
+.tar {
+  text-align: right;
+}
+.tac {
+  text-align: center;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.fn {
+  float: none;
+}
+.cx {
+  background-color: #fbc901 !important;
+}
+.c0 {
+  background-color: #0133fb !important;
+}
+.c1 {
+  background-color: #018ffb !important;
+}
+.c2 {
+  background-color: #2b01fb !important;
+}
+.c3 {
+  background-color: #01eefb !important;
+}
+.c4 {
+  background-color: #8a01fb !important;
+}
+.c5 {
+  background-color: #01fb4c !important;
+}
+.c6 {
+  background-color: #fb01b0 !important;
+}
+.c7 {
+  background-color: #d1fb01 !important;
+}
+.c8 {
+  background-color: #fb6d01 !important;
+}
+.grid {
+  zoom: 1;
+}
+.grid:before, .grid:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+.grid:after {
+  clear: both;
+}
+.grid .span1 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span2 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span3 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span4 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span5 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span6 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span7 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span8 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span9 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span10 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span11 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span12 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span13 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span14 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span15 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid .span16 {
+  display: inline;
+  float: left;
+  width: 970px;
+}
+.grid.show-grid {
+  height: 200px;
+  margin-bottom: 20px;
+}
+.grid.show-grid div, .grid.show-grid a {
+  background-color: #ff0000;
+  min-height: 200px;
+}
+.spc {
+  padding: 10px;
+}
+.todo {
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  margin: 5px;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fbc901;
+  color: #272727;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+}
+a {
+  text-decoration: underline;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: #af8c01;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+section {
+  zoom: 1;
+}
+section:before, section:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+section:after {
+  clear: both;
+}
+.hidden {
+  display: none;
+}
+.cleaner {
+  clear: both;
+}
+#page {
+  width: 970px;
+  margin: 0 auto;
+  position: relative;
+}
+header.main {
+  zoom: 1;
+}
+header.main:before, header.main:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+header.main:after {
+  clear: both;
+}
+footer.main {
+  zoom: 1;
+  clear: both;
+}
+footer.main:before, footer.main:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+footer.main:after {
+  clear: both;
+}
+footer.main .copy {
+  float: left;
+}
+footer.main .author {
+  float: right;
+}
+div.pagination {
+  display: table;
+  margin: 20px auto;
+}
+div.pagination ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: table-row;
+}
+div.pagination ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  float: left;
+  margin: 0 5px;
+}

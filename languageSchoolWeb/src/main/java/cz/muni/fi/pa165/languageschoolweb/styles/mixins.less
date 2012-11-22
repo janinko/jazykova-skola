@@ -1,0 +1,228 @@
+// Mixins -------------------------------------------------
+
+.reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.reset-outline {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+}
+
+.clearfix {
+	zoom: 1;
+	&:before, &:after {
+		display: table;
+		content: "";
+		zoom: 1;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+	-webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+
+.center-block (@width: @siteWidth) {
+	width: @width;
+	margin: 0 auto;
+	position: relative;
+}
+
+.size (@w: auto, @h: auto, @lh: normal) {
+	display: block;
+	width: @w;
+	height: @h;
+	line-height: @lh;
+}
+
+.size(@size) {
+  .size(@size, @size);
+}
+
+.columns (@columnSpan: 1) {
+	display: inline;
+	float: left;
+	width: (@gridColumns * @gridColumnWidth) + ((@gridColumns + 1) * @gridGutterWidth);
+}
+
+.radius (@radius: @mainRadius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+	//behavior: url(/css/PIE.htc);
+}
+
+.radius-top-left (@radius: @mainRadius) {
+	-webkit-border-top-left-radius: @radius;
+	-moz-border-top-left-radius: @radius;
+	border-top-left-radius: @radius;
+}
+
+.radius-top-right (@radius: @mainRadius) {
+	-webkit-border-top-right-radius: @radius;
+	-moz-border-top-right-radius: @radius;
+	border-top-right-radius: @radius;
+}
+
+.radius-bottom-left (@radius: @mainRadius) {
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-bottom-left-radius: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+.radius-bottom-right (@radius: @mainRadius) {
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-bottom-right-radius: @radius;
+	border-bottom-right-radius: @radius;
+}
+
+.gradient (@startColor: #555, @endColor: #333) {
+	background-color: @endColor;
+	background-repeat: repeat-x;
+	background-image: -khtml-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); // Konqueror
+	background-image: -moz-linear-gradient(@startColor, @endColor); // FF 3.6+
+	background-image: -ms-linear-gradient(@startColor, @endColor); // IE10
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @startColor), color-stop(100%, @endColor)); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient(@startColor, @endColor); // Safari 5.1+, Chrome 10+
+	background-image: -o-linear-gradient(@startColor, @endColor); // Opera 11.10
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@startColor, endColorstr=@endColor, GradientType=0); // IE6 & IE7
+	-ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{startColor}, endColorstr=@{endColor}, GradientType=0)'; // IE8+
+	background-image: linear-gradient(@startColor, @endColor); // the standard
+	-pie-background: linear-gradient(@startColor, @endColor);
+	//behavior: url(/css/PIE.php);
+}
+
+.box-shadow (@shadow: 0 1px 3px rgba(0,0,0,.4)) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+.border (@c) {
+    border: 1px solid @c;
+}
+
+.opacity (@op: 100) {
+	//filter: e(%("alpha(opacity=%d)", @op));
+	-khtml-opacity: @op / 100;
+	-moz-opacity: @op / 100;
+	opacity: @op / 100;
+}
+
+#translucent {
+  .background(@color: @white, @alpha: 1) {
+    background-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+	}
+	.border(@color: @white, @alpha: 1) {
+		border-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+		background-clip: padding-box;
+	}
+}
+
+// Transitions
+.transition(@transition) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-ms-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+}
+
+// Bar
+.bar (@primaryColor, @secondaryColor) {
+	.gradient (@primaryColor, @secondaryColor);
+	text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+	border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
+	border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+}
+
+.btn (@primaryColor: #f5f5f5, @secondaryColor: #dbdbdb, @textColor: #333, @textShadow: 0 1px 1px, @fontSize: 13px, @padding: 9px 15px 10px, @borderRadius: 6px) {
+	@shadow: inset 0 2px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.25);
+	.tdn;
+	.gradient(@primaryColor, @secondaryColor);
+	.box-shadow(@shadow);
+	.radius(@borderRadius);
+	display: inline-block;
+	padding: @padding;
+	text-shadow: @textShadow darken(@primaryColor, 50%);
+	color: @textColor;
+	font-size: @fontSize;
+	line-height: 20px;
+	border: none;
+	cursor: pointer;
+	
+	&:hover {
+		background-position: 0 -15px;
+		color: @textColor;
+		text-decoration: none;
+	}
+
+	// Transitions
+	.transition(.1s linear all);
+}
+
+
+#font {
+  .sans-serif(@weight: normal, @size: @baseFont, @lineHeight: @baseLine) {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .serif(@weight: normal, @size: @baseFont, @lineHeight: @baseLine) {
+    font-family: "Georgia", Times New Roman, Times, sans-serif;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+  .monospace(@weight: normal, @size: @baseFont, @lineHeight: @baseLine) {
+    font-family: "Monaco", Courier New, monospace;
+    font-size: @size;
+    font-weight: @weight;
+    line-height: @lineHeight;
+  }
+}
+
+.c (@c) {
+	color: @c;
+}
+
+
+.bg (@c: inherit, @i: inherit, @r: inherit, @x, @y) {
+	.bgc (@c);
+	.bgi (@i, @r, @x, @y);
+}
+
+.bgc (@c) {
+	background-color: @c;
+}
+
+.bgi (@i, @r: inherit, @x:0, @y:0) {
+	background-repeat: @r;
+	background-image: url("@{img}@{i}");
+	background-position: @x @y; 
+}
+
+.fs(@s) { font-size: @s; }
+.ttu { text-transform: uppercase; }
+.ttn { text-transform: none; }
+.tdn { text-decoration: none; }
+.tdu { text-decoration: underline; }
+.fwb { font-weight: bold; }
+.fwn { font-weight: normal; }
+.fsi { font-style: italic; }
+.fsn { font-style: normal; }
+.tal { text-align: left; }
+.tar { text-align: right; }
+.tac { text-align: center; }
+.fl { float: left; }
+.fr { float: right; }
+.fn { float: none; }
