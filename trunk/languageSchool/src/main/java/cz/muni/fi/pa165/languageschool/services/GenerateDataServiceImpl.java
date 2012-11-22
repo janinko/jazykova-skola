@@ -133,9 +133,9 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 
 	private String genEmail(String jmeno, String prijmeni){
 		String jmn = Normalizer.normalize(jmeno, Normalizer.Form.NFD)
-				.replaceAll("\\\\p{InCombiningDiacriticalMarks}+", "").toLowerCase();
+				.replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toLowerCase();
 		String pjmn = Normalizer.normalize(prijmeni, Normalizer.Form.NFD)
-				.replaceAll("\\\\p{InCombiningDiacriticalMarks}+", "").toLowerCase();
+				.replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toLowerCase();
 
 		int end = 7;
 		if(pjmn.length() < 7){
