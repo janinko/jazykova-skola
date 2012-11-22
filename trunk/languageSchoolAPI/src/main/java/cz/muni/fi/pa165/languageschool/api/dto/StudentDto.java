@@ -9,6 +9,7 @@ public class StudentDto {
 	private Long id;
 	private String firstName;
 	private String lastName;
+    private String email;
 	private int age;
 
 	public Long getId() {
@@ -35,6 +36,14 @@ public class StudentDto {
 		this.lastName = lastName;
 	}
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 	public int getAge() {
 		return age;
 	}
