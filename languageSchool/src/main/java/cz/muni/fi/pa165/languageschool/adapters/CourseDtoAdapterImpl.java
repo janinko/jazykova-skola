@@ -11,11 +11,13 @@ import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author fivekeyem
  */
+@Service
 public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	
 	@Autowired

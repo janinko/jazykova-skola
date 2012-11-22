@@ -7,14 +7,10 @@ package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
-import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Set;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -35,12 +31,12 @@ public class HomePage extends BasePage {
     private GenerateDataService generator;
     
     public HomePage() {
-        /*generator.generateData(2, 8, 5, 2);
-        Set<LessonDto> set = lessons.getAllLessons();*/
+        generator.generateData(2, 8, 5, 2);
+        Set<LessonDto> set = lessons.getAllLessons();
         
         
         
-        
+        /*
         CourseDto course1 = new CourseDto();
         course1.setName("Fránina");
         LessonDto lesson1 = new LessonDto();
@@ -59,7 +55,7 @@ public class HomePage extends BasePage {
         date = (Calendar.getInstance());
         date.set(2022, 22, 22);
         lesson2.setDate(date);
-        set.add(lesson2);
+        set.add(lesson2);*/
 
         Form form = new Form("form") {
             protected void onSubmit() {
