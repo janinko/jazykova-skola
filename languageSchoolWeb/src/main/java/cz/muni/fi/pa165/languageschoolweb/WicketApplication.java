@@ -29,6 +29,8 @@ public class WicketApplication extends WebApplication
 		super.init();
 
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
+
+		mountPage("/course", CoursePage.class);
 		
 		// add your configuration here
 	}

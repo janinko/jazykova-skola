@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
+import cz.muni.fi.pa165.languageschoolweb.components.CourseList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Set;
@@ -96,5 +97,8 @@ public class HomePage extends BasePage {
         
         form.add(button);
         add(form);
+
+
+		add(new CourseList("courseList",courses.getAllCourses()));
     }
 }
