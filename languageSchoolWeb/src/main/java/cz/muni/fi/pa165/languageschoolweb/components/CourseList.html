@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<wicket:panel>
+	<wicket:panel>
 
-            <div>
-                <h2 wicket:id="heading">Kurzy</h2>
-                    <table>
-                    <tr>
-                        <th>Název</th>
-                        <th>Jazyk</th>
-                        <th>Obtížnost</th>
-                    </tr>
-                    <tr wicket:id="repeating">
-                        <td><a wicket:id="link"><span wicket:id="name">[name]</span></a></td>
-                        <td><span wicket:id="language">[language]</span></td>
-                        <td><span wicket:id="level">[level]</span> </td>
-                    </tr>
-                </table>
-            </div>
+		<div>
+			<h2 wicket:id="heading">Kurzy</h2>
+			<table>
+				<tr>
+					<th>Název</th>
+					<th>Jazyk</th>
+					<th>Obtížnost</th>
+				</tr>
+				<tr wicket:id="repeating">
+					<td><a wicket:id="link"><span wicket:id="name">[name]</span></a></td>
+					<td><span wicket:id="language">[language]</span></td>
+					<td><span wicket:id="level">[level]</span> </td>
+				</tr>
+			</table>
+			<form wicket:id="form" class="lessons">
+				<input wicket:id="add" type="submit" value="Přidat kurz" class="button" />
+			</form>
+		</div>
 
-</wicket:panel>
+	</wicket:panel>
 </html>

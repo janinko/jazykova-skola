@@ -17,10 +17,13 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschoolweb.CoursePage;
+import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import java.util.Comparator;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.AbstractItem;
@@ -65,6 +68,18 @@ public class CourseList extends Panel{
 			repeating.add(item);
 		}
 
+		Form form = new Form("form") {
+			private static final long serialVersionUID = 1L;
+			@Override
+            protected void onSubmit() {
+                info("Form.onSubmit executed");
+            }
+        };
+		form.setVisible(new Random().nextBoolean());
+
+		Link addLink = new BookmarkablePageLink("add", HomePage.class);
+		form.add(addLink);
+		add(form);
 	}
 
 	private class CourseComparator implements Comparator<CourseDto>{
