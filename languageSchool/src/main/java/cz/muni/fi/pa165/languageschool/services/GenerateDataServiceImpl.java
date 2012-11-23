@@ -16,6 +16,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,9 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		"Matoušek"};
 
 	String[] courseNamePrefix = {"Fajnový ", "Zábavný ", "Expresní ",
-		"Lingvistický ", "Nepříjemný ", "", ""};
-	String   courseNameCourse = "kurz ";
+		"Lingvistický ", "Nepříjemný "};
+	String   courseNameCourseM = "kurz ";
+	String   courseNameCourseF = "Kurz ";
 	String[] courseNameLevel = {" pro začátečníky", " pro mírně pokročilé",
 		" pro středně pokročilé", " pro pokročilé", " pro experty"};
 	String[] courseNameSufix = {" - konverzace", " - gramatika", " - právnický",
@@ -177,8 +179,10 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		Course course = new Course();
 		course.setLanguage(langs[generator.nextInt(langs.length)]);
 		course.setLevel(generator.nextInt(5)+1);
-		String nejm = courseNamePrefix[generator.nextInt(courseNamePrefix.length)] +
-				      courseNameCourse +
+
+		Boolean prefix = generator.nextBoolean();
+		String nejm = (prefix? courseNamePrefix[generator.nextInt(courseNamePrefix.length)]:"") +
+				      (prefix? courseNameCourseM : courseNameCourseF) +
 				      course.getLanguage().toString() +
 				      courseNameLevel[course.getLevel() - 1] +
 				      courseNameSufix[generator.nextInt(courseNameSufix.length)];
