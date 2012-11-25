@@ -11,11 +11,13 @@ import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xchrastk
  */
+@Service
 public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 	
 	private TeacherService teacherService;
@@ -81,7 +83,9 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());
         dto.setEmail(entity.getEmail());
-        dto.setNativeLanguage(entity.getNativeLanguage().toString());
+		if(entity.getNativeLanguage() != null){
+			dto.setNativeLanguage(entity.getNativeLanguage().toString());
+		}
         HashSet<String>languages = new HashSet<String>();
         for (Teacher.Language l : entity.getLanguages()) {
             languages.add(l.toString());
@@ -97,7 +101,9 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         entity.setEmail(dto.getEmail());
-        entity.setNativeLanguage(Teacher.Language.valueOf(dto.getNativeLanguage()));
+		if(dto.getNativeLanguage() != null){
+			entity.setNativeLanguage(Teacher.Language.valueOf(dto.getNativeLanguage()));
+		}
         Set<Teacher.Language> lang = new HashSet<Teacher.Language>();
         for (String l : dto.getLanguages()) {
             lang.add(Teacher.Language.valueOf(l));
