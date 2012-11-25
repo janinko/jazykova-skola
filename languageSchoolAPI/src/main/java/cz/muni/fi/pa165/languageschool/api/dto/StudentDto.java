@@ -7,7 +7,6 @@ import java.io.Serializable;
  * @author fivekeym
  */
 public class StudentDto implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String firstName;
