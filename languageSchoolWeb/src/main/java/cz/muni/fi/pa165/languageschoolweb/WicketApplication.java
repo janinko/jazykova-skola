@@ -31,6 +31,8 @@ public class WicketApplication extends WebApplication
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
 		mountPage("/course", CoursePage.class);
+		mountPage("/courses", CoursesPage.class);
+		mountPage("/lessons", LessonsPage.class);
 		
 		// add your configuration here
 	}

@@ -91,6 +91,8 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	}
 
 	public void generateData(int courses, int lessons, int students, int techers) {
+		//getFromDB();
+		
 		genTeachers(techers);
 		genCourses(courses);
 		genLessons(lessons);
@@ -227,4 +229,14 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		}
 	}
 
+	/*private void getFromDB() {
+		Set<Teacher> ts = teacherService.getAllTeachers();
+		Set<Course> cs = courseService.getAllCourses();
+		Set<Lesson> ls = lessonService.getAllLessons();
+		//Set<Student> ss = studentService.getAllStudents();
+
+		ts.removeAll(teachers);
+		cs.removeAll(courses);
+		ls.removeAll(lessons);
+	}*/
 }
