@@ -377,7 +377,7 @@ nav.main ul li a {
   -moz-border-radius: 6px;
   border-radius: 6px;
   display: inline-block;
-  padding: 30px 10px;
+  padding: 20px 10px;
   text-shadow: 0 1px 1px #000000;
   color: #ffffff;
   font-size: 15px;
@@ -565,6 +565,7 @@ nav.main ul li a.btn-home {
   padding: 20px 0;
   line-height: 20px;
   text-shadow: 0 1px 1px #000000;
+  min-height: 30px;
   -webkit-box-shadow: 0 1px 1px;
   -moz-box-shadow: 0 1px 1px;
   box-shadow: 0 1px 1px;
@@ -572,6 +573,11 @@ nav.main ul li a.btn-home {
 .content_container .lesson-box .box-content-l .date, .content_container .course-box .box-content-l .date {
   margin-left: 2px;
   font-size: 20px;
+}
+.content_container .lesson-box .box-content-l .nativlang, .content_container .course-box .box-content-l .nativlang {
+  font-size: 22px;
+  position: relative;
+  top: 7px;
 }
 .content_container .lesson-box .box-content, .content_container .course-box .box-content {
   float: left;

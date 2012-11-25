@@ -12,17 +12,19 @@
             <form wicket:id="form" class="lessons">
 				<div wicket:id="repeating" class="lesson-box">
 					<div class="box-content-l">
-						
+						<span class="nativlang"><span wicket:id="nativlang">[nativlang]</span></span>
 					</div>
 					
 					<div class="box-content">
-						<h3><span wicket:id="firstname">[firstname]</span> <span wicket:id="lastname">[lastname]</span></h3><br />
+						<h3>
+							<a wicket:id="link">
+								<span wicket:id="firstname">[firstname]</span> <span wicket:id="lastname">[lastname]</span>
+							</a>
+						</h3><br />
 						<div class="teacher"><a href="#"><span wicket:id="email">[email]</span></a> </div>
 
 					</div>
-					<div class="box-content-r">
 					
-					</div>
 				</div>
 				
             </form>
