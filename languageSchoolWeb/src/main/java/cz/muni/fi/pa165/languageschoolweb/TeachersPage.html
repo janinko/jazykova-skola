@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>TeachersPage</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+		
+		<wicket:extend> 
+            <form wicket:id="form" class="lessons">
+				<div wicket:id="repeating" class="lesson-box">
+					<div class="box-content-l">
+						
+					</div>
+					
+					<div class="box-content">
+						<h3><span wicket:id="firstname">[firstname]</span> <span wicket:id="lastname">[lastname]</span></h3><br />
+						<div class="teacher"><a href="#"><span wicket:id="email">[email]</span></a> </div>
+
+					</div>
+					<div class="box-content-r">
+					
+					</div>
+				</div>
+				
+            </form>
+        </wicket:extend> 
+    </body>
+</html>
