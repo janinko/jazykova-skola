@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.api.DAO;
 
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -62,4 +63,11 @@ public interface LessonDAO {
 	 * @return list of lessons
 	 */
     public List<Lesson> findLessonByCourse(Course course);
+
+    /*
+     * Retrieves list of upcoming lessons till specified date.
+     * @param date Date in future
+     * @return all upcoming lessons till date
+     */
+	public List<Lesson> findUpcomingLessons(Date date);
 }

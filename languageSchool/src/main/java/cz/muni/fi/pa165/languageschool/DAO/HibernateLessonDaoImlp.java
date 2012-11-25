@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import java.sql.Date;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,15 @@ public class HibernateLessonDaoImlp implements LessonDAO {
 		return sessionFactory.getCurrentSession()
 				             .createQuery("SELECT l FROM Lesson l WHERE l.course = :course")
 							 .setParameter("course", course)
+				             .list();
+	}
+
+	@Override
+	public List<Lesson> findUpcomingLessons(Date date) {
+		return sessionFactory.getCurrentSession()
+				             .createQuery("SELECT l FROM Lesson l WHERE l.lessonDate BETWEEN :startDate AND :endDate")
+							 .setParameter("startDate", new java.util.Date())
+							 .setParameter("endDate", date)
 				             .list();
 	}
 }

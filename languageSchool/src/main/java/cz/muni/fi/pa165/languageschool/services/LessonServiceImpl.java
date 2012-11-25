@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.languageschool.api.DAO.StudentDAO;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import cz.muni.fi.pa165.languageschool.api.services.LessonService;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,11 @@ public class LessonServiceImpl implements LessonService {
 	@Transactional(readOnly=true)
 	public Set<Lesson> getAllLessons() {
 		return new HashSet<Lesson>(lessonDao.findAllLessons());
+	}
+
+	@Override
+	public Set<Lesson> getUpcomingLessons(Date date) {
+		return new HashSet<Lesson>(lessonDao.findUpcomingLessons(date));
 	}
 
 

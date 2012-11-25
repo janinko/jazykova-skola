@@ -52,5 +52,12 @@ public interface CourseDtoAdapter {
      * @return set of all courses that focus on the given language
      */
     Set<CourseDto> getCourseByLanguage(Language language);
-    
+
+	/*
+     * Retrieves a course with a given id
+     *
+     * @param id id of a course
+     * @return course with a given id
+     */
+    CourseDto read(long id);
 }
