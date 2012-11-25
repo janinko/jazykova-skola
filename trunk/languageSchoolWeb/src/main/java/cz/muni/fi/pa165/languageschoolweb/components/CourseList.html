@@ -4,20 +4,26 @@
 
 		<div>
 			<h2 wicket:id="heading">Kurzy</h2>
-			<table>
-				<tr>
-					<th>Název</th>
-					<th>Jazyk</th>
-					<th>Obtížnost</th>
-				</tr>
-				<tr wicket:id="repeating">
-					<td><a wicket:id="link"><span wicket:id="name">[name]</span></a></td>
-					<td><span wicket:id="language">[language]</span></td>
-					<td><span wicket:id="level">[level]</span> </td>
-				</tr>
-			</table>
-			<form wicket:id="form" class="lessons">
-				<input wicket:id="add" type="submit" value="Přidat kurz" class="button" />
+			<form wicket:id="form" class="courses">
+				<table>
+					<tr>
+						<th>Název</th>
+						<th>Jazyk</th>
+						<th>Obtížnost</th>
+						<wicket:enclosure>
+							<th><span wicket:id="deleteLabel">Smazat</span></th>
+						</wicket:enclosure>
+					</tr>
+					<tr wicket:id="repeating">
+						<td><a wicket:id="link"><span wicket:id="name">[name]</span></a></td>
+						<td><span wicket:id="language">[language]</span></td>
+						<td><span wicket:id="level">[level]</span> </td>
+						<wicket:enclosure>
+							<td><input wicket:id="delete" type="submit" value="Smazat" class="button" /></td>
+						</wicket:enclosure>
+					</tr>
+				</table>
+				<input wicket:id="addButton" type="submit" value="Přidat kurz" class="button" />
 			</form>
 		</div>
 

@@ -21,7 +21,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.0</version>
 				<configuration>
-					<port>9090</port>
+					<port>8080</port>
 					<path>/</path>
 				</configuration>
 				<dependencies>
