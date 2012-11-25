@@ -398,6 +398,9 @@ nav.main ul li a:hover {
   color: #ffffff;
   text-decoration: none;
 }
+nav.main ul li a.btn-home {
+  padding: 10px;
+}
 .content_container {
   background-repeat: repeat;
   background-image: url("/bg-content.png");
