@@ -16,6 +16,7 @@
 package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
+import cz.muni.fi.pa165.languageschoolweb.TeacherPage;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
@@ -25,10 +26,13 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  *
@@ -67,14 +71,21 @@ public class LessonList extends Panel{
 
         for (LessonDto lesson : lessonsOrdered) {
             AbstractItem item = new AbstractItem(repeating.newChildId());
+		
+			PageParameters params = new PageParameters();
+			params.set("email", lesson.getTeacherEmail());
 
-            DateFormat dateFormat = new SimpleDateFormat("dd. MM.");
-            DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+			Link link = new BookmarkablePageLink("link", TeacherPage.class, params);
 
-            item.add(new Label("date", dateFormat.format(lesson.getDate().getTime())));
-            item.add(new Label("time", timeFormat.format(lesson.getDate().getTime())));
+			DateFormat dateFormat = new SimpleDateFormat("dd. MM.");
+			DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+
+			item.add(new Label("date", dateFormat.format(lesson.getDate().getTime())));
+			item.add(new Label("time", timeFormat.format(lesson.getDate().getTime())));
             item.add(new Label("name", lesson.getCourse().getName()));
-            item.add(new Label("teacher", lesson.getTeacherName()));
+            link.add(new Label("teacherName", lesson.getTeacherName()));
+			item.add(link);
             item.add(new CheckBox("bool",Model.of(Boolean.TRUE)));
 
             repeating.add(item);
