@@ -204,19 +204,22 @@ header.main {
 		.fr;
 		
 		a {
-			.btn(@baseColor, white, 0 1px 1px, 15px, 2px 12px, 6px);
+			.fl;
+			.btn(@baseColor, white, 0 1px 1px, 15px, 2px 12px, 0);
 			margin: 9px 0;
+			border-right: 1px solid darken(@baseColor, 25%);
+			
 
-			&.btn-left {
-				.radius-top-right(0);
-				.radius-bottom-right(0);
-				.fl;
-				border-right: 1px solid darken(@baseColor, 25%);
+			&.btn-first {
+				.radius-top-left(6px);
+				.radius-bottom-left(6px);
+				
 			}
 
-			&.btn-right {
-				.radius-top-left(0);
-				.radius-bottom-left(0);
+			&.btn-last {
+				.radius-top-right(6px);
+				.radius-bottom-right(6px);
+				border-right: none;
 			}
 		}
 
