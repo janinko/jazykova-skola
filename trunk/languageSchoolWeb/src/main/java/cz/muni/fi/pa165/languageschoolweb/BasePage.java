@@ -25,9 +25,6 @@ public abstract class BasePage extends WebPage {
 
 		add(new BookmarkablePageLink("courses", CoursesPage.class));
 
-		PageParameters params = new PageParameters();
-		params.set("my", true);
-		add(new BookmarkablePageLink("myLessons", LessonsPage.class, params));
 		add(new BookmarkablePageLink("lessons", LessonsPage.class));
 		add(new BookmarkablePageLink("teachers", TeachersPage.class));
     } 

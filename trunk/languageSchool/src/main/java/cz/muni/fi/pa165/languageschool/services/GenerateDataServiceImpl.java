@@ -141,8 +141,8 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		HashSet<Language> languages = new HashSet<Language>();
 		do{
 			languages.add(langs[generator.nextInt(langs.length)]);
-		}while(generator.nextInt(4)==0);
-		if(generator.nextInt(8) == 0){
+		}while(generator.nextInt(3)==0);
+		if(generator.nextInt(4) == 0){
 			Language l = (new ArrayList<Language>(languages)).get(generator.nextInt(languages.size()));
 			teacher.setNativeLanguage(l);
 		}

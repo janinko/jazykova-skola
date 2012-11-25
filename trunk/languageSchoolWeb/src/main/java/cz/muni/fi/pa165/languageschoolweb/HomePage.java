@@ -12,8 +12,13 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class HomePage extends BasePage {
     @SpringBean
     private GenerateDataService generator;
+
+	private static boolean generated = false;
     
     public HomePage() {
-        generator.generateData(2, 8, 5, 2);
+        if(!generated){
+			generator.generateData(4, 20, 10, 4);
+			generated = true;
+		}
     }
 }

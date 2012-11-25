@@ -36,14 +36,9 @@ public class TeachersPage extends BasePage {
 	@SpringBean
     private TeacherDtoAdapter teachers;
 	
-    @SpringBean
-    private GenerateDataService generator;
-	
-	
 	public TeachersPage() {
 		super();
 
-		generator.generateData(2, 3, 3, 2);
 		Set<TeacherDto> set = teachers.getAllTeachers();
 		
 		Form form = new Form("form") {
