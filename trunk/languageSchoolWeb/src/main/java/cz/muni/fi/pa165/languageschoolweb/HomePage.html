@@ -9,21 +9,21 @@
         <wicket:extend>
             <form wicket:id="form" class="lessons">
 				<div wicket:id="repeating" class="lesson-box">
-					<div class="date-time">
+					<div class="box-content-l">
 						<span class="date"><span wicket:id="date">[edit]</span></span>
 						<br />
 						<span class="time"><span wicket:id="time">[contactid]</span></span>
 					</div>
 					
-					<div class="lesson-box-content">
+					<div class="box-content">
 						<h3><span wicket:id="name">[firstname]</span></h3><br />
 						<div class="teacher"><a href="#"><span wicket:id="teacher">[firstname]</span></a> </div>
 					</div>
-					<div class="checkbox">
+					<div class="box-content-r">
 						<input type="checkbox" wicket:id="bool" />
 					</div>
 				</div>
-				<input wicket:id="sign" type="submit" value="Změnit" class="button" />
+				<input wicket:id="sign" type="submit" value="Změnit" class="main-button" />
             </form>
         </wicket:extend> 
     </body> 
