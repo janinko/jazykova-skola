@@ -44,7 +44,6 @@ public class LessonList extends Panel{
 	public LessonList(String id, Set<LessonDto> lessons){
 		super(id);
 
-		Label heading = new Label("heading","Lekce");
         RepeatingView repeating = new RepeatingView("repeating");
         Form form = new Form("form") {
             protected void onSubmit() {
@@ -72,7 +71,6 @@ public class LessonList extends Panel{
         form.add(repeating);
         form.add(button);
         add(form);
-		add(heading);
 	}
 
 	private void fillRepeating(RepeatingView repeating, Set<LessonDto> lessons) {
