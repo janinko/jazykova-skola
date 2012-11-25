@@ -284,6 +284,7 @@ header.main #user-status {
   float: right;
 }
 header.main #user-status a {
+  float: left;
   text-decoration: none;
   background-color: #1b6079;
   background-repeat: repeat-x;
@@ -300,9 +301,9 @@ header.main #user-status a {
   -webkit-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   display: inline-block;
   padding: 2px 12px;
   text-shadow: 0 1px 1px #000000;
@@ -317,29 +318,29 @@ header.main #user-status a {
   -o-transition: 0.1s linear all;
   transition: 0.1s linear all;
   margin: 9px 0;
+  border-right: 1px solid #175064;
 }
 header.main #user-status a:hover {
   background-position: 0 -15px;
   color: #ffffff;
   text-decoration: none;
 }
-header.main #user-status a.btn-left {
-  -webkit-border-top-right-radius: 0;
-  -moz-border-top-right-radius: 0;
-  border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -moz-border-bottom-right-radius: 0;
-  border-bottom-right-radius: 0;
-  float: left;
-  border-right: 1px solid #175064;
+header.main #user-status a.btn-first {
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
-header.main #user-status a.btn-right {
-  -webkit-border-top-left-radius: 0;
-  -moz-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -moz-border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
+header.main #user-status a.btn-last {
+  -webkit-border-top-right-radius: 6px;
+  -moz-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-right: none;
 }
 nav.main {
   position: fixed;
