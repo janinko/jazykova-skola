@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.services;
 
+import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import java.sql.Date;
@@ -62,4 +63,10 @@ public interface LessonService {
      * @return all upcoming lessons till date
      */
     Set<Lesson> getUpcomingLessons(Date date);
+    /*
+     * Retrieves all lessons from specified course.
+     * @param coure coure
+     * @return all lessons from specified coures
+     */
+    Set<Lesson> getLessonsByCourse(Course course);
 }

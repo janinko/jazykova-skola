@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.adapters;
 
+import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import java.sql.Date;
@@ -59,4 +60,11 @@ public interface LessonDtoAdapter {
      * @return all upcoming lessons till date
      */
     Set<LessonDto> getUpcomingLessons(Date date);
+
+    /*
+     * Retrieves all lessons from specified course.
+     * @param coure coure 
+     * @return all lessons from specified coures
+     */
+    Set<LessonDto> getLessonsByCourse(CourseDto course);
 }
