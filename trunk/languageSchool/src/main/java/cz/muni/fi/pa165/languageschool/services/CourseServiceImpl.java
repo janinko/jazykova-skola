@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author fivekeyem
  */
 @Service
+@Transactional
 public class CourseServiceImpl implements CourseService {
 
 	private	CourseDAO courseDao;
@@ -33,14 +34,10 @@ public class CourseServiceImpl implements CourseService {
 		this.lessonDao = lessonDao;
 	}
 
-	
-	
-	@Transactional
 	public void createCourse(Course course) {
 		courseDao.create(course);
 	}
 
-	@Transactional
 	public void deleteCourse(Course course) {
 		courseDao.delete(course);
 		List<Lesson> l = lessonDao.findLessonByCourse(course);
@@ -50,7 +47,6 @@ public class CourseServiceImpl implements CourseService {
 		}
 	}
 
-	@Transactional
 	public void addLessonToCourse(Course course, Lesson lesson) {
 		lesson.setCourse(course);
 		lessonDao.create(lesson);
@@ -67,6 +63,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Course read(long id) {
 		return courseDao.read(id);
 	}

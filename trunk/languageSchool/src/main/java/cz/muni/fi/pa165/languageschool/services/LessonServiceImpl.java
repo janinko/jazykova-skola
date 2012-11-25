@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jbrazdil
  */
 @Service
+@Transactional
 public class LessonServiceImpl implements LessonService {
 	
 	private LessonDAO lessonDao;
@@ -34,19 +35,16 @@ public class LessonServiceImpl implements LessonService {
 		this.studentDao = studentDao;
 	}
 	
-	@Transactional
 	public void removeLesson(Lesson l) {
 		lessonDao.delete(l);
 	}
 
-	@Transactional
 	public void removeStudent(Lesson l, Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().remove(student);
 		lessonDao.update(lesson);
 	}
 
-	@Transactional
 	public void addStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().add(student);
@@ -64,11 +62,13 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Set<Lesson> getUpcomingLessons(Date date) {
 		return new HashSet<Lesson>(lessonDao.findUpcomingLessons(date));
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Set<Lesson> getLessonsByCourse(Course course) {
 		return new HashSet<Lesson>(lessonDao.findLessonByCourse(course));
 	}
