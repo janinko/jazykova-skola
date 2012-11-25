@@ -257,8 +257,22 @@ nav.main {
 	.bgi("bg-content.png", repeat);
 	.box-shadow(0 2px 3px rgba(0,0,0,.4));
 	.c(white);
-	min-height: 200px;
+	min-height: 400px;
 	padding: 15px;
+
+	input.main-button {
+		.fr;
+		.bgc(white);
+		.radius(2px);
+		.border(gray);
+		.fs(13px);
+		.ttu;
+		.fwb;
+		margin: 10px 5px;
+		padding: 5px 7px;
+		height: 40px;
+		cursor: pointer;
+	}
 
 
 	table {
@@ -272,6 +286,8 @@ nav.main {
 		}
 	}
 
+
+	// new boxes
 	.course-box-new {
 		.bgc(silver);
 		.radius(3px);
@@ -288,6 +304,11 @@ nav.main {
 			height: 20px;
 			line-height: 20px;
 			margin-bottom: 5px;
+
+			&.main-button {
+				height: 53px;
+				margin-top: 0px;
+			}
 		}
 
 
@@ -312,7 +333,7 @@ nav.main {
 			.fl;
 			display: block;
 			height: 60px;
-			width: 70%;
+			width: 60%;
 			margin-top: @margin-top;
 
 			input {
@@ -322,6 +343,8 @@ nav.main {
 	}
 
 
+
+	// standard box
 	.lesson-box, .course-box {
 		.bgc(white);
 		.radius(3px);
@@ -404,24 +427,12 @@ nav.main {
 				.bgc(white);
 			}
 		}
+
 	}
 
-	form.lessons, form.courses {
-		input.main-button {
-			.fr;
-			.bgc(white);
-			.radius(2px);
-			.border(gray);
-			.fs(13px);
-			.ttu;
-			.fwb;
-			margin: 0px 2px;
-			padding: 5px 0px;
-			width: 100px;
-			height: 53px;
-			cursor: pointer;
-		}
-	}
+
+
+	
 
 }
 
