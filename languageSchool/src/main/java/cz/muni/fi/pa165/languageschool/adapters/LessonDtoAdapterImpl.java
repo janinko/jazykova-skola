@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
+import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
@@ -67,6 +68,15 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 	public Set<LessonDto> getUpcomingLessons(Date date) {
             Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
             for(Lesson l : lessonService.getUpcomingLessons(date)){
+                    lessonTOs.add(e2dto(l));
+            }
+            return lessonTOs;
+	}
+
+	@Override
+	public Set<LessonDto> getLessonsByCourse(CourseDto course) {
+            Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
+            for(Lesson l : lessonService.getLessonsByCourse(courseDtoAdapter.dto2e(course))){
                     lessonTOs.add(e2dto(l));
             }
             return lessonTOs;
