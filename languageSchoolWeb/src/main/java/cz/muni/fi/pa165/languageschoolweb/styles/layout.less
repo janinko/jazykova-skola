@@ -270,7 +270,7 @@ nav.main {
 	}
 
 
-	.lesson-box {
+	.lesson-box, .course-box {
 		.bgc(white);
 		.radius(3px);
 		.c(#333);
@@ -280,16 +280,16 @@ nav.main {
 		display: block;
 
 		&:hover {
-			.date-time {
+			.box-content-l {
 				.gradient(silver, darken(silver, 40%));
 			}
 
-			.checkbox {
+			.box-content-r {
 				.gradient(@baseColor, darken(@baseColor, 25%));
 			}
 		}
 
-		.date-time {
+		.box-content-l {
 			.tac;
 			.c(white);
 			.fwb;
@@ -315,12 +315,12 @@ nav.main {
 			}
 		}
 
-		.lesson-box-content {
+		.box-content {
 			.fl;
 			.c(#333);	
 			display: block;
 			height: 80px;
-			width: 75%;
+			width: 70%;
 			
 		
 			h3 {	
@@ -340,7 +340,7 @@ nav.main {
 			}
 		}
 
-		.checkbox {
+		.box-content-r {
 			.fr;
 			.gradient(@baseColor, darken(@baseColor, 15%));
 			.radius(3px);
@@ -354,8 +354,8 @@ nav.main {
 		}
 	}
 
-	form.lessons {
-		input.button {
+	form.lessons, form.courses {
+		input.main-button {
 			.fr;
 			.bgc(white);
 			.radius(2px);

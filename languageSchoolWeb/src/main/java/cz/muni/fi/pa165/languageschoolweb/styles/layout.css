@@ -416,7 +416,7 @@ nav.main ul li a:hover {
   background-color: #ffffff;
   color: #333333;
 }
-.content_container .lesson-box {
+.content_container .lesson-box, .content_container .course-box {
   background-color: #ffffff;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -427,15 +427,18 @@ nav.main ul li a:hover {
   width: 99%;
   display: block;
 }
-.content_container .lesson-box:before, .content_container .lesson-box:after {
+.content_container .lesson-box:before,
+.content_container .course-box:before,
+.content_container .lesson-box:after,
+.content_container .course-box:after {
   display: table;
   content: "";
   zoom: 1;
 }
-.content_container .lesson-box:after {
+.content_container .lesson-box:after, .content_container .course-box:after {
   clear: both;
 }
-.content_container .lesson-box:hover .date-time {
+.content_container .lesson-box:hover .box-content-l, .content_container .course-box:hover .box-content-l {
   background-color: #5a5a5a;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#c0c0c0), to(#5a5a5a));
@@ -449,7 +452,7 @@ nav.main ul li a:hover {
   background-image: linear-gradient(#c0c0c0, #5a5a5a);
   -pie-background: linear-gradient(#c0c0c0, #5a5a5a);
 }
-.content_container .lesson-box:hover .checkbox {
+.content_container .lesson-box:hover .box-content-r, .content_container .course-box:hover .box-content-r {
   background-color: #175064;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#2ea3cc), to(#175064));
@@ -463,7 +466,7 @@ nav.main ul li a:hover {
   background-image: linear-gradient(#2ea3cc, #175064);
   -pie-background: linear-gradient(#2ea3cc, #175064);
 }
-.content_container .lesson-box .date-time {
+.content_container .lesson-box .box-content-l, .content_container .course-box .box-content-l {
   text-align: center;
   color: #ffffff;
   font-weight: bold;
@@ -494,18 +497,18 @@ nav.main ul li a:hover {
   -moz-box-shadow: 0 1px 1px;
   box-shadow: 0 1px 1px;
 }
-.content_container .lesson-box .date-time .date {
+.content_container .lesson-box .box-content-l .date, .content_container .course-box .box-content-l .date {
   margin-left: 2px;
   font-size: 20px;
 }
-.content_container .lesson-box .lesson-box-content {
+.content_container .lesson-box .box-content, .content_container .course-box .box-content {
   float: left;
   color: #333333;
   display: block;
   height: 80px;
-  width: 75%;
+  width: 70%;
 }
-.content_container .lesson-box .lesson-box-content h3 {
+.content_container .lesson-box .box-content h3, .content_container .course-box .box-content h3 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -515,13 +518,13 @@ nav.main ul li a:hover {
   margin-top: 15px;
   line-height: 1.3;
 }
-.content_container .lesson-box .lesson-box-content .teacher {
+.content_container .lesson-box .box-content .teacher, .content_container .course-box .box-content .teacher {
   color: #333333;
   clear: both;
   padding-top: 10px;
   display: block;
 }
-.content_container .lesson-box .checkbox {
+.content_container .lesson-box .box-content-r, .content_container .course-box .box-content-r {
   float: right;
   background-color: #20718e;
   background-repeat: repeat-x;
@@ -542,10 +545,10 @@ nav.main ul li a:hover {
   padding: 30px 5px;
   margin: 5px;
 }
-.content_container .lesson-box .checkbox input {
+.content_container .lesson-box .box-content-r input, .content_container .course-box .box-content-r input {
   background-color: #ffffff;
 }
-.content_container form.lessons input.button {
+.content_container form.lessons input.main-button, .content_container form.courses input.main-button {
   float: right;
   background-color: #ffffff;
   -webkit-border-radius: 2px;
