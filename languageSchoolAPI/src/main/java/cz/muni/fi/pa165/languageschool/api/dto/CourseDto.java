@@ -1,10 +1,13 @@
 package cz.muni.fi.pa165.languageschool.api.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author fivekeyem
  */
-public class CourseDto {
+public class CourseDto implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String name;
