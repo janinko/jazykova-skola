@@ -1,6 +1,4 @@
-Good news everyone:
-	hello world
+To run everything embeded (web on 8080) use:
+  mvn tomcat7:run
 
-I was here.
-	Fantomas.
-		HAHAHAHAHA
+

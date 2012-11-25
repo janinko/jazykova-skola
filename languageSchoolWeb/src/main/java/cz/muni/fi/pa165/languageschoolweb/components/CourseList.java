@@ -23,6 +23,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -41,33 +42,10 @@ public class CourseList extends Panel{
 	public CourseList(String id, Set<CourseDto> courses){
 		super(id);
 
-		add( new Label("heading","Kurzy"));
-
         RepeatingView repeating = new RepeatingView("repeating");
-        add(repeating);
-
-		Set<CourseDto> orderedCourses = new TreeSet<CourseDto>(new CourseComparator());
-		orderedCourses.addAll(courses);
-
-
-		for (CourseDto course : orderedCourses) {
-			AbstractItem item = new AbstractItem(repeating.newChildId());
-
-			PageParameters params = new PageParameters();
-			params.set("courseid", course.getId());
-
-			Link link = new BookmarkablePageLink("link", CoursePage.class, params);
-			item.add(link);
-
-			link.add(new Label("name", course.getName()));
-			item.add(new Label("language", course.getLanguage()));
-			item.add(new Label("level", String.valueOf(course.getLevel())));
-
-
-
-			repeating.add(item);
-		}
-
+		Label heading = new Label("heading","Kurzy");
+		Label deleteLabel = new Label("deleteLabel", "Smazat");
+		Button addButton = new Button("addButton");
 		Form form = new Form("form") {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -75,11 +53,46 @@ public class CourseList extends Panel{
                 info("Form.onSubmit executed");
             }
         };
-		form.setVisible(new Random().nextBoolean());
 
-		Link addLink = new BookmarkablePageLink("add", HomePage.class);
-		form.add(addLink);
+		Set<CourseDto> orderedCourses = new TreeSet<CourseDto>(new CourseComparator());
+		orderedCourses.addAll(courses);
+
+		for (CourseDto course : orderedCourses) {
+			fillRepeatingLine(repeating, course);
+		}
+
+		deleteLabel.setVisible(isLogged());
+		addButton.setVisible(isLogged());
+
+		add(heading);
+		form.add(deleteLabel);
+        form.add(repeating);
+		form.add(addButton);
 		add(form);
+	}
+
+	private boolean logged = new Random().nextBoolean();
+	private boolean isLogged(){
+		return logged;
+	}
+
+	private void fillRepeatingLine(RepeatingView repeating, CourseDto course) {
+		AbstractItem item = new AbstractItem(repeating.newChildId());
+
+		PageParameters params = new PageParameters();
+		params.set("courseid", course.getId());
+
+		Link link = new BookmarkablePageLink("link", CoursePage.class, params);
+
+		Button button = new Button("delete");
+		button.setVisible(isLogged());
+
+		link.add(new Label("name", course.getName()));
+		item.add(link);
+		item.add(new Label("language", course.getLanguage()));
+		item.add(new Label("level", String.valueOf(course.getLevel())));
+		item.add(button);
+		repeating.add(item);
 	}
 
 	private class CourseComparator implements Comparator<CourseDto>{
