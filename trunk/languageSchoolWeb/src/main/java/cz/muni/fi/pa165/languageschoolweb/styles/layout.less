@@ -200,14 +200,35 @@ section { .clearfix; }
 header.main {
 	.clearfix;
 
-	height: 10px;
+	#user-status {
+		.fr;
+		
+		a {
+			.btn(@baseColor, white, 0 1px 1px, 15px, 2px 12px, 6px);
+			margin: 9px 0;
+
+			&.btn-left {
+				.radius-top-right(0);
+				.radius-bottom-right(0);
+				.fl;
+				border-right: 1px solid darken(@baseColor, 25%);
+			}
+
+			&.btn-right {
+				.radius-top-left(0);
+				.radius-bottom-left(0);
+			}
+		}
+
+		
+	}
 	
 } // header.main
 
 
 nav.main {
 	position: fixed;
-	top: 28px;
+	top: 56px;
 
 	ul {
 		.reset;
@@ -233,6 +254,7 @@ nav.main {
 	.bgi("bg-content.png", repeat);
 	.box-shadow(0 2px 3px rgba(0,0,0,.4));
 	.c(white);
+	min-height: 200px;
 	padding: 15px;
 
 
