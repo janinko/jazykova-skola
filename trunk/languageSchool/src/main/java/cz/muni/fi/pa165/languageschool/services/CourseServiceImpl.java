@@ -65,6 +65,11 @@ public class CourseServiceImpl implements CourseService {
 	public Set<Course> getAllCourses() {
 		return new HashSet<Course>(courseDao.findAllCourses());
 	}
+
+	@Override
+	public Course read(long id) {
+		return courseDao.read(id);
+	}
 	
 	
 	

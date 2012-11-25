@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.languageschool.DAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -78,4 +79,14 @@ public class LessonDAOImpl implements LessonDAO {
         query.setParameter("course", course);
         return query.getResultList();
     } 
+
+	@Override
+	public List<Lesson> findUpcomingLessons(Date date) {
+        EntityManager em = emf.createEntityManager();
+
+        Query query = em.createQuery("SELECT l FROM Lesson l WHERE l.lessonDate BETWEEN :startDate AND :endDate");
+        query.setParameter("startDate",  new java.util.Date());
+        query.setParameter("startDate",  date);
+		return query.getResultList();
+	}
 }

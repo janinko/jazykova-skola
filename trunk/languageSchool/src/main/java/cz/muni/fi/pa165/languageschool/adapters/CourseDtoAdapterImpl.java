@@ -56,6 +56,11 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 		
 		return courseDTOs;
 	}
+
+	@Override
+	public CourseDto read(long id) {
+		return e2dto(courseService.read(id));
+	}
 	
     @Override
 	public Set<CourseDto> getAllCourses() {

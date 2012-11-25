@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.api.services;
 
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
+import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.Set;
 
@@ -54,4 +55,12 @@ public interface CourseService {
      * @return all courses in the database
      */
     Set<Course> getAllCourses();
+
+	/*
+     * Retrieves a course with a given id
+     *
+     * @param id id of a course
+     * @return course with a given id
+     */
+    Course read(long id);
 }

@@ -63,6 +63,15 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
             return lessonTOs;
     }
 
+	@Override
+	public Set<LessonDto> getUpcomingLessons(Date date) {
+            Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
+            for(Lesson l : lessonService.getUpcomingLessons(date)){
+                    lessonTOs.add(e2dto(l));
+            }
+            return lessonTOs;
+	}
+
 
 	LessonDto e2dto(Lesson entity) {
 		LessonDto dto = new LessonDto();
@@ -101,5 +110,5 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 		// lesson isn't updatable
 
 		return entity;
-	}	
+	}
 }

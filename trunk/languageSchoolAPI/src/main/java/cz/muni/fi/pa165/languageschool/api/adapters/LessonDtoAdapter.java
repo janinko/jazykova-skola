@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.api.adapters;
 
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
+import java.sql.Date;
 import java.util.Set;
 
 /**
@@ -52,4 +53,10 @@ public interface LessonDtoAdapter {
      */
     void removeStudent(LessonDto lesson, StudentDto student);
     
+    /*
+     * Retrieves all upcoming lessons till specified date.
+     * @param date Date in future
+     * @return all upcoming lessons till date
+     */
+    Set<LessonDto> getUpcomingLessons(Date date);
 }
