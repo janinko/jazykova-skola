@@ -21,6 +21,8 @@ import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
 import java.util.Set;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -56,9 +58,18 @@ public class TeachersPage extends BasePage {
 		for (TeacherDto teacherDto : set) {
 			AbstractItem item = new AbstractItem(repeating.newChildId());
 			
-			item.add(new Label("firstname", teacherDto.getFirstName()));
-			item.add(new Label("lastname", teacherDto.getLastName()));
+			
+			PageParameters params = new PageParameters();
+			params.set("email", teacherDto.getEmail());
+
+			Link link = new BookmarkablePageLink("link", TeacherPage.class, params);
+			
+			
 			item.add(new Label("email", teacherDto.getEmail()));
+			item.add(new Label("nativlang", teacherDto.getNativeLanguage()));
+			link.add(new Label("firstname", teacherDto.getFirstName()));
+			link.add(new Label("lastname", teacherDto.getLastName()));
+			item.add(link);
 			
 			
 			repeating.add(item);
