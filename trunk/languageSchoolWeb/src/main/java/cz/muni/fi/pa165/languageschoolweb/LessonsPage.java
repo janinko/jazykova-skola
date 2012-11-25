@@ -26,8 +26,8 @@ public class LessonsPage extends BasePage {
 
     public LessonsPage(PageParameters parameters) {
 		Set<LessonDto> lsns;
-		if(!parameters.get("my").isNull() && students.read(0) != null){
-			lsns = students.getAllLessons(students.read(0));
+		if(!parameters.get("my").isNull() && students.read(1) != null){
+			lsns = students.getAllLessons(students.read(1));
 		}else{
 			lsns = lessons.getAllLessons();
 		}

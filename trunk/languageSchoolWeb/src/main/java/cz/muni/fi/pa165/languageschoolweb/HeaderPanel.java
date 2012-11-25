@@ -30,7 +30,7 @@ public class HeaderPanel extends Panel {
 	public HeaderPanel(String componentName) {
 		super(componentName);
 
-		StudentDto student = students.read(0);
+		StudentDto student = students.read(1);
 
 		if(student == null){
 			add(new Label("username", "Přihlásit"));
