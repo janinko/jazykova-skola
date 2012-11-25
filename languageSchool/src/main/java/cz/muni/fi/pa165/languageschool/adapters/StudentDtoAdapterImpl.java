@@ -33,7 +33,9 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 	}
 	
     public StudentDto read(long id){
-		return e2dto(studentService.read(id));
+		Student student = studentService.read(id);
+		if(student == null) return null;
+		return e2dto(student);
 	}
 	
     public Set<LessonDto> getAllLessons(StudentDto student){
