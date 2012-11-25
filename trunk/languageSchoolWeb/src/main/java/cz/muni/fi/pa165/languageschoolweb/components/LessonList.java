@@ -1,25 +1,15 @@
-/*
- * Copyright 2012 jbrazdil.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschoolweb.TeacherPage;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
@@ -32,6 +22,7 @@ import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -69,6 +60,10 @@ public class LessonList extends Panel{
 		TreeSet<LessonDto> lessonsOrdered = new TreeSet<LessonDto>(new LessonComparator());
 		lessonsOrdered.addAll(lessons);
 
+        final Map<CheckBox, LessonDto> deletes = new HashMap<CheckBox, LessonDto>();
+        final List<CheckBoxModel> deleteModels = new ArrayList<CheckBoxModel>();
+        
+        int i = 0;
         for (LessonDto lesson : lessonsOrdered) {
             AbstractItem item = new AbstractItem(repeating.newChildId());
 		
@@ -80,13 +75,22 @@ public class LessonList extends Panel{
 			DateFormat dateFormat = new SimpleDateFormat("dd. MM.");
 			DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
+			CheckBoxModel model = new CheckBoxModel(false);
+            deleteModels.add(model);
+            CheckBox check = new CheckBox("check", new PropertyModel<Boolean>(deleteModels.get(i),"checked"));
+            deletes.put(check, lesson);
+            i++;
+
+
+
 
 			item.add(new Label("date", dateFormat.format(lesson.getDate().getTime())));
 			item.add(new Label("time", timeFormat.format(lesson.getDate().getTime())));
             item.add(new Label("name", lesson.getCourse().getName()));
             link.add(new Label("teacherName", lesson.getTeacherName()));
 			item.add(link);
-            item.add(new CheckBox("bool",Model.of(Boolean.TRUE)));
+            //item.add(new CheckBox("bool",Model.of(Boolean.TRUE)));
+            item.add(check);
 
             repeating.add(item);
         }
@@ -97,6 +101,20 @@ public class LessonList extends Panel{
 		@Override
 		public int compare(LessonDto o1, LessonDto o2) {
 			return o1.getDate().compareTo(o2.getDate());
+		}
+	}
+
+	class CheckBoxModel implements Serializable {
+
+		private static final long serialVersionUID = 1L;
+		private boolean checked;
+
+		CheckBoxModel(Boolean checked) {
+			this.checked = checked;
+		}
+
+		boolean isChecked() {
+			return checked;
 		}
 	}
 }
