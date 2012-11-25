@@ -28,7 +28,6 @@ public class CourseList extends Panel{
 		super(id);
 
         RepeatingView repeating = new RepeatingView("repeating");
-		Label heading = new Label("heading","Kurzy");
 		Label deleteLabel = new Label("deleteLabel", "Smazat");
 		Button addButton = new Button("addButton");
 		Form form = new Form("form") {
@@ -49,7 +48,6 @@ public class CourseList extends Panel{
 		deleteLabel.setVisible(isLogged());
 		addButton.setVisible(isLogged());
 
-		add(heading);
 		form.add(deleteLabel);
         form.add(repeating);
 		form.add(addButton);
