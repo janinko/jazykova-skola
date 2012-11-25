@@ -4,13 +4,15 @@
  */
 package cz.muni.fi.pa165.languageschool.api.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  *
  * @author xchrastk
  */
-public class TeacherDto {
+public class TeacherDto implements Serializable{
+	private static final long serialVersionUID = 1L;
 
     private Long id;
     private String firstName;
