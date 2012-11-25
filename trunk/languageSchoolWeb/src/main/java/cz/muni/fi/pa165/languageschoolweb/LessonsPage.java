@@ -6,7 +6,9 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschoolweb.components.LessonList;
+import java.util.Set;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 
