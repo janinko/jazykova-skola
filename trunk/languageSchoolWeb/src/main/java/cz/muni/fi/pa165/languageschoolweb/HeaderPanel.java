@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -41,7 +42,7 @@ public class HeaderPanel extends Panel {
 		add(link);
 
 		if(student == null){
-			add(new Label("username", "Přihlásit"));
+			add(new Label("username", new ResourceModel("Prihlasit")));
 			link.setVisible(false);
 		}else{
 			add(new Label("username", student.getFirstName() + " " + student.getLastName()));

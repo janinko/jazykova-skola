@@ -7,7 +7,7 @@
 			<form wicket:id="form" class="courses">
 				
 				<wicket:enclosure>
-					<span wicket:id="deleteLabel">Smazat</span>
+					<span wicket:id="deleteLabel">[Smazat]</span>
 				</wicket:enclosure>
 				
 				<div wicket:id="repeating" class="course-box">
@@ -22,7 +22,7 @@
 					</div>
 					<wicket:enclosure>
 						<div class="box-content-r">
-							<input wicket:id="delete" type="submit" value="Smazat" class="button" />
+							<input wicket:id="delete" type="submit" wicket:message="value:Smazat" class="button" />
 						</div>
 					</wicket:enclosure>
 				</div>
@@ -30,17 +30,17 @@
 				<wicket:enclosure>
 				<div class="course-box-new">
 					<div class="box-content-l">
-						<input type="text" value="Level" />
+						<input type="text" wicket:message="value:Level" />
 					</div>
 					
 					<div class="box-content">
-						<input type="text" value="Název kurzu" /><br />
-						<input type="text" value="Jazyk" />
+						<input type="text" wicket:message="value:NazevKurzu" /><br />
+						<input type="text" wicket:message="value:Jazyk" />
 					</div>
 					
 					
 					<div class="box-content-r">
-						<input wicket:id="addButton" type="submit" value="Přidat kurz" class="main-button" />
+						<input wicket:id="addButton" type="submit" wicket:message="value:PridatKurz" class="main-button" />
 					</div>
 				</div>
 				</wicket:enclosure>

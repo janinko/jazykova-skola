@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschoolweb.CoursePage;
-import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Set;
@@ -15,6 +14,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -28,7 +28,7 @@ public class CourseList extends Panel{
 		super(id);
 
         RepeatingView repeating = new RepeatingView("repeating");
-		Label deleteLabel = new Label("deleteLabel", "Smazat");
+		Label deleteLabel = new Label("deleteLabel", new ResourceModel("Smazat"));
 		Button addButton = new Button("addButton");
 		Form form = new Form("form") {
 			private static final long serialVersionUID = 1L;
