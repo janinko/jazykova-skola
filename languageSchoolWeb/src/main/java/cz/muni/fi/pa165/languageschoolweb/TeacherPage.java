@@ -5,11 +5,11 @@
  */
 package cz.muni.fi.pa165.languageschoolweb;
 
-import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
 import cz.muni.fi.pa165.languageschoolweb.components.LessonList;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -22,14 +22,14 @@ public class TeacherPage extends BasePage {
 		String email = parameters.get("email").toString();
 
 		if(email == null){
-			add(new Label("teacherName", "Musíš vybrat učitele."));
+			add(new Label("teacherName", new ResourceModel("MusisVybratUcitele.")));
 			return;
 		}
 
 		TeacherDto teacher = teachers.readTeacher(email);
 		
 		if(teacher == null){
-			add(new Label("teacherName", "Učitel neexistuje!"));
+			add(new Label("teacherName", new ResourceModel("UcitelNeexistuje!")));
 			return;
 		}
 
