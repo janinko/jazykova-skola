@@ -33,9 +33,17 @@ public interface StudentService {
      * Retrieves a student with a given id
      * 
      * @param id id of a student
-     * @return student student with a given id
+     * @return student with a given id
      */
     Student read(long id);
+    
+    /*
+     * Retrieves a student with a given email
+     * 
+     * @param email email of a student
+     * @return student with a given email
+     */
+    Student read(String email);
 	
     /*
      * Retrieves all lessons that a given student has enrolled

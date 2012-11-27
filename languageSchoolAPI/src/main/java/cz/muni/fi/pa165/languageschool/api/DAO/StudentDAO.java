@@ -53,6 +53,15 @@ public interface StudentDAO {
 	 * @return all students
 	 */
     public List<Student> findAllStudents();
+    
+    /**
+	 * This method returns students depending on combination first name and last name
+	 * 
+	 * @param email email of student
+	 * @return student who have the email
+	 * @throws IllegalArgumentException if email is Null
+	 */
+    public Student findStudentByEmail(String email);
 	
 	/**
 	 * This method returns students depending on combination first name and last name

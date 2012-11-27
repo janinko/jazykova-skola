@@ -37,6 +37,12 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 		if(student == null) return null;
 		return e2dto(student);
 	}
+    
+    public StudentDto read(String email){
+		Student student = studentService.read(email);
+		if(student == null) return null;
+		return e2dto(student);
+	}
 	
     public Set<LessonDto> getAllLessons(StudentDto student){
 		Set<LessonDto> lessons = new HashSet<LessonDto>();
