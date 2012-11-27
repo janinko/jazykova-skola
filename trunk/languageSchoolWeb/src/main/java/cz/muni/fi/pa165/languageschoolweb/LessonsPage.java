@@ -24,6 +24,7 @@ public class LessonsPage extends BasePage {
     private GenerateDataService generator;
 
     public LessonsPage(PageParameters parameters) {
+		super(parameters);
 		Set<LessonDto> lsns;
 		if(!parameters.get("my").isNull() && students.read(1) != null){
 			lsns = students.getAllLessons(students.read(1));

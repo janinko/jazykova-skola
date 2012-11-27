@@ -6,6 +6,8 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
+import cz.muni.fi.pa165.languageschoolweb.components.GeneratorForm;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 
@@ -15,10 +17,9 @@ public class HomePage extends BasePage {
 
 	private static boolean generated = false;
     
-    public HomePage() {
-        if(!generated){
-			generator.generateData(4, 20, 10, 4);
-			generated = true;
-		}
+    public HomePage(PageParameters parameters) {
+		super(parameters);
+
+		add(new GeneratorForm("generateForm"));
     }
 }

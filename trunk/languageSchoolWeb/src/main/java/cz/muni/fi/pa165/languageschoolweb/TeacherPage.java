@@ -19,6 +19,7 @@ public class TeacherPage extends BasePage {
     private TeacherDtoAdapter teachers;
     
     public TeacherPage(PageParameters parameters) {
+		super(parameters);
 		String email = parameters.get("email").toString();
 
 		if(email == null){
