@@ -35,8 +35,8 @@ public class TeachersPage extends BasePage {
 	@SpringBean
     private TeacherDtoAdapter teachers;
 	
-	public TeachersPage() {
-		super();
+	public TeachersPage(PageParameters parameters) {
+		super(parameters);
 
 		Set<TeacherDto> set = teachers.getAllTeachers();
 		

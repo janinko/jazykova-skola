@@ -22,6 +22,7 @@ public class CoursePage extends BasePage {
     private LessonDtoAdapter lessons;
     
     public CoursePage(PageParameters parameters) {
+		super(parameters);
 		Long courseid = parameters.get("courseid").toLong(-1);
 
 		if(courseid == -1){
