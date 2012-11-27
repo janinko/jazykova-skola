@@ -69,4 +69,8 @@ public class StudentServiceImpl implements StudentService {
     public void removeStudent(Student s){
         studentDao.delete(s);
     }
+
+    public Student read(String email) {
+        return studentDao.findStudentByEmail(email);
+    }
 }

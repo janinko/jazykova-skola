@@ -54,6 +54,14 @@ public interface StudentDtoAdapter {
      * @return student with a given id
      */
     StudentDto read(long id);
+    
+     /**
+     * Retrieves a one specific student from a database
+     * 
+     * @param email email of a desired student
+     * @return student with a given id
+     */
+    StudentDto read(String email);
 
     /**
      * Removes a one specific student from a database

@@ -43,6 +43,13 @@ public class HibernateStudentDaoImlp implements StudentDAO {
 				             .createQuery("SELECT s FROM Student s")
 				             .list();
 	}
+    
+    public Student findStudentByEmail(String email) {
+        return (Student) sessionFactory.getCurrentSession()
+				             .createQuery("SELECT s FROM Student s WHERE s.email = :email")
+							 .setParameter("email", email)
+				             .uniqueResult();
+    }
 
 	public List<Student> findStudentByName(String firstName, String lastName) {
 		return sessionFactory.getCurrentSession()
