@@ -41,6 +41,7 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testUpdate() {
         Student s1 = new Student("Radek", "Capek");
+		s1.setEmail("radek@example.com");
         studentDao.create(s1);
 
         s1.setFirstName("Radek po uprave");
@@ -52,6 +53,7 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testCreate1() {
         Student s1 = new Student("Radek", "Capek");
+		s1.setEmail("radek@example.com");
         Student s2 = studentDao.create(s1);
 
         assertEquals(s1, s2);
@@ -65,6 +67,7 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testCreate2() {
         Student s1 = new Student("Radek", "Capek");
+		s1.setEmail("radek@example.com");
         assertNull(s1.getId());
         studentDao.create(s1);
         assertNotNull(s1.getId());
@@ -75,6 +78,7 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testRead1() {
         Student s1 = new Student("Radek", "Capek");
+		s1.setEmail("radek@example.com");
         studentDao.create(s1);
 
         Student s2 = studentDao.read(s1.getId());
@@ -87,8 +91,11 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testFindStudentByName1() {
         Student s1 = new Student("Honza1", "Siroky1");
+		s1.setEmail("honza1@example.com");
         Student s2 = new Student("Honza2", "Siroky2");
+		s2.setEmail("honza2@example.com");
         Student s3 = new Student("Honza3", "Siroky3");
+		s3.setEmail("honza3@example.com");
 
         studentDao.create(s1);
         studentDao.create(s2);
@@ -116,8 +123,11 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testFindAllStudents() {
         Student s1 = new Student("Honza1", "Siroky1");
+		s1.setEmail("honza1@example.com");
         Student s2 = new Student("Honza2", "Siroky2");
+		s2.setEmail("honza2@example.com");
         Student s3 = new Student("Honza3", "Siroky3");
+		s3.setEmail("honza3@example.com");
 
         studentDao.create(s1);
         studentDao.create(s2);
@@ -150,9 +160,11 @@ public class StudentDAOTest extends AbstractSpringTest{
         Course c3 = new Course();
         
         Student s1 = new Student("Honza1", "Siroky1");
-        
+		s1.setEmail("honza1@example.com");
         Student s2 = new Student("Honza2", "Siroky2");
+		s2.setEmail("honza2@example.com");
         Student s3 = new Student("Honza3", "Siroky3");
+		s3.setEmail("honza3@example.com");
 
         studentDao.create(s1);
         studentDao.create(s2);
@@ -180,10 +192,19 @@ public class StudentDAOTest extends AbstractSpringTest{
 	
 	@Test
 	public void testFindStudentsByLesson(){
-        Student s1 = studentDao.create(new Student("Honza1", "Siroky1"));
-        Student s2 = studentDao.create(new Student("Honza2", "Siroky2"));
-        Student s3 = studentDao.create(new Student("Honza3", "Siroky3"));
-        Student s4 = studentDao.create(new Student("Honza4", "Siroky4"));
+		Student s1 = new Student("Honza1", "Siroky1");
+		s1.setEmail("honza1@example.com");
+        Student s2 = new Student("Honza2", "Siroky2");
+		s2.setEmail("honza2@example.com");
+        Student s3 = new Student("Honza3", "Siroky3");
+		s3.setEmail("honza3@example.com");
+        Student s4 = new Student("Honza4", "Siroky4");
+		s4.setEmail("honza4@example.com");
+
+		studentDao.create(s1);
+		studentDao.create(s2);
+		studentDao.create(s3);
+		studentDao.create(s4);
 		
         Lesson l1 = lessonDao.create(new Lesson());
         Lesson l2 = lessonDao.create(new Lesson());
@@ -226,8 +247,11 @@ public class StudentDAOTest extends AbstractSpringTest{
     @Test
     public void testCreateAndDelete() {
         Student s1 = new Student("Honza1", "Siroky1");
+		s1.setEmail("honza1@example.com");
         Student s2 = new Student("Honza2", "Siroky2");
+		s2.setEmail("honza2@example.com");
         Student s3 = new Student("Honza3", "Siroky3");
+		s3.setEmail("honza3@example.com");
 
         studentDao.create(s1);
         studentDao.create(s2);
