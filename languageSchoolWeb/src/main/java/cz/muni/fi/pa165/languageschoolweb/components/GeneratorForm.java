@@ -9,9 +9,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.RangeValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import sun.security.ec.ECDHKeyAgreement;
 
 /**
  *
@@ -20,7 +19,7 @@ import sun.security.ec.ECDHKeyAgreement;
 public class GeneratorForm extends Panel{
 	private static final long serialVersionUID = 1L;
 
-	@Autowired
+	@SpringBean
 	private GenerateDataService generator;
 
 	public GeneratorForm(String id){
