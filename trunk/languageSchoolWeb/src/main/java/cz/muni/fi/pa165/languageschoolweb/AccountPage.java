@@ -16,10 +16,9 @@ public class AccountPage extends BasePage {
     private StudentDtoAdapter students;
     
     public AccountPage(PageParameters parameters) {
-        super(parameters);        
-               
+        super(parameters);             
         
-		ChangeStudent changeStudent = new ChangeStudent("changeStudent",students.read(1).getEmail());
+		ChangeStudent changeStudent = new ChangeStudent("changeStudent",parameters.get("email").toString());
 
 		add(changeStudent);
     }
