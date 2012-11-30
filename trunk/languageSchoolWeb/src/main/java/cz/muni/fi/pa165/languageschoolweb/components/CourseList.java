@@ -29,7 +29,7 @@ public class CourseList extends Panel{
 
         RepeatingView repeating = new RepeatingView("repeating");
 		Label deleteLabel = new Label("deleteLabel", new ResourceModel("Smazat"));
-		Button addButton = new Button("addButton");
+		//Button addButton = new Button("addButton");
 		Form form = new Form("form") {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -46,11 +46,11 @@ public class CourseList extends Panel{
 		}
 
 		deleteLabel.setVisible(isLogged());
-		addButton.setVisible(isLogged());
+		//addButton.setVisible(isLogged());
 
 		form.add(deleteLabel);
         form.add(repeating);
-		form.add(addButton);
+		//form.add(addButton);
 		add(form);
 	}
 
