@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>AddCourse</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+		
+		<wicket:panel>
+			<form wicket:id="addCourseForm">
+				
+				<div class="course-box-new">
+					<div class="box-content-l">
+						 <input wicket:id="courseLevel" id="courseLevel" type="text" size="6" wicket:message="value:Level" />
+					</div>
+
+					<div class="box-content">
+						<input wicket:id="courseName" id="courseName" type="text" size="6" wicket:message="value:NazevKurzu" /><br />
+						<input wicket:id="courseLanguage" id="courseLanguage" type="text" size="6" wicket:message="value:Jazyk" />
+					</div>
+
+					<div class="box-content-r">
+						<input type="submit" wicket:id="addButton" class="main-button" value="Generovat" wicket:message="value:PridatKurz" />
+					</div>
+				</div>
+
+			</form>
+		</wicket:panel>
+		
+    </body>
+</html>

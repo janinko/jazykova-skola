@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
+import cz.muni.fi.pa165.languageschoolweb.components.AddCourseForm;
 import cz.muni.fi.pa165.languageschoolweb.components.CourseList;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -21,6 +22,6 @@ public class CoursesPage extends BasePage {
 		CourseList courseList = new CourseList("courseList",courses.getAllCourses());
 
 		add(courseList);
-
+		add(new AddCourseForm("addCourseForm"));
     }
 }

@@ -87,9 +87,15 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	Course dto2e(CourseDto dto){
 		Course entity = new Course();
 
-		entity.setId(dto.getId());
-		entity.setName(dto.getName());
-		entity.setLanguage(Teacher.Language.valueOf(dto.getLanguage().toString()));
+		if (dto.getId() != null) {
+			entity.setId(dto.getId());
+		}	
+		if (dto.getName() != null) {
+			entity.setName(dto.getName());
+		}
+		if (dto.getName() != null) {
+			entity.setLanguage(Teacher.Language.valueOf(dto.getLanguage().toString()));
+		}
 		entity.setLevel(dto.getLevel());
 
 		return entity;
