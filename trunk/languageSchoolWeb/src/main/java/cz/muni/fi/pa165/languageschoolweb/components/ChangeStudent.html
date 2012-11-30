@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<wicket:panel>
+
+		<div>
+			<h2><span wicket:id="name"/></h2>
+			<form wicket:id="form" class="student">
+				<wicket:message key="Jmeno" /><input type="text" wicket:id="nameField" /><br/>
+                <wicket:message key="Prijmeni" /><input type="text" wicket:id="surnameField" /><br/>
+                <wicket:message key="Heslo" /><input type="text" wicket:id="passwordField" /><br/><br/>
+                <input wicket:id="save" type="submit" wicket:message="value:Ulozit" class="main-button" />
+			</form>
+		</div>
+
+	</wicket:panel>
+</html>
