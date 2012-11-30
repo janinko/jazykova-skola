@@ -33,19 +33,27 @@ public class HeaderPanel extends Panel {
 	 */
 	public HeaderPanel(String componentName) {
 		super(componentName);
+        
+    	StudentDto student = students.read(1);
+        PageParameters accountParams = new PageParameters();
+		PageParameters lessonsParams = new PageParameters();
+        
+		lessonsParams.set("my", true);
+        
+		Link lessonsLink = new BookmarkablePageLink("myLessons", HomePage.class);		
+        Link accountLink = new BookmarkablePageLink("myAccount", AccountPage.class, accountParams);
 
-		StudentDto student = students.read(1);
-
-		PageParameters params = new PageParameters();
-		params.set("my", true);
-		Link link = new BookmarkablePageLink("myLessons", LessonsPage.class, params);
-		add(link);
-
-		if(student == null){
-			add(new Label("username", new ResourceModel("Prihlasit")));
-			link.setVisible(false);
-		}else{
-			add(new Label("username", student.getFirstName() + " " + student.getLastName()));
+		if(student == null){			
+            accountLink.add(new Label("username", new ResourceModel("Prihlasit")));			
+            lessonsLink.setVisible(false);
+            accountLink.detach();
+		}else{      
+            accountParams.set("email", student.getEmail());  
+            accountLink = new BookmarkablePageLink("myAccount", AccountPage.class, accountParams);
+            accountLink.add(new Label("username", student.getFirstName() + " " + student.getLastName()));                  
 		}
+        
+        add(accountLink);
+        add(lessonsLink);
 	}
 }

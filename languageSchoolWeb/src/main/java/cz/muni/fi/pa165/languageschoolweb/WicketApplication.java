@@ -35,6 +35,7 @@ public class WicketApplication extends WebApplication
 		mountPage("/lessons", LessonsPage.class);
 		mountPage("/teacher", TeacherPage.class);
 		mountPage("/teachers", TeachersPage.class);
+        mountPage("/account", AccountPage.class);
 		
 		// add your configuration here
 	}
