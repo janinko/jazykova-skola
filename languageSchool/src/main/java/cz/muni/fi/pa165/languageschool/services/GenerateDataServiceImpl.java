@@ -218,6 +218,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		student.setFirstName(names[generator.nextInt(names.length)]);
 		student.setLastName(surnames[generator.nextInt(surnames.length)]);
 		student.setEmail(genEmail(student.getFirstName(), student.getLastName()));
+        student.setPassword("pass");
 		return student;
 	}
 
