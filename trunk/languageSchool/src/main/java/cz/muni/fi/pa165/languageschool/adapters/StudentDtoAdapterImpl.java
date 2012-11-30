@@ -66,21 +66,26 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 
 	StudentDto e2dto(Student entity) {
 		StudentDto dto = new StudentDto();
+        
 		dto.setId(entity.getId());
 		dto.setFirstName(entity.getFirstName());
 		dto.setLastName(entity.getLastName());
-		dto.setAge(entity.getAge());
         dto.setEmail(entity.getEmail());
+        dto.setPassword(entity.getPassword());
+		dto.setAge(entity.getAge());
+        
 		return dto;
 	}
 
 	Student dto2e(StudentDto dto) {
 		Student entity = new Student();
+        
 		entity.setId(dto.getId());
 		entity.setFirstName(dto.getFirstName());
 		entity.setLastName(dto.getLastName());
-		entity.setAge(dto.getAge());
         entity.setEmail(dto.getEmail());
+        entity.setPassword(dto.getPassword());
+		entity.setAge(dto.getAge());
 
 		return entity;
 	}

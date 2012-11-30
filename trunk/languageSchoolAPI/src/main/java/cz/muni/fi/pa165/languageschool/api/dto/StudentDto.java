@@ -12,6 +12,7 @@ public class StudentDto implements Serializable{
 	private String firstName;
 	private String lastName;
     private String email;
+    private String password;
 	private int age;
 
 	public Long getId() {
@@ -45,6 +46,14 @@ public class StudentDto implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 	public int getAge() {
 		return age;
@@ -56,6 +65,6 @@ public class StudentDto implements Serializable{
 
     @Override
     public String toString() {
-        return "StudentDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", age=" + age + '}';
-    }    
+        return "StudentDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", age=" + age + '}';
+    }
 }

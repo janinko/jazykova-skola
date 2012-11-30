@@ -53,11 +53,12 @@ public class ChangeStudent extends Panel{
         
         final TextField<String> nameField = new TextField<String>("nameField",new PropertyModel(model,"firstName"));
         final TextField<String> surnameField = new TextField<String>("surnameField",new PropertyModel(model,"lastName"));
-        final TextField<String> passwordField = new TextField<String>("passwordField",Model.of(""));
+        final TextField<String> passwordField = new TextField<String>("passwordField",new PropertyModel(model,"password"));
         
         Button button = new Button("save") {
             public void onSubmit() {
                 boolean changed = false;
+                PageParameters params = new PageParameters();
                 if (model.getFirstName() != null && !student.getFirstName().equals(model.getFirstName())) {                    
                     student.setFirstName(model.getFirstName()); 
                     changed = true;
@@ -67,9 +68,14 @@ public class ChangeStudent extends Panel{
                     changed = true;
                     
                 }     
-                
-                if (changed) {students.update(student);}
-                PageParameters params = new PageParameters();
+                if (model == null) throw new Error("model");
+                if (student == null) throw new Error("student");
+                if (model.getPassword() != null && !model.getPassword().equals(student.getPassword())) {                    
+                    student.setPassword(model.getPassword());
+                    changed = true;
+                    params.set("password", 1);
+                } 
+                if (changed) {students.update(student);}                
                 params.set("email", student.getEmail());
                 throw new RestartResponseException(AccountPage.class, params);
 
