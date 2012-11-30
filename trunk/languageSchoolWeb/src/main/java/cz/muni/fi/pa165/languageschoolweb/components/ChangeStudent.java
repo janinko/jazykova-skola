@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
+import cz.muni.fi.pa165.languageschoolweb.AccountPage;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.html.basic.Label;
@@ -11,6 +12,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -67,7 +69,9 @@ public class ChangeStudent extends Panel{
                 }     
                 
                 if (changed) {students.update(student);}
-                throw new RestartResponseException(this.getPage());
+                PageParameters params = new PageParameters();
+                params.set("email", student.getEmail());
+                throw new RestartResponseException(AccountPage.class, params);
 
             }
         };
