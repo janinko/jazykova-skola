@@ -9,6 +9,7 @@ package cz.muni.fi.pa165.languageschoolweb;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /** 
@@ -32,6 +33,9 @@ public abstract class BasePage extends WebPage {
 			}
 			if(!parameters.get("message").isNull()){
 				message = new Label("message",parameters.get("message").toString());
+			}
+            if(!parameters.get("password").isNull()){
+				message = new Label("message", new ResourceModel("HesloZmeneno"));
 			}
 		}
 

@@ -23,6 +23,9 @@ public class Student implements Serializable {
     @Column(nullable=false, length=30, unique=true)
     private String email;
     
+    @Column(length=30)
+    private String password;
+    
     private int age;    
 
 	
@@ -66,6 +69,14 @@ public class Student implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     public int getAge() {
         return age;
@@ -92,10 +103,10 @@ public class Student implements Serializable {
             return false;
         }
         return true;
-    }
+    }  
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + '}';
-    }    
+        return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", age=" + age + '}';
+    }
 }
