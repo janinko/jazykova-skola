@@ -70,6 +70,7 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 		dto.setFirstName(entity.getFirstName());
 		dto.setLastName(entity.getLastName());
 		dto.setAge(entity.getAge());
+        dto.setEmail(entity.getEmail());
 		return dto;
 	}
 
@@ -79,6 +80,7 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 		entity.setFirstName(dto.getFirstName());
 		entity.setLastName(dto.getLastName());
 		entity.setAge(dto.getAge());
+        entity.setEmail(dto.getEmail());
 
 		return entity;
 	}
