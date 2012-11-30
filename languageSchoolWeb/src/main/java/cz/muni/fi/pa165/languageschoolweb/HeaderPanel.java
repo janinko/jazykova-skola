@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
+import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -24,6 +25,8 @@ public class HeaderPanel extends Panel {
 
 	@SpringBean
 	private StudentDtoAdapter students;
+    @SpringBean
+	private TeacherDtoAdapter teachers;
 
 	/**
 	 * Construct.
@@ -38,17 +41,16 @@ public class HeaderPanel extends Panel {
         PageParameters accountParams = new PageParameters();
 		PageParameters lessonsParams = new PageParameters();
         
-		lessonsParams.set("my", true);
+       	lessonsParams.set("my", true);
         
-		Link lessonsLink = new BookmarkablePageLink("myLessons", HomePage.class);		
-        Link accountLink = new BookmarkablePageLink("myAccount", AccountPage.class, accountParams);
+		Link lessonsLink = new BookmarkablePageLink("myLessons", LessonsPage.class, lessonsParams);		
+        Link accountLink = new BookmarkablePageLink("myAccount", HomePage.class, accountParams);
 
 		if(student == null){			
             accountLink.add(new Label("username", new ResourceModel("Prihlasit")));			
             lessonsLink.setVisible(false);
-            accountLink.detach();
-		}else{      
-            accountParams.set("email", student.getEmail());  
+		} else {      
+            accountParams.set("email", student.getEmail().toString());
             accountLink = new BookmarkablePageLink("myAccount", AccountPage.class, accountParams);
             accountLink.add(new Label("username", student.getFirstName() + " " + student.getLastName()));                  
 		}
