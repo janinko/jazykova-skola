@@ -69,5 +69,8 @@ public class TeacherDto implements Serializable{
         this.nativeLanguage = nativeLanguage;
     }
 
-    
+    @Override
+    public String toString() {
+        return "TeacherDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+    }
 }
