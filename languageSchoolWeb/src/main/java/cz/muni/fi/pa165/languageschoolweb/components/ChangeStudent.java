@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -24,10 +25,11 @@ public class ChangeStudent extends Panel{
 
     private StudentDto student;
     
-	public ChangeStudent(String id, String email){
+	public ChangeStudent(String id, final String email){
         super(id);
 
         student = students.read(email);
+        final StudentDto model = new StudentDto();
         
         /*if(email == null){
 			add(new Label("error", "V URL nenalezen email studenta."));
@@ -39,9 +41,7 @@ public class ChangeStudent extends Panel{
             
         }*/
         
-        Label name;
-        if(student != null) name = new Label("name", "Student " + student.getFirstName() + " " +student.getLastName());
-        else name = new Label("name", "nyc");
+        Label name = new Label("name", "Student " + student.getFirstName() + " " +student.getLastName());
         
         Form form = new Form("form") {
             protected void onSubmit() {
@@ -49,13 +49,24 @@ public class ChangeStudent extends Panel{
             }
         };
         
-        final TextField<String> nameField = new TextField<String>("nameField",Model.of(""));
-        final TextField<String> surnameField = new TextField<String>("surnameField",Model.of(""));
+        final TextField<String> nameField = new TextField<String>("nameField",new PropertyModel(model,"firstName"));
+        final TextField<String> surnameField = new TextField<String>("surnameField",new PropertyModel(model,"lastName"));
         final TextField<String> passwordField = new TextField<String>("passwordField",Model.of(""));
         
         Button button = new Button("save") {
             public void onSubmit() {
+                boolean changed = false;
+                if (model.getFirstName() != null && !student.getFirstName().equals(model.getFirstName())) {                    
+                    student.setFirstName(model.getFirstName()); 
+                    changed = true;
+                }   
+                if (model.getLastName() != null && !student.getLastName().equals(model.getLastName())) {                    
+                    student.setLastName(model.getLastName());
+                    changed = true;
+                    
+                }     
                 
+                if (changed) {students.update(student);}
                 throw new RestartResponseException(this.getPage());
 
             }
