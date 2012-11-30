@@ -2,19 +2,17 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschoolweb.CoursePage;
+import cz.muni.fi.pa165.languageschoolweb.CoursesPage;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.AbstractItem;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -28,15 +26,6 @@ public class CourseList extends Panel{
 		super(id);
 
         RepeatingView repeating = new RepeatingView("repeating");
-		Label deleteLabel = new Label("deleteLabel", new ResourceModel("Smazat"));
-		//Button addButton = new Button("addButton");
-		Form form = new Form("form") {
-			private static final long serialVersionUID = 1L;
-			@Override
-            protected void onSubmit() {
-                info("Form.onSubmit executed");
-            }
-        };
 
 		Set<CourseDto> orderedCourses = new TreeSet<CourseDto>(new CourseComparator());
 		orderedCourses.addAll(courses);
@@ -44,14 +33,8 @@ public class CourseList extends Panel{
 		for (CourseDto course : orderedCourses) {
 			fillRepeatingLine(repeating, course);
 		}
-
-		deleteLabel.setVisible(isLogged());
-		//addButton.setVisible(isLogged());
-
-		form.add(deleteLabel);
-        form.add(repeating);
-		//form.add(addButton);
-		add(form);
+		
+		add(repeating);
 	}
 
 	private boolean logged = new Random().nextBoolean();
@@ -66,15 +49,23 @@ public class CourseList extends Panel{
 		params.set("courseid", course.getId());
 
 		Link link = new BookmarkablePageLink("link", CoursePage.class, params);
+		
+		
+		PageParameters params2 = new PageParameters();
+		params2.set("courseid", course.getId());
+		params2.set("act", "delete");
+		// TODO only when logged
+		Link deleteLink = new BookmarkablePageLink("deleteLink", CoursesPage.class, params2);
 
-		Button button = new Button("delete");
-		button.setVisible(isLogged());
+		//Button button = new Button("delete");
+		//button.setVisible(isLogged());
 
 		link.add(new Label("name", course.getName()));
 		item.add(link);
+		item.add(deleteLink);
 		item.add(new Label("language", course.getLanguage()));
 		item.add(new Label("level", String.valueOf(course.getLevel())));
-		item.add(button);
+		//item.add(button);
 		repeating.add(item);
 	}
 

@@ -19,8 +19,16 @@ public class CoursesPage extends BasePage {
     public CoursesPage(PageParameters parameters) {
 		super(parameters);
 
-		CourseList courseList = new CourseList("courseList",courses.getAllCourses());
+		Long courseid = parameters.get("courseid").toLong(-1);
+		String act = parameters.get("act").toString();
 
+		if ( (act != null) && act.equals("delete") && (courseid != null) ) {
+			courses.deleteCourse(courses.read(courseid));
+			setResponsePage(CoursesPage.class);
+		}
+		
+		CourseList courseList = new CourseList("courseList",courses.getAllCourses());
+		
 		add(courseList);
 		add(new AddCourseForm("addCourseForm"));
     }

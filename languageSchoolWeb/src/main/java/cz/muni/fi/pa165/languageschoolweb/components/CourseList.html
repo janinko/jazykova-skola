@@ -4,11 +4,7 @@
 
 		<div>
 			<h2><wicket:message key="Kurzy"/></h2>
-			<form wicket:id="form" class="courses">
-				
-				<wicket:enclosure>
-					<span wicket:id="deleteLabel">[Smazat]</span>
-				</wicket:enclosure>
+			<div class="courses">
 				
 				<div wicket:id="repeating" class="course-box">
 					<div class="box-content-l">
@@ -20,16 +16,12 @@
 						<h3><a wicket:id="link"><span wicket:id="name">[name]</span></a></h3><br />
 						<div class="teacher"><span wicket:id="language">[language]</span></div>
 					</div>
-					<wicket:enclosure>
-						<div class="box-content-r">
-							<input wicket:id="delete" type="submit" wicket:message="value:Smazat" class="button" />
-						</div>
-					</wicket:enclosure>
+					<div class="box-content-r">
+						<a wicket:id="deleteLink">smazat</a>
+					</div>
 				</div>
-
 				
-				
-			</form>
+			</div>
 		</div>
 
 	</wicket:panel>

@@ -24,7 +24,7 @@ public class CoursePage extends BasePage {
     public CoursePage(PageParameters parameters) {
 		super(parameters);
 		Long courseid = parameters.get("courseid").toLong(-1);
-
+		
 		if(courseid == -1){
 			add(new Label("courseName", new ResourceModel("MusisVybratKurz.")));
 			return;
