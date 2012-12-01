@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.LanguagesModel;
 import cz.muni.fi.pa165.languageschoolweb.model.TeacherModel;
@@ -34,7 +35,9 @@ public class ChangeTeacher extends Panel{
         super(id);
 
         teacher = teachers.readTeacher(email);
-        languages.addAll(teacher.getLanguages());
+		for(Teacher.Language l : Teacher.Language.values()){
+			languages.add(l.toString());
+		}
         final TeacherDto model = new TeacherDto();
         
         /*if(email == null){
@@ -85,7 +88,7 @@ public class ChangeTeacher extends Panel{
 
 			teacher.setFirstName(model.getFirstName());
 			teacher.setLastName(model.getLastName());
-            teacher.setLanguages(new HashSet<String>(languages));
+            teacher.setLanguages(model.getLanguages());
 			//teacher.setEmail(model.getEmail()); // TODO
 
 			if(model.getTeacher() == null){ // creating new teacher
