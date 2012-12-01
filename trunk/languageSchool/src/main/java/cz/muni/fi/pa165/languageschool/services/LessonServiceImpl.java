@@ -16,26 +16,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 @Service
 @Transactional
 public class LessonServiceImpl implements LessonService {
-	
+	@Autowired
 	private LessonDAO lessonDao;
+	@Autowired
 	private	StudentDAO studentDao;
 
-	@Autowired
-	public void setLessonDao(LessonDAO lessonDao) {
-		this.lessonDao = lessonDao;
-	}
 
-	@Autowired
-	public void setStudentDao(StudentDAO studentDao) {
-		this.studentDao = studentDao;
-	}
-	
+	@Override
 
     @Override
     public Lesson read(Long lessonId) {
@@ -46,12 +38,14 @@ public class LessonServiceImpl implements LessonService {
 		lessonDao.delete(l);
 	}
 
+	@Override
 	public void removeStudent(Lesson l, Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().remove(student);
 		lessonDao.update(lesson);
 	}
 
+	@Override
 	public void addStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().add(student);
@@ -59,11 +53,13 @@ public class LessonServiceImpl implements LessonService {
 	}
 	
 	@Transactional(readOnly=true)
+	@Override
 	public Set<Student> findStudentsByLesson(Lesson lesson) {
 		return new HashSet<Student>(studentDao.findStudentByLesson(lesson));
 	}
 
 	@Transactional(readOnly=true)
+	@Override
 	public Set<Lesson> getAllLessons() {
 		return new HashSet<Lesson>(lessonDao.findAllLessons());
 	}

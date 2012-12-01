@@ -18,21 +18,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 @Service
 public class LessonDtoAdapterImpl implements LessonDtoAdapter {
-
     @Autowired
     private LessonService lessonService;
-
     @Autowired
     private TeacherService teacherService;
-
 	@Autowired
 	private CourseDtoAdapterImpl courseDtoAdapter;
-
 	@Autowired
 	private StudentDtoAdapterImpl studentDtoAdapter;
 
@@ -40,18 +35,22 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
         return (e2dto(lessonService.read(lessonId)));
     }
 	
+	@Override
     public void removeLesson(LessonDto lesson){
             lessonService.removeLesson(dto2e(lesson));
     }
     
+	@Override
     public void removeStudent(LessonDto lesson,StudentDto student){
             lessonService.removeStudent(dto2e(lesson),studentDtoAdapter.dto2e(student));
     }
     
+	@Override
     public void addStudent(LessonDto lesson,StudentDto student){
             lessonService.addStudent(dto2e(lesson), studentDtoAdapter.dto2e(student));
     }  
     
+	@Override
     public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
             Set<StudentDto> studentTOs = new HashSet<StudentDto>();
             for(Student s : lessonService.findStudentsByLesson(dto2e(lesson))){
@@ -60,6 +59,7 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
             return studentTOs; 
     }
 		
+	@Override
     public Set<LessonDto> getAllLessons(){
             Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
             for(Lesson l : lessonService.getAllLessons()){
@@ -88,6 +88,7 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 
 
 	LessonDto e2dto(Lesson entity) {
+		if(entity == null) return null;
 		LessonDto dto = new LessonDto();
 		dto.setId(entity.getId());
 
@@ -102,6 +103,7 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 	}
 
 	Lesson dto2e(LessonDto dto) {
+		if(dto == null) return null;
 		Lesson entity = new Lesson();
 		entity.setId(dto.getId());
 

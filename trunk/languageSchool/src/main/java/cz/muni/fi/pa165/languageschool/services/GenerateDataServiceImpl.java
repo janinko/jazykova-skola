@@ -16,33 +16,34 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 @Service
 public class GenerateDataServiceImpl implements GenerateDataService {
-	String[] names = {"Elza","Yvan","Chaim","Aloisie","Lešek","Abadon",
-		"Strachota","Adrien ","Toni","Ivana","Richard","Zoran","Johana",
-		"Lucie","Mlada","Ctirad","Želmír","Martin","Marina","Ingemar","Zoe",
-		"Zlatomíra","Roderik","Kvido","Deana","Amanda ","Rozálie","Vavřinec",
-		"Nataša ","Kateřina","Miriam","Grace","Nelu","Vilemína","Jonáš",
-		"Elisabeta","Amos ","Armando ","Alvin ","Žaneta","Nidgar ",
-		"Ulrika","Jiřina","Marián","Žitomíra","Marlen","Kelly",
-		"Jindřich","Matěj","Jarmila"};
-	
-	String[] surnames = {"Liška","Malý","Müller","Kolář","Polák","Zeman",
+	String[] namesM = {"Yvan","Chaim","Lešek","Abadon","Strachota","Adrien",
+		"Toni","Richard","Zoran","Ctirad","Želmír","Martin","Ingemar",
+		"Roderik","Kvido","Vavřinec","Jonáš","Amos","Armando","Alvin",
+		"Nidgar","Marián","Marlen","Kelly","Jindřich","Matěj"};
+
+	String[] namesF = {"Elza","Aloisie","Ivana","Johana","Lucie","Mlada",
+		"Marina","Zoe","Zlatomíra","Deana","Amanda ","Rozálie","Nataša ",
+		"Kateřina","Miriam","Grace","Nelu","Vilemína","Elisabeta","Žaneta",
+		"Ulrika","Jiřina","Žitomíra","Jarmila"};
+
+	String[] surnamesM = {"Liška","Malý","Müller","Kolář","Polák","Zeman",
 		"Černý","Kučera","Němec","Urban","Marek","Mach","Pospíšil","Beneš",
 		"Vávra","Šťastný","Doležal","Navrátil","Čermák","Havlíček","Horák",
-		"Novák","Bartoš","Moravec","Janda","Kříž","Štěpánek","Valenta",
-		"Sedláček","Kadlec","Mareš","Holub","Bláha","Veselý","Král",
-		"Procházka","Říha","Mašek","Krejčí","Ševčík","Čech","Pokorný",
-		"Kopecký","Hruška","Nguyen","Vaněk","Bureš","Hrubý","Dostál",
-		"Matoušek"};
+		"Novák","Bartoš","Moravec","Janda","Kříž","Štěpánek"};
+
+	String[] surnamesF = {"Lišková","Malá","Müllerová","Kolářová","Poláková",
+		"Zemanová","Černá","Kučerová","Němcová","Urbanová","Marková","Machová",
+		"Pospíšilová","Benešová","Vávrová","Šťastná","Doležalová","Navrátilová",
+		"Čermáková","Havlíčková","Horáková","Nováková","Bartošová","Moravcová",
+		"Jandová","Křížová","Štěpánková"};
 
 	String[] courseNamePrefix = {"Fajnový ", "Zábavný ", "Expresní ",
 		"Lingvistický ", "Nepříjemný "};
@@ -65,30 +66,10 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	ArrayList<Student> students = new ArrayList<Student>();
 
-	private TeacherService teacherService;
-	private StudentService studentService;
-	private CourseService courseService;
-	private LessonService lessonService;
-
-	@Autowired
-	public void setTeacherService(TeacherService teacherService) {
-		this.teacherService = teacherService;
-	}
-
-	@Autowired
-	public void setStudentService(StudentService studentService) {
-		this.studentService = studentService;
-	}
-
-	@Autowired
-	public void setCourseService(CourseService courseService) {
-		this.courseService = courseService;
-	}
-
-	@Autowired
-	public void setLessonService(LessonService lessonService) {
-		this.lessonService = lessonService;
-	}
+	@Autowired private TeacherService teacherService;
+	@Autowired private StudentService studentService;
+	@Autowired private CourseService courseService;
+	@Autowired private LessonService lessonService;
 
 	public void generateData(int courses, int lessons, int students, int techers) {
 		//getFromDB();
@@ -135,8 +116,9 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 
 	private Teacher genTeacher(){
 		Teacher teacher = new Teacher();
-		teacher.setFirstName(names[generator.nextInt(names.length)]);
-		teacher.setLastName(surnames[generator.nextInt(surnames.length)]);
+		String[] name = genName();
+		teacher.setFirstName(name[0]);
+		teacher.setLastName(name[1]);
 		
 		HashSet<Language> languages = new HashSet<Language>();
 		do{
@@ -151,6 +133,19 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		teacher.setEmail(genEmail(teacher.getFirstName(), teacher.getLastName()));
 
 		return teacher;
+	}
+
+	private String[] genName(){
+		String[] ret = new String[2];
+		boolean female = generator.nextBoolean();
+		if(female){
+			ret[0]=namesF[generator.nextInt(namesF.length)];
+			ret[1]=surnamesF[generator.nextInt(surnamesF.length)];
+		}else{
+			ret[0]=namesM[generator.nextInt(namesM.length)];
+			ret[1]=surnamesM[generator.nextInt(surnamesM.length)];
+		}
+		return ret;
 	}
 
 
@@ -215,8 +210,9 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	private Student genStudent() {
 		Student student = new Student();
 		student.setAge(generator.nextInt(7) + 64);
-		student.setFirstName(names[generator.nextInt(names.length)]);
-		student.setLastName(surnames[generator.nextInt(surnames.length)]);
+		String[] name = genName();
+		student.setFirstName(name[0]);
+		student.setLastName(name[1]);
 		student.setEmail(genEmail(student.getFirstName(), student.getLastName()));
         student.setPassword("pass");
 		return student;

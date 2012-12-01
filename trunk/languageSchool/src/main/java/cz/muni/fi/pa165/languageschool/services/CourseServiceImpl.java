@@ -14,30 +14,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
-
+	@Autowired
 	private	CourseDAO courseDao;
+	@Autowired
 	private LessonDAO lessonDao;
 
-	@Autowired
-	public void setCourseDao(CourseDAO courseDao) {
-		this.courseDao = courseDao;
-	}
 
-	@Autowired
-	public void setLessonDao(LessonDAO lessonDao) {
-		this.lessonDao = lessonDao;
-	}
-
+	@Override
 	public void createCourse(Course course) {
 		courseDao.create(course);
 	}
 
+	@Override
 	public void deleteCourse(Course course) {
 		courseDao.delete(course);
 		List<Lesson> l = lessonDao.findLessonByCourse(course);
@@ -47,17 +40,20 @@ public class CourseServiceImpl implements CourseService {
 		}
 	}
 
+	@Override
 	public void addLessonToCourse(Course course, Lesson lesson) {
 		lesson.setCourse(course);
 		lessonDao.create(lesson);
 	}
 
 	@Transactional(readOnly=true)
+	@Override
 	public Set<Course> getCoursesByLanguage(Language language) {
 		return new HashSet<Course>(courseDao.findCourseByLanguage(language));
 	}
 
 	@Transactional(readOnly=true)
+	@Override
 	public Set<Course> getAllCourses() {
 		return new HashSet<Course>(courseDao.findAllCourses());
 	}
@@ -67,7 +63,4 @@ public class CourseServiceImpl implements CourseService {
 	public Course read(long id) {
 		return courseDao.read(id);
 	}
-	
-	
-	
 }

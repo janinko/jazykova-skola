@@ -13,38 +13,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author xschlem1
+ * @author
  */
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService {
-
+	@Autowired
     private StudentDAO studentDao;
+	@Autowired
     private LessonDAO lessonDao;
-    
-    @Autowired
-    public void setStudentDao(StudentDAO studentDao) {
-            this.studentDao = studentDao;
-    }
-    
-    @Autowired
-    public void setLessonDao(LessonDAO lessonDao) {
-            this.lessonDao = lessonDao;
-    }
-    
+
+	
+	@Override
     public void createStudent(Student student){
         studentDao.create(student);
     }
     
+	@Override
     public void update(Student student) {
         studentDao.update(student);
     }
 
+	@Override
+	@Transactional(readOnly=true)
     public Student read(long id) {
         return studentDao.read(id);
     }
 
+	@Override
+	@Transactional(readOnly=true)
     public Set<Lesson> getAllLessons(Student student) {
         Set<Lesson> studentsLessons = new HashSet<Lesson>();
         List<Lesson> lessons = lessonDao.findAllLessons();  
@@ -56,21 +53,45 @@ public class StudentServiceImpl implements StudentService {
         return studentsLessons;
     }
 
+	@Override
     public void lessonEnroll(Student student, Lesson lesson) {
 	lesson.getStudents().add(student);
 	lessonDao.update(lesson);
     }
 
+	@Override
     public void lessonCancel(Student student, Lesson lesson) {
         lesson.getStudents().remove(student);
 	lessonDao.update(lesson);
     }
 
+	@Override
     public void removeStudent(Student s){
         studentDao.delete(s);
     }
 
+	@Override
+	@Transactional(readOnly=true)
     public Student read(String email) {
         return studentDao.findStudentByEmail(email);
     }
+
+	@Override
+	public void setPassword(Student student, String password) {
+		Student s = studentDao.read(student.getId());
+		s.setPassword(PasswordEncoder.encode(password));
+		studentDao.update(s);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Student authentize(String email, String password) {
+		if(email == null || password == null) return null;
+		Student s = studentDao.findStudentByEmail(email);
+		if(s == null) return null;
+		if(!PasswordEncoder.encode(password).equals(s.getPassword())){
+			return null;
+		}
+		return s;
+	}
 }

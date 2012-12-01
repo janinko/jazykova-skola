@@ -18,19 +18,15 @@ import static org.mockito.Mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 @RunWith(MockitoJUnitRunner.class)
 @Category(Mocked.class)
 public class LessonServiceTest {
-	
 	@Mock
 	private LessonDAO lessonDao;
-	
 	@Mock
 	private StudentDAO studentDao;
-	
 	@InjectMocks
 	private LessonService lessonService = new LessonServiceImpl();
 	
