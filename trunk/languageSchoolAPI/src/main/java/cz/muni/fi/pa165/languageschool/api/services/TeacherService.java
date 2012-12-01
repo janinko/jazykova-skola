@@ -11,7 +11,7 @@ import java.util.Set;
  * lessons or courses of a teacher. It uses injected TeacherDAO 
  * and LessonDAO object.
  * 
- * @author xchrastk
+ * @author
  */
 public interface TeacherService {
     /*
@@ -65,4 +65,8 @@ public interface TeacherService {
      * @return courses the teacher teaches
      */
     Set<Course> getTeachersCourses(Teacher teacher);
+
+	void setPassword(Teacher teacher, String password);
+
+	Teacher authentize(String email, String password);
 }

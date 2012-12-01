@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-//import org.hibernate.annotations.CollectionOfElements;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 @Entity
 public class Teacher implements Serializable {
@@ -28,15 +26,10 @@ public class Teacher implements Serializable {
     
     @Column(nullable=false, length=30, unique=true)
     private String email;
+	
+    @Column(length=65)
+    private String password;
     
-    //@Enumerated//(EnumType.STRING)
-    //@ElementCollection(targetClass = Language.class) 
-    //@CollectionTable(name = "LANGUAGES", joinColumns = @JoinColumn(name = "ID"))
-	//@CollectionOfElements
-	//@JoinTable(name = "LANGUAGES",
-	//		   joinColumns = {@JoinColumn(name="teacherid")},
-	//		   inverseJoinColumns={@JoinColumn(name="studentid")})
-	//@OneToMany
 	@ElementCollection(targetClass = Language.class, fetch= FetchType.EAGER)
     private Set<Language> languages = new HashSet<Language>();
     
@@ -85,6 +78,14 @@ public class Teacher implements Serializable {
         this.email = email;
     }
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
     public Set<Language> getLanguages() {
         return languages;
     }
@@ -108,6 +109,7 @@ public class Teacher implements Serializable {
         return hash;
     }
 
+
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Teacher)) {
@@ -119,10 +121,5 @@ public class Teacher implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Teacher{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
-    }    
 }
 

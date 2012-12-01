@@ -5,8 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 @Entity
 public class Course implements Serializable {
@@ -87,8 +86,8 @@ public class Course implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" + "id=" + id + ", name=" + name + ", language=" + language + ", level=" + level + '}';
-    }    
+	@Override
+	public String toString() {
+		return "Course{" + "id=" + id + ", name=" + name + ", language=" + language + ", level=" + level + '}';
+	}
 }

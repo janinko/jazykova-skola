@@ -4,8 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 @Entity
 public class Student implements Serializable {
@@ -23,7 +22,7 @@ public class Student implements Serializable {
     @Column(nullable=false, length=30, unique=true)
     private String email;
     
-    @Column(length=30)
+    @Column(length=65)
     private String password;
     
     private int age;    
@@ -32,9 +31,10 @@ public class Student implements Serializable {
 	public Student() {
 	}
 
-	public Student(String firstName, String lastName) {
+	public Student(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.email = email;
 	}	
 	
 
@@ -85,6 +85,7 @@ public class Student implements Serializable {
     public void setAge(int age) {
         this.age = age;
     }
+	
 
     @Override
     public int hashCode() {
@@ -103,10 +104,10 @@ public class Student implements Serializable {
             return false;
         }
         return true;
-    }  
-
-    @Override
-    public String toString() {
-        return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", age=" + age + '}';
     }
+
+	@Override
+	public String toString() {
+		return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", age=" + age + '}';
+	}
 }

@@ -11,7 +11,7 @@ import java.util.Set;
  * It can create teachers in the database, update, retrieve and delete them. 
  * It allows to retrieve lessons and courses of the teacher.
  * 
- * @author xchrastk
+ * @author
  */
 public interface TeacherDtoAdapter {
 
@@ -68,5 +68,9 @@ public interface TeacherDtoAdapter {
      * 
      * @return set of all available teachers
      */
-    Set<TeacherDto> getAllTeachers();    
+    Set<TeacherDto> getAllTeachers();
+
+	void setPassword(TeacherDto teacher, String password);
+
+	TeacherDto authentize(String email, String password);
 }

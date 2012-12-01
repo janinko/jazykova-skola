@@ -6,8 +6,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 public interface LessonDAO {
 	
@@ -18,8 +17,7 @@ public interface LessonDAO {
 	 * @return saved lesson
 	 * @throws IllegalArgumentException if lesson is null
 	 */
-    public Lesson create(Lesson lesson);
-	
+    Lesson create(Lesson lesson);
 	
 	/**
 	 * Returns lesson by id.
@@ -28,7 +26,7 @@ public interface LessonDAO {
 	 * @return one lesson with the id
 	 * @throws IllegalArgumentException id is null or is < 1
 	 */
-    public Lesson read(long id);
+    Lesson read(long id);
 	
 	/**
 	 * Change lesson which was saved previously.
@@ -37,7 +35,7 @@ public interface LessonDAO {
 	 * @return changed lesson
 	 * @throws IllegalArgumentException if lesson is null
 	 */
-    public Lesson update(Lesson lesson);
+    Lesson update(Lesson lesson);
 	
 	/**
 	 * Delete of lesson
@@ -46,7 +44,7 @@ public interface LessonDAO {
 	 * @return deleted lesson
 	 * @throws IllegalArgumentException if lesson is null
 	 */
-    public Lesson delete(Lesson lesson);
+    Lesson delete(Lesson lesson);
     
 	
 	/**
@@ -54,7 +52,7 @@ public interface LessonDAO {
 	 * 
 	 * @return List of all lessons.
 	 */
-    public List<Lesson> findAllLessons();
+    List<Lesson> findAllLessons();
 	
 	/**
 	 * Return list of lessons depending on course.
@@ -62,12 +60,12 @@ public interface LessonDAO {
 	 * @param course for which lesson will be returned
 	 * @return list of lessons
 	 */
-    public List<Lesson> findLessonByCourse(Course course);
+    List<Lesson> findLessonByCourse(Course course);
 
     /*
      * Retrieves list of upcoming lessons till specified date.
      * @param date Date in future
      * @return all upcoming lessons till date
      */
-	public List<Lesson> findUpcomingLessons(Date date);
+	List<Lesson> findUpcomingLessons(Date date);
 }

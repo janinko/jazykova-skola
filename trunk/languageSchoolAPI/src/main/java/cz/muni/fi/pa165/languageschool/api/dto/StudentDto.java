@@ -3,16 +3,13 @@ package cz.muni.fi.pa165.languageschool.api.dto;
 import java.io.Serializable;
 
 /**
- *
- * @author fivekeym
+ * @author
  */
 public class StudentDto implements Serializable{
-	
 	private Long id;
 	private String firstName;
 	private String lastName;
     private String email;
-    private String password;
 	private int age;
 
 	public Long getId() {
@@ -46,14 +43,6 @@ public class StudentDto implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     
 	public int getAge() {
 		return age;
@@ -63,8 +52,28 @@ public class StudentDto implements Serializable{
 		this.age = age;
 	}
 
+
     @Override
-    public String toString() {
-        return "StudentDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", age=" + age + '}';
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof StudentDto)) {
+            return false;
+        }
+        StudentDto other = (StudentDto) object;
+        if (this.id == null || !this.id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+	@Override
+	public String toString() {
+		return "StudentDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", age=" + age + '}';
+	}
 }
