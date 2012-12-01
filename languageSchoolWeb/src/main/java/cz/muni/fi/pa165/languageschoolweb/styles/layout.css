@@ -402,6 +402,29 @@ nav.main ul li a:hover {
 nav.main ul li a.btn-home {
   padding: 10px;
 }
+#homepage h1 {
+  text-align: center;
+  font-size: 24px;
+}
+#homepage h2 {
+  margin-top: 20px;
+}
+#homepage label {
+  display: inline-block;
+  width: 100px;
+}
+#homepage input {
+  border: 1px solid #c0c0c0;
+  background-color: #ffffff;
+  padding: 2px;
+  margin: 1px;
+  width: 100px;
+}
+#homepage input.home-main-button {
+  margin-left: 4px;
+  margin-top: 10px;
+  width: 104px;
+}
 .content_container {
   background-repeat: repeat;
   background-image: url("/bg-content.png");

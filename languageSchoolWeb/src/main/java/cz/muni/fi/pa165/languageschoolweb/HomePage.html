@@ -7,9 +7,21 @@
     </head> 
     <body> 
         <wicket:extend>
-			<h2> <wicket:message key="About"/> </h2>
-            <h2> <wicket:message key="Sleva"/> </h2>
-			<div wicket:id="generateForm"/>
+			<div id="homepage">
+				<h1><wicket:message key="Title"/> </h1>
+				<p> <wicket:message key="About"/> </p>
+				<p>
+					<ol>
+						<li><wicket:message key="Ol1.li.1"/></li>
+						<li><wicket:message key="Ol1.li.2"/></li>
+						<li><wicket:message key="Ol1.li.3"/></li>
+					</ol>
+				</p>
+				<p> <wicket:message key="Online"/></p>
+				
+				<h2><wicket:message key="generateTitle"/></h2>
+				<div wicket:id="generateForm"/>
+			</div>
         </wicket:extend> 
     </body> 
 </html>
