@@ -45,13 +45,6 @@ public class GeneratorForm extends Panel{
 		}
 
 		@Override
-		protected void onError() {			
-			PageParameters params = new PageParameters();
-			getSession().error("Chyba v zadavani modelu");
-			setResponsePage(HomePage.class,params);
-		}
-
-		@Override
         public void onSubmit()
         {
 			GeneratorFormModel model = (GeneratorFormModel) getDefaultModelObject();
