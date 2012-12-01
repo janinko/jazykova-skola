@@ -34,6 +34,11 @@ public class TeacherServiceImpl implements TeacherService{
     public Teacher readTeacher(String email) {
         return teacherDao.findTeacherByEmail(email);
     }
+    
+    @Override
+    public Teacher readTeacher(long id) {
+        return teacherDao.read(id);
+    }
 
 	@Override
     public void updateTeacher(Teacher teacher) {

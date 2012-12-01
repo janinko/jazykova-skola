@@ -36,6 +36,11 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
     }
 
 	@Override
+    public TeacherDto readTeacher(long id) {
+        return e2dto(teacherService.readTeacher(id));
+    }
+
+	@Override
     public void updateTeacher(TeacherDto teacher) {
         teacherService.updateTeacher(dto2e(teacher));
     }

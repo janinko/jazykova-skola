@@ -32,6 +32,14 @@ public interface TeacherDtoAdapter {
     TeacherDto readTeacher(String email);
     
     /**
+     * Retrieves a one specific teacher from a database
+     * 
+     * @param id id of a desired teacher
+     * @return teacher with a given id
+     */
+    TeacherDto readTeacher(long id);
+    
+    /**
      * Updates a given teacher. The teacher must not be null
      * 
      * @param teacher teacher to be updated

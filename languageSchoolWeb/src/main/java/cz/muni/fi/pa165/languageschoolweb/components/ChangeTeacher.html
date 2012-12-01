@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<wicket:panel>
+
+		<div id="changeStudentPage">
+			<h2><span wicket:id="name"/></h2>
+			<img class="avatar" src="./avatar.jpg" width="110"/>
+			<form wicket:id="form" class="student">
+				<div class="form-l">
+					<label><wicket:message key="Jmeno" /></label><input type="text" wicket:id="firstName" /><br/>
+					<label><wicket:message key="Prijmeni" /></label><input type="text" wicket:id="lastName" /><br/>
+					<label><wicket:message key="Heslo" /></label><input type="text" wicket:id="newPassword" /><br/>
+					<label><wicket:message key="ReHeslo" /></label><input type="text" wicket:id="newPasswordRepeat" /><br/><br/>
+				</div>
+                <input wicket:id="save" type="submit" wicket:message="value:Ulozit" class="main-button" />
+			</form>
+		</div>
+
+	</wicket:panel>
+</html>
