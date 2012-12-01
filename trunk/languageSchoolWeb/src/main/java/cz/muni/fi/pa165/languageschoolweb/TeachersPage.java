@@ -24,13 +24,7 @@ public class TeachersPage extends BasePage {
 		super(parameters);
 
 		Set<TeacherDto> set = teachers.getAllTeachers();
-		
-		Form form = new Form("form") {
-            protected void onSubmit() {
-                info("Form.onSubmit executed");
-            }
-        };
-		
+
 		RepeatingView repeating = new RepeatingView("repeating");
         add(repeating);
 		
@@ -54,7 +48,6 @@ public class TeachersPage extends BasePage {
 			repeating.add(item);
 		}
 		
-		form.add(repeating);
-		addOrReplace(form);
+		add(repeating);
 	}
 }
