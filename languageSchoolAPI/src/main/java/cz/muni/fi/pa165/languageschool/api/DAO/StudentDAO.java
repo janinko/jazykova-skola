@@ -5,8 +5,7 @@ import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import java.util.List;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 public interface StudentDAO {
 	
@@ -17,7 +16,7 @@ public interface StudentDAO {
 	 * @return new student who is in database now
 	 * @throws IllegalArgumentException if student is null
 	 */
-    public Student create(Student student);
+    Student create(Student student);
 	
 	/**
 	 * This method return student.
@@ -26,7 +25,7 @@ public interface StudentDAO {
 	 * @return Student by id
 	 * @throws IllegalArgumentException if there is id null or id <= 0
 	 */
-    public Student read(long id);
+    Student read(long id);
 	
 	/**
 	 * This method change student who was saved previously
@@ -35,8 +34,7 @@ public interface StudentDAO {
 	 * @return Student who was updated
 	 * @throws IllegalArgumentException if student is null
 	 */
-    public Student update(Student student);
-	
+    Student update(Student student);
 	
 	/**
 	 * This method delete student.
@@ -45,14 +43,14 @@ public interface StudentDAO {
 	 * @return deleted student
 	 * @throws IllegalArgumentException if student is null
 	 */
-    public Student delete(Student student);
+    Student delete(Student student);
     
 	/**
 	 * This method returns all save students.
 	 * 
 	 * @return all students
 	 */
-    public List<Student> findAllStudents();
+    List<Student> findAllStudents();
     
     /**
 	 * This method returns students depending on combination first name and last name
@@ -61,7 +59,7 @@ public interface StudentDAO {
 	 * @return student who have the email
 	 * @throws IllegalArgumentException if email is Null
 	 */
-    public Student findStudentByEmail(String email);
+    Student findStudentByEmail(String email);
 	
 	/**
 	 * This method returns students depending on combination first name and last name
@@ -71,7 +69,7 @@ public interface StudentDAO {
 	 * @return One or more students who have appropriate name
 	 * @throws IllegalArgumentException if firstName or lastName is null
 	 */
-    public List<Student> findStudentByName(String firstName, String lastName);
+    List<Student> findStudentByName(String firstName, String lastName);
 	
 	/**
 	 * This method return list of students for the lesson.
@@ -80,5 +78,5 @@ public interface StudentDAO {
 	 * @return one or more students
 	 * @throws IllegalArgumentException if lesson is null
 	 */
-    public List<Student> findStudentByLesson(Lesson lesson);
+    List<Student> findStudentByLesson(Lesson lesson);
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * It can store courses to the database, update, retrieve and delete them.
  * It allows to retrieve courses by language.
  * 
- * @author xchrastk
+ * @author
  */
 public interface CourseDAO {
     /*
@@ -19,7 +19,7 @@ public interface CourseDAO {
      * @return course the new course (retrieved from the database)
      * @throws IllegalArgumentException if the course is null
      */    
-    public Course create(Course course);
+    Course create(Course course);
     
     /*
      * Retrieves a course from the database. 
@@ -27,7 +27,7 @@ public interface CourseDAO {
      * @param id id of the claimed course
      * @return course from the database with the specified id
      */
-    public Course read(long id);
+    Course read(long id);
     
     /*
      * Updates a course in the database. The course must not be null.
@@ -36,7 +36,7 @@ public interface CourseDAO {
      * @return the updated course
      * @throws IllegalArgumentException if the course is null
      */
-    public Course update(Course course);
+    Course update(Course course);
     
     /*
      * Deleted a course from the database.
@@ -45,14 +45,14 @@ public interface CourseDAO {
      * @return the deleted course
      * @throws NullPointerException if the course is null
      */
-    public Course delete(Course course);
+    Course delete(Course course);
     
     /*
      * Retrieves all courses stored in the database.
      * 
      * @return all courses in the database
      */
-    public List<Course> findAllCourses();
+    List<Course> findAllCourses();
     
     /*
      * Retrieves courses where the language is tought.
@@ -60,5 +60,5 @@ public interface CourseDAO {
      * @param language language whose courses we want to find
      * @return list of courses that teach the language
      */
-    public List<Course> findCourseByLanguage(Language language);
+    List<Course> findCourseByLanguage(Language language);
 }

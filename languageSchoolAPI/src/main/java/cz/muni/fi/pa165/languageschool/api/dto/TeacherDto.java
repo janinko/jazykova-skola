@@ -1,15 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.api.dto;
 
 import java.io.Serializable;
 import java.util.Set;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 public class TeacherDto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -69,8 +64,21 @@ public class TeacherDto implements Serializable{
         this.nativeLanguage = nativeLanguage;
     }
 
+
     @Override
-    public String toString() {
-        return "TeacherDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+    public boolean equals(Object object) {
+        if (!(object instanceof TeacherDto)) {
+            return false;
+        }
+        TeacherDto other = (TeacherDto) object;
+        if (this.id == null || !this.id.equals(other.id)) {
+            return false;
+        }
+        return true;
     }
+
+	@Override
+	public String toString() {
+		return "TeacherDto{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", languages=" + languages + ", nativeLanguage=" + nativeLanguage + '}';
+	}
 }

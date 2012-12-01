@@ -1,15 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.languageschool.api.entities;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 public class LessonTest {
 	

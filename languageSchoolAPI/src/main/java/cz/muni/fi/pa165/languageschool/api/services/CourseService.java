@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.languageschool.api.services;
 
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.Set;
 
@@ -12,7 +11,7 @@ import java.util.Set;
  * lesson to a course or retrieve courses by language. It uses injected
  * CourseDAO and LessonDAO object 
  * 
- * @author xchrastk
+ * @author
  */
 public interface CourseService {
 

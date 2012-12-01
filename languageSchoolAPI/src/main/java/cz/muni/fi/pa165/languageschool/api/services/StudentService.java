@@ -10,7 +10,7 @@ import java.util.Set;
  * lessons of a student, sign a student in a lesson or sign him out of it.
  * It uses injected LessonDAO and StudentDAO object.
  * 
- * @author xschlem1
+ * @author
  */
 public interface StudentService {
 
@@ -75,5 +75,9 @@ public interface StudentService {
      * @param student student to be removed
      */
     void removeStudent(Student student);
-	
+
+
+	void setPassword(Student student, String password);
+
+	Student authentize(String email, String password);
 }

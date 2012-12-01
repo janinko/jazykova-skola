@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.languageschool.api.adapters;
 
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.Set;
 
 /**
@@ -12,7 +11,7 @@ import java.util.Set;
  * It allows to add lesson to a course or retrieve a course by given
  * language
  * 
- * @author xschlem1
+ * @author
  */
 public interface CourseDtoAdapter {
 
@@ -51,7 +50,7 @@ public interface CourseDtoAdapter {
      * @param language language which courses focus on
      * @return set of all courses that focus on the given language
      */
-    Set<CourseDto> getCourseByLanguage(Language language);
+    Set<CourseDto> getCourseByLanguage(String language);
 
 	/*
      * Retrieves a course with a given id

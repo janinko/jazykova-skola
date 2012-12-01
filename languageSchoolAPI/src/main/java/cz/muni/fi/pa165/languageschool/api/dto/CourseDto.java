@@ -3,8 +3,7 @@ package cz.muni.fi.pa165.languageschool.api.dto;
 import java.io.Serializable;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 public class CourseDto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -44,5 +43,30 @@ public class CourseDto implements Serializable{
 
 	public void setLevel(int level) {
 		this.level = level;
-	}		
+	}
+
+	
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof CourseDto)) {
+            return false;
+        }
+        CourseDto other = (CourseDto) object;
+        if (this.id == null || !this.id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+	@Override
+	public String toString() {
+		return "CourseDto{" + "id=" + id + ", name=" + name + ", language=" + language + ", level=" + level + '}';
+	}
 }

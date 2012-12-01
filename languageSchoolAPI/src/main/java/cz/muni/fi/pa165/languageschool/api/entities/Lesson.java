@@ -8,8 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 @Entity
 public class Lesson implements Serializable {
@@ -77,7 +76,8 @@ public class Lesson implements Serializable {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    
+
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -95,10 +95,10 @@ public class Lesson implements Serializable {
             return false;
         }
         return true;
-    }   
+    }
 
-    @Override
-    public String toString() {
-        return "Lesson{" + "id=" + id + ", date=" + lessonDate + ", time=" + lessonTime + ", course=" + course + ", students=" + students + ", teacher=" + teacher + '}';
-    }       
+	@Override
+	public String toString() {
+		return "Lesson{" + "id=" + id + ", lessonDate=" + lessonDate + ", lessonTime=" + lessonTime + ", course=" + course + ", students=" + students + ", teacher=" + teacher + '}';
+	}
 }

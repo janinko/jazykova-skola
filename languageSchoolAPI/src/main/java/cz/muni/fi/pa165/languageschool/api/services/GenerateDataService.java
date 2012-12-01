@@ -1,5 +1,8 @@
 package cz.muni.fi.pa165.languageschool.api.services;
 
+/*
+ * @author
+ */
 public interface GenerateDataService {
 
     /*

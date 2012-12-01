@@ -13,7 +13,7 @@ import java.util.Set;
  * to a lesson or retrieve students by lesson. It uses injected
  * LessonDAO and StudentDAO object 
  * 
- * @author xchrastk
+ * @author
  */
 public interface LessonService {
 

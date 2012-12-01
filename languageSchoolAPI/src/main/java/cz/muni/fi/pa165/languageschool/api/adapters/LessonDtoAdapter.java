@@ -12,7 +12,7 @@ import java.util.Set;
  * It can retrieve and delete lessons, retrieve all lessons of a given student 
  * and enroll or cancel lesson of a given student.
  * 
- * @author xschlem1
+ * @author
  */
 public interface LessonDtoAdapter {
 

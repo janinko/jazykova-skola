@@ -11,7 +11,7 @@ import java.util.Set;
  * It allows to retrieve all lessons of a given student and to enroll or
  * cancel lesson of a given student.
  * 
- * @author xschlem1
+ * @author
  */
 public interface StudentDtoAdapter {
 
@@ -76,5 +76,8 @@ public interface StudentDtoAdapter {
      * @param student student to be updated
      */
     void update(StudentDto student);
-    
+
+	void setPassword(StudentDto student, String password);
+
+	StudentDto authentize(String email, String password);
 }
