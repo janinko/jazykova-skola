@@ -13,8 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.RangeValidator;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 public class GeneratorForm extends Panel{
 	private static final long serialVersionUID = 1L;
@@ -28,6 +27,7 @@ public class GeneratorForm extends Panel{
 	}
 
 	class InputForm extends Form<GeneratorFormModel>{
+		private static final long serialVersionUID = 1L;
 
         public InputForm(String id){
 			super(id, new CompoundPropertyModel<GeneratorFormModel>(new GeneratorFormModel()));
@@ -47,10 +47,11 @@ public class GeneratorForm extends Panel{
 		@Override
 		protected void onError() {			
 			PageParameters params = new PageParameters();
-			params.set("error", "Chyba v zadavani modelu");
+			getSession().error("Chyba v zadavani modelu");
 			setResponsePage(HomePage.class,params);
 		}
 
+		@Override
         public void onSubmit()
         {
 			GeneratorFormModel model = (GeneratorFormModel) getDefaultModelObject();
@@ -61,9 +62,9 @@ public class GeneratorForm extends Panel{
 									   model.getLessonCount(),
 									   model.getStudentCount(),
 									   model.getTeacherCount());
-				params.set("message", "Vygenerováno");
+				getSession().info("Vygenerováno");
 			}catch(Exception ex){
-				params.set("error", "Chyba generování dat: " + ex);
+				getSession().error(ex);
 			}
 
 			setResponsePage(HomePage.class,params);
