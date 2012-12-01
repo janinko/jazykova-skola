@@ -9,6 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 
 public class AccountPage extends BasePage {
+	private static final long serialVersionUID = 1L;
     @SpringBean
     private StudentDtoAdapter students;
     @SpringBean
