@@ -14,18 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 @Service
 public class CourseDtoAdapterImpl implements CourseDtoAdapter {
-	
 	@Autowired
 	private CourseService courseService;
-	
 	@Autowired
 	private TeacherService teacherService;
-
 	@Autowired
 	private LessonDtoAdapterImpl lessonDtoAdapter;
 	
@@ -46,8 +42,8 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	}
 	
     @Override
-	public Set<CourseDto> getCourseByLanguage(Language language) {
-		Set<Course> courses = courseService.getCoursesByLanguage(language);
+	public Set<CourseDto> getCourseByLanguage(String language) {
+		Set<Course> courses = courseService.getCoursesByLanguage(Language.valueOf(language));
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
 		
 		for (Course c : courses) {
@@ -75,6 +71,7 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	}
 
 	CourseDto e2dto(Course entity){
+		if(entity == null) return null;
 		CourseDto dto = new CourseDto();
 		dto.setId(entity.getId());
 		dto.setLanguage(entity.getLanguage().toString());
@@ -85,6 +82,7 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	}
 	
 	Course dto2e(CourseDto dto){
+		if(dto == null) return null;
 		Course entity = new Course();
 
 		if (dto.getId() != null) {
@@ -94,7 +92,7 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 			entity.setName(dto.getName());
 		}
 		if (dto.getName() != null) {
-			entity.setLanguage(Teacher.Language.valueOf(dto.getLanguage().toString()));
+			entity.setLanguage(Language.valueOf(dto.getLanguage().toString()));
 		}
 		entity.setLevel(dto.getLevel());
 

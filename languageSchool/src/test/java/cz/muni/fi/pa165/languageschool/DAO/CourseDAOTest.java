@@ -11,11 +11,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 public class CourseDAOTest extends AbstractSpringTest{
-
 	@Autowired
     private CourseDAO courseDao;
 

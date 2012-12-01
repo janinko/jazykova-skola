@@ -8,43 +8,45 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import java.lang.NullPointerException;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 @Repository
 public class HibernateCourseDaoImlp implements CourseDAO {
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	
+	@Override
 	public Course create(Course course) {
 		Session session = sessionFactory.getCurrentSession();
 		session.persist(course);
 		return course;
 	}
 
+	@Override
 	public Course read(long id) {
 		Session session = sessionFactory.getCurrentSession();
 		Course course = (Course) session.get(Course.class, id);
 		return course;
 	}
 
+	@Override
 	public Course update(Course course) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(course);
 		return course;
 	}
 
+	@Override
 	public Course delete(Course course) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(course);
 		return course;
 	}
 
+	@Override
 	public List<Course> findAllCourses() {
 		
 		Session session = sessionFactory.getCurrentSession();
@@ -52,8 +54,8 @@ public class HibernateCourseDaoImlp implements CourseDAO {
 		return courses;
 	}
 
+	@Override
 	public List<Course> findCourseByLanguage(Language language) {
-		
 		Session session = sessionFactory.getCurrentSession();
 		List<Course> courses = session
 								.createQuery("SELECT c FROM Course c WHERE c.language = :language")

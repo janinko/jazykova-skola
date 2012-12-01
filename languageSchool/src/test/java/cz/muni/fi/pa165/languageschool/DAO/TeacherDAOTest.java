@@ -10,11 +10,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 public class TeacherDAOTest extends AbstractSpringTest{
-
 	@Autowired
     private TeacherDAO teacherDao;
 

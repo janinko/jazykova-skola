@@ -13,14 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 public class LessonDAOTest extends AbstractSpringTest{
-
 	@Autowired
     private LessonDAO lessonDao;
-	
 	@Autowired
     private CourseDAO courseDao;
 

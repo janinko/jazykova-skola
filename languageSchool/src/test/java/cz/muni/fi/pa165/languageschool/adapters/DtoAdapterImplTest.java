@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
-import cz.muni.fi.pa165.languageschool.category.Smoke;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
@@ -11,6 +10,7 @@ import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
+import cz.muni.fi.pa165.languageschool.category.Smoke;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -22,8 +22,7 @@ import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 public class DtoAdapterImplTest extends AbstractSpringTest{
 

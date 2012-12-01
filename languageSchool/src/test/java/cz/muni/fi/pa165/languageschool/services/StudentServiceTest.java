@@ -22,22 +22,17 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 
 /**
- *
- * @author fivekeyem
+ * @author
  */
 @RunWith(MockitoJUnitRunner.class)
 @Category(Mocked.class)
 public class StudentServiceTest {
-	
 	private Student student;
 	
 	@Mock
     private StudentDAO studentDao;
-    
     @Mock
 	private LessonDAO lessonDao;
-	
-	
     @InjectMocks
     private StudentService studentService = new StudentServiceImpl();
 	
@@ -147,9 +142,9 @@ public class StudentServiceTest {
 	
 	
 	private Student createMockStudent(Long id) {
-		Student student = new Student("Martin", "Nitram");
-		student.setId(id);
-		return student;
+		Student s = new Student("Martin", "Nitram", "mnitram@example.com");
+		s.setId(id);
+		return s;
 	}
 	
 	
