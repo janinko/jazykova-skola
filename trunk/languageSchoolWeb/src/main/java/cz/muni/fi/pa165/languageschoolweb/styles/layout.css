@@ -425,6 +425,33 @@ nav.main ul li a.btn-home {
   margin-top: 10px;
   width: 104px;
 }
+#changeStudentPage .avatar {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  float: left;
+  margin-right: 15px;
+  margin-left: 1px;
+}
+#changeStudentPage form.student label {
+  width: 85px;
+  display: inline-block;
+  margin-top: 15px;
+}
+#changeStudentPage form.student input {
+  background-color: #ffffff;
+  border: 1px solid #808080;
+  padding-left: 4px;
+  width: 443px;
+}
+#changeStudentPage form.student .form-l {
+  float: left;
+}
+#changeStudentPage form.student .main-button {
+  width: 200px;
+  height: 60px;
+  margin: 37px;
+}
 .content_container {
   background-repeat: repeat;
   background-image: url("/bg-content.png");

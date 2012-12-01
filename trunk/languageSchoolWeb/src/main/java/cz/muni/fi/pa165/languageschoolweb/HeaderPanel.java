@@ -52,7 +52,7 @@ public class HeaderPanel extends Panel {
 		} else {      
             accountParams.set("email", student.getEmail().toString());
             accountLink = new BookmarkablePageLink("myAccount", AccountPage.class, accountParams);
-            accountLink.add(new Label("username", student.getFirstName() + " " + student.getLastName()));                  
+            accountLink.add(new Label("username", student.getFirstName() + " " + student.getLastName() + " [editovat]"));                  
 		}
         
         add(accountLink);

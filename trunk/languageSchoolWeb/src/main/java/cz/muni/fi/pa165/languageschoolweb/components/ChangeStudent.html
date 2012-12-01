@@ -2,12 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<wicket:panel>
 
-		<div>
+		<div id="changeStudentPage">
 			<h2><span wicket:id="name"/></h2>
+			<img class="avatar" src="./avatar.jpg" width="110"/>
 			<form wicket:id="form" class="student">
-				<wicket:message key="Jmeno" /><input type="text" wicket:id="nameField" /><br/>
-                <wicket:message key="Prijmeni" /><input type="text" wicket:id="surnameField" /><br/>
-                <wicket:message key="Heslo" /><input type="text" wicket:id="passwordField" /><br/><br/>
+				<div class="form-l">
+					<label><wicket:message key="Jmeno" /></label><input type="text" wicket:id="nameField" /><br/>
+					<label><wicket:message key="Prijmeni" /></label><input type="text" wicket:id="surnameField" /><br/>
+					<label><wicket:message key="Heslo" /></label><input type="text" wicket:id="passwordField" /><br/><br/>
+				</div>
                 <input wicket:id="save" type="submit" wicket:message="value:Ulozit" class="main-button" />
 			</form>
 		</div>
