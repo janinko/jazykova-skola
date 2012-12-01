@@ -41,7 +41,7 @@ public class HeaderPanel extends Panel {
 		} else {
             accountParams.set("email", student.getEmail().toString());
             accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
-            accountLink.add(new Label("label", student.getFirstName() + " " + student.getLastName() + " [editovat]"));
+            accountLink.add(new Label("label", student.getFirstName() + " " + student.getLastName()));
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
 		}
         

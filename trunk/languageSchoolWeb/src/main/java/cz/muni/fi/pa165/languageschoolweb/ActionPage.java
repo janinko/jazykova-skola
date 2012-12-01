@@ -1,14 +1,10 @@
-/*
- * HomePage.java
- *
- * Created on 21. listopad 2012, 20:21
- */
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
 import cz.muni.fi.pa165.languageschoolweb.components.GeneratorForm;
 import cz.muni.fi.pa165.languageschoolweb.components.LoginForm;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -23,7 +19,7 @@ public class ActionPage extends BasePage {
     public ActionPage(PageParameters parameters) {
 		super(parameters);
 		if(parameters == null){
-			add(new Label("actionPanel", "Nevybraná žádná akce."));
+			add(new Label("actionPanel", new ResourceModel("noAction")));
 			return;
 		}
 
@@ -32,7 +28,7 @@ public class ActionPage extends BasePage {
 		}else if(!parameters.get("login").isNull()){
 			add(new LoginForm("actionPanel"));
 		}else{
-			add(new Label("actionPanel", "Neznámá akce."));
+			add(new Label("actionPanel", new ResourceModel("unknownAction")));
 		}
     }
 }
