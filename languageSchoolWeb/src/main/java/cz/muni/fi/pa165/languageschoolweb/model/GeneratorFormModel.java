@@ -9,10 +9,10 @@ import org.apache.wicket.util.io.IClusterable;
 public class GeneratorFormModel implements IClusterable {
 	private static final long serialVersionUID = 1L;
 
-	Integer teacherCount;
-	Integer courseCount;
-	Integer lessonCount;
-	Integer studentCount;
+	Integer teacherCount = 10;
+	Integer courseCount = 5;
+	Integer lessonCount = 25;
+	Integer studentCount = 30;
 
 	public Integer getTeacherCount() {
 		return teacherCount;

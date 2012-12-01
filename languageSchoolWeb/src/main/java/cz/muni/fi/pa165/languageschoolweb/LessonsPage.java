@@ -16,6 +16,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 
 public class LessonsPage extends BasePage {
+	private static final long serialVersionUID = 1L;
     @SpringBean
     private LessonDtoAdapter lessons;
     @SpringBean
