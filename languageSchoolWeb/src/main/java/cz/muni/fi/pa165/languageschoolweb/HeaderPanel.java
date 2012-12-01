@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
-import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -24,8 +24,8 @@ public class HeaderPanel extends Panel {
 	public HeaderPanel(String componentName) {
 		super(componentName);
         
-    	//StudentDto student = students.read(1);
-        TeacherDto student = teachers.readTeacher(1);
+    	StudentDto student = students.read(1);
+        //TeacherDto student = teachers.readTeacher(1);
         PageParameters accountParams = new PageParameters();
 		PageParameters lessonsParams = new PageParameters();
         

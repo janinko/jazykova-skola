@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>AddLesson</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+		
+		<wicket:panel>
+			<form wicket:id="form">
+				
+				<div class="course-box-new">
+					<input wicket:id="teacherEmail" id="teacherEmail" type="text" size="25" wicket:message="value:email" />
+					<span wicket:id="date"></span>
+
+					<input type="submit" wicket:id="addButton" class="main-button" wicket:message="value:PridatLekci" />
+				</div>
+
+			</form>
+		</wicket:panel>
+		
+    </body>
+</html>

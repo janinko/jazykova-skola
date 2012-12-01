@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
+import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.sql.Date;
@@ -118,8 +119,9 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 
 			entity.setDate(new Date(dto.getDate().getTimeInMillis() - time.getTimeInMillis()));
 		}
-		entity.setTeacher(teacherService.readTeacher(dto.getTeacherEmail()));
-
+		Teacher teacher = teacherService.readTeacher(dto.getTeacherEmail());
+		if(teacher == null) throw new IllegalArgumentException("Teacher with email " + dto.getTeacherEmail() + " doesn't exist");
+		entity.setTeacher(teacher);
 
 		// studends are not setted, when lesson is created, students are epmty,
 		// students can themselve enroll and cancel
