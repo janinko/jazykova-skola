@@ -26,9 +26,6 @@ public class LessonServiceImpl implements LessonService {
 	@Autowired
 	private	StudentDAO studentDao;
 
-
-	@Override
-
     @Override
     public Lesson read(Long lessonId) {
         return lessonDao.read(lessonId);
