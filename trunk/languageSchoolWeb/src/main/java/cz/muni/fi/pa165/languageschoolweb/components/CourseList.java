@@ -16,8 +16,7 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 public class CourseList extends Panel{
 	private static final long serialVersionUID = 1L;

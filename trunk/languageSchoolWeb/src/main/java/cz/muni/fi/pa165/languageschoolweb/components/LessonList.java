@@ -7,12 +7,9 @@ import cz.muni.fi.pa165.languageschoolweb.TeacherPage;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -23,8 +20,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
- *
- * @author jbrazdil
+ * @author
  */
 public class LessonList extends Panel{
 	private static final long serialVersionUID = 1L;
@@ -39,16 +35,11 @@ public class LessonList extends Panel{
         this.my = my;
 
         RepeatingView repeating = new RepeatingView("repeating");
-        Form form = new Form("form") {
-            protected void onSubmit() {
-                info("Form.onSubmit executed");
-            }
-        };
 
 		fillRepeating(repeating,lessons);
 
-        form.add(repeating);
-        add(form);
+        //form.add(repeating);
+        add(repeating);
 	}
 
 	private void fillRepeating(RepeatingView repeating, Set<LessonDto> lessons) {
