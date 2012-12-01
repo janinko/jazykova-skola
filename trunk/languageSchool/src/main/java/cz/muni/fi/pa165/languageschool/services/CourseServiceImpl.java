@@ -42,6 +42,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public void addLessonToCourse(Course course, Lesson lesson) {
+		if(lesson.getTeacher() == null) throw new NullPointerException("Lesson must have teacher!");
 		lesson.setCourse(course);
 		lessonDao.create(lesson);
 	}

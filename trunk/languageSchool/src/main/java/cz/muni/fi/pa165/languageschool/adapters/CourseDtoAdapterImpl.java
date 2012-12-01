@@ -37,7 +37,6 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	
     @Override
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
-		Teacher teacher = teacherService.readTeacher(lessonDto.getTeacherEmail());
 		courseService.addLessonToCourse(dto2e(courseDto), lessonDtoAdapter.dto2e(lessonDto));
 	}
 	
