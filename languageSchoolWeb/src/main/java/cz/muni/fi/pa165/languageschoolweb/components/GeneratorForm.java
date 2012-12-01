@@ -55,8 +55,9 @@ public class GeneratorForm extends Panel{
 									   model.getLessonCount(),
 									   model.getStudentCount(),
 									   model.getTeacherCount());
-				getSession().info("Vygenerováno");
+				getSession().info(getString("generated"));
 			}catch(Exception ex){
+				getSession().error(getString("notGenerated"));
 				getSession().error(ex);
 			}
 
