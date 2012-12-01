@@ -489,6 +489,12 @@ nav.main ul li a.btn-home {
   height: 53px;
   margin-top: 0px;
 }
+.content_container .course-box-new select {
+  background-color: #ffffff;
+  border: 1px solid #808080;
+  height: 50px;
+  width: 420px;
+}
 .content_container .course-box-new .box-content-l {
   float: left;
   display: inline-block;
@@ -505,7 +511,7 @@ nav.main ul li a.btn-home {
 .content_container .course-box-new .box-content {
   float: left;
   display: block;
-  height: 60px;
+  height: 88px;
   width: 60%;
   margin-top: 8px;
 }
