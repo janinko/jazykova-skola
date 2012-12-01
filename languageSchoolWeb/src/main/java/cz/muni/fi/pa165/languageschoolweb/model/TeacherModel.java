@@ -17,7 +17,7 @@ public class TeacherModel implements IClusterable {
 	String lastName;
 	String newPassword;
 	String newPasswordRepeat;    
-    List<String> languages;
+    Set<String> languages;
 
 	TeacherDto teacher;
 
@@ -26,6 +26,7 @@ public class TeacherModel implements IClusterable {
 	public TeacherModel(TeacherDto teacher){
 		firstName = teacher.getFirstName();
 		lastName = teacher.getLastName();
+		languages = teacher.getLanguages();
 		this.teacher = teacher;
 	}
 
@@ -65,11 +66,11 @@ public class TeacherModel implements IClusterable {
 		return teacher;
 	}
 
-    public List<String> getLanguages() {
+    public Set<String> getLanguages() {
         return languages;
     }
 
-    public void Languages(List<String> languages) {
+    public void Languages(Set<String> languages) {
         this.languages = languages;
     }
 }
