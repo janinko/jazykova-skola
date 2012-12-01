@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.languageschoolweb.model;
 
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
-import java.util.List;
 import java.util.Set;
 import org.apache.wicket.util.io.IClusterable;
 
