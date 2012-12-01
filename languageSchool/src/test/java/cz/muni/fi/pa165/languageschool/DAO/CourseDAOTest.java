@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class CourseDAOTest extends AbstractSpringTest{
 	@Autowired

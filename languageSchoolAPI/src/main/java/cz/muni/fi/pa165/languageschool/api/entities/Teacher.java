@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Entity
 public class Teacher implements Serializable {

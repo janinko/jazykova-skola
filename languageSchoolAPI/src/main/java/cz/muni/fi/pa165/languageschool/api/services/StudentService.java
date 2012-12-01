@@ -10,7 +10,7 @@ import java.util.Set;
  * lessons of a student, sign a student in a lesson or sign him out of it.
  * It uses injected LessonDAO and StudentDAO object.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface StudentService {
 

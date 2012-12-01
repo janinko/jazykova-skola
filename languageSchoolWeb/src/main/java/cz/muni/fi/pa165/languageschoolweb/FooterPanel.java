@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /** 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public final class FooterPanel extends Panel {
 	private static final long serialVersionUID = 1L;

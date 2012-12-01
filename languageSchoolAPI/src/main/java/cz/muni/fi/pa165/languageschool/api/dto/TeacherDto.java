@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class TeacherDto implements Serializable{
 	private static final long serialVersionUID = 1L;

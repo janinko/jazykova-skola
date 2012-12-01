@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Repository
 public class HibernateTeacherDaoImlp implements TeacherDAO {

@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.languageschoolweb.model;
 import org.apache.wicket.util.io.IClusterable;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class CourseFormModel implements IClusterable {
 	private static final long serialVersionUID = 1L;

@@ -11,7 +11,7 @@ import java.util.Set;
  * It allows to retrieve all lessons of a given student and to enroll or
  * cancel lesson of a given student.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface StudentDtoAdapter {
 

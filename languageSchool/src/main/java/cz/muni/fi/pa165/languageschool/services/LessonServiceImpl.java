@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Service
 @Transactional

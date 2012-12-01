@@ -11,7 +11,7 @@ import java.util.Set;
  * It can create teachers in the database, update, retrieve and delete them. 
  * It allows to retrieve lessons and courses of the teacher.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface TeacherDtoAdapter {
 

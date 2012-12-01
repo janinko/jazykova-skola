@@ -9,7 +9,7 @@ import java.util.List;
  * It can store courses to the database, update, retrieve and delete them.
  * It allows to retrieve courses by language.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface CourseDAO {
     /*

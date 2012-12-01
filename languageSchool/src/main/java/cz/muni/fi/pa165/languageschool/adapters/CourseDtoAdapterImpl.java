@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Service
 public class CourseDtoAdapterImpl implements CourseDtoAdapter {

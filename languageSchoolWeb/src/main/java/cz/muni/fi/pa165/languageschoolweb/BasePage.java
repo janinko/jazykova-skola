@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /** 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public abstract class BasePage extends WebPage {
 

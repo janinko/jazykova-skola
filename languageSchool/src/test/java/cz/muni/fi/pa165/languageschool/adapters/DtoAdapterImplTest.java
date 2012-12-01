@@ -22,7 +22,7 @@ import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class DtoAdapterImplTest extends AbstractSpringTest{
 

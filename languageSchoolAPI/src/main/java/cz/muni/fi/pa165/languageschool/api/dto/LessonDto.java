@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class LessonDto implements Serializable{
 	private static final long serialVersionUID = 1L;
