@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.services;
 
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
@@ -15,6 +16,13 @@ import java.util.Set;
  * @author xchrastk
  */
 public interface LessonService {
+
+    /*
+     * Reads a lesson eith specified id.
+     * @param id lesson's id
+     * @return lesson with specified id
+     */
+    public Lesson read(Long lessonId);
     
     /*
      * Removes a lesson from the database.

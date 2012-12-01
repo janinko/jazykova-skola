@@ -16,6 +16,13 @@ import java.util.Set;
  */
 public interface LessonDtoAdapter {
 
+    /*
+     * Reads a lesson eith specified id.
+     * @param id lesson's id
+     * @return lesson with specified id
+     */
+    public LessonDto read(Long lessonId);
+
     /**
      * Adds student to lesson
      * 
@@ -63,7 +70,7 @@ public interface LessonDtoAdapter {
 
     /*
      * Retrieves all lessons from specified course.
-     * @param coure coure 
+     * @param course course 
      * @return all lessons from specified coures
      */
     Set<LessonDto> getLessonsByCourse(CourseDto course);

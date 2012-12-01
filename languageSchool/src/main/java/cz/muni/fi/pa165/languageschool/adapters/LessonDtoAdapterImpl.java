@@ -35,6 +35,10 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter {
 
 	@Autowired
 	private StudentDtoAdapterImpl studentDtoAdapter;
+
+    public LessonDto read(Long lessonId) {
+        return (e2dto(lessonService.read(lessonId)));
+    }
 	
     public void removeLesson(LessonDto lesson){
             lessonService.removeLesson(dto2e(lesson));

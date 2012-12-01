@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.StudentDAO;
+import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
@@ -35,7 +36,13 @@ public class LessonServiceImpl implements LessonService {
 		this.studentDao = studentDao;
 	}
 	
-	public void removeLesson(Lesson l) {
+
+    @Override
+    public Lesson read(Long lessonId) {
+        return lessonDao.read(lessonId);
+    }	
+    
+    public void removeLesson(Lesson l) {
 		lessonDao.delete(l);
 	}
 

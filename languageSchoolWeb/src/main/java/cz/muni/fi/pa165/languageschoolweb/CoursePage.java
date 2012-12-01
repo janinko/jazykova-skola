@@ -38,7 +38,7 @@ public class CoursePage extends BasePage {
 		}
 
 		Label header = new Label("courseName", course.getName());
-		LessonList lessonList = new LessonList("lessonList",lessons.getLessonsByCourse(course));
+		LessonList lessonList = new LessonList("lessonList",lessons.getLessonsByCourse(course),false);
 
 		add(header);
 		add(lessonList);
