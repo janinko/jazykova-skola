@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.languageschool.api.services;
 
 /*
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface GenerateDataService {
 

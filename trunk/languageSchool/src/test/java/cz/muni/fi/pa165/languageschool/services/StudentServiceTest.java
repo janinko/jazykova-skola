@@ -22,7 +22,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @RunWith(MockitoJUnitRunner.class)
 @Category(Mocked.class)

@@ -13,7 +13,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class TeachersPage extends BasePage {
 	private static final long serialVersionUID = 1L;

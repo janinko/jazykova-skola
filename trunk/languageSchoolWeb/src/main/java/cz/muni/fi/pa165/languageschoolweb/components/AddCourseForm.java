@@ -18,7 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.RangeValidator;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public final class AddCourseForm extends Panel {
 	private static final long serialVersionUID = 1L;

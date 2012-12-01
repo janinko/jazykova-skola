@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class App 
 {

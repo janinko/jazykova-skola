@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import java.util.List;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface StudentDAO {
 	

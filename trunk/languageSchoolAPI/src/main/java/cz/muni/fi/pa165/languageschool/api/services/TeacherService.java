@@ -11,7 +11,7 @@ import java.util.Set;
  * lessons or courses of a teacher. It uses injected TeacherDAO 
  * and LessonDAO object.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface TeacherService {
     /*

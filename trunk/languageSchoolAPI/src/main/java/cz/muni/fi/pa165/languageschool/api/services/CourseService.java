@@ -11,7 +11,7 @@ import java.util.Set;
  * lesson to a course or retrieve courses by language. It uses injected
  * CourseDAO and LessonDAO object 
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface CourseService {
 

@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.RangeValidator;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class GeneratorForm extends Panel{
 	private static final long serialVersionUID = 1L;

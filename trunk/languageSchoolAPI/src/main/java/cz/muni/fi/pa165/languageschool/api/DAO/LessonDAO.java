@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface LessonDAO {
 	

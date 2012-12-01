@@ -15,7 +15,7 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class ChangeStudent extends Panel{
 	private static final long serialVersionUID = 1L;

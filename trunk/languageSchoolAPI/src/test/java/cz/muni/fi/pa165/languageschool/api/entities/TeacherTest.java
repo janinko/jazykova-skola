@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class TeacherTest {
 	

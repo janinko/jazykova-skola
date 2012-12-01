@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Entity
 public class Course implements Serializable {

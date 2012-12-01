@@ -8,7 +8,7 @@ import java.util.List;
  * It can store teachers to the database, update, retrieve and delete them.
  * It allows to retrieve teachers by their name and the language they teach.
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface TeacherDAO {    
     /*

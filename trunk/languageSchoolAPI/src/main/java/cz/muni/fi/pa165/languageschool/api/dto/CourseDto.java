@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.languageschool.api.dto;
 import java.io.Serializable;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public class CourseDto implements Serializable{
 	private static final long serialVersionUID = 1L;

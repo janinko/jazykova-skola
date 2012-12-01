@@ -11,7 +11,7 @@ import java.util.Set;
  * It allows to add lesson to a course or retrieve a course by given
  * language
  * 
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 public interface CourseDtoAdapter {
 

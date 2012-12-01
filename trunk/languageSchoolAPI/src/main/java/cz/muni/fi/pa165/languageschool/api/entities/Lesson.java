@@ -8,7 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * @author
+ * @author xbrazdi1, xchrastk, xkelnar
  */
 @Entity
 public class Lesson implements Serializable {
