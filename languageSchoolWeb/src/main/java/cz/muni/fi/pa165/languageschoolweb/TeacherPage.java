@@ -1,8 +1,3 @@
-/*
- * HomePage.java
- *
- * Created on 21. listopad 2012, 20:21
- */
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
