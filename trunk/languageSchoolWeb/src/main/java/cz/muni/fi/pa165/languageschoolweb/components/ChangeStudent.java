@@ -86,9 +86,9 @@ public class ChangeStudent extends Panel{
 				try{
 					students.createStudent(student);
 					students.setPassword(student, model.getNewPassword());
-					getSession().info(new ResourceModel("studentCreated"));
+					getSession().info(getString("studentCreated"));
 				}catch(Exception ex){
-					getSession().error(new ResourceModel("studentNotCreated"));
+					getSession().error(getString("studentNotCreated"));
 					getSession().error(ex);
 				}
 			}else{ // updating student
@@ -96,11 +96,11 @@ public class ChangeStudent extends Panel{
 					students.update(student);
 					if(model.getNewPassword() != null){
 						students.setPassword(student, model.getNewPassword());
-					getSession().info(new ResourceModel("passChanged"));
+					getSession().info(getString("passChanged"));
 					}
-					getSession().info(new ResourceModel("studentChanged"));
+					getSession().info(getString("studentChanged"));
 				}catch(Exception ex){
-					getSession().error(new ResourceModel("studentNotChanged"));
+					getSession().error(getString("studentNotChanged"));
 					getSession().error(ex);
 				}
 			}
@@ -111,15 +111,15 @@ public class ChangeStudent extends Panel{
 		private boolean validate(StudentModel model){
 			boolean ok=true;
 			if(model.getNewPassword() != null && model.getNewPassword().isEmpty() ){
-				getSession().error(new ResourceModel("wEmptyPassword"));
+				getSession().error(getString("wEmptyPassword"));
 				ok = false;
 			}
 			if(model.getNewPassword() != null && !model.getNewPassword().equals(model.getNewPasswordRepeat())){
-				getSession().error(new ResourceModel("wDifferentPassword"));
+				getSession().error(getString("wDifferentPassword"));
 				ok = false;
 			}
 			if(model.getStudent() == null && model.getNewPassword() == null){
-				getSession().error(new ResourceModel("wNoPassword"));
+				getSession().error(getString("wNoPassword"));
 				ok = false;
 			}
 			return ok;
