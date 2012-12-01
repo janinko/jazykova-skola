@@ -7,9 +7,11 @@
 			<img class="avatar" src="./avatar.jpg" width="110"/>
 			<form wicket:id="form" class="student">
 				<div class="form-l">
-					<label><wicket:message key="Jmeno" /></label><input type="text" wicket:id="nameField" /><br/>
-					<label><wicket:message key="Prijmeni" /></label><input type="text" wicket:id="surnameField" /><br/>
-					<label><wicket:message key="Heslo" /></label><input type="text" wicket:id="passwordField" /><br/><br/>
+					<label><wicket:message key="Jmeno" /></label><input type="text" wicket:id="firstName" /><br/>
+					<label><wicket:message key="Prijmeni" /></label><input type="text" wicket:id="lastName" /><br/>
+					<label><wicket:message key="Vek" /></label><input type="text" wicket:id="age" /><br/>
+					<label><wicket:message key="Heslo" /></label><input type="password" wicket:id="newPassword" /><br/>
+					<label><wicket:message key="ReHeslo" /></label><input type="password" wicket:id="newPasswordRepeat" /><br/><br/>
 				</div>
                 <input wicket:id="save" type="submit" wicket:message="value:Ulozit" class="main-button" />
 			</form>

@@ -2,15 +2,15 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
-import cz.muni.fi.pa165.languageschoolweb.AccountPage;
+import cz.muni.fi.pa165.languageschoolweb.HomePage;
+import cz.muni.fi.pa165.languageschoolweb.model.StudentModel;
 import java.io.Serializable;
-import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -44,48 +44,97 @@ public class ChangeStudent extends Panel{
         
         Label name = new Label("name", "Student " + student.getFirstName() + " " +student.getLastName());
         
-        Form form = new Form("form") {
-            protected void onSubmit() {
-                info("Form.onSubmit executed");
-            }
-        };
-        
-        final TextField<String> nameField = new TextField<String>("nameField",new PropertyModel(model,"firstName"));
-        final TextField<String> surnameField = new TextField<String>("surnameField",new PropertyModel(model,"lastName"));
-        final TextField<String> passwordField = new TextField<String>("passwordField",new PropertyModel(model,"password"));
-        
-        Button button = new Button("save") {
-            public void onSubmit() {
-                boolean changed = false;
-                PageParameters params = new PageParameters();
-                if (model.getFirstName() != null && !student.getFirstName().equals(model.getFirstName())) {                    
-                    student.setFirstName(model.getFirstName()); 
-                    changed = true;
-                }   
-                if (model.getLastName() != null && !student.getLastName().equals(model.getLastName())) {                    
-                    student.setLastName(model.getLastName());
-                    changed = true;
-                    
-                }     
-                if (model.getPassword() != null && !model.getPassword().equals(student.getPassword())) {                    
-                    student.setPassword(model.getPassword());
-                    changed = true;
-                    params.set("password", 1);
-                } 
-                if (changed) {students.update(student);}                
-                params.set("email", student.getEmail());
-                throw new RestartResponseException(AccountPage.class, params);
+        Form form = new InputForm("form", student);
 
-            }
-        };
-
-
-        form.add(button);
-        form.add(nameField);
-        form.add(surnameField);
-        form.add(passwordField);
         add(form);
         add(name);
+	}
+
+
+	class InputForm extends Form<StudentModel>{
+		private static final long serialVersionUID = 1L;
+
+        public InputForm(String id, StudentDto student){
+			super(id, new CompoundPropertyModel<StudentModel>(new StudentModel(student)));
+
+            add(new TextField<String>("firstName", String.class).setRequired(true));
+            add(new TextField<String>("lastName", String.class).setRequired(true));
+            add(new TextField<Integer>("age", Integer.class).setRequired(true));
+            add(new TextField<String>("newPassword", String.class));
+            add(new TextField<String>("newPasswordRepeat", String.class));
+			add(new Button("save"));
+		}
+
+		@Override
+        public void onSubmit()
+        {
+			StudentModel model = (StudentModel) getDefaultModelObject();
+			
+			if(!validate(model)){
+			setResponsePage(getPage());
+				return;
+			}
+
+			StudentDto student = model.getStudent();
+			if(student == null) student = new StudentDto();
+
+			student.setFirstName(model.getFirstName());
+			student.setLastName(model.getLastName());
+			student.setAge(model.getAge());
+			//student.setEmail(model.getEmail()); // TODO
+
+			if(model.getStudent() == null){ // creating new student
+				try{
+					students.createStudent(student);
+					students.setPassword(student, model.getNewPassword());
+					getSession().info("Student úspěšně vytvořen.");
+				}catch(Exception ex){
+					getSession().error("Studenta nešlo vytvořit: " + ex.getMessage());
+				}
+			}else{ // updating student
+				try{
+					students.update(student);
+					if(model.getNewPassword() != null){
+						students.setPassword(student, model.getNewPassword());
+					getSession().info("Heslo úspěšně změněno.");
+					}
+					getSession().info("Informace úspěšně změněny.");
+				}catch(Exception ex){
+					getSession().error("Informace nešlo změnit: " + ex.getMessage());
+				}
+			}
+
+			setResponsePage(HomePage.class);
+        }
+
+		private boolean validate(StudentModel model){
+			boolean ok=true;
+			if(model.getFirstName() == null || model.getFirstName().isEmpty()){
+				getSession().error("Musíš zadat jméno.");
+				ok = false;
+			}
+			if(model.getLastName() == null || model.getLastName().isEmpty()){
+				getSession().error("Musíš zadat příjmení.");
+				ok = false;
+			}
+			if(model.getAge() == null){
+				getSession().error("Musíš zadat věk.");
+				ok = false;
+			}
+			if(model.getNewPassword() != null && model.getNewPassword().isEmpty() ){
+				getSession().error("Heslo nemůže být prázdné.");
+				ok = false;
+			}
+			if(model.getNewPassword() != null && !model.getNewPassword().equals(model.getNewPasswordRepeat())){
+				getSession().error("Hesla se musí shodovat.");
+				ok = false;
+			}
+			if(model.getStudent() == null && model.getNewPassword() == null){
+				getSession().error("Musíš zadat heslo");
+				ok = false;
+			}
+			return ok;
+		}
 	}
 
 	
