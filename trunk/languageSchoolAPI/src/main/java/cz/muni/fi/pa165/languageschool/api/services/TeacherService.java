@@ -22,6 +22,14 @@ public interface TeacherService {
     void createTeacher(Teacher teacher);
     
     /*
+     * Retrieves a teacher with a given id.
+     * 
+     * @param id id of a retrieved teacher
+     * @return teacher teacher who has the given id
+     */
+    Teacher readTeacher(long id);
+    
+    /*
      * Retrieves a teacher with a given email.
      * 
      * @param email email of a retrieved teacher
