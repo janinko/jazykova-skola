@@ -11,12 +11,11 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
- *
- * @author xchrastk
+ * @author
  */
 public class ChangeStudent extends Panel{
 	private static final long serialVersionUID = 1L;
@@ -87,20 +86,22 @@ public class ChangeStudent extends Panel{
 				try{
 					students.createStudent(student);
 					students.setPassword(student, model.getNewPassword());
-					getSession().info("Student úspěšně vytvořen.");
+					getSession().info(new ResourceModel("studentCreated"));
 				}catch(Exception ex){
-					getSession().error("Studenta nešlo vytvořit: " + ex.getMessage());
+					getSession().error(new ResourceModel("studentNotCreated"));
+					getSession().error(ex);
 				}
 			}else{ // updating student
 				try{
 					students.update(student);
 					if(model.getNewPassword() != null){
 						students.setPassword(student, model.getNewPassword());
-					getSession().info("Heslo úspěšně změněno.");
+					getSession().info(new ResourceModel("passChanged"));
 					}
-					getSession().info("Informace úspěšně změněny.");
+					getSession().info(new ResourceModel("studentChanged"));
 				}catch(Exception ex){
-					getSession().error("Informace nešlo změnit: " + ex.getMessage());
+					getSession().error(new ResourceModel("studentNotChanged"));
+					getSession().error(ex);
 				}
 			}
 
@@ -109,28 +110,16 @@ public class ChangeStudent extends Panel{
 
 		private boolean validate(StudentModel model){
 			boolean ok=true;
-			if(model.getFirstName() == null || model.getFirstName().isEmpty()){
-				getSession().error("Musíš zadat jméno.");
-				ok = false;
-			}
-			if(model.getLastName() == null || model.getLastName().isEmpty()){
-				getSession().error("Musíš zadat příjmení.");
-				ok = false;
-			}
-			if(model.getAge() == null){
-				getSession().error("Musíš zadat věk.");
-				ok = false;
-			}
 			if(model.getNewPassword() != null && model.getNewPassword().isEmpty() ){
-				getSession().error("Heslo nemůže být prázdné.");
+				getSession().error(new ResourceModel("wEmptyPassword"));
 				ok = false;
 			}
 			if(model.getNewPassword() != null && !model.getNewPassword().equals(model.getNewPasswordRepeat())){
-				getSession().error("Hesla se musí shodovat.");
+				getSession().error(new ResourceModel("wDifferentPassword"));
 				ok = false;
 			}
 			if(model.getStudent() == null && model.getNewPassword() == null){
-				getSession().error("Musíš zadat heslo");
+				getSession().error(new ResourceModel("wNoPassword"));
 				ok = false;
 			}
 			return ok;
