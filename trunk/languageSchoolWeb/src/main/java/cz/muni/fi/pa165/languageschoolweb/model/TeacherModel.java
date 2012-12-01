@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschoolweb.model;
 
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import java.util.List;
 import java.util.Set;
 import org.apache.wicket.util.io.IClusterable;
 
@@ -16,7 +17,7 @@ public class TeacherModel implements IClusterable {
 	String lastName;
 	String newPassword;
 	String newPasswordRepeat;    
-    String languages;
+    List<String> languages;
 
 	TeacherDto teacher;
 
@@ -64,11 +65,11 @@ public class TeacherModel implements IClusterable {
 		return teacher;
 	}
 
-    public String getLanguages() {
+    public List<String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(String languages) {
+    public void Languages(List<String> languages) {
         this.languages = languages;
     }
 }

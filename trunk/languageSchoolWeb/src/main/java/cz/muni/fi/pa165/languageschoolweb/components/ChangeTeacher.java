@@ -2,14 +2,17 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
+import cz.muni.fi.pa165.languageschoolweb.model.LanguagesModel;
 import cz.muni.fi.pa165.languageschoolweb.model.TeacherModel;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.ListMultipleChoice;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -25,12 +28,13 @@ public class ChangeTeacher extends Panel{
     private TeacherDtoAdapter teachers;
 
     private TeacherDto teacher;
-    private Set<String> languages;
+    private List<String> languages = new ArrayList<String>();
     
 	public ChangeTeacher(String id, final String email){
         super(id);
 
         teacher = teachers.readTeacher(email);
+        languages.addAll(teacher.getLanguages());
         final TeacherDto model = new TeacherDto();
         
         /*if(email == null){
@@ -60,7 +64,7 @@ public class ChangeTeacher extends Panel{
 
             add(new TextField<String>("firstName", String.class).setRequired(true));
             add(new TextField<String>("lastName", String.class).setRequired(true));
-            add(new TextField<String>("languages", String.class).setRequired(true));
+            add(new ListMultipleChoice<String>("languages", languages));
             add(new TextField<String>("newPassword", String.class));
             add(new TextField<String>("newPasswordRepeat", String.class));
 			add(new Button("save"));
@@ -81,7 +85,7 @@ public class ChangeTeacher extends Panel{
 
 			teacher.setFirstName(model.getFirstName());
 			teacher.setLastName(model.getLastName());
-            teacher.setLanguages(languages);
+            teacher.setLanguages(new HashSet<String>(languages));
 			//teacher.setEmail(model.getEmail()); // TODO
 
 			if(model.getTeacher() == null){ // creating new teacher
@@ -124,28 +128,7 @@ public class ChangeTeacher extends Panel{
 				getSession().error(getString("wNoPassword"));
 				ok = false;
 			}
-            if(model.getTeacher() != null && parseLanguages(model.getLanguages()) == false){
-				getSession().error(getString("wLanguageFormat"));
-				ok = false;
-			}
 			return ok;
 		}
 	}
-    
-    private boolean parseLanguages(String string){
-        String[] strings = new String[4];
-        languages = new HashSet<String>();
-        
-        string = string.replace(" ","").toUpperCase();
-        strings = string.split(",");
-        
-        for(int i=0; i<strings.length; i++) {
-            if(!strings[i].equals("AJ") && !strings[i].equals("NJ") && !strings[i].equals("FJ") && !strings[i].equals("RU")) {
-                return false;
-            } else {
-                languages.add(strings[i]);
-            }
-        }
-        return true;
-    }
 }
