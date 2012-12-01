@@ -20,19 +20,29 @@ public class LessonsPage extends BasePage {
     private LessonDtoAdapter lessons;
     @SpringBean
     private StudentDtoAdapter students;
-    @SpringBean
-    private GenerateDataService generator;
 
     public LessonsPage(PageParameters parameters) {
 		super(parameters);
-		Set<LessonDto> lsns;
+        String act = parameters.get("act").toString();
+        Long lessonId = parameters.get("id").toLong(-1);
+		Boolean my = false;
+        Set<LessonDto> lsns;        
+        
+        
+        if ( (act != null) && act.equals("delete") && (lessonId != null) ) {
+			lessons.removeLesson(lessons.read(lessonId));
+			//setResponsePage(LessonsPage.class);
+		}
+        
 		if(!parameters.get("my").isNull() && students.read(1) != null){
 			lsns = students.getAllLessons(students.read(1));
+            my = true;
 		}else{
 			lsns = lessons.getAllLessons();
 		}
-
-		LessonList lessonList = new LessonList("lekce", lsns);
+        
+        
+		LessonList lessonList = new LessonList("lekce", lsns, my);
 		add(lessonList);
     }
 }

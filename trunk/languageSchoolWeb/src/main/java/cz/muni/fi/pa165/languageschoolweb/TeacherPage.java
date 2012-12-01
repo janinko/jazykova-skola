@@ -35,7 +35,7 @@ public class TeacherPage extends BasePage {
 		}
 
 		Label header = new Label("teacherName", teacher.getFirstName() + " " +teacher.getLastName());
-		LessonList lessonList = new LessonList("lessonList",teachers.getTeachersLessons(teacher));
+		LessonList lessonList = new LessonList("lessonList",teachers.getTeachersLessons(teacher),false);
 
 		add(header);
 		add(lessonList);
