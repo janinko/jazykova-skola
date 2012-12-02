@@ -17,7 +17,7 @@
 					</div>
 
 					<div class="box-content">
-						<input wicket:id="courseName" id="courseName" type="text" size="6" wicket:message="value:NazevKurzu" /><br />
+						<input wicket:id="courseName" id="courseName" type="text" size="6" wicket:message="value:NazevKurzu" onfocus="input_focus(this, '{_}hledaný výraz{/_}');" onblur="input_blur(this, '{_}hledaný výraz{/_}');" /><br />
 						<select wicket:id="courseLanguage" id="courseLanguage" type="text" size="6">
 							<option>df</option>
 						</select>
