@@ -13,7 +13,7 @@ var mess={
 $(document).ready(function() {
 	
 
-	$("input").click(function() {
+	$('input[type="text"]').click(function() {
 		$(this).val('');
 	});
 	
