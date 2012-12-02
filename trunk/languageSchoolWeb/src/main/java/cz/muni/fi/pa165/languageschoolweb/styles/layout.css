@@ -229,10 +229,11 @@ h1 {
 a {
   text-decoration: underline;
   outline: none;
+  color: #ffffff;
 }
 a:hover {
   text-decoration: underline;
-  color: #20718e;
+  color: #d9d9d9;
 }
 table {
   width: 100%;
@@ -249,6 +250,15 @@ section:before, section:after {
 }
 section:after {
   clear: both;
+}
+input {
+  -webkit-box-shadow: inset 0 0 5px #a6a6a6;
+  -moz-box-shadow: inset 0 0 5px #a6a6a6;
+  box-shadow: inset 0 0 5px #a6a6a6;
+  border: 1px solid #808080;
+}
+input:focus {
+  outline: blue;
 }
 .hidden {
   display: none;
@@ -414,7 +424,6 @@ nav.main ul li a.btn-home {
   width: 100px;
 }
 #homepage input {
-  border: 1px solid #c0c0c0;
   background-color: #ffffff;
   padding: 2px;
   margin: 1px;
@@ -425,6 +434,108 @@ nav.main ul li a.btn-home {
   margin-top: 10px;
   width: 104px;
 }
+#homepage .generatorLink {
+  text-decoration: none;
+  background-color: #c2c2c2;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f5f5f5), to(#c2c2c2));
+  background-image: -moz-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -ms-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #c2c2c2));
+  background-image: -webkit-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -o-linear-gradient(#f5f5f5, #c2c2c2);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#2ea3cc, endColorstr=#1b6079, GradientType=0);
+  -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#f5f5f5, endColorstr=#c2c2c2, GradientType=0)';
+  background-image: linear-gradient(#f5f5f5, #c2c2c2);
+  -pie-background: linear-gradient(#f5f5f5, #c2c2c2);
+  -webkit-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 9px 15px 10px;
+  text-shadow: 0 1px 1px #767676;
+  color: #333333;
+  font-size: 13px;
+  line-height: 20px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  -ms-transition: 0.1s linear all;
+  -o-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  text-shadow: 0 1px 1px white;
+  text-transform: uppercase;
+  text-align: center;
+  width: 160px;
+  display: block;
+  margin: 60px auto;
+}
+#homepage .generatorLink:hover {
+  background-position: 0 -15px;
+  color: #333333;
+  text-decoration: none;
+}
+#generatePage {
+  padding: 20px;
+}
+#generatePage label {
+  width: 100px;
+  margin-top: 15px;
+  display: inline-block;
+}
+#generatePage input {
+  height: 20px;
+  padding-left: 4px;
+  margin-top: 10px;
+  width: 88px;
+}
+#generatePage .generator-main-button {
+  text-decoration: none;
+  background-color: #c2c2c2;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f5f5f5), to(#c2c2c2));
+  background-image: -moz-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -ms-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #c2c2c2));
+  background-image: -webkit-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -o-linear-gradient(#f5f5f5, #c2c2c2);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#2ea3cc, endColorstr=#1b6079, GradientType=0);
+  -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#f5f5f5, endColorstr=#c2c2c2, GradientType=0)';
+  background-image: linear-gradient(#f5f5f5, #c2c2c2);
+  -pie-background: linear-gradient(#f5f5f5, #c2c2c2);
+  -webkit-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 9px 15px 10px;
+  text-shadow: 0 1px 1px #767676;
+  color: #333333;
+  font-size: 13px;
+  line-height: 20px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  -ms-transition: 0.1s linear all;
+  -o-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  text-align: center;
+  text-shadow: 0 1px 1px white;
+  height: auto;
+  width: 100px;
+}
+#generatePage .generator-main-button:hover {
+  background-position: 0 -15px;
+  color: #333333;
+  text-decoration: none;
+}
 #changeStudentPage .avatar {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -432,25 +543,65 @@ nav.main ul li a.btn-home {
   float: left;
   margin-right: 15px;
   margin-left: 1px;
+  margin-top: 10px;
 }
 #changeStudentPage form.student label {
-  width: 85px;
+  width: 120px;
   display: inline-block;
   margin-top: 15px;
 }
 #changeStudentPage form.student input {
   background-color: #ffffff;
-  border: 1px solid #808080;
   padding-left: 4px;
-  width: 443px;
+  width: 412px;
+  height: 25px;
 }
 #changeStudentPage form.student .form-l {
   float: left;
 }
 #changeStudentPage form.student .main-button {
   width: 200px;
-  height: 60px;
+  height: 40px;
   margin: 37px;
+  margin-top: 20px;
+  text-decoration: none;
+  background-color: #c2c2c2;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f5f5f5), to(#c2c2c2));
+  background-image: -moz-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -ms-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #c2c2c2));
+  background-image: -webkit-linear-gradient(#f5f5f5, #c2c2c2);
+  background-image: -o-linear-gradient(#f5f5f5, #c2c2c2);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#2ea3cc, endColorstr=#1b6079, GradientType=0);
+  -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#f5f5f5, endColorstr=#c2c2c2, GradientType=0)';
+  background-image: linear-gradient(#f5f5f5, #c2c2c2);
+  -pie-background: linear-gradient(#f5f5f5, #c2c2c2);
+  -webkit-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 9px 15px 10px;
+  text-shadow: 0 1px 1px #767676;
+  color: #333333;
+  font-size: 13px;
+  line-height: 20px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  -ms-transition: 0.1s linear all;
+  -o-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  text-shadow: 0 1px 1px white;
+}
+#changeStudentPage form.student .main-button:hover {
+  background-position: 0 -15px;
+  color: #333333;
+  text-decoration: none;
 }
 .content_container {
   background-repeat: repeat;
@@ -506,7 +657,6 @@ nav.main ul li a.btn-home {
   clear: both;
 }
 .content_container .course-box-new input {
-  border: 1px solid gray;
   padding-left: 5px;
   height: 20px;
   line-height: 20px;
@@ -514,7 +664,9 @@ nav.main ul li a.btn-home {
 }
 .content_container .course-box-new input.main-button {
   height: 53px;
-  margin-top: 0px;
+  margin-top: 22px;
+  margin-bottom: 0;
+  padding: 17px 20px;
 }
 .content_container .course-box-new select {
   background-color: #ffffff;
@@ -541,6 +693,12 @@ nav.main ul li a.btn-home {
   height: 88px;
   width: 60%;
   margin-top: 8px;
+}
+.content_container .course-box-new .box-content a {
+  color: #000000;
+}
+.content_container .course-box-new .box-content a:hover {
+  color: #808080;
 }
 .content_container .course-box-new .box-content input {
   width: 99%;
@@ -642,6 +800,12 @@ nav.main ul li a.btn-home {
   display: block;
   height: 80px;
   width: 70%;
+}
+.content_container .lesson-box .box-content a, .content_container .course-box .box-content a {
+  color: #000000;
+}
+.content_container .lesson-box .box-content a:hover, .content_container .course-box .box-content a:hover {
+  color: #808080;
 }
 .content_container .lesson-box .box-content h3, .content_container .course-box .box-content h3 {
   margin: 0;

@@ -34,7 +34,7 @@
 	@baseColor:			#2EA3CC; // base color for whole web
 	@bodyColor:			#ffffff; // background
 	
-	@linkColor:			@baseColor;
+	@linkColor:			white;
 	@linkColorHover:	darken(@linkColor, 15);
 
 	@mainRadius:		3px;
@@ -146,9 +146,13 @@ h1 {
 	.c(@baseColor);
 }
 
+
+// links
+
 a {
 	.tdu;
 	outline: none;
+	.c(@linkColor);
 }
 
 a:hover {
@@ -156,6 +160,8 @@ a:hover {
 	color: @linkColorHover;
 }
 
+
+// tables
 
 table {
 	width: 100%;
@@ -166,6 +172,15 @@ table {
 section { .clearfix; }
 
 
+// forms
+input {
+	.box-shadow(inset 0 0 5px darken(@grayLight, 10%));
+	.border(gray);
+
+	&:focus {
+		outline: blue;
+	}	
+}
 
 
 .hidden { display: none; }
@@ -175,6 +190,7 @@ section { .clearfix; }
 
 
 // Specific Rules
+
 #page { 
 	.center-block; 
 	
@@ -271,7 +287,6 @@ nav.main {
 	}
 
 	input {
-		.border(silver);
 		.bgc(white);
 		padding: 2px;
 		margin: 1px;
@@ -284,6 +299,41 @@ nav.main {
 		}
 	}
 
+	.generatorLink {
+		.btn(#f5f5f5, #333, 0 1px 1px, 13px, 9px 15px 10px, 6px);
+		text-shadow: 0 1px 1px white;
+		.ttu;	
+		.tac;
+		width: 160px;
+		display: block;
+		margin: 60px auto;
+	}
+
+}
+
+#generatePage {
+	padding: 20px;
+
+	label {
+		width: 100px;
+		margin-top: 15px;
+		display: inline-block;
+	}
+
+	input {
+		height: 20px;
+		padding-left: 4px;
+		margin-top: 10px;
+		width: 88px;
+	}
+
+	.generator-main-button {
+		.btn(#f5f5f5, #333, 0 1px 1px, 13px, 9px 15px 10px, 6px);
+		.tac;
+		text-shadow: 0 1px 1px white;
+		height: auto;
+		width: 100px;
+	}
 }
 
 #changeStudentPage {
@@ -292,21 +342,22 @@ nav.main {
 		.fl;
 		margin-right: 15px;
 		margin-left: 1px;
+		margin-top: 10px;
 	}
 
 
 	form.student {
 		label {
-			width: 85px;
+			width: 120px;
 			display: inline-block;
 			margin-top: 15px;
 		}
 
 		input {
 			.bgc(white);
-			.border(gray);
 			padding-left: 4px;
-			width: 443px;
+			width: 412px;
+			height: 25px;
 		}
 
 		.form-l {
@@ -315,8 +366,11 @@ nav.main {
 
 		.main-button {
 			width: 200px;
-			height: 60px; 
+			height: 40px; 
 			margin: 37px;
+			margin-top: 20px;
+			.btn(#f5f5f5, #333, 0 1px 1px, 13px, 9px 15px 10px, 6px);
+			text-shadow: 0 1px 1px white;
 		}
 	}
 }
@@ -368,7 +422,6 @@ nav.main {
 		.border(#f2f2f2);
 
 		input {
-			border: 1px solid gray;
 			padding-left: 5px;
 			height: 20px;
 			line-height: 20px;
@@ -376,7 +429,9 @@ nav.main {
 
 			&.main-button {
 				height: 53px;
-				margin-top: 0px;
+				margin-top: 22px;
+				margin-bottom: 0;
+				padding: 17px 20px;
 			}
 		}
 
@@ -411,6 +466,14 @@ nav.main {
 			height: 88px;
 			width: 60%;
 			margin-top: @margin-top;
+
+			a {
+				.c(black);
+
+				&:hover {
+					.c(@gray);
+				}
+			}
 
 			input {
 				width: 99%;
@@ -480,6 +543,14 @@ nav.main {
 			height: 80px;
 			width: 70%;
 			
+
+			a {
+				.c(black);
+
+				&:hover {
+					.c(@gray);
+				}
+			}
 		
 			h3 {	
 				.reset;
