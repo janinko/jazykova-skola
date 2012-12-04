@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.entities;
 
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
+import cz.muni.fi.pa165.languageschool.api.Language;
 import java.io.Serializable;
 import javax.persistence.*;
 

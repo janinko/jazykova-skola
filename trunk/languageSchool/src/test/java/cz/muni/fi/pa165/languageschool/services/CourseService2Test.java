@@ -1,9 +1,8 @@
 package cz.muni.fi.pa165.languageschool.services;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschool.api.services.CourseService;
 import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import java.util.Set;
@@ -47,7 +46,7 @@ public class CourseService2Test {
     @Test
     public void testCreateCourse() {
 		Course c1 = new Course("Anglictina pro mirne zacatecniky");
-		c1.setLanguage(Teacher.Language.AJ);
+		c1.setLanguage(Language.AJ);
 		c1.setLevel(2);
 		
 		courseService.createCourse(c1);

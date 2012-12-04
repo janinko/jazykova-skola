@@ -2,9 +2,9 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.api.services.CourseService;
 import cz.muni.fi.pa165.languageschool.category.Mocked;
 import java.util.ArrayList;
@@ -81,9 +81,9 @@ public class CourseServiceTest {
 	
 	@Test
     public void getCoursesByLanguage() {
-		courseService.getCoursesByLanguage(Teacher.Language.AJ);
+		courseService.getCoursesByLanguage(Language.AJ);
 		
-		verify(courseDao).findCourseByLanguage(Teacher.Language.AJ);
+		verify(courseDao).findCourseByLanguage(Language.AJ);
     }
 	
 	@Test

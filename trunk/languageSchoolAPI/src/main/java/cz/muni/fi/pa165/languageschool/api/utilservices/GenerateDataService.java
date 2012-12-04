@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.languageschool.api.services;
+package cz.muni.fi.pa165.languageschool.api.utilservices;
 
 /*
  * @author xbrazdi1, xchrastk, xkelnar

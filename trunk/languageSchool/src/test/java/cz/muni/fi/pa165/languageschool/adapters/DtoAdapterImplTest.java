@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
@@ -42,7 +43,7 @@ public class DtoAdapterImplTest extends AbstractSpringTest{
 	public void setUp(){
         course = new Course();
 		course.setId(4653L);
-		course.setLanguage(Teacher.Language.AJ);
+		course.setLanguage(Language.AJ);
 		course.setLevel(45);
 		course.setName("Anglictina pro pokrocile");
 
@@ -58,12 +59,12 @@ public class DtoAdapterImplTest extends AbstractSpringTest{
 		teacher = new Teacher();
 		teacher.setEmail("ucitel@skola.cz");
 		teacher.setFirstName("Josef");
-		HashSet<Teacher.Language> languages = new HashSet<Teacher.Language>();
-		languages.add(Teacher.Language.AJ);
-		languages.add(Teacher.Language.FJ);
+		HashSet<Language> languages = new HashSet<Language>();
+		languages.add(Language.AJ);
+		languages.add(Language.FJ);
 		teacher.setLanguages(languages);
 		teacher.setLastName("Zkusil");
-		teacher.setNativeLanguage(Teacher.Language.AJ);
+		teacher.setNativeLanguage(Language.AJ);
 		teacherService.createTeacher(teacher);
 
 		lesson = new Lesson();

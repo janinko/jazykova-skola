@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.languageschool.api.services;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import java.util.Set;
 
 /**

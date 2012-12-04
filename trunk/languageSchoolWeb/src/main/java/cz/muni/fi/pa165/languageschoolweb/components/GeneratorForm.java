@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.languageschoolweb.components;
 
-import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
+import cz.muni.fi.pa165.languageschool.api.utilservices.GenerateDataService;
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.GeneratorFormModel;
 import org.apache.wicket.markup.html.form.Button;

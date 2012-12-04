@@ -2,8 +2,8 @@ package cz.muni.fi.pa165.languageschool.DAO;
 
 import cz.muni.fi.pa165.languageschool.AbstractSpringTest;
 import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -83,17 +83,17 @@ public class CourseDAOTest extends AbstractSpringTest{
     @Test
     public void testFindCourseByLanguage() {
         Course c1 = new Course("Anglictina pro pokrocile");
-        c1.setLanguage(Teacher.Language.AJ);
+        c1.setLanguage(Language.AJ);
         Course c2 = new Course("Francouzstina pro zacatecniky");
-        c2.setLanguage(Teacher.Language.FJ);
+        c2.setLanguage(Language.FJ);
         Course c3 = new Course("Nemcina pro pokrocile");
-        c3.setLanguage(Teacher.Language.NJ);
+        c3.setLanguage(Language.NJ);
 
         courseDao.create(c1);
         courseDao.create(c2);
         courseDao.create(c3);
 
-        List<Course> ls = courseDao.findCourseByLanguage(Teacher.Language.FJ);
+        List<Course> ls = courseDao.findCourseByLanguage(Language.FJ);
         Course c4 = ls.get(0);
         
         assertTrue(ls.size()==1);

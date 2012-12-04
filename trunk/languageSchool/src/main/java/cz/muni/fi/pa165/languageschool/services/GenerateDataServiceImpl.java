@@ -1,15 +1,15 @@
 package cz.muni.fi.pa165.languageschool.services;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Student;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschool.api.services.CourseService;
-import cz.muni.fi.pa165.languageschool.api.services.GenerateDataService;
 import cz.muni.fi.pa165.languageschool.api.services.LessonService;
 import cz.muni.fi.pa165.languageschool.api.services.StudentService;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
+import cz.muni.fi.pa165.languageschool.api.utilservices.GenerateDataService;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.Normalizer;
