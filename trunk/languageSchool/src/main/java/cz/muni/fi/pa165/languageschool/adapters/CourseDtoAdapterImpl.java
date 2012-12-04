@@ -17,38 +17,38 @@ import org.springframework.stereotype.Service;
  * @author xbrazdi1, xchrastk, xkelnar
  */
 @Service
-public class CourseDtoAdapterImpl implements CourseDtoAdapter {
+public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 	@Autowired
 	private CourseService courseService;
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired
 	private LessonDtoAdapterImpl lessonDtoAdapter;
-	
-    @Override
-    public void createCourse(CourseDto courseDto) {
+
+	@Override
+	public void createCourse(CourseDto courseDto) {
 		courseService.createCourse(dto2e(courseDto));
 	}
-	
-    @Override
+
+	@Override
 	public void deleteCourse(CourseDto courseDto) {
 		courseService.deleteCourse(dto2e(courseDto));
 	}
-	
-    @Override
+
+	@Override
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {
 		courseService.addLessonToCourse(dto2e(courseDto), lessonDtoAdapter.dto2e(lessonDto));
 	}
-	
-    @Override
+
+	@Override
 	public Set<CourseDto> getCourseByLanguage(String language) {
 		Set<Course> courses = courseService.getCoursesByLanguage(Language.valueOf(language));
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
-		
+
 		for (Course c : courses) {
 			courseDTOs.add(e2dto(c));
 		}
-		
+
 		return courseDTOs;
 	}
 
@@ -56,16 +56,16 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 	public CourseDto read(long id) {
 		return e2dto(courseService.read(id));
 	}
-	
-    @Override
+
+	@Override
 	public Set<CourseDto> getAllCourses() {
 		Set<Course> courses = courseService.getAllCourses();
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
-		
+
 		for (Course c : courses) {
 			courseDTOs.add(e2dto(c));
 		}
-		
+
 		return courseDTOs;
 	}
 
@@ -79,14 +79,14 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter {
 
 		return dto;
 	}
-	
+
 	Course dto2e(CourseDto dto){
 		if(dto == null) return null;
 		Course entity = new Course();
 
 		if (dto.getId() != null) {
 			entity.setId(dto.getId());
-		}	
+		}
 		if (dto.getName() != null) {
 			entity.setName(dto.getName());
 		}

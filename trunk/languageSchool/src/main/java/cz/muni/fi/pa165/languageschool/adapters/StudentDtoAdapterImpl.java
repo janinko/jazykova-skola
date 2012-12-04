@@ -15,57 +15,57 @@ import org.springframework.stereotype.Service;
  * @author xbrazdi1, xchrastk, xkelnar
  */
 @Service
-public class StudentDtoAdapterImpl implements StudentDtoAdapter {
-    @Autowired
-    private StudentService studentService;
+public class StudentDtoAdapterImpl implements StudentDtoAdapter{
+	@Autowired
+	private StudentService studentService;
 	@Autowired
 	private LessonDtoAdapterImpl lessonDtoAdapter;
 
 	@Override
-    public void createStudent(StudentDto student){
+	public void createStudent(StudentDto student){
 		studentService.createStudent(dto2e(student));
-    }
-    
+	}
+
 	@Override
-    public void update(StudentDto student){
+	public void update(StudentDto student){
 		studentService.update(dto2e(student));
 	}
-	
+
 	@Override
-    public StudentDto read(long id){
+	public StudentDto read(long id){
 		Student student = studentService.read(id);
 		if(student == null) return null;
 		return e2dto(student);
 	}
-    
+
 	@Override
-    public StudentDto read(String email){
+	public StudentDto read(String email){
 		Student student = studentService.read(email);
 		if(student == null) return null;
 		return e2dto(student);
 	}
-	
+
 	@Override
-    public Set<LessonDto> getAllLessons(StudentDto student){
+	public Set<LessonDto> getAllLessons(StudentDto student){
 		Set<LessonDto> lessons = new HashSet<LessonDto>();
 		for(Lesson l : studentService.getAllLessons(dto2e(student))){
 			lessons.add(lessonDtoAdapter.e2dto(l));
 		}
 		return lessons;
 	}
-	
+
 	@Override
-    public void lessonEnroll(StudentDto student, LessonDto lesson){
+	public void lessonEnroll(StudentDto student, LessonDto lesson){
 		studentService.lessonEnroll(dto2e(student), lessonDtoAdapter.dto2e(lesson));
 	}
-	
+
 	@Override
-    public void lessonCancel(StudentDto student, LessonDto lesson){
+	public void lessonCancel(StudentDto student, LessonDto lesson){
 		studentService.lessonCancel(dto2e(student), lessonDtoAdapter.dto2e(lesson));
 	}
-    
+
 	@Override
-    public void removeStudent(StudentDto student){
+	public void removeStudent(StudentDto student){
 		studentService.removeStudent(dto2e(student));
 	}
 
@@ -82,20 +82,20 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter {
 	StudentDto e2dto(Student entity) {
 		if(entity == null) return null;
 		StudentDto dto = new StudentDto();
-        
+
 		dto.setId(entity.getId());
 		dto.setFirstName(entity.getFirstName());
 		dto.setLastName(entity.getLastName());
         dto.setEmail(entity.getEmail());
 		dto.setAge(entity.getAge());
-        
+
 		return dto;
 	}
 
 	Student dto2e(StudentDto dto) {
 		if(dto == null) return null;
 		Student entity = new Student();
-        
+
 		entity.setId(dto.getId());
 		entity.setFirstName(dto.getFirstName());
 		entity.setLastName(dto.getLastName());
