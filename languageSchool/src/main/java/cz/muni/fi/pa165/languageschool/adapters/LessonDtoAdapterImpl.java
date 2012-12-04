@@ -22,52 +22,52 @@ import org.springframework.stereotype.Service;
  * @author xbrazdi1, xchrastk, xkelnar
  */
 @Service
-public class LessonDtoAdapterImpl implements LessonDtoAdapter {
-    @Autowired
-    private LessonService lessonService;
-    @Autowired
-    private TeacherService teacherService;
+public class LessonDtoAdapterImpl implements LessonDtoAdapter{
+	@Autowired
+	private LessonService lessonService;
+	@Autowired
+	private TeacherService teacherService;
 	@Autowired
 	private CourseDtoAdapterImpl courseDtoAdapter;
 	@Autowired
 	private StudentDtoAdapterImpl studentDtoAdapter;
 
-    public LessonDto read(Long lessonId) {
+	public LessonDto read(Long lessonId) {
         return (e2dto(lessonService.read(lessonId)));
-    }
-	
+	}
+
 	@Override
-    public void removeLesson(LessonDto lesson){
+	public void removeLesson(LessonDto lesson){
             lessonService.removeLesson(dto2e(lesson));
-    }
-    
+	}
+
 	@Override
-    public void removeStudent(LessonDto lesson,StudentDto student){
+	public void removeStudent(LessonDto lesson,StudentDto student){
             lessonService.removeStudent(dto2e(lesson),studentDtoAdapter.dto2e(student));
-    }
-    
+	}
+
 	@Override
-    public void addStudent(LessonDto lesson,StudentDto student){
+	public void addStudent(LessonDto lesson,StudentDto student){
             lessonService.addStudent(dto2e(lesson), studentDtoAdapter.dto2e(student));
-    }  
-    
+	}
+
 	@Override
-    public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
-            Set<StudentDto> studentTOs = new HashSet<StudentDto>();
-            for(Student s : lessonService.findStudentsByLesson(dto2e(lesson))){
-                    studentTOs.add(studentDtoAdapter.e2dto(s));
-            }
-            return studentTOs; 
-    }
-		
+	public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
+		Set<StudentDto> studentTOs = new HashSet<StudentDto>();
+		for(Student s : lessonService.findStudentsByLesson(dto2e(lesson))){
+			studentTOs.add(studentDtoAdapter.e2dto(s));
+		}
+		return studentTOs;
+	}
+
 	@Override
-    public Set<LessonDto> getAllLessons(){
-            Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
-            for(Lesson l : lessonService.getAllLessons()){
-                    lessonTOs.add(e2dto(l));
-            }
-            return lessonTOs;
-    }
+	public Set<LessonDto> getAllLessons(){
+		Set<LessonDto> lessonTOs = new HashSet<LessonDto>();
+		for(Lesson l : lessonService.getAllLessons()){
+	                    lessonTOs.add(e2dto(l));
+		}
+		return lessonTOs;
+	}
 
 	@Override
 	public Set<LessonDto> getUpcomingLessons(Date date) {
