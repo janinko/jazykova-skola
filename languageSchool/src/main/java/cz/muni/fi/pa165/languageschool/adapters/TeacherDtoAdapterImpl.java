@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
@@ -103,7 +104,7 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 			dto.setNativeLanguage(entity.getNativeLanguage().toString());
 		}
 		HashSet<String> languages = new HashSet<String>();
-		for (Teacher.Language l : entity.getLanguages()) {
+		for (Language l : entity.getLanguages()) {
 			languages.add(l.toString());
 		}
 		dto.setLanguages(languages);
@@ -119,11 +120,11 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
         entity.setLastName(dto.getLastName());
         entity.setEmail(dto.getEmail());
 		if(dto.getNativeLanguage() != null){
-			entity.setNativeLanguage(Teacher.Language.valueOf(dto.getNativeLanguage()));
+			entity.setNativeLanguage(Language.valueOf(dto.getNativeLanguage()));
 		}
-        Set<Teacher.Language> lang = new HashSet<Teacher.Language>();
+        Set<Language> lang = new HashSet<Language>();
         for (String l : dto.getLanguages()) {
-            lang.add(Teacher.Language.valueOf(l));
+            lang.add(Language.valueOf(l));
         }
         entity.setLanguages(lang);
         return entity;

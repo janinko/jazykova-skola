@@ -1,11 +1,10 @@
 package cz.muni.fi.pa165.languageschool.adapters;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschool.api.services.CourseService;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.util.HashSet;

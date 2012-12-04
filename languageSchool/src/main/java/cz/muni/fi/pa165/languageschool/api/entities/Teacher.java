@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.entities;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +12,6 @@ import javax.persistence.*;
 @Entity
 public class Teacher implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    public enum Language {AJ,NJ,FJ,RU}
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

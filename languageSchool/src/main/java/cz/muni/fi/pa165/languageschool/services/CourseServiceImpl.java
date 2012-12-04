@@ -2,9 +2,9 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.api.DAO.CourseDAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher.Language;
 import cz.muni.fi.pa165.languageschool.api.services.CourseService;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +42,6 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public void addLessonToCourse(Course course, Lesson lesson) {
-		if(lesson.getTeacher() == null) throw new NullPointerException("Lesson must have teacher!");
 		lesson.setCourse(course);
 		lessonDao.create(lesson);
 	}

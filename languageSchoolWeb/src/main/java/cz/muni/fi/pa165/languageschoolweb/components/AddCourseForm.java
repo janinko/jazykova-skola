@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.languageschoolweb.components;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
-import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschoolweb.CoursesPage;
 import cz.muni.fi.pa165.languageschoolweb.model.CourseFormModel;
 import java.util.ArrayList;
@@ -51,11 +51,11 @@ public final class AddCourseForm extends Panel {
 			);
 			
 			List<String> langs = new ArrayList<String>();
-			for (Teacher.Language l : Teacher.Language.values()) {
+			for (Language l : Language.values()) {
 				langs.add(l.toString());
 			}
 
-			selectedLanguage = Teacher.Language.AJ.toString();
+			selectedLanguage = Language.AJ.toString();
 
 			add( new DropDownChoice<String>( "courseLanguage",
 			         new PropertyModel<String>( this, "selectedLanguage" ),
