@@ -15,11 +15,13 @@
  */
 package cz.muni.fi.pa165.languageschoolweb.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,7 @@ public class CourseAPI extends HttpServlet {
 	@Autowired
     private CourseDtoAdapter courses;
 	
-	private JsonTranslator translator = new JsonTranslator();
+	private ObjectMapper mapper = new ObjectMapper();
 	
 	/**
 	 * Handles the HTTP
@@ -51,17 +53,15 @@ public class CourseAPI extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		
 		String pathInfo = request.getPathInfo();
+		response.setContentType("application/json");
 		
-		out.println(pathInfo);
-		
-		if (pathInfo == null) {
-			if (courses == null) {
-				out.println("null 254");
-			} else {
-				out.println( translator.objectToJson(courses.getAllCourses()) );
-			}
+		if ( (pathInfo == null) || ("/".equals(pathInfo)) ) {
+            mapper.writeValue(response.getOutputStream(), courses.getAllCourses());
+		} else {
+			String part[] = pathInfo.split("/");
+			mapper.writeValue(response.getOutputStream(), courses.getCourseByLanguage(part[1]));
 		}
 	}
 
