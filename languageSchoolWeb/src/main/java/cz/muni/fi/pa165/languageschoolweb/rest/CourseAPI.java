@@ -18,15 +18,9 @@ package cz.muni.fi.pa165.languageschoolweb.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.muni.fi.pa165.languageschool.api.adapters.CourseDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,12 +55,12 @@ public class CourseAPI extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		response.setContentType("application/json");
 		
-		if (isNoArgument(pathInfo)) {
+		if (ApiHelper.isNoArgument(pathInfo)) {
             mapper.writeValue(response.getOutputStream(), courses.getAllCourses());
-		} else if (isNumeric(getFirstArg(pathInfo))) {
-			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(getFirstArg(pathInfo))));
+		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
+			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
 		} else {
-			mapper.writeValue(response.getOutputStream(), courses.getCourseByLanguage(getFirstArg(pathInfo)));
+			mapper.writeValue(response.getOutputStream(), courses.getCourseByLanguage(ApiHelper.getFirstArg(pathInfo)));
 		}
 	}
 
@@ -96,12 +90,12 @@ public class CourseAPI extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String pathInfo = request.getPathInfo();
 		
-		if (isNoArgument(pathInfo)) {
+		if (ApiHelper.isNoArgument(pathInfo)) {
 			// TODO isn't supported
 		} else {
 			// curl -X DELETE ../CourseAPI/{id}
-			courses.deleteCourse(courses.read(Integer.parseInt(getFirstArg(pathInfo))));
-			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(getFirstArg(pathInfo))));
+			courses.deleteCourse(courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
+			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
 		}
 	}
 
@@ -115,7 +109,6 @@ public class CourseAPI extends HttpServlet {
 		// TODO isn't supported
 		courses.deleteCourse(course);
 		courses.createCourse(course);
-		
 	}
 	
 	@Override
@@ -124,38 +117,5 @@ public class CourseAPI extends HttpServlet {
         super.init(config);
     }
 	
-	
-	private boolean isNoArgument(String pathInfo) {
-		if ( (pathInfo == null) || ("/".equals(pathInfo)) ) {
-			return true;
-		}
-		return false;
-	}
-	
-	private String getFirstArg(String pathInfo) {
-		String part[] = pathInfo.split("/");
-		return part[1];
-	}
-	
-	public static boolean isNumeric(String str)  {  
-	  try {  
-		double d = Double.parseDouble(str);  
-	  } catch(NumberFormatException nfe) {  
-		return false;  
-	  }  
-	  return true;  
-	}
-	
-	
-	private static String convertStreamToString(ServletInputStream is) throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
-		String line = null;
-		while ((line = reader.readLine()) != null) {
-		  sb.append(line + "\n");
-		}
-		is.close();
-		return sb.toString();
-	 }
 	
 }
