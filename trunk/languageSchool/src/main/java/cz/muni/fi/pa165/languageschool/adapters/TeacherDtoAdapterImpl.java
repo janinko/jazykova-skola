@@ -103,11 +103,8 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 		if (entity.getNativeLanguage() != null) {
 			dto.setNativeLanguage(entity.getNativeLanguage().toString());
 		}
-		HashSet<String> languages = new HashSet<String>();
-		for (Language l : entity.getLanguages()) {
-			languages.add(l.toString());
-		}
-		dto.setLanguages(languages);
+
+		dto.setLanguages(new HashSet<Language>(entity.getLanguages()));
 
 		return dto;
 	}
@@ -122,11 +119,7 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 		if(dto.getNativeLanguage() != null){
 			entity.setNativeLanguage(Language.valueOf(dto.getNativeLanguage()));
 		}
-        Set<Language> lang = new HashSet<Language>();
-        for (String l : dto.getLanguages()) {
-            lang.add(Language.valueOf(l));
-        }
-        entity.setLanguages(lang);
+        entity.setLanguages(new HashSet<Language>(dto.getLanguages()));
         return entity;
     }
 }

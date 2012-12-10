@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschoolweb.CoursesPage;
 import cz.muni.fi.pa165.languageschoolweb.model.CourseFormModel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -35,7 +36,7 @@ public final class AddCourseForm extends Panel {
 	class CourseInputForm extends Form<CourseFormModel>{
 		private static final long serialVersionUID = 1L;
 		
-		private String selectedLanguage;
+		private Language selectedLanguage;
 		
 		public CourseInputForm(String id) {
 			super(id, new CompoundPropertyModel<CourseFormModel>(new CourseFormModel()));
@@ -50,26 +51,23 @@ public final class AddCourseForm extends Panel {
 					// TODO validation
 			);
 			
-			List<String> langs = new ArrayList<String>();
-			for (Language l : Language.values()) {
-				langs.add(l.toString());
-			}
+			List<Language> langs = new ArrayList<Language>(Arrays.asList(Language.values()));
 
-			selectedLanguage = Language.AJ.toString();
+			selectedLanguage = Language.AJ;
 
-			add( new DropDownChoice<String>( "courseLanguage",
-			         new PropertyModel<String>( this, "selectedLanguage" ),
+			add( new DropDownChoice<Language>( "courseLanguage",
+			         new PropertyModel<Language>( this, "selectedLanguage" ),
 			         langs )
 			   );
 
 			add(new Button("addButton"));
 		}
 
-		public String getSelectedLanguage() {
+		public Language getSelectedLanguage() {
 			return selectedLanguage;
 		}
 
-		public void setSelectedLanguage(String selectedLanguage) {
+		public void setSelectedLanguage(Language selectedLanguage) {
 			this.selectedLanguage = selectedLanguage;
 		}
 	

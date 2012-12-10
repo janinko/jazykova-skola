@@ -45,8 +45,8 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 	}
 
 	@Override
-	public Set<CourseDto> getCourseByLanguage(String language) {
-		Set<Course> courses = courseService.getCoursesByLanguage(Language.valueOf(language));
+	public Set<CourseDto> getCourseByLanguage(Language language) {
+		Set<Course> courses = courseService.getCoursesByLanguage(language);
 		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
 
 		for (Course c : courses) {
@@ -77,7 +77,7 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 		if(entity == null) return null;
 		CourseDto dto = new CourseDto();
 		dto.setId(entity.getId());
-		dto.setLanguage(entity.getLanguage().toString());
+		dto.setLanguage(entity.getLanguage());
 		dto.setName(entity.getName());
 		dto.setLevel(entity.getLevel());
 

@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschoolweb.model;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import org.apache.wicket.util.io.IClusterable;
 
 /**
@@ -10,7 +11,7 @@ public class CourseFormModel implements IClusterable {
 	
 	Integer courseLevel;
 	String courseName;
-	String courseLanguage;
+	Language courseLanguage;
 
 	public Integer getCourseLevel() {
 		return courseLevel;
@@ -28,11 +29,11 @@ public class CourseFormModel implements IClusterable {
 		this.courseName = courseName;
 	}
 
-	public String getCourseLanguage() {
+	public Language getCourseLanguage() {
 		return courseLanguage;
 	}
 
-	public void setCourseLanguage(String courseLanguage) {
+	public void setCourseLanguage(Language courseLanguage) {
 		this.courseLanguage = courseLanguage;
 	}
 

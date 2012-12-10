@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.adapters;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import java.util.Set;
@@ -57,7 +58,7 @@ public interface CourseDtoAdapter {
      * @param language language which courses focus on
      * @return set of all courses that focus on the given language
      */
-    Set<CourseDto> getCourseByLanguage(String language);
+    Set<CourseDto> getCourseByLanguage(Language language);
 
 	/*
      * Retrieves a course with a given id

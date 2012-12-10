@@ -62,7 +62,7 @@ public class CourseList extends Panel{
 		link.add(new Label("name", course.getName()));
 		item.add(link);
 		item.add(deleteLink);
-		item.add(new Label("language", course.getLanguage()));
+		item.add(new Label("language", course.getLanguage().toString()));
 		item.add(new Label("level", String.valueOf(course.getLevel())));
 		//item.add(button);
 		repeating.add(item);

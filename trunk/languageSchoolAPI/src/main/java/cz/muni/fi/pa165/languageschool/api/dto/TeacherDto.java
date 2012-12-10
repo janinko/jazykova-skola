@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschool.api.dto;
 
+import cz.muni.fi.pa165.languageschool.api.Language;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class TeacherDto implements Serializable{
     private String firstName;
     private String lastName;
     private String email;
-    private Set<String> languages;
+    private Set<Language> languages;
     private String nativeLanguage;
 	
     public Long getId() {
@@ -48,11 +49,11 @@ public class TeacherDto implements Serializable{
         this.email = email;
     }
 
-    public Set<String> getLanguages() {
+    public Set<Language> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(Set<String> languages) {
+    public void setLanguages(Set<Language> languages) {
         this.languages = languages;
     }
 
