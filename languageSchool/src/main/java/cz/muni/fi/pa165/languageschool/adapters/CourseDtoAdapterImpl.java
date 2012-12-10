@@ -33,6 +33,11 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 	public void deleteCourse(CourseDto courseDto) {
 		courseService.deleteCourse(dto2e(courseDto));
 	}
+	
+	@Override
+	public void updateCourse(CourseDto courseDto) {
+		courseService.updateCourse(dto2e(courseDto));
+	}
 
 	@Override
 	public void addLessonToCourse(CourseDto courseDto, LessonDto lessonDto) {

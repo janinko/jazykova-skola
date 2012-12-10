@@ -36,6 +36,13 @@ public interface CourseDtoAdapter {
      * @param courseDto course to be deleted
      */
     void deleteCourse(CourseDto courseDto);
+	
+	/**
+     * Update a course
+     * 
+     * @param courseDto course to be updated
+     */
+    void updateCourse(CourseDto courseDto);
 
     /**
      * Retrieves courses available in a database
