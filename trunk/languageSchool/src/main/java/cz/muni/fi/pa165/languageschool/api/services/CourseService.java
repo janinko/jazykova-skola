@@ -30,6 +30,14 @@ public interface CourseService {
      * @throws NullPointerException if the course is null
      */ 
     void deleteCourse(Course course);
+	
+	/*
+     * Updates a course from the database.
+     * 
+     * @param course course to be update
+     * @throws NullPointerException if the course is null
+     */ 
+    void updateCourse(Course course);
     
     /*
      * Adds a lesson to a course.

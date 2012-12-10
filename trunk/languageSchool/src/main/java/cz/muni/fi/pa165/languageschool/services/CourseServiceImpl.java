@@ -39,6 +39,11 @@ public class CourseServiceImpl implements CourseService {
 			lessonDao.delete(lesson);
 		}
 	}
+	
+	@Override
+	public void updateCourse(Course course) {
+		courseDao.update(course);
+	}
 
 	@Override
 	public void addLessonToCourse(Course course, Lesson lesson) {

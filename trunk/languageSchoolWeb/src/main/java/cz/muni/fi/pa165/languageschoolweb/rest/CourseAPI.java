@@ -91,7 +91,7 @@ public class CourseAPI extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		
 		if (ApiHelper.isNoArgument(pathInfo)) {
-			// TODO isn't supported
+			// isn't supported
 		} else {
 			// curl -X DELETE ../CourseAPI/{id}
 			courses.deleteCourse(courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
@@ -103,12 +103,8 @@ public class CourseAPI extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
 		CourseDto course = mapper.readValue(request.getInputStream(), CourseDto.class);
-		
-		// TODO isn't supported
-		courses.deleteCourse(course);
-		courses.createCourse(course);
+		courses.updateCourse(course);
 	}
 	
 	@Override
