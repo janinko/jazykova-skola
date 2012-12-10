@@ -101,7 +101,7 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 		dto.setLastName(entity.getLastName());
 		dto.setEmail(entity.getEmail());
 		if (entity.getNativeLanguage() != null) {
-			dto.setNativeLanguage(entity.getNativeLanguage().toString());
+			dto.setNativeLanguage(entity.getNativeLanguage());
 		}
 
 		dto.setLanguages(new HashSet<Language>(entity.getLanguages()));
@@ -117,7 +117,7 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
         entity.setLastName(dto.getLastName());
         entity.setEmail(dto.getEmail());
 		if(dto.getNativeLanguage() != null){
-			entity.setNativeLanguage(Language.valueOf(dto.getNativeLanguage()));
+			entity.setNativeLanguage(dto.getNativeLanguage());
 		}
         entity.setLanguages(new HashSet<Language>(dto.getLanguages()));
         return entity;
