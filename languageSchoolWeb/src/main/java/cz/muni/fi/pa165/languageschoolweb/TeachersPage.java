@@ -39,7 +39,7 @@ public class TeachersPage extends BasePage {
 			
 			
 			item.add(new Label("email", teacherDto.getEmail()));
-			item.add(new Label("nativlang", teacherDto.getNativeLanguage()));
+			item.add(new Label("nativlang", teacherDto.getNativeLanguage().toString()));
 			link.add(new Label("firstname", teacherDto.getFirstName()));
 			link.add(new Label("lastname", teacherDto.getLastName()));
 			item.add(link);

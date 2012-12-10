@@ -15,7 +15,7 @@ public class TeacherDto implements Serializable{
     private String lastName;
     private String email;
     private Set<Language> languages;
-    private String nativeLanguage;
+    private Language nativeLanguage;
 	
     public Long getId() {
         return id;
@@ -57,11 +57,11 @@ public class TeacherDto implements Serializable{
         this.languages = languages;
     }
 
-    public String getNativeLanguage() {
+    public Language getNativeLanguage() {
         return nativeLanguage;
     }
 
-    public void setNativeLanguage(String nativeLanguage) {
+    public void setNativeLanguage(Language nativeLanguage) {
         this.nativeLanguage = nativeLanguage;
     }
 
