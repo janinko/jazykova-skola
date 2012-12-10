@@ -90,6 +90,7 @@ public class CourseAPI extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String pathInfo = request.getPathInfo();
+		System.out.println(pathInfo);
 		
 		if (ApiHelper.isNoArgument(pathInfo)) {
 			// isn't supported

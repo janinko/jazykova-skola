@@ -39,7 +39,7 @@
  
     <servlet-mapping>
         <servlet-name>CourseAPI</servlet-name>
-        <url-pattern>/CourseAPI/*</url-pattern>
+        <url-pattern>/api/course/*</url-pattern>
     </servlet-mapping>
 
 
