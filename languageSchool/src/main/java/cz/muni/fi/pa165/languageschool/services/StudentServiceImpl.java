@@ -33,6 +33,14 @@ public class StudentServiceImpl implements StudentService {
     public void update(Student student) {
         studentDao.update(student);
     }
+    
+    @Override
+    public Set<Student> getAllStudents() {
+        Set<Student> students = new HashSet<Student>();
+        List<Student> studentsList = studentDao.findAllStudents();  
+        students.addAll(studentsList);
+        return students;
+    }
 
 	@Override
 	@Transactional(readOnly=true)
