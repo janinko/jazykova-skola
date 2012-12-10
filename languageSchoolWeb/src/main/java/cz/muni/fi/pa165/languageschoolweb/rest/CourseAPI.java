@@ -59,9 +59,7 @@ public class CourseAPI extends HttpServlet {
             mapper.writeValue(response.getOutputStream(), courses.getAllCourses());
 		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
 			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
-		} else {
-			mapper.writeValue(response.getOutputStream(), courses.getCourseByLanguage(ApiHelper.getFirstArg(pathInfo)));
-		}
+		} 
 	}
 
 	/**
@@ -80,6 +78,9 @@ public class CourseAPI extends HttpServlet {
 		
 		// curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/CourseAPI
 		CourseDto course = mapper.readValue(request.getInputStream(), CourseDto.class);
+		if (course.getId() != null) {
+			course.setId(null);
+		}
 		courses.createCourse(course);
 	}
 	
