@@ -24,6 +24,13 @@ public interface StudentDtoAdapter {
     void createStudent(StudentDto student);
 
     /**
+     * Retrieves set of all students
+     * 
+     * @return set of all students
+     */
+    Set<StudentDto> getAllStudents();
+    
+    /**
      * Retrieves set of all lessons of a given student
      * 
      * @param student student whose lessons will be retrieved

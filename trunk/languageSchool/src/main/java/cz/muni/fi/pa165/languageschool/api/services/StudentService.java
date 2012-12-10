@@ -44,6 +44,12 @@ public interface StudentService {
      * @return student with a given email
      */
     Student read(String email);
+    
+    /*
+     * Retrieves all students 
+     * @return all students
+     */
+    Set<Student> getAllStudents();
 	
     /*
      * Retrieves all lessons that a given student has enrolled
