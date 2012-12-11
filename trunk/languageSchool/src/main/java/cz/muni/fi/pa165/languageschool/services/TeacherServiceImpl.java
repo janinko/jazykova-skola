@@ -47,6 +47,9 @@ public class TeacherServiceImpl implements TeacherService{
 
 	@Override
     public void deleteTeacher(Teacher teacher) {
+		  for(Lesson l : getTeachersLessons(teacher)){
+		  	 lessonDAO.delete(l);
+		  }
         teacherDao.delete(teacher);
     }
 
