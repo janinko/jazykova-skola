@@ -76,7 +76,7 @@ public class CourseAPI extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		// curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/CourseAPI
+		// curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
 		CourseDto course = mapper.readValue(request.getInputStream(), CourseDto.class);
 		if (course.getId() != null) {
 			course.setId(null);
@@ -90,15 +90,10 @@ public class CourseAPI extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String pathInfo = request.getPathInfo();
-		System.out.println(pathInfo);
 		
-		if (ApiHelper.isNoArgument(pathInfo)) {
-			// isn't supported
-		} else {
-			// curl -X DELETE ../CourseAPI/{id}
-			courses.deleteCourse(courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
-			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
-		}
+		// curl -X DELETE ../CourseAPI/{id}
+		courses.deleteCourse(courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
+		mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));	
 	}
 
 	@Override
