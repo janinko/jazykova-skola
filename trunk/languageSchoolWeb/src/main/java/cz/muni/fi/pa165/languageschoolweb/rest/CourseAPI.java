@@ -58,7 +58,7 @@ public class CourseAPI extends HttpServlet {
 		if (ApiHelper.isNoArgument(pathInfo)) {
             mapper.writeValue(response.getOutputStream(), courses.getAllCourses());
 		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
-			mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
+			mapper.writeValue(response.getOutputStream(), courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
 		} 
 	}
 

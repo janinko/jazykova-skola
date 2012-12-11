@@ -39,7 +39,7 @@ public class ApiHelper {
 	
 	public static boolean isNumeric(String str)  {  
 	  try {  
-		double d = Double.parseDouble(str);  
+		double d = Long.valueOf(str);  
 	  } catch(NumberFormatException nfe) {  
 		return false;  
 	  }  
