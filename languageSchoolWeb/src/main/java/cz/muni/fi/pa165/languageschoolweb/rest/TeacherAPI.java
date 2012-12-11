@@ -18,76 +18,83 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  */
 public class TeacherAPI extends HttpServlet {
 
-	@Autowired
+    @Autowired
     private TeacherDtoAdapter teachers;
-	
-	private ObjectMapper mapper = new ObjectMapper();
-	/**
-	 * Handles the HTTP
-	 * <code>GET</code> method.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String pathInfo = request.getPathInfo();
-		response.setContentType("application/json");
-		
-		if (ApiHelper.isNoArgument(pathInfo)) {
+    private ObjectMapper mapper = new ObjectMapper();
+
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        String pathInfo = request.getPathInfo();
+        response.setContentType("application/json");
+
+        if (ApiHelper.isNoArgument(pathInfo)) {
             mapper.writeValue(response.getOutputStream(), teachers.getAllTeachers());
-		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
-			mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
-		} else {response.sendError(400, "Wrong parameter "+pathInfo+". Provide id(number) or no parameters.");}
-	}
+        } else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
+            mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
+        } else {
+            response.sendError(400, "Wrong parameter " + pathInfo + ". Provide id(number) or no parameters.");
+        }
+    }
 
-	/**
-	 * Handles the HTTP
-	 * <code>POST</code> method.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
-		teachers.createTeacher(teacher);
-	}
-	
-	@Override
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String pathInfo = request.getPathInfo();
-		
-		if (ApiHelper.isNoArgument(pathInfo)) {
-			// TODO isn't supported
-		} else {
-			// curl -X DELETE ../api/teacher/{id}
-			teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
-		}
-	}
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
 
-	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
-		
-		teachers.updateTeacher(teacher);
-	}
-	
-	@Override
+        TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
+        teachers.createTeacher(teacher);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        String pathInfo = request.getPathInfo();
+
+        if (ApiHelper.isNoArgument(pathInfo) || !ApiHelper.isNumeric(pathInfo)) {
+            response.sendError(400, "Wrong parameter " + pathInfo + " or no parameters. Provide id(number).");
+        } else {
+
+            try {
+                // curl -X DELETE ../api/teacher/{id}
+                teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
+            } catch (IllegalArgumentException ex) {
+                response.sendError(400, "Teacher with id " + pathInfo + " couldn't be deleted because it did not exist.");
+            }
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+
+        TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
+
+        teachers.updateTeacher(teacher);
+    }
+
+    @Override
     public void init(ServletConfig config) throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
         super.init(config);
