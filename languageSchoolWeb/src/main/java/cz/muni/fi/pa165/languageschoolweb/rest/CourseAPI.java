@@ -40,8 +40,14 @@ public class CourseAPI extends HttpServlet {
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	/**
-	 * Handles the HTTP
-	 * <code>GET</code> method.
+	 * GET.
+	 * 
+	 * Returns error 404 if courses does not exist
+	 * Returns error 400 if bad id argument is pasted
+	 * 
+	 * Example of curl:
+	 * curl http://localhost:8084/languageSchoolWeb/pa165/api/course
+	 * curl http://localhost:8084/languageSchoolWeb/pa165/api/course/1
 	 *
 	 * @param request servlet request
 	 * @param response servlet response
@@ -58,13 +64,24 @@ public class CourseAPI extends HttpServlet {
 		if (ApiHelper.isNoArgument(pathInfo)) {
             mapper.writeValue(response.getOutputStream(), courses.getAllCourses());
 		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
-			mapper.writeValue(response.getOutputStream(), courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
-		} 
+			CourseDto c = courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo)));
+			if (c == null) {
+				response.setStatus(404);
+			} else {
+				mapper.writeValue(response.getOutputStream(), c);
+			}
+		} else {
+			response.setStatus(400);
+		}
 	}
 
 	/**
-	 * Handles the HTTP
-	 * <code>POST</code> method.
+	 * CREATE.
+	 * 
+	 * Returns error 500 if bad object is pasted.
+	 * 
+	 * Example of curl:
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
 	 *
 	 * @param request servlet request
 	 * @param response servlet response
@@ -76,7 +93,6 @@ public class CourseAPI extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		// curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
 		CourseDto course = mapper.readValue(request.getInputStream(), CourseDto.class);
 		if (course.getId() != null) {
 			course.setId(null);
@@ -84,17 +100,55 @@ public class CourseAPI extends HttpServlet {
 		courses.createCourse(course);
 	}
 	
-	
+	/**
+	 * DELETE.
+	 * 
+	 * Returns error 404 if courses does not exist OR no argument is pasted
+	 * Returns error 400 if bad argument is pasted
+	 * 
+	 * Example of curl:
+	 * curl -X DELETE http://localhost:8084/languageSchoolWeb/pa165/api/course/1
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String pathInfo = request.getPathInfo();
 		
-		// curl -X DELETE ../CourseAPI/{id}
-		courses.deleteCourse(courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
+		if (ApiHelper.isNoArgument(pathInfo)) {
+            response.setStatus(404);
+			
+		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
+			CourseDto c = courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo)));
+			if (c == null) {
+				response.setStatus(404);
+			} else {
+				courses.deleteCourse(c);
+			}
+			
+		} else {
+			response.setStatus(400);
+		}
 	}
 
+	/**
+	 * UPDATE.
+	 * 
+	 * Returns error 500 if bad object is pasted.
+	 * 
+	 * Example of curl: 
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
