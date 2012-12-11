@@ -2,7 +2,9 @@ package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -23,12 +25,15 @@ public class TeachersPage extends BasePage {
 	public TeachersPage(PageParameters parameters) {
 		super(parameters);
 
-		Set<TeacherDto> set = teachers.getAllTeachers();
 
 		RepeatingView repeating = new RepeatingView("repeating");
         add(repeating);
-		
-		for (TeacherDto teacherDto : set) {
+	
+       TreeSet<TeacherDto> teachersOrdered = new TreeSet<TeacherDto>(new TeacherComparator());
+       teachersOrdered.addAll(teachers.getAllTeachers());
+
+
+		for (TeacherDto teacherDto : teachersOrdered) {
 			AbstractItem item = new AbstractItem(repeating.newChildId());
 			
 			
@@ -51,5 +56,17 @@ public class TeachersPage extends BasePage {
 		}
 		
 		add(repeating);
+	}
+
+	private static class TeacherComparator implements Comparator<TeacherDto> {
+
+	 @Override
+	 public int compare(TeacherDto o1, TeacherDto o2) {
+		  int ret;
+		  ret = o1.getLastName().compareTo(o2.getLastName());
+		  if(ret != 0) return ret;
+		  ret = o1.getFirstName().compareTo(o2.getFirstName());
+		  return ret;
+	 }
 	}
 }
