@@ -39,7 +39,17 @@
  
     <servlet-mapping>
         <servlet-name>CourseAPI</servlet-name>
-        <url-pattern>/api/course/*</url-pattern>
+        <url-pattern>/pa165/api/course/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TeacherAPI</servlet-name>
+        <servlet-class>cz.muni.fi.pa165.languageschoolweb.rest.TeacherAPI</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TeacherAPI</servlet-name>
+        <url-pattern>/pa165/api/teacher/*</url-pattern>
     </servlet-mapping>
 
 
