@@ -16,14 +16,12 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  *
  * @author kelnar
  */
-
 public class TeacherAPI extends HttpServlet {
 
 	@Autowired
     private TeacherDtoAdapter teachers;
 	
 	private ObjectMapper mapper = new ObjectMapper();
-	
 	/**
 	 * Handles the HTTP
 	 * <code>GET</code> method.
@@ -44,7 +42,7 @@ public class TeacherAPI extends HttpServlet {
             mapper.writeValue(response.getOutputStream(), teachers.getAllTeachers());
 		} else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
 			mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
-		}
+		} else {response.sendError(400, "Wrong parameter "+pathInfo+". Provide id(number) or no parameters.");}
 	}
 
 	/**
@@ -61,11 +59,9 @@ public class TeacherAPI extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		// curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/TeacherAPI
 		TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
 		teachers.createTeacher(teacher);
 	}
-	
 	
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
@@ -76,9 +72,8 @@ public class TeacherAPI extends HttpServlet {
 		if (ApiHelper.isNoArgument(pathInfo)) {
 			// TODO isn't supported
 		} else {
-			// curl -X DELETE ../TeacherAPI/{id}
-			teachers.deleteTeacher(teachers.readTeacher(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
-			mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
+			// curl -X DELETE ../api/teacher/{id}
+			teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
 		}
 	}
 
@@ -89,9 +84,7 @@ public class TeacherAPI extends HttpServlet {
 		
 		TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
 		
-		// TODO isn't supported
-		teachers.deleteTeacher(teacher);
-		teachers.createTeacher(teacher);
+		teachers.updateTeacher(teacher);
 	}
 	
 	@Override
@@ -99,6 +92,4 @@ public class TeacherAPI extends HttpServlet {
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
         super.init(config);
     }
-	
-	
 }

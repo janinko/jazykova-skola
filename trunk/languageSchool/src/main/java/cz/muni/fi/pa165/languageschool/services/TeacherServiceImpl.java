@@ -18,87 +18,93 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class TeacherServiceImpl implements TeacherService{
+public class TeacherServiceImpl implements TeacherService {
+
     @Autowired
     private TeacherDAO teacherDao;
-	@Autowired
+    @Autowired
     private LessonDAO lessonDao;
-	
 
-	@Override
+    @Override
     public void createTeacher(Teacher teacher) {
         teacherDao.create(teacher);
     }
 
-	@Override
+    @Override
     public Teacher readTeacher(String email) {
         return teacherDao.findTeacherByEmail(email);
     }
-    
+
     @Override
     public Teacher readTeacher(long id) {
         return teacherDao.read(id);
     }
 
-	@Override
+    @Override
     public void updateTeacher(Teacher teacher) {
         teacherDao.update(teacher);
     }
 
-	@Override
+    @Override
     public void deleteTeacher(Teacher teacher) {
-		  for(Lesson l : getTeachersLessons(teacher)){
-		  	 lessonDao.delete(l);
-		  }
         teacherDao.delete(teacher);
+        for (Lesson l : getTeachersLessons(teacher)) {
+            lessonDao.delete(l);
+        }
     }
 
-	@Transactional(readOnly=true)
-	@Override
+    @Transactional(readOnly = true)
+    @Override
     public Set<Lesson> getTeachersLessons(Teacher teacher) {
         Set<Lesson> teachersLessons = new HashSet<Lesson>();
-        List<Lesson> lessons = lessonDao.findAllLessons();  
-        for(Lesson l: lessons) {
-            if(l.getTeacher().equals(teacher)) teachersLessons.add(l);
+        List<Lesson> lessons = lessonDao.findAllLessons();
+        for (Lesson l : lessons) {
+            if (l.getTeacher().equals(teacher)) {
+                teachersLessons.add(l);
+            }
         }
         return teachersLessons;
     }
 
-	@Transactional(readOnly=true)
-	@Override
+    @Transactional(readOnly = true)
+    @Override
     public Set<Course> getTeachersCourses(Teacher teacher) {
-        Set<Lesson> lessons = getTeachersLessons(teacher);        
+        Set<Lesson> lessons = getTeachersLessons(teacher);
         Set<Course> courses = new HashSet<Course>();
-        for(Lesson l: lessons) {
+        for (Lesson l : lessons) {
             courses.add(l.getCourse());
         }
         return courses;
     }
 
-	@Transactional(readOnly=true)
-	@Override
+    @Transactional(readOnly = true)
+    @Override
     public Set<Teacher> getAllTeachers() {
         Set<Teacher> teachers = new HashSet<Teacher>();
         teachers.addAll(teacherDao.findAllTeachers());
         return teachers;
     }
 
-	@Override
-	public void setPassword(Teacher teacher, String password) {
-		Teacher t = teacherDao.read(teacher.getId());
-		t.setPassword(PasswordEncoder.encode(password));
-		teacherDao.update(t);
-	}
+    @Override
+    public void setPassword(Teacher teacher, String password) {
+        Teacher t = teacherDao.read(teacher.getId());
+        t.setPassword(PasswordEncoder.encode(password));
+        teacherDao.update(t);
+    }
 
-	@Override
-	@Transactional(readOnly=true)
-	public Teacher authentize(String email, String password) {
-		if(email == null || password == null) return null;
-		Teacher s = teacherDao.findTeacherByEmail(email);
-		if(s == null) return null;
-		if(!PasswordEncoder.encode(password).equals(s.getPassword())){
-			return null;
-		}
-		return s;
-	}
+    @Override
+    @Transactional(readOnly = true)
+    public Teacher authentize(String email, String password) {
+        if (email == null || password == null) {
+            return null;
+        }
+        Teacher s = teacherDao.findTeacherByEmail(email);
+        if (s == null) {
+            return null;
+        }
+        if (!PasswordEncoder.encode(password).equals(s.getPassword())) {
+            return null;
+        }
+        return s;
+    }
 }
