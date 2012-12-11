@@ -92,8 +92,7 @@ public class CourseAPI extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		
 		// curl -X DELETE ../CourseAPI/{id}
-		courses.deleteCourse(courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));
-		mapper.writeValue(response.getOutputStream(), courses.read(Integer.parseInt(ApiHelper.getFirstArg(pathInfo))));	
+		courses.deleteCourse(courses.read(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
 	}
 
 	@Override
@@ -108,7 +107,6 @@ public class CourseAPI extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
         super.init(config);
-    }
-	
+    }	
 	
 }

@@ -1,0 +1,22 @@
+COURSE API
+==========
+
+GET http://localhost:8084/languageSchoolWeb/pa165/api/course
+ - vypis vsech kurzu
+
+GET http://localhost:8084/languageSchoolWeb/pa165/api/course/{id}
+ - vypis kurzu dle zadaneho ID
+
+PUT http://localhost:8084/languageSchoolWeb/pa165/api/course
+ - update kurzu, kde je kurz zadany v parametru
+
+DELETE http://localhost:8084/languageSchoolWeb/pa165/api/course/{id}
+ - smazani kurzu dle zadaneho id
+
+POST http://localhost:8084/languageSchoolWeb/pa165/api/course
+ - vytvoreni kurzu, kde je kurz zadany v parametru
+
+
+
+TEACHER API
+===========
