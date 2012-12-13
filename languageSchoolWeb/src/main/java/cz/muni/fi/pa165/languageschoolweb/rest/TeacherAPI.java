@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateOptimisticLockingFailureException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
@@ -86,6 +85,33 @@ public class TeacherAPI extends HttpServlet {
             response.setStatus(400);                
         }
     } 
+    
+    /**
+	 * UPDATE.
+	 * 
+	 * Returns error 400 if bad object is pasted.
+	 * 
+	 * Example of curl: 
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":6,"firstName":"Abadon","lastName":"Šťastný","email":"astastny@example.com","languages":["RU","NJ"],"nativeLanguage":"FJ"}' http://localhost:8080/pa165/api/teacher
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+
+        TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
+        
+        try {
+            teachers.updateTeacher(teacher);
+        } catch (/*HibernateOptimisticLockingFailure*/Exception ex) {
+            response.setStatus(404);
+        }
+    }
 
     /**
 	 * DELETE.
@@ -113,35 +139,8 @@ public class TeacherAPI extends HttpServlet {
             try {
                 teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
             } catch (/*IllegalArgument*/Exception ex) {
-                response.setStatus(404);
+                response.setStatus(404);        //teacher with the id not found
             }
-        }
-    }
-    
-    /**
-	 * UPDATE.
-	 * 
-	 * Returns error 400 if bad object is pasted.
-	 * 
-	 * Example of curl: 
-	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":6,"firstName":"Abadon","lastName":"Šťastný","email":"astastny@example.com","languages":["RU","NJ"],"nativeLanguage":"FJ"}' http://localhost:8080/pa165/api/teacher
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException 
-	 */
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-
-        TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
-        
-        try {
-            teachers.updateTeacher(teacher);
-        } catch (/*HibernateOptimisticLockingFailure*/Exception ex) {
-            response.setStatus(404);
         }
     }
 
