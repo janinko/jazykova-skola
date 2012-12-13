@@ -11,13 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.hibernate3.HibernateOptimisticLockingFailureException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  *
- * @author kelnar
+ * @author xchrastk
  */
 public class TeacherAPI extends HttpServlet {
 
@@ -26,14 +25,20 @@ public class TeacherAPI extends HttpServlet {
     private ObjectMapper mapper = new ObjectMapper();
 
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+	 * GET.
+	 * 
+	 * Returns error 404 if teacher does not exist
+	 * Returns error 400 if id param is not number
+	 * 
+	 * Example of curl:
+	 * curl http://localhost:8080/pa165/api/teacher
+	 * curl http://localhost:8080/pa165/api/teacher/1
+	 *
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,14 +61,17 @@ public class TeacherAPI extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+	 * CREATE.
+	 * 
+	 * Returns error 400 if bad object is pasted or a teacher with the same email already exists
+	 * 
+	 * Example of curl:
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":6,"firstName":"Abadon","lastName":"Šťastný","email":"astastny@example.com","languages":["RU","NJ"],"nativeLanguage":"FJ"}' http://localhost:8080/pa165/api/teacher
+	 * @param request servlet request
+	 * @param response servlet response
+	 * @throws ServletException if a servlet-specific error occurs
+	 * @throws IOException if an I/O error occurs
+	 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,11 +82,25 @@ public class TeacherAPI extends HttpServlet {
         try {
         
             teachers.createTeacher(teacher);
-        } catch (DataIntegrityViolationException ex) {
-            response.setStatus(400);                //teacher with the email exists
+        } catch (/*DataIntegrityViolation*/Exception ex) {  //teacher with the email exists
+            response.setStatus(400);                
         }
     } 
 
+    /**
+	 * DELETE.
+	 * 
+	 * Returns error 404 if teacher does not exist
+	 * Returns error 400 if bad argument is pasted or no argument is pasted
+	 * 
+	 * Example of curl:
+	 * curl -X DELETE http://localhost:8084/languageSchoolWeb/pa165/api/course/1
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -89,14 +111,26 @@ public class TeacherAPI extends HttpServlet {
             response.setStatus(400);
         } else {
             try {
-                // curl -X DELETE ../api/teacher/{id}
                 teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
-            } catch (IllegalArgumentException ex) {
+            } catch (/*IllegalArgument*/Exception ex) {
                 response.setStatus(404);
             }
         }
     }
-
+    
+    /**
+	 * UPDATE.
+	 * 
+	 * Returns error 400 if bad object is pasted.
+	 * 
+	 * Example of curl: 
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":6,"firstName":"Abadon","lastName":"Šťastný","email":"astastny@example.com","languages":["RU","NJ"],"nativeLanguage":"FJ"}' http://localhost:8080/pa165/api/teacher
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException 
+	 */
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -106,7 +140,7 @@ public class TeacherAPI extends HttpServlet {
         
         try {
             teachers.updateTeacher(teacher);
-        } catch (HibernateOptimisticLockingFailureException ex) {
+        } catch (/*HibernateOptimisticLockingFailure*/Exception ex) {
             response.setStatus(404);
         }
     }
