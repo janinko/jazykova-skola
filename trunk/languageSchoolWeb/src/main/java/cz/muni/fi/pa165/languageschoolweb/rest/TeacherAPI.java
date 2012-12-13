@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
 import java.io.IOException;
+import java.util.Locale;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.hibernate3.HibernateOptimisticLockingFailureException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
@@ -34,6 +37,7 @@ public class TeacherAPI extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Locale lock = request.getLocale();
         request.setCharacterEncoding("utf-8");
         String pathInfo = request.getPathInfo();
         response.setContentType("application/json");
@@ -41,9 +45,13 @@ public class TeacherAPI extends HttpServlet {
         if (ApiHelper.isNoArgument(pathInfo)) {
             mapper.writeValue(response.getOutputStream(), teachers.getAllTeachers());
         } else if (ApiHelper.isNumeric(ApiHelper.getFirstArg(pathInfo))) {
-            mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
+            if (teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))) != null){
+                mapper.writeValue(response.getOutputStream(), teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
+            } else {
+                response.setStatus(404);    //teacher not found
+            } 
         } else {
-            response.sendError(400, "Wrong parameter " + pathInfo + ". Provide id(number) or no parameters.");
+            response.setStatus(400);    //parameter is not a Long
         }
     }
 
@@ -60,10 +68,16 @@ public class TeacherAPI extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-
+        
         TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
-        teachers.createTeacher(teacher);
-    }
+        teacher.setId(null);
+        try {
+        
+            teachers.createTeacher(teacher);
+        } catch (DataIntegrityViolationException ex) {
+            response.setStatus(400);                //teacher with the email exists
+        }
+    } 
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
@@ -71,15 +85,14 @@ public class TeacherAPI extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String pathInfo = request.getPathInfo();
 
-        if (ApiHelper.isNoArgument(pathInfo) || !ApiHelper.isNumeric(pathInfo)) {
-            response.sendError(400, "Wrong parameter " + pathInfo + " or no parameters. Provide id(number).");
+        if (ApiHelper.isNoArgument(pathInfo) || !ApiHelper.isNumeric((ApiHelper.getFirstArg(pathInfo)))) {
+            response.setStatus(400);
         } else {
-
             try {
                 // curl -X DELETE ../api/teacher/{id}
                 teachers.deleteTeacher(teachers.readTeacher(Long.valueOf(ApiHelper.getFirstArg(pathInfo))));
             } catch (IllegalArgumentException ex) {
-                response.sendError(400, "Teacher with id " + pathInfo + " couldn't be deleted because it did not exist.");
+                response.setStatus(404);
             }
         }
     }
@@ -90,8 +103,12 @@ public class TeacherAPI extends HttpServlet {
         request.setCharacterEncoding("utf-8");
 
         TeacherDto teacher = mapper.readValue(request.getInputStream(), TeacherDto.class);
-
-        teachers.updateTeacher(teacher);
+        
+        try {
+            teachers.updateTeacher(teacher);
+        } catch (HibernateOptimisticLockingFailureException ex) {
+            response.setStatus(404);
+        }
     }
 
     @Override
