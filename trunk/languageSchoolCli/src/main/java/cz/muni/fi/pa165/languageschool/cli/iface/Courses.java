@@ -78,6 +78,6 @@ public class Courses {
 		System.out.println("z - zpet");
 		System.out.println("n - nový kurz");
 		System.out.println("u - načtení aktuálních dat");
-		System.out.println("CISLO - prejde na ucitele s id CISLO");
+		System.out.println("CISLO - přejde na kurz s id CISLO");
 	}
 }

@@ -79,6 +79,6 @@ public class Teachers{
 		System.out.println("z - zpet");
 		System.out.println("n - nový učitel");
 		System.out.println("u - načtení aktuálních dat");
-		System.out.println("CISLO - prejde na ucitele s id CISLO");
+		System.out.println("CISLO - přejde na učitele s id CISLO");
 	}
 }
