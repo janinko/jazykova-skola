@@ -11,13 +11,15 @@ import java.util.Map;
 public class Teachers{
 	Map<Long,TeacherDto> teachers = new HashMap<Long, TeacherDto>();
 	Teacher teacher;
+	Application app;
 
-	public Teachers(){
+	public Teachers(Application app){
+		this.app = app;
 		teacher = new Teacher(this);
 	}
 
 	void update(){
-		TeacherDto[] updatetTeachers = Helper.retrieve(TeacherDto[].class,"/teacher");
+		TeacherDto[] updatetTeachers = Helper.read(TeacherDto[].class,"teacher");
 		if(updatetTeachers != null){
 			teachers.clear();
 			for(TeacherDto teacher : updatetTeachers){
@@ -28,23 +30,27 @@ public class Teachers{
 
 	public void select(){
 		update();
-		while(true){
+		while(app.running){
 			Helper.clear();
 			printTeachers();
 			printHelp();
-			Object resp = Helper.getResponse("Volba","q","z","n",Integer.class);
+			Object resp = Helper.getResponse("Volba","q","z","n","u",Integer.class);
 			if(resp == null) return;
 			if(resp instanceof String){
 				if("q".equals(resp)){
-					Runtime.getRuntime().exit(0);
+					app.running = false;
 				}else if("z".equals(resp)){
 					return;
 				}else if("n".equals(resp)){
 					teacher.newTeacher();
+				}else if("u".equals(resp)){
+					update();
 				}
 			}else{
 				Integer id = (Integer) resp;
-				teacher.select(id);
+				if(teachers.containsKey(id.longValue())){
+					teacher.select(id);
+				}
 			}
 		}
 	}
@@ -68,9 +74,11 @@ public class Teachers{
 	}
 
 	private void printHelp() {
+		System.out.println("_____");
 		System.out.println("q - exit");
 		System.out.println("z - zpet");
 		System.out.println("n - nový učitel");
+		System.out.println("u - načtení aktuálních dat");
 		System.out.println("CISLO - prejde na ucitele s id CISLO");
 	}
 }

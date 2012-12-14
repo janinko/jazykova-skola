@@ -9,11 +9,17 @@ import java.util.Map;
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 public class Courses {
-
 	Map<Long,CourseDto> courses = new HashMap<Long,CourseDto>();
+	Application app;
+	Course course;
+	
+	public Courses(Application app){
+		this.app = app;
+		course = new Course(this);
+	}
 
 	void update(){
-		CourseDto[] updatetCourses = Helper.retrieve(CourseDto[].class,"/course");
+		CourseDto[] updatetCourses = Helper.read(CourseDto[].class,"course");
 		if(updatetCourses != null){
 			courses.clear();
 			for(CourseDto course : updatetCourses){
@@ -24,21 +30,27 @@ public class Courses {
 
 	public void select(){
 		update();
-		while(true){
+		while(app.running){
 			Helper.clear();
 			printCourses();
 			printHelp();
-			Object resp = Helper.getResponse("Volba","q","z",Integer.class);
+			Object resp = Helper.getResponse("Volba","q","z","n","u",Integer.class);
 			if(resp == null) return;
 			if(resp instanceof String){
 				if("q".equals(resp)){
-					Runtime.getRuntime().exit(0);
-				}else{
+					app.running = false;
+				}else if("z".equals(resp)){
 					return;
+				}else if("n".equals(resp)){
+					course.newCourse();
+				}else if("u".equals(resp)){
+					update();
 				}
 			}else{
 				Integer id = (Integer) resp;
-				//Teacher.get(id).select();
+				if(courses.containsKey(id.longValue())){
+					course.select(id);
+				}
 			}
 		}
 	}
@@ -51,9 +63,9 @@ public class Courses {
 
 	private void printCourses(CourseDto course){
 		String name = course.getName();
-		if(name.length() > 30) name = name.substring(0, 28) + "…";
+		if(name != null && name.length() > 40) name = name.substring(0, 38) + "…";
 		// "#   1 Novotný Pavel             novotnyp@example.com      AJ  2
-		System.out.printf("#%4d %-30s %2s %2d\n",
+		System.out.printf("#%4d %-40s %2s %2d\n",
 				          course.getId(),
 						  name,
 						  course.getLanguage(),
@@ -61,8 +73,11 @@ public class Courses {
 	}
 
 	private void printHelp() {
+		System.out.println("_____");
 		System.out.println("q - exit");
 		System.out.println("z - zpet");
+		System.out.println("n - nový kurz");
+		System.out.println("u - načtení aktuálních dat");
 		System.out.println("CISLO - prejde na ucitele s id CISLO");
 	}
 }

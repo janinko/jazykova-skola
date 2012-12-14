@@ -20,15 +20,15 @@ class Teacher{
 
 	public void select(long id) {
 		teacher = teachers.teachers.get(id);
-		while(true){
+		while(teachers.app.running){
 			Helper.clear();
 			printTeacher();
 			printHelp();
-			Object resp = Helper.getResponse("Volba","q","z","u","j","p","e","r","J","E");
+			Object resp = Helper.getResponse("Volba","q","z","u","j","p","e","r","J","E","D");
 			if(resp == null) return;
 
 			if ("q".equals(resp)) {
-				Runtime.getRuntime().exit(0);
+				teachers.app.running = false;
 			} else if("z".equals(resp)) {
 				return;
 			} else if("u".equals(resp)) {
@@ -55,12 +55,20 @@ class Teacher{
 				editNative();
 				editLanguages();
 				edited();
+			} else if("D".equals(resp)) {
+				if(Helper.delete(teacher.getId(), "teacher")){
+					teachers.teachers.remove(teacher.getId());
+					System.out.println("Učitel odebrán.");
+				}else{
+					System.out.println("Chyba při odebírání učitele.");
+				}
+				return;
 			}
 		}
 	}
 
 	private void update(){
-		TeacherDto updatetTeacher = Helper.retrieve(TeacherDto.class,"/teacher/"+teacher.getId());
+		TeacherDto updatetTeacher = Helper.read(TeacherDto.class,"teacher/"+teacher.getId());
 		if(updatetTeacher != null){
 			teacher = updatetTeacher;
 			teachers.teachers.put(teacher.getId(), teacher);
@@ -93,10 +101,12 @@ class Teacher{
 	}
 
 	private void printHelp() {
+		System.out.println("_____");
 		System.out.println("q - exit");
 		System.out.println("z - zpet");
-		System.out.println("u - nacteni aktualnich dat");
+		System.out.println("u - načtení aktuálních dat");
 		System.out.println("E - editace všech dat");
+		System.out.println("D - odstranění ucitele");
 		System.out.println("j - editace jména");
 		System.out.println("p - editace příjmení");
 		System.out.println("e - editace emailu");
@@ -105,45 +115,70 @@ class Teacher{
 	}
 
 	private void editName() {
-		Object resp = Helper.getResponse("Nové jméno",String.class);
+		Object resp = Helper.getResponse("Nové jméno","",String.class);
 		if(resp == null || "".equals(resp)) return;
 		teacher.setFirstName((String) resp);
 	}
 
 	private void editSurname() {
-		Object resp = Helper.getResponse("Nové příjmení",String.class);
+		Object resp = Helper.getResponse("Nové příjmení","",String.class);
 		if(resp == null || "".equals(resp)) return;
 		teacher.setLastName((String) resp);
 	}
 
 	private void editEmail() {
-		Object resp = Helper.getResponse("Nový email",String.class);
+		Object resp = Helper.getResponse("Nový email","",String.class);
 		if(resp == null || "".equals(resp)) return;
 		teacher.setEmail((String) resp);
 	}
 
-	private void editNative() {
-		Object resp = Helper.getResponse("Nový rodný jazyk",Language.class);
+	private void newEmail() {
+		Object resp = Helper.getResponse("Nový email",String.class);
 		if(resp == null) return;
-		teacher.setNativeLanguage((Language) resp);
+		teacher.setEmail((String) resp);
+	}
+
+	private void editNative() {
+		Object resp = Helper.getResponse("Nový rodný jazyk","",Language.class);
+		if(resp == null) return;
+		if("".equals(resp)){
+			teacher.setNativeLanguage(null);
+		}else{
+			teacher.setNativeLanguage((Language) resp);
+		}
 	}
 
 	private void editLanguages() {
 		printLanguages();
-		Object resp = Helper.getResponse("Zadejte nové jazyky",Language[].class);
-		if(resp == null||((Language[]) resp).length == 0) return;
+		Object resp = Helper.getResponse("Zadejte nové jazyky","",Language[].class);
+		if(resp == null || "".equals(resp)) return;
 		teacher.setLanguages(new HashSet<Language>(Arrays.asList((Language[])resp)));
 	}
 
 	private void edited() {
-		// TODO
+		if(teacher.getId() == null){
+			TeacherDto t = Helper.create(teacher, "teacher");
+			if(t!= null){
+				teachers.teachers.put(t.getId(),t);
+				System.out.println("Učitel vytvořen.");
+			}else{
+				System.out.println("Chyba při vytváření učitele.");
+			}
+		}else{
+			if(Helper.update(teacher, "teacher")){
+				System.out.println("Učitel aktualizován.");
+			}else{
+				System.out.println("Chyba při aktualizaci učitele.");
+				update();
+			}
+		}
 	}
 
 	void newTeacher() {
 		teacher = new TeacherDto();
 		editName();
 		editSurname();
-		editEmail();
+		newEmail();
 		editNative();
 		editLanguages();
 		edited();

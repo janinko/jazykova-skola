@@ -2,13 +2,19 @@ package cz.muni.fi.pa165.languageschool.cli.iface;
 
 import com.google.gson.Gson;
 import cz.muni.fi.pa165.languageschool.api.Language;
-import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -22,9 +28,13 @@ import org.apache.commons.io.IOUtils;
 class Helper {
 	private static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	final static String ESC = "\033[";
+	final static String NL = System.getProperty("line.separator");
+	final static String apiurl = "http://localhost:8080/pa165/api/";
 	
 	public static void clear(){
-		System.out.print(ESC + "2J");
+		//System.out.print(ESC + "2J");
+		System.out.println("------------------------------");
+		System.out.print(NL+NL+NL+NL+NL+NL);
 	}
 
 	public static Object getResponse(String message, Object ... expected){
@@ -50,6 +60,7 @@ class Helper {
 		System.out.print(message);
 		int repeat=15;
 		while (repeat > 0){
+			repeat--;
 			System.out.print(": ");
 			try {
 				String line = input.readLine();
@@ -82,31 +93,103 @@ class Helper {
 						// nothing
 					}
 				}
-				if(string){
+				if(string && !line.isEmpty()){
 					return line;
 				}
 			} catch (IOException ex) {
-				Logger.getLogger(Helper.class.getName()).log(Level.SEVERE, null, ex);
+				Helper.log(ex);
 				Runtime.getRuntime().exit(1);
 			}
 		}
 		return null;
 	}
 
-	public static <T> T retrieve(Class<T> type, String urlPart){
+	public static <T> T read(Class<T> type, String urlPart){
 		Gson gson = new Gson();
 		T ret = null;
 		try {
-			URL url= new URL("http://localhost:8080/pa165/api" + urlPart);
+			URL url= new URL(apiurl + urlPart);
 			StringWriter writer = new StringWriter();
 			IOUtils.copy(url.openStream(), writer);
 			String json = writer.toString();
 			ret= gson.fromJson(json, type);
 		} catch (MalformedURLException ex) {
-			//Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
+			Helper.log(ex);
 		} catch (IOException ex) {
-			//Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
+			Helper.log(ex);
 		}
 		return ret;
 	}
+
+	public static <T> T create(T object, String urlPart){
+		T ret = null;
+		Gson gson = new Gson();
+		String json = gson.toJson(object);
+		try {
+			URL url = new URL(apiurl + urlPart);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setDoOutput(true);
+			OutputStream os = connection.getOutputStream();
+			Writer writer = new OutputStreamWriter(os);
+			writer.append(json);
+			IOUtils.closeQuietly(writer);
+
+			if(connection.getResponseCode() == HttpURLConnection.HTTP_OK){
+				StringWriter swriter = new StringWriter();
+				IOUtils.copy(connection.getInputStream(), swriter);
+				json = swriter.toString();
+				ret = gson.fromJson(json, (Class<T>) object.getClass());
+			}
+		} catch (MalformedURLException ex) {
+			Helper.log(ex);
+		} catch (IOException ex) {
+			Helper.log(ex);
+		}
+		return ret;
+	}
+
+	public static boolean update(Object object, String urlPart){
+		Gson gson = new Gson();
+		String json = gson.toJson(object);
+		try {
+			URL url = new URL(apiurl + urlPart);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("PUT");
+			connection.setDoOutput(true);
+			OutputStream os = connection.getOutputStream();
+			Writer writer = new OutputStreamWriter(os);
+			writer.append(json);
+			IOUtils.closeQuietly(writer);
+			return connection.getResponseCode() == HttpURLConnection.HTTP_OK;
+		} catch (MalformedURLException ex) {
+			Helper.log(ex);
+		} catch (IOException ex) {
+			Helper.log(ex);
+		}
+		return false;
+	}
+
+	public static boolean delete(long id, String urlPart){
+		try {
+			URL url = new URL(apiurl + urlPart + "/" + id);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("DELETE");
+			return connection.getResponseCode() == HttpURLConnection.HTTP_OK;
+		} catch (MalformedURLException ex) {
+			Helper.log(ex);
+		} catch (IOException ex) {
+			Helper.log(ex);
+		}
+		return false;
+	}
+
+
+
+
+	private static void log(Exception ex) {
+		Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
+		System.err.println("Problém při komunikaci se serverem.");
+	}
+
 }
