@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.languageschool.cli.iface;
 import com.google.gson.Gson;
 import cz.muni.fi.pa165.languageschool.api.Language;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -13,12 +12,8 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -188,8 +183,8 @@ class Helper {
 
 
 	private static void log(Exception ex) {
-		Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
-		System.err.println("Problém při komunikaci se serverem.");
+		//Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
+		System.out.println("Problém při komunikaci se serverem.");
 	}
 
 }
