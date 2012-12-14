@@ -25,10 +25,12 @@ public class TeacherAPI extends HttpServlet {
 
     /**
 	 * GET.
+     * If id of a theacher is given, it retrieves the teacher.
+     * If no arguments are passed, it retrieves all teachers.
 	 * 
 	 * Returns error 404 if teacher does not exist
 	 * Returns error 400 if id param is not number
-	 * 
+	 *      
 	 * Example of curl:
 	 * curl http://localhost:8080/pa165/api/teacher
 	 * curl http://localhost:8080/pa165/api/teacher/1
@@ -61,15 +63,17 @@ public class TeacherAPI extends HttpServlet {
 
     /**
 	 * CREATE.
+     * System creates new id for the teacher no matter what id was sent.
 	 * 
-	 * Returns error 400 if bad object is pasted or a teacher with the same email already exists
+	 * Sends back the created teacher.
+     * Returns error 400 if bad object is pasted or a teacher with the same email already exists.
 	 * 
 	 * Example of curl:
 	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"id":6,"firstName":"Abadon","lastName":"Šťastný","email":"astastny@example.com","languages":["RU","NJ"],"nativeLanguage":"FJ"}' http://localhost:8080/pa165/api/teacher
 	 * @param request servlet request
 	 * @param response servlet response
 	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
+	 * @throws IOException if an I/O error occurs      
 	 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -81,6 +85,7 @@ public class TeacherAPI extends HttpServlet {
         try {
         
             teachers.createTeacher(teacher);
+            mapper.writeValue(response.getOutputStream(), teachers.readTeacher(teacher.getEmail()));
         } catch (/*DataIntegrityViolation*/Exception ex) {  //teacher with the email exists
             response.setStatus(400);                
         }
