@@ -97,7 +97,8 @@ public class CourseAPI extends HttpServlet {
 		if (course.getId() != null) {
 			course.setId(null);
 		}
-		courses.createCourse(course);
+		Long cId = courses.createCourse(course).getId();
+		mapper.writeValue(response.getOutputStream(), courses.read(cId));
 	}
 	
 	/**

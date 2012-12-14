@@ -21,7 +21,7 @@ public interface CourseService {
      * @param course course to be added
      * @throws IllegalArgumentException if the course is null
      */ 
-    void createCourse(Course course);
+    Course createCourse(Course course);
     
     /*
      * Deletes a course from the database.
