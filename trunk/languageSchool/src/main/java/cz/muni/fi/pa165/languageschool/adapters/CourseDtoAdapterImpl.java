@@ -25,8 +25,9 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 	private LessonDtoAdapterImpl lessonDtoAdapter;
 
 	@Override
-	public void createCourse(CourseDto courseDto) {
-		courseService.createCourse(dto2e(courseDto));
+	public CourseDto createCourse(CourseDto courseDto) {
+		Course c = courseService.createCourse(dto2e(courseDto));
+		return e2dto(c);
 	}
 
 	@Override

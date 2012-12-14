@@ -29,7 +29,7 @@ public interface CourseDtoAdapter {
      * 
      * @param courseDto course to be created
      */
-    void createCourse(CourseDto courseDto);
+     CourseDto createCourse(CourseDto courseDto);
 
     /**
      * Deletes a course
