@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>StudentsList</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+		
+		<wicket:panel>
+            <h2><wicket:message key="Studenti"/></h2>
+				<div wicket:id="repeating" class="students-box">
+					<div class="box-content-l">
+						<span class="nativlang"><span wicket:id="age">[vek]</span></span>
+					</div>
+					
+					<div class="box-content">
+						<h3>
+							<span wicket:id="firstname">[firstname]</span> <span wicket:id="lastname">[lastname]</span>
+						</h3><br />
+						<div class="student"><span wicket:id="email">[email]</span> </div>
+
+					</div>
+					
+				</div>
+        </wicket:panel>
+    </body>
+</html>
