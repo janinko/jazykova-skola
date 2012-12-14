@@ -24,14 +24,6 @@ public interface LessonDtoAdapter {
     public LessonDto read(Long lessonId);
 
     /**
-     * Adds student to lesson
-     * 
-     * @param lesson lesson to which student will be added
-     * @param student student to be added
-     */
-    void addStudent(LessonDto lesson, StudentDto student);
-
-    /**
      * Retrieves all students enrolled in a given lesson
      * 
      * @param lesson lesson the students of which will be retrieved
