@@ -149,7 +149,6 @@ class Teacher{
 	}
 
 	private void editLanguages() {
-		printLanguages();
 		Object resp = Helper.getResponse("Zadejte nové jazyky","",Language[].class);
 		if(resp == null || "".equals(resp)) return;
 		teacher.setLanguages(new HashSet<Language>(Arrays.asList((Language[])resp)));
