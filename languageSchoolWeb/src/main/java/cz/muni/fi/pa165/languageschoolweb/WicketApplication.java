@@ -26,5 +26,6 @@ public class WicketApplication extends WebApplication
 		mountPage("/teachers", TeachersPage.class);
         mountPage("/account", AccountPage.class);
         mountPage("/action", ActionPage.class);
+        mountPage("/error", ErrorPage.class);
 	}
 }

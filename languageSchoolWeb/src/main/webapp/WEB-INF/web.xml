@@ -26,6 +26,8 @@
     <filter-mapping>
         <filter-name>wicket.languageSchoolWeb</filter-name>
         <url-pattern>/pa165/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
     </filter-mapping>
     <listener>
         <listener-class>
@@ -51,6 +53,10 @@
         <servlet-name>TeacherAPI</servlet-name>
         <url-pattern>/pa165/api/teacher/*</url-pattern>
     </servlet-mapping>
-
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
 
     </web-app>
