@@ -46,8 +46,8 @@ public class CourseAPI extends HttpServlet {
 	 * Returns error 400 if bad id argument is pasted
 	 * 
 	 * Example of curl:
-	 * curl http://localhost:8084/languageSchoolWeb/pa165/api/course
-	 * curl http://localhost:8084/languageSchoolWeb/pa165/api/course/1
+	 * curl http://localhost:8080/pa165/api/course
+	 * curl http://localhost:8080/pa165/api/course/1
 	 *
 	 * @param request servlet request
 	 * @param response servlet response
@@ -81,7 +81,7 @@ public class CourseAPI extends HttpServlet {
 	 * Returns error 500 if bad object is pasted.
 	 * 
 	 * Example of curl:
-	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8080/pa165/api/course
 	 *
 	 * @param request servlet request
 	 * @param response servlet response
@@ -108,7 +108,7 @@ public class CourseAPI extends HttpServlet {
 	 * Returns error 400 if bad argument is pasted
 	 * 
 	 * Example of curl:
-	 * curl -X DELETE http://localhost:8084/languageSchoolWeb/pa165/api/course/1
+	 * curl -X DELETE http://localhost:8080/pa165/api/course/1
 	 * 
 	 * @param request
 	 * @param response
@@ -143,7 +143,7 @@ public class CourseAPI extends HttpServlet {
 	 * Returns error 500 if bad object is pasted.
 	 * 
 	 * Example of curl: 
-	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8084/languageSchoolWeb/pa165/api/course
+	 * curl -i -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"id":2,"name":"Kurz FJ pro experty - konverzace I","language":"FJ","level":5}' http://localhost:8080/pa165/api/course
 	 * 
 	 * @param request
 	 * @param response
