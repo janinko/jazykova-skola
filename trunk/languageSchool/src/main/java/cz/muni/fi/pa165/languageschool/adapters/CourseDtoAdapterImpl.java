@@ -46,18 +46,6 @@ public class CourseDtoAdapterImpl implements CourseDtoAdapter{
 	}
 
 	@Override
-	public Set<CourseDto> getCourseByLanguage(Language language) {
-		Set<Course> courses = courseService.getCoursesByLanguage(language);
-		Set<CourseDto> courseDTOs = new HashSet<CourseDto>();
-
-		for (Course c : courses) {
-			courseDTOs.add(e2dto(c));
-		}
-
-		return courseDTOs;
-	}
-
-	@Override
 	public CourseDto read(long id) {
 		return e2dto(courseService.read(id));
 	}
