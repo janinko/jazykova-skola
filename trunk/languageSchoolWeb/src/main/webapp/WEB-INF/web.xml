@@ -27,6 +27,7 @@
         <filter-name>wicket.languageSchoolWeb</filter-name>
         <url-pattern>/pa165/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
+        <dispatcher>RESPONSE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
     </filter-mapping>
     <listener>
