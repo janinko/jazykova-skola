@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
+import cz.muni.fi.pa165.languageschoolweb.LessonPage;
 import cz.muni.fi.pa165.languageschoolweb.LessonsPage;
 import cz.muni.fi.pa165.languageschoolweb.TeacherPage;
 import java.text.DateFormat;
@@ -37,7 +38,6 @@ public class LessonList extends Panel{
 
 		fillRepeating(repeating,lessons);
 
-        //form.add(repeating);
         add(repeating);
 	}
 
@@ -49,24 +49,31 @@ public class LessonList extends Panel{
         for (LessonDto lesson : lessonsOrdered) {
             AbstractItem item = new AbstractItem(repeating.newChildId());
 		
-			PageParameters params = new PageParameters();
-			params.set("email", lesson.getTeacherEmail());
-            PageParameters idParams = new PageParameters();
-            if (my) {idParams.set("my",true);}
-            idParams.set("id",lesson.getId());
-            idParams.set("act","delete");
+			PageParameters teacherParams = new PageParameters();
+			teacherParams.set("email", lesson.getTeacherEmail());
+			
+			PageParameters lessonParams = new PageParameters();
+			lessonParams.set("id", lesson.getId());
 
-			Link link = new BookmarkablePageLink("link", TeacherPage.class, params);
+            PageParameters deleteParams = new PageParameters();
+            if (my) {deleteParams.set("my",true);}
+            deleteParams.set("id",lesson.getId());
+            deleteParams.set("act","delete");
+
+			Link teacherLink = new BookmarkablePageLink("teacherLink", TeacherPage.class, teacherParams);
+			Link lessonLink  = new BookmarkablePageLink("lessonLink", LessonPage.class, lessonParams);
+			Link deleteLink  = new BookmarkablePageLink("deleteLink", LessonsPage.class, deleteParams);
 
 			DateFormat dateFormat = new SimpleDateFormat("dd. MM.");
 			DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
 			item.add(new Label("date", dateFormat.format(lesson.getDate().getTime())));
 			item.add(new Label("time", timeFormat.format(lesson.getDate().getTime())));
-            item.add(new Label("name", lesson.getCourse().getName()));
-            link.add(new Label("teacherName", lesson.getTeacherName()));
-			item.add(link);
-            item.add(new BookmarkablePageLink("deleteLink", LessonsPage.class, idParams));
+            lessonLink.add(new Label("name", lesson.getCourse().getName()));
+            teacherLink.add(new Label("teacherName", lesson.getTeacherName()));
+			item.add(teacherLink);
+            item.add(lessonLink);
+            item.add(deleteLink);
 
             repeating.add(item);
         }

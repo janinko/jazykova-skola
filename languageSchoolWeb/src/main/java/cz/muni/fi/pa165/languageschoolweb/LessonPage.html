@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"  
+      xml:lang="en"  
+      lang="en"> 
+    <head> 
+    </head> 
+    <body> 
+        <wicket:extend> 
+            <h2 wicket:id="lessonName">[Nazev]</h2>
+			<span><wicket:message key="Jazyk"/>:</span> <span wicket:id="lessonLang">[jazyk]</span><br/>
+			<span><wicket:message key="Termin"/></span> <span wicket:id="lessonDate">[datum]</span> <span wicket:id="lessonTime">[cas]</span><br/>
+			<span><wicket:message key="Ucitel"/>:</span> <a wicket:id="lessonTeacherLink"><span wicket:id="lessonTeacher">[ucitel]</span></a><br/>
+            <div wicket:id="studentList"/>
+        </wicket:extend> 
+    </body> 
+</html>

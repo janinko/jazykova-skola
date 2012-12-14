@@ -71,9 +71,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	@Autowired private CourseService courseService;
 	@Autowired private LessonService lessonService;
 
-	public void generateData(int courses, int lessons, int students, int techers) {
-		//getFromDB();
-		
+	public void generateData(int courses, int lessons, int students, int techers) {		
 		genTeachers(techers);
 		genCourses(courses);
 		genLessons(lessons);
@@ -209,7 +207,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 
 	private Student genStudent() {
 		Student student = new Student();
-		student.setAge(generator.nextInt(7) + 64);
+		student.setAge(generator.nextInt(64) + 7);
 		String[] name = genName();
 		student.setFirstName(name[0]);
 		student.setLastName(name[1]);
@@ -225,15 +223,4 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 			studentService.lessonEnroll(s, lessons.get(generator.nextInt(lessons.size())));
 		}
 	}
-
-	/*private void getFromDB() {
-		Set<Teacher> ts = teacherService.getAllTeachers();
-		Set<Course> cs = courseService.getAllCourses();
-		Set<Lesson> ls = lessonService.getAllLessons();
-		//Set<Student> ss = studentService.getAllStudents();
-
-		ts.removeAll(teachers);
-		cs.removeAll(courses);
-		ls.removeAll(lessons);
-	}*/
 }

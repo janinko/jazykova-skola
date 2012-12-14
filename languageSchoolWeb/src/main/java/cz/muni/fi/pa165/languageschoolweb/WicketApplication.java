@@ -27,5 +27,6 @@ public class WicketApplication extends WebApplication
         mountPage("/account", AccountPage.class);
         mountPage("/action", ActionPage.class);
         mountPage("/error", ErrorPage.class);
+        mountPage("/404", Error404Page.class);
 	}
 }
