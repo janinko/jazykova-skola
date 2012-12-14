@@ -4,11 +4,17 @@ package cz.muni.fi.pa165.languageschool.cli.iface;
  * @author Honza Brázdil <jbrazdil@redhat.com>
  */
 public class Application {
-	Teachers teachers = new Teachers();
-	Courses courses = new Courses();
+	Teachers teachers;
+	Courses courses;
+	boolean running = true;
+
+	public Application() {
+		teachers = new Teachers(this);
+		courses = new Courses(this);
+	}
 
 	public void select(){
-		while(true){
+		while(running){
 			Helper.clear();
 			printWelcome();
 			printHelp();
@@ -26,8 +32,9 @@ public class Application {
 	
 	
 	private void printHelp() {
+		System.out.println("_____");
 		System.out.println("q - exit");
-		System.out.println("t - Práce s učitely");
+		System.out.println("t - Práce s učiteli");
 		System.out.println("c - Práce s kurzy");
 	}
 

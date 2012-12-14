@@ -1,4 +1,6 @@
-To run everything embeded (web on 8080) use:
+To run server (everything embeded, web on 8080) use:
   mvn tomcat7:run
 
-
+To run cli:
+  cd languageSchoolCli/ 
+  mvn exec:java
