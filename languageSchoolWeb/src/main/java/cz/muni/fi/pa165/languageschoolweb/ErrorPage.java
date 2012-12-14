@@ -7,4 +7,14 @@ public class ErrorPage extends WebPage {
  
 	public ErrorPage(final PageParameters parameters) { 
 	}
+
+	@Override
+	public boolean isVersioned() {
+		return false;
+	}
+
+	@Override
+	public boolean isErrorPage() {
+		return true;
+	}
 }
