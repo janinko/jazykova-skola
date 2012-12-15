@@ -62,16 +62,6 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
     }
 
 	@Override
-    public Set<CourseDto> getTeachersCourses(TeacherDto teacher) {
-        Set <Course> courses = teacherService.getTeachersCourses(dto2e(teacher));
-        Set <CourseDto> coursesDto = new HashSet<CourseDto>();
-        for(Course c: courses) {
-            coursesDto.add(courseDtoAdapter.e2dto(c));
-        }
-        return coursesDto;
-    }
-
-	@Override
     public Set<TeacherDto> getAllTeachers() {
         Set<Teacher> teachers = teacherService.getAllTeachers();
         Set<TeacherDto> teachersDto = new HashSet<TeacherDto>();

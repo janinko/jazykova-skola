@@ -82,8 +82,20 @@ public interface StudentService {
      */
     void removeStudent(Student student);
 
-
+    /**
+     * Sets student's password
+     *
+     * @param student student to be updated
+     * @param password new password
+     */
 	void setPassword(Student student, String password);
-
+	
+    /**
+     * Try to authentize user.
+     *
+     * @param email student's email
+     * @param password student's password
+	 * @return student instace if authentizazion is sucessfull, null otherwise
+     */
 	Student authentize(String email, String password);
 }

@@ -26,7 +26,11 @@ public class LessonsPage extends BasePage {
         
         
         if ( (act != null) && act.equals("delete") && (lessonId != null) ) {
-			lessons.removeLesson(lessons.read(lessonId));
+			if(parameters.get("my").isNull()){
+				lessons.removeLesson(lessons.read(lessonId));
+			}else{
+				students.lessonCancel(students.read(1), lessons.read(lessonId));
+			}
 			//setResponsePage(LessonsPage.class);
 		}
         
