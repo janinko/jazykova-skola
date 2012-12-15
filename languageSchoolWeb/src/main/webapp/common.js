@@ -25,6 +25,23 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	
+	$('#expand-457').click(function() {
+		$('.lesson-box').fadeOut('slow', function() {
+			$('.mini-list').removeClass('mini-list');
+			$('.courseName').css('font-size', '16px');
+			$(this).fadeIn('fast');
+		});
+		
+		
+	});
+	
+	
+	$('.mini-list .courseName').each(function(index) {
+		if ($(this).text().length > 49) {
+			$(this).css('font-size', '14px');
+		}
+	});
 
 });
 

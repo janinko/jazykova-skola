@@ -7,13 +7,29 @@
     </head> 
     <body> 
         <wicket:extend> 
-            <h2 wicket:id="teacherName">[Jmeno]</h2>
-			<span><wicket:message key="email"/></span> <span wicket:id="teacherEmail">[email]</span><br/>
-			<span><wicket:message key="Jazyky"/>:</span> <span wicket:id="teacherLangs">[jazyky]</span><br/>
-			<wicket:enclosure child="teacherNative">
-				<span><wicket:message key="native"/></span> <span wicket:id="teacherNative">[Rodny jazyk]</span><br/>
-			</wicket:enclosure>
-            <div wicket:id="lessonList"/>
+			
+			<div id="teacherPage">
+				<h2 wicket:id="teacherName">[Jmeno]</h2>
+
+				<img class="avatar" src="./avatar.jpg" width="110"/>
+
+				<ul>
+					<li><span class="label"><wicket:message key="email"/></span> <span wicket:id="teacherEmail">[email]</span></li>
+					<li><span class="label"><wicket:message key="Jazyky"/>:</span> <span wicket:id="teacherLangs">[jazyky]</span></li>
+					<wicket:enclosure child="teacherNative">
+						<li>
+							<span class="label"><wicket:message key="native"/></span> <span wicket:id="teacherNative">[Rodny jazyk]</span>
+						</li>
+					</wicket:enclosure>
+				</ul>
+				
+				<div class="cleaner"></div>
+				
+				<div class="mini-list">
+					<div wicket:id="lessonList"/>
+				</div>
+			</div>
+				
         </wicket:extend> 
     </body> 
 </html>
