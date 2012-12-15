@@ -4,3 +4,5 @@ To run server (everything embeded, web on 8080) use:
 To run cli:
   cd languageSchoolCli/ 
   mvn exec:java
+
+Client is interactive and should be pretty intuitive
