@@ -45,15 +45,6 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter{
 		return e2dto(student);
 	}
 
-    @Override
-    public Set<StudentDto> getAllStudents() {
-        Set<StudentDto> students = new HashSet<StudentDto>();
-        for(Student s : studentService.getAllStudents()){
-			students.add(e2dto(s));
-		}
-        return students;
-    }
-
 	@Override
 	public Set<LessonDto> getAllLessons(StudentDto student){
 		Set<LessonDto> lessons = new HashSet<LessonDto>();
@@ -64,18 +55,8 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter{
 	}
 
 	@Override
-	public void lessonEnroll(StudentDto student, LessonDto lesson){
-		studentService.lessonEnroll(dto2e(student), lessonDtoAdapter.dto2e(lesson));
-	}
-
-	@Override
 	public void lessonCancel(StudentDto student, LessonDto lesson){
 		studentService.lessonCancel(dto2e(student), lessonDtoAdapter.dto2e(lesson));
-	}
-
-	@Override
-	public void removeStudent(StudentDto student){
-		studentService.removeStudent(dto2e(student));
 	}
 
 	@Override

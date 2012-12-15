@@ -64,21 +64,26 @@ public interface TeacherDtoAdapter {
     Set<LessonDto> getTeachersLessons(TeacherDto teacher);
     
     /**
-     * Retrieves all courses of a given teacher
-     * 
-     * @param teacher teacher the courses of which will be returned
-     * @return set of all courses of a given teacher
-     */
-    Set<CourseDto> getTeachersCourses(TeacherDto teacher);
-    
-    /**
      * Retrieves all teachers available in the database
      * 
      * @return set of all available teachers
      */
     Set<TeacherDto> getAllTeachers();
 
+    /**
+     * Sets teacher's password
+     *
+     * @param teacher teacher to be updated
+     * @param password new password
+     */
 	void setPassword(TeacherDto teacher, String password);
 
+    /**
+     * Try to authentize user.
+     *
+     * @param email teacher's email
+     * @param password teacher's password
+	 * @return teacher instace if authentizazion is sucessfull, null otherwise
+     */
 	TeacherDto authentize(String email, String password);
 }

@@ -74,7 +74,20 @@ public interface TeacherService {
      */
     Set<Course> getTeachersCourses(Teacher teacher);
 
+    /**
+     * Sets teacher's password
+     *
+     * @param teacher teacher to be updated
+     * @param password new password
+     */
 	void setPassword(Teacher teacher, String password);
 
+    /**
+     * Try to authentize user.
+     *
+     * @param email teacher's email
+     * @param password teacher's password
+	 * @return teacher instace if authentizazion is sucessfull, null otherwise
+     */
 	Teacher authentize(String email, String password);
 }

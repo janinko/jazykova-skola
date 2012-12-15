@@ -22,13 +22,6 @@ public interface StudentDtoAdapter {
      * @throws IllegalArgumentException if the student parameter is null
      */
     void createStudent(StudentDto student);
-
-    /**
-     * Retrieves set of all students
-     * 
-     * @return set of all students
-     */
-    Set<StudentDto> getAllStudents();
     
     /**
      * Retrieves set of all lessons of a given student
@@ -47,14 +40,6 @@ public interface StudentDtoAdapter {
     void lessonCancel(StudentDto student, LessonDto lesson);
 
     /**
-     * Enrolls students to lesson
-     * 
-     * @param student student to be enrolled
-     * @param lesson lesson to enroll
-     */
-    void lessonEnroll(StudentDto student, LessonDto lesson);
-
-    /**
      * Retrieves a one specific student from a database
      * 
      * @param id id of a desired student
@@ -71,20 +56,26 @@ public interface StudentDtoAdapter {
     StudentDto read(String email);
 
     /**
-     * Removes a one specific student from a database
-     * 
-     * @param id id of a student to be removed
-     */
-    void removeStudent(StudentDto student);
-
-    /**
      * Updates student
      * 
      * @param student student to be updated
      */
     void update(StudentDto student);
 
+    /**
+     * Sets student's password
+     *
+     * @param student student to be updated
+     * @param password new password
+     */
 	void setPassword(StudentDto student, String password);
 
+    /**
+     * Try to authentize user.
+     *
+     * @param email student's email
+     * @param password student's password
+	 * @return student instace if authentizazion is sucessfull, null otherwise
+     */
 	StudentDto authentize(String email, String password);
 }
