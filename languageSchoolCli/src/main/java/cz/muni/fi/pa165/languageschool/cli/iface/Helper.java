@@ -27,7 +27,6 @@ class Helper {
 	final static String apiurl = "http://localhost:8080/pa165/api/";
 	
 	public static void clear(){
-		//System.out.print(ESC + "2J");
 		System.out.println("------------------------------");
 		System.out.print(NL+NL+NL+NL+NL+NL);
 	}
@@ -183,7 +182,6 @@ class Helper {
 
 
 	private static void log(Exception ex) {
-		//Logger.getLogger(Courses.class.getName()).log(Level.SEVERE, null, ex);
 		System.out.println("Problém při komunikaci se serverem.");
 	}
 
