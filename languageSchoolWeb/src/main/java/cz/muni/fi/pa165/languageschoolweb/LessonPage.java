@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.languageschoolweb;
 import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
-import cz.muni.fi.pa165.languageschoolweb.components.LessonList;
 import cz.muni.fi.pa165.languageschoolweb.components.StudentList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

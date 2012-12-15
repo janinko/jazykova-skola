@@ -2,10 +2,8 @@ package cz.muni.fi.pa165.languageschool.adapters;
 
 import cz.muni.fi.pa165.languageschool.api.Language;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
-import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
-import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;

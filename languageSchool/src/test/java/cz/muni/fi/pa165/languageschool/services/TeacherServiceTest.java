@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.languageschool.services;
 
 import cz.muni.fi.pa165.languageschool.api.DAO.LessonDAO;
 import cz.muni.fi.pa165.languageschool.api.DAO.TeacherDAO;
-import cz.muni.fi.pa165.languageschool.api.entities.Course;
 import cz.muni.fi.pa165.languageschool.api.entities.Lesson;
 import cz.muni.fi.pa165.languageschool.api.entities.Teacher;
 import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
@@ -59,7 +58,7 @@ public class TeacherServiceTest{
     }
     
     @Test
-    public void testUpdateTeacher() {;
+    public void testUpdateTeacher() {
         teacherService.updateTeacher(teacher);
         verify(teacherDao).update(teacher);
     }

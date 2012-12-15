@@ -71,6 +71,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 	@Autowired private CourseService courseService;
 	@Autowired private LessonService lessonService;
 
+	@Override
 	public void generateData(int courses, int lessons, int students, int techers) {		
 		genTeachers(techers);
 		genCourses(courses);
