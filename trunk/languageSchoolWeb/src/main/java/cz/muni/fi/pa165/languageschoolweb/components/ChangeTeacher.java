@@ -37,16 +37,6 @@ public class ChangeTeacher extends Panel{
 		}
         final TeacherDto model = new TeacherDto();
         
-        /*if(email == null){
-			add(new Label("error", "V URL nenalezen email teachera."));
-			return;
-		} else if(teachers.read(email) == null){
-			add(new Label("error", "Teacher s emailem" + email +"neexistuje!"));
-			return;
-		} else {
-            
-        }*/
-        
         Label name = new Label("name", "Teacher " + teacher.getFirstName() + " " +teacher.getLastName());
         
         Form form = new InputForm("form", teacher);
@@ -86,7 +76,6 @@ public class ChangeTeacher extends Panel{
 			teacher.setFirstName(model.getFirstName());
 			teacher.setLastName(model.getLastName());
             teacher.setLanguages(model.getLanguages());
-			//teacher.setEmail(model.getEmail()); // TODO
 
 			if(model.getTeacher() == null){ // creating new teacher
 				try{

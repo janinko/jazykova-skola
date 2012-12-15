@@ -30,16 +30,6 @@ public class ChangeStudent extends Panel{
         student = students.read(email);
         final StudentDto model = new StudentDto();
         
-        /*if(email == null){
-			add(new Label("error", "V URL nenalezen email studenta."));
-			return;
-		} else if(students.read(email) == null){
-			add(new Label("error", "Student s emailem" + email +"neexistuje!"));
-			return;
-		} else {
-            
-        }*/
-        
         Label name = new Label("name", "Student " + student.getFirstName() + " " +student.getLastName());
         
         Form form = new InputForm("form", student);

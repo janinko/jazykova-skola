@@ -31,7 +31,6 @@ public class LessonsPage extends BasePage {
 			}else{
 				students.lessonCancel(students.read(1), lessons.read(lessonId));
 			}
-			//setResponsePage(LessonsPage.class);
 		}
         
 		if(!parameters.get("my").isNull() && students.read(1) != null){

@@ -56,15 +56,12 @@ public class CourseList extends Panel{
 		// TODO only when logged
 		Link deleteLink = new BookmarkablePageLink("deleteLink", CoursesPage.class, params2);
 
-		//Button button = new Button("delete");
-		//button.setVisible(isLogged());
 
 		link.add(new Label("name", course.getName()));
 		item.add(link);
 		item.add(deleteLink);
 		item.add(new Label("language", course.getLanguage().toString()));
 		item.add(new Label("level", String.valueOf(course.getLevel())));
-		//item.add(button);
 		repeating.add(item);
 	}
 
