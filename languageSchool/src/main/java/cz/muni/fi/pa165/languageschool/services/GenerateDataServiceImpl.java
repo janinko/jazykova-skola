@@ -198,7 +198,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 
 	private Lesson genLesson() {
 		Lesson lesson = new Lesson();
-		lesson.setDate(new Date((generator.nextInt(100)+ 15700)*24*60*60*1000  )); // MAGIC!!!
+		lesson.setDate(new Date((new java.util.Date()).getTime() + generator.nextInt(100)*24*60*60*1000  )); // MAGIC!!!
 		lesson.setTime(new Time((long) generator.nextInt(43200000) + 28800000L));
 		lesson.setTeacher(teachers.get(generator.nextInt(teachers.size())));
 

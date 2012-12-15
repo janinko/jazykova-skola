@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.languageschool.api.adapters.LessonDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschoolweb.components.LessonList;
+import java.sql.Date;
 import java.util.Set;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -33,7 +34,7 @@ public class LessonsPage extends BasePage {
 			lsns = students.getAllLessons(students.read(1));
             my = true;
 		}else{
-			lsns = lessons.getAllLessons();
+			lsns = lessons.getUpcomingLessons(new Date((new java.util.Date()).getTime()+86400000*21));
 		}
         
         
