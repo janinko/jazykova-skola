@@ -42,11 +42,6 @@ public class LessonDtoAdapterImpl implements LessonDtoAdapter{
 	}
 
 	@Override
-	public void removeStudent(LessonDto lesson,StudentDto student){
-            lessonService.removeStudent(dto2e(lesson),studentDtoAdapter.dto2e(student));
-	}
-
-	@Override
 	public Set<StudentDto> findStudentsByLesson(LessonDto lesson){
 		Set<StudentDto> studentTOs = new HashSet<StudentDto>();
 		for(Student s : lessonService.findStudentsByLesson(dto2e(lesson))){

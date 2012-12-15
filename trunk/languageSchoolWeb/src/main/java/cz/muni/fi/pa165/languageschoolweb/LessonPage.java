@@ -41,7 +41,7 @@ public class LessonPage extends BasePage {
         params.set("email",lesson.getTeacherEmail());
 		Link lessonTeacherLink = new BookmarkablePageLink("lessonTeacherLink", TeacherPage.class, params);
 
-		DateFormat dateFormat = new SimpleDateFormat("dd. MM.");
+		DateFormat dateFormat = new SimpleDateFormat("dd. MM. YYYY");
 		DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
 		Label lessonName    = new Label("lessonName", course.getName());

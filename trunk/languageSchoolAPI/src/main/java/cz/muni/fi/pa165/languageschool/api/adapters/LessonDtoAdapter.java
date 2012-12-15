@@ -44,14 +44,6 @@ public interface LessonDtoAdapter {
      * @param lesson lesson to be removed
      */
     void removeLesson(LessonDto lesson);
-
-    /**
-     * Removes student from a specific lesson
-     * 
-     * @param lesson lesson from which student will be removed
-     * @param student student to be removed
-     */
-    void removeStudent(LessonDto lesson, StudentDto student);
     
     /*
      * Retrieves all upcoming lessons till specified date.
