@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,11 +32,13 @@ public class LessonServiceImpl implements LessonService {
     }	
     
 	@Override
+	@Secured("ROLE_TEACHER")
     public void removeLesson(Lesson l) {
 		lessonDao.delete(l);
 	}
 
 	@Override
+	@Secured("ROLE_TEACHER")
 	public void removeStudent(Lesson l, Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().remove(student);
@@ -43,6 +46,7 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
+	@Secured("ROLE_TEACHER")
 	public void addStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().add(student);
@@ -51,6 +55,7 @@ public class LessonServiceImpl implements LessonService {
 	
 	@Transactional(readOnly=true)
 	@Override
+	@Secured("ROLE_TEACHER")
 	public Set<Student> findStudentsByLesson(Lesson lesson) {
 		return new HashSet<Student>(studentDao.findStudentByLesson(lesson));
 	}
