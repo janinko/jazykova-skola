@@ -62,7 +62,7 @@
             <groupId>cz.muni.fi.pa165</groupId>
             <artifactId>languageSchool</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope></scope>
+            <!--scope>runtime</scope-->
         </dependency>
         <!--  WICKET DEPENDENCIES -->
         <dependency>
@@ -78,6 +78,16 @@
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-datetime</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+	<dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-auth-roles</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-spring</artifactId>
             <version>${wicket.version}</version>
         </dependency>
 
@@ -109,20 +119,46 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- ADSSFD -->
+        <!-- SPRING -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>3.0.5.RELEASE</version>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${version.spring}</version>
+	    <exclusions>
+	        <exclusion>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-core</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-context</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-aop</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-support</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>commons-logging</groupId>
+	            <artifactId>commons-logging</artifactId>
+	        </exclusion>
+	    </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-spring</artifactId>
-            <version>6.4.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-     
+        <!-- REST -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -135,6 +171,7 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+
     <build>
         <resources>
             <resource>
