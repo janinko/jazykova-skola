@@ -22,7 +22,7 @@ public class Course implements Serializable {
     @Enumerated(EnumType.STRING)
     private Language language;
     
-    @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.ORDINAL)
     private int level;
 
 	
