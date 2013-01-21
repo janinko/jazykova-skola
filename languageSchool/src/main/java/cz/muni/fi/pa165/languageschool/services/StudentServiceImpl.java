@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,16 +26,19 @@ public class StudentServiceImpl implements StudentService {
 
 	
 	@Override
+	@Secured("ROLE_TEACHER")
     public void createStudent(Student student){
         studentDao.create(student);
     }
     
 	@Override
+	@Secured("ROLE_STUDENT")
     public void update(Student student) {
         studentDao.update(student);
     }
     
     @Override
+	@Secured("ROLE_TEACHER")
     public Set<Student> getAllStudents() {
         Set<Student> students = new HashSet<Student>();
         List<Student> studentsList = studentDao.findAllStudents();  
@@ -43,12 +47,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
 	@Override
+	//@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Student read(long id) {
         return studentDao.read(id);
     }
 
 	@Override
+	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Set<Lesson> getAllLessons(Student student) {
         Set<Lesson> studentsLessons = new HashSet<Lesson>();
@@ -62,29 +68,34 @@ public class StudentServiceImpl implements StudentService {
     }
 
 	@Override
+	@Secured("ROLE_STUDENT")
     public void lessonEnroll(Student student, Lesson lesson) {
 	lesson.getStudents().add(student);
 	lessonDao.update(lesson);
     }
 
 	@Override
+	@Secured("ROLE_STUDENT")
     public void lessonCancel(Student student, Lesson lesson) {
         lesson.getStudents().remove(student);
 	lessonDao.update(lesson);
     }
 
 	@Override
+	@Secured("ROLE_TEACHER")
     public void removeStudent(Student s){
         studentDao.delete(s);
     }
 
 	@Override
+	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Student read(String email) {
         return studentDao.findStudentByEmail(email);
     }
 
 	@Override
+	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	public void setPassword(Student student, String password) {
 		Student s = studentDao.read(student.getId());
 		s.setPassword(PasswordEncoder.encode(password));

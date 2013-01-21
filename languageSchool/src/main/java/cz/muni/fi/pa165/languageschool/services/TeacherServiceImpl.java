@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ public class TeacherServiceImpl implements TeacherService {
     private LessonDAO lessonDao;
 
     @Override
+	@Secured("ROLE_TEACHER")
     public void createTeacher(Teacher teacher) {
         teacherDao.create(teacher);
     }
@@ -41,11 +43,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+	@Secured("ROLE_TEACHER")
     public void updateTeacher(Teacher teacher) {
         teacherDao.update(teacher);
     }
 
     @Override
+	@Secured("ROLE_TEACHER")
     public void deleteTeacher(Teacher teacher) {
         teacherDao.delete(teacher);
         for (Lesson l : getTeachersLessons(teacher)) {
@@ -86,6 +90,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+	@Secured("ROLE_TEACHER")
     public void setPassword(Teacher teacher, String password) {
         Teacher t = teacherDao.read(teacher.getId());
         t.setPassword(PasswordEncoder.encode(password));

@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,11 +27,13 @@ public class CourseServiceImpl implements CourseService {
 
 
 	@Override
+	@Secured("ROLE_TEACHER")
 	public Course createCourse(Course course) {
 		return courseDao.create(course);
 	}
 
 	@Override
+	@Secured("ROLE_TEACHER")
 	public void deleteCourse(Course course) {
 		courseDao.delete(course);
 		List<Lesson> l = lessonDao.findLessonByCourse(course);
@@ -41,11 +44,13 @@ public class CourseServiceImpl implements CourseService {
 	}
 	
 	@Override
+	@Secured("ROLE_TEACHER")
 	public void updateCourse(Course course) {
 		courseDao.update(course);
 	}
 
 	@Override
+	@Secured("ROLE_TEACHER")
 	public void addLessonToCourse(Course course, Lesson lesson) {
 		lesson.setCourse(course);
 		lessonDao.create(lesson);
