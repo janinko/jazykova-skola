@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 import cz.muni.fi.pa165.languageschool.api.utilservices.GenerateDataService;
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.GeneratorFormModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -59,6 +61,7 @@ public class GeneratorForm extends Panel{
 			}catch(Exception ex){
 				getSession().error(getString("notGenerated"));
 				getSession().error(ex);
+				Logger.getLogger(InputForm.class.getName()).log(Level.WARNING, "Failed to generate data", ex);
 			}
 
 			setResponsePage(HomePage.class,params);
