@@ -24,7 +24,7 @@ public class HeaderPanel extends Panel {
 	public HeaderPanel(String componentName) {
 		super(componentName);
         
-    	StudentDto student = students.read(1);
+    	StudentDto student = null;//students.read(1);
         //TeacherDto student = teachers.readTeacher(1);
         PageParameters accountParams = new PageParameters();
 		PageParameters lessonsParams = new PageParameters();
@@ -32,10 +32,11 @@ public class HeaderPanel extends Panel {
        	lessonsParams.set("my", true);
         
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
-        Link<AccountPage> accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
+        Link accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
         Link<HomePage> logoutLink = new BookmarkablePageLink<HomePage>("newAccount", HomePage.class);
 
-		if(student == null){			
+		if(student == null){
+			accountLink = new BookmarkablePageLink<LoginPage>("myAccount", LoginPage.class);
             accountLink.add(new Label("label", new ResourceModel("Prihlasit")));
             lessonsLink.setVisible(false);
 			logoutLink.add(new Label("label", new ResourceModel("register")));
