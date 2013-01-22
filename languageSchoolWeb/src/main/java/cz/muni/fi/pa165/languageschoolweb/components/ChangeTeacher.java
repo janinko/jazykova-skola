@@ -7,6 +7,8 @@ import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.TeacherModel;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -19,6 +21,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author
  */
+@AuthorizeAction(action = "RENDER", roles = { Roles.ADMIN })
 public class ChangeTeacher extends Panel{
 	private static final long serialVersionUID = 1L;
 
