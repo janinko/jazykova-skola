@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
+import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.authroles.authorization.strategies.role.RoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -34,6 +36,8 @@ public class WicketApplication extends AuthenticatedWebApplication
         mountPage("/error", ErrorPage.class);
         mountPage("/login", LoginPage.class);
         mountPage("/404", Error404Page.class);
+		
+		getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new UserRolesAuthorizer()));
 	}
 
 	@Override

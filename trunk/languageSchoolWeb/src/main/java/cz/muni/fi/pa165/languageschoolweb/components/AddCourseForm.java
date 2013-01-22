@@ -8,6 +8,8 @@ import cz.muni.fi.pa165.languageschoolweb.model.CourseFormModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -21,6 +23,7 @@ import org.apache.wicket.validation.validator.RangeValidator;
 /**
  * @author xbrazdi1, xchrastk, xkelnar
  */
+@AuthorizeAction(action = "RENDER", roles = { Roles.ADMIN })
 public final class AddCourseForm extends Panel {
 	private static final long serialVersionUID = 1L;
 	
