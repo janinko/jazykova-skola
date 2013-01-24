@@ -16,6 +16,7 @@
 package cz.muni.fi.pa165.languageschoolweb.security;
 
 import org.apache.wicket.Session;
+import java.io.Serializable;
 import org.apache.wicket.authroles.authorization.strategies.role.IRoleCheckingStrategy;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
@@ -27,8 +28,9 @@ import org.apache.wicket.authroles.authorization.strategies.role.Roles;
  * 
  * @author kelnar
  */
-public class UserRolesAuthorizer implements IRoleCheckingStrategy
+public class UserRolesAuthorizer implements IRoleCheckingStrategy,Serializable
 {
+	private static final long serialVersionUID = 1L;
 
     /**
      * Construct.
