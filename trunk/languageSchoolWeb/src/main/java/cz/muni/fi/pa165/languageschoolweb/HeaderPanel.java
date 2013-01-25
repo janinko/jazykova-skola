@@ -4,8 +4,11 @@ import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
+import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -23,6 +26,9 @@ public class HeaderPanel extends Panel {
 	private StudentDtoAdapter students;
     @SpringBean
 	private TeacherDtoAdapter teachers;
+	
+	UserRolesAuthorizer ura = new UserRolesAuthorizer();
+	
 
 	public HeaderPanel(String componentName) {
 		super(componentName);
@@ -43,9 +49,11 @@ public class HeaderPanel extends Panel {
             accountLink.add(new Label("label", new ResourceModel("Prihlasit")));
             lessonsLink.setVisible(false);
 			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
-			logoutLink.add(new Label("label", new ResourceModel("register")));
+			logoutLink.add(new Label("label", new ResourceModel("register"))).setVisible(ura.hasAnyRole(new Roles(Roles.ADMIN)));
 		} else {
 			String email = session.getLogged();
+			
+			System.out.println("------- toto je regle: " + email);
 
             accountParams.set("email", email);
             accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
@@ -53,12 +61,17 @@ public class HeaderPanel extends Panel {
 			StudentDto s = students.read(email);
 			if(s != null){
 				accountLink.add(new Label("label", s.getFirstName() + " " + s.getLastName()));
-			}else{
+			}else {
 				TeacherDto t = teachers.readTeacher(email);
-				accountLink.add(new Label("label", t.getFirstName() + " " + t.getLastName()));
+				
+				if (t != null) {
+					accountLink.add(new Label("label", t.getFirstName() + " " + t.getLastName() ));
+				} else {
+					accountLink.add(new Label("label", "Root Admin"));
+				}
 			}
 
-			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class); // TODO logut stranka s: session.logout()
+			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", LogoutPage.class);
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
 		}
         
