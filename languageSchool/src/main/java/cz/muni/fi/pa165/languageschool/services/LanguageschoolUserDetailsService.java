@@ -30,17 +30,25 @@ public class LanguageschoolUserDetailsService implements UserDetailsService{
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Teacher t = teacherDao.findTeacherByEmail(email);
+		
 		String password;
 		HashSet<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		if(t != null){
-			password = t.getPassword();
+		
+		System.out.println("spoustiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiim se");
+		if("admin@admin.com".equals(email)) {
+			password = "admin";
 			authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
-		}else{
-			Student s = studentDao.findStudentByEmail(email);
-			if(s == null) throw new UsernameNotFoundException("Username Not Found");
-			password = s.getPassword();
-			authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+		} else {
+			Teacher t = teacherDao.findTeacherByEmail(email);
+			if(t != null){
+				password = t.getPassword();
+				authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
+			}else{
+				Student s = studentDao.findStudentByEmail(email);
+				if(s == null) throw new UsernameNotFoundException("Username Not Found");
+				password = s.getPassword();
+				authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+			}
 		}
 
 		User user = new User(email, password, authorities);

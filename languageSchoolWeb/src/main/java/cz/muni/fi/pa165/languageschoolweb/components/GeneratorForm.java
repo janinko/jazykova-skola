@@ -3,8 +3,10 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 import cz.muni.fi.pa165.languageschool.api.utilservices.GenerateDataService;
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.GeneratorFormModel;
+import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -53,11 +55,23 @@ public class GeneratorForm extends Panel{
 
 			PageParameters params = new PageParameters();
 			try{
+				// simulating admin before generating
+				AuthenticatedWebSession session = AuthenticatedWebSession.get();
+				if(session.authenticate("admin@admin.com", "admin")){
+					getSession().info("Přihlášen!");// jako student: " + student.getFirstName() + student.getLastName());
+				}else{
+					getSession().error("Špatné email nebo heslo 2134");
+				}
+				
 				generator.generateData(model.getCourseCount(),
 									   model.getLessonCount(),
 									   model.getStudentCount(),
 									   model.getTeacherCount());
 				getSession().info(getString("generated"));
+				
+				// delete simulated admin after generating
+				//session.logout();
+				
 			}catch(Exception ex){
 				getSession().error(getString("notGenerated"));
 				getSession().error(ex);
