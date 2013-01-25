@@ -23,7 +23,9 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter{
 
 	@Override
 	public void createStudent(StudentDto student){
-		studentService.createStudent(dto2e(student));
+		Student s = dto2e(student);
+		studentService.createStudent(s);
+		student.setId(s.getId());
 	}
 
 	@Override

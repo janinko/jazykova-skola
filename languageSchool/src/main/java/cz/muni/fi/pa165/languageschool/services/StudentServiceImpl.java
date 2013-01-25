@@ -26,8 +26,8 @@ public class StudentServiceImpl implements StudentService {
 
 	
 	@Override
-	@Secured("ROLE_TEACHER")
     public void createStudent(Student student){
+		student.setPassword("deffpass");
         studentDao.create(student);
     }
     
@@ -88,7 +88,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
 	@Override
-	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Student read(String email) {
         return studentDao.findStudentByEmail(email);
@@ -98,6 +97,7 @@ public class StudentServiceImpl implements StudentService {
 	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	public void setPassword(Student student, String password) {
 		Student s = studentDao.read(student.getId());
+		if(s == null) throw new IllegalArgumentException("Provided student doesn't exist");
 		s.setPassword(PasswordEncoder.encode(password));
 		studentDao.update(s);
 	}

@@ -27,8 +27,8 @@ public class TeacherServiceImpl implements TeacherService {
     private LessonDAO lessonDao;
 
     @Override
-	@Secured("ROLE_TEACHER")
     public void createTeacher(Teacher teacher) {
+		teacher.setPassword("deffpass");
         teacherDao.create(teacher);
     }
 
@@ -93,6 +93,7 @@ public class TeacherServiceImpl implements TeacherService {
 	@Secured("ROLE_TEACHER")
     public void setPassword(Teacher teacher, String password) {
         Teacher t = teacherDao.read(teacher.getId());
+		if(t == null) throw new IllegalArgumentException("Provided teacher doesn't exist");
         t.setPassword(PasswordEncoder.encode(password));
         teacherDao.update(t);
     }

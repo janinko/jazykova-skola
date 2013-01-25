@@ -3,6 +3,9 @@ package cz.muni.fi.pa165.languageschoolweb;
 import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
+import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -23,27 +26,39 @@ public class HeaderPanel extends Panel {
 
 	public HeaderPanel(String componentName) {
 		super(componentName);
+
+		SpringAuthenticatedWebSession session = (SpringAuthenticatedWebSession) AuthenticatedWebSession.get();
         
-    	StudentDto student = null;//students.read(1);
-        //TeacherDto student = teachers.readTeacher(1);
         PageParameters accountParams = new PageParameters();
 		PageParameters lessonsParams = new PageParameters();
         
        	lessonsParams.set("my", true);
         
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
-        Link accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
-        Link<HomePage> logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
+        Link accountLink; //= new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
+        Link<HomePage> logoutLink;
 
-		if(student == null){
+		if(session.getLogged() == null){
 			accountLink = new BookmarkablePageLink<LoginPage>("myAccount", LoginPage.class);
             accountLink.add(new Label("label", new ResourceModel("Prihlasit")));
             lessonsLink.setVisible(false);
+			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
 			logoutLink.add(new Label("label", new ResourceModel("register")));
 		} else {
-            accountParams.set("email", student.getEmail().toString());
+			String email = session.getLogged();
+
+            accountParams.set("email", email);
             accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
-            accountLink.add(new Label("label", student.getFirstName() + " " + student.getLastName()));
+
+			StudentDto s = students.read(email);
+			if(s != null){
+				accountLink.add(new Label("label", s.getFirstName() + " " + s.getLastName()));
+			}else{
+				TeacherDto t = teachers.readTeacher(email);
+				accountLink.add(new Label("label", t.getFirstName() + " " + t.getLastName()));
+			}
+
+			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class); // TODO logut stranka s: session.logout()
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
 		}
         

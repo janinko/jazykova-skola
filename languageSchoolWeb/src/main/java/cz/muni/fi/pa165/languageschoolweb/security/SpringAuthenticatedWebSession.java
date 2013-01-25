@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.languageschoolweb.security;
 
+import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
+import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -20,6 +22,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 	private static final long serialVersionUID = 1L;
 
+	private String logged;
+
 	@SpringBean(name="authenticationManager")
 	private AuthenticationManager authenticationManager;
 
@@ -35,6 +39,7 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			authenticated = authentication.isAuthenticated();
+			logged = username;
 		}catch(AuthenticationException ex){
 			Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.WARNING, "Failed to generate data", ex);
 			authenticated = false;
@@ -61,5 +66,9 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 			SecurityContextHolder.getContext().setAuthentication(null);
 			this.signOut();
 		}
+	}
+
+	public String getLogged() {
+		return logged;
 	}
 }

@@ -4,7 +4,10 @@
 
 		<form wicket:id="generateForm">
 			<label for="usertype"><wicket:message key="usertype"/></label>
-			<input wicket:id="usertype" id="usertype" type="text" size="15"/><br>
+			<select wicket:id="usertypes">
+				<option wicket:id="teachertype"><wicket:message key="Ucitel"/></option>
+				<option wicket:id="studenttype"><wicket:message key="Student"/></option>
+			</select><br>
 			
 			<label for="email"><wicket:message key="email"/></label>
             <input wicket:id="email" id="email" type="text" size="15"/><br>

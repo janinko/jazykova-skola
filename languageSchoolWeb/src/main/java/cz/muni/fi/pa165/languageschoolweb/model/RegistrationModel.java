@@ -8,19 +8,10 @@ import org.apache.wicket.util.io.IClusterable;
 public class RegistrationModel implements IClusterable {
 	private static final long serialVersionUID = 1L;
 
-	String usertype;
 	String email;
 	String firstname;
 	String lastname;
 	String password;
-
-	public String getUsertype() {
-		return usertype;
-	}
-
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
-	}
 
 	public String getEmail() {
 		return email;
