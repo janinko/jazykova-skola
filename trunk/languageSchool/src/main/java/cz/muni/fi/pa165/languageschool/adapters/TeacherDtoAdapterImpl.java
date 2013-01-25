@@ -26,7 +26,9 @@ public class TeacherDtoAdapterImpl implements TeacherDtoAdapter {
 
 	@Override
     public void createTeacher(TeacherDto teacher) {
-        teacherService.createTeacher(dto2e(teacher));
+		Teacher t = dto2e(teacher);
+        teacherService.createTeacher(t);
+		teacher.setId(t.getId());
     }
 
 	@Override

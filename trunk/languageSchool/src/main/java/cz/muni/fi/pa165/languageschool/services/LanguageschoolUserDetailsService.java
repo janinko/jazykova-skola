@@ -34,7 +34,6 @@ public class LanguageschoolUserDetailsService implements UserDetailsService{
 		String password;
 		HashSet<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		
-		System.out.println("spoustiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiim se");
 		if("admin@admin.com".equals(email)) {
 			password = "admin";
 			authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
