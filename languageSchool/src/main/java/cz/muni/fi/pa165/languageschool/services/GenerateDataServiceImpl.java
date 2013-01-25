@@ -222,7 +222,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		int j = generator.nextInt(7) + 1;
 
 		for(int i=0; i<j; i++){
-			studentService.lessonEnroll(s, lessons.get(generator.nextInt(lessons.size())));
+			lessonService.addStudent(lessons.get(generator.nextInt(lessons.size())), s);
 		}
 	}
 }
