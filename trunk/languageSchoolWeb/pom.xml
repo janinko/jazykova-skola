@@ -97,6 +97,12 @@
             <version>${wicket.version}</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-cdi</artifactId>
+            <version>${wicket.version}</version>
+            <type>jar</type>
+        </dependency>
 
         <!-- LOGGING DEPENDENCIES - LOG4J -->
         <dependency>
@@ -177,7 +183,6 @@
             <version>2.1.1</version>
             <type>jar</type>
         </dependency>
-        
     </dependencies>
 
     <build>
