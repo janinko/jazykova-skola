@@ -17,6 +17,8 @@ package cz.muni.fi.pa165.languageschoolweb.security;
 
 import org.apache.wicket.Session;
 import java.io.Serializable;
+import javax.swing.Spring;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.IRoleCheckingStrategy;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 
@@ -42,13 +44,11 @@ public class UserRolesAuthorizer implements IRoleCheckingStrategy,Serializable
     /**
      * @see org.apache.wicket.authorization.strategies.role.IRoleCheckingStrategy#hasAnyRole(Roles)
      */
+    @Override
     public boolean hasAnyRole(Roles roles)
     {
-        //RolesSession authSession = (RolesSession)Session.get(); -- vyhazuje prozatim vyjimku TODO
-		//System.out.println(authSession);
-        //return authSession.getUser().hasAnyRole(roles);
-		
-		return true;
+        AuthenticatedWebSession session = AuthenticatedWebSession.get();
+        Roles authRoles = session.getRoles();
+        return authRoles.hasAnyRole(roles);
     }
-
 }

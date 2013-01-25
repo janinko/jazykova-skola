@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
+import cz.muni.fi.pa165.languageschoolweb.security.RolesSession;
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import org.apache.wicket.Session;
