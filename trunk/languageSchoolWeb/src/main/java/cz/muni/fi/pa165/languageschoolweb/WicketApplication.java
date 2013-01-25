@@ -35,6 +35,7 @@ public class WicketApplication extends AuthenticatedWebApplication
         mountPage("/action", ActionPage.class);
         mountPage("/error", ErrorPage.class);
         mountPage("/login", LoginPage.class);
+		mountPage("/registration", RegistrationPage.class);
         mountPage("/404", Error404Page.class);
 		
 		getSecuritySettings().setAuthorizationStrategy(new RoleAuthorizationStrategy(new UserRolesAuthorizer()));

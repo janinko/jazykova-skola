@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<wicket:panel>
+
+		<form wicket:id="generateForm">
+			<label for="usertype"><wicket:message key="usertype"/></label>
+			<input wicket:id="usertype" id="usertype" type="text" size="15"/><br>
+			
+			<label for="email"><wicket:message key="email"/></label>
+            <input wicket:id="email" id="email" type="text" size="15"/><br>
+			
+			<label for="firstname"><wicket:message key="firstname"/></label>
+			<input wicket:id="firstname" id="firstname" type="text" size="15"/><br>
+				
+			<label for="lastname"><wicket:message key="lastname"/></label>
+			<input wicket:id="lastname" id="lastname" type="text" size="15"/><br>
+				
+			<label for="password"><wicket:message key="password"/></label>
+            <input wicket:id="password" id="password" type="password" size="15"/><br>
+			<input type="submit" wicket:id="loginButton" value="Přihlásit" />
+		</form>
+
+	</wicket:panel>
+</html>

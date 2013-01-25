@@ -33,7 +33,7 @@ public class HeaderPanel extends Panel {
         
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
         Link accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
-        Link<HomePage> logoutLink = new BookmarkablePageLink<HomePage>("newAccount", HomePage.class);
+        Link<HomePage> logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
 
 		if(student == null){
 			accountLink = new BookmarkablePageLink<LoginPage>("myAccount", LoginPage.class);
