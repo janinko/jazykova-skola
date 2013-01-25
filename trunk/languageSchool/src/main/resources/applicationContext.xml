@@ -56,7 +56,7 @@
 	</bean>
 
 	<security:global-method-security secured-annotations="enabled" />
-	<security:authentication-manager id="authenticationManager">
+	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider user-service-ref="languageschoolUserDetailsService"/>
 	</security:authentication-manager>
 </beans>
