@@ -13,6 +13,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
  */
 public abstract class BasePage extends WebPage {
 	
+	
 	UserRolesAuthorizer ura = new UserRolesAuthorizer();
 
     public BasePage(PageParameters parameters) {

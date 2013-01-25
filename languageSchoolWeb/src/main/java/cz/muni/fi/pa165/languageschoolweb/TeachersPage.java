@@ -2,8 +2,11 @@ package cz.muni.fi.pa165.languageschoolweb;
 
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import java.util.Comparator;
 import java.util.TreeSet;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -15,6 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author xbrazdi1, xchrastk, xkelnar
  */
+@AuthorizeAction(action = "RENDER", roles = { Roles.ADMIN })
 public class TeachersPage extends BasePage {
 	private static final long serialVersionUID = 1L;
 	@SpringBean

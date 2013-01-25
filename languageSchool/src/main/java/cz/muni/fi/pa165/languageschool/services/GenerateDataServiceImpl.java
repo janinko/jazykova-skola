@@ -78,6 +78,17 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		genCourses(courses);
 		genLessons(lessons);
 		genStudents(students);
+		
+		// Root Admin
+		Teacher rootTeacher = new Teacher();
+		rootTeacher.setEmail("admin@admin.com");
+		rootTeacher.setFirstName("Root");
+		rootTeacher.setLastName("Admin");
+		rootTeacher.setLanguages(new HashSet<Language>());
+		rootTeacher.setNativeLanguage(Language.AJ);
+		rootTeacher.setPassword("admin");
+		teacherService.createTeacher(rootTeacher);
+		this.teachers.add(rootTeacher);
 	}
 
 	private void genTeachers(int teachers){
