@@ -4,11 +4,11 @@ import cz.muni.fi.pa165.languageschool.api.adapters.StudentDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.adapters.TeacherDtoAdapter;
 import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
 import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
-import cz.muni.fi.pa165.languageschool.api.services.TeacherService;
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.metadata.MetaDataRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -41,7 +41,7 @@ public class HeaderPanel extends Panel {
        	lessonsParams.set("my", true);
         
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
-        Link accountLink; //= new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
+        Link accountLink; 
         Link<HomePage> logoutLink;
         Link registrationLink = new BookmarkablePageLink<HomePage>("registration", RegistrationPage.class);
 
@@ -76,13 +76,14 @@ public class HeaderPanel extends Panel {
 			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", LogoutPage.class);
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
             
-			registrationLink.add(new Label("label", new ResourceModel("register"))).setVisible(ura.hasAnyRole(new Roles("ROLE_ADMIN")));            
-            lessonsLink.setVisible(ura.hasAnyRole(new Roles("ROLE_STUDENT")));  
+			registrationLink.add(new Label("label", new ResourceModel("register")));
+            MetaDataRoleAuthorizationStrategy.authorize(registrationLink, RENDER, "ROLE_ADMIN");
+            MetaDataRoleAuthorizationStrategy.authorize(lessonsLink, RENDER, "ROLE_STUDENT");          
 		}
         
         add(accountLink);        
         add(registrationLink);
-        add(lessonsLink.setVisible(ura.hasAnyRole(new Roles(Roles.USER))));
+        add(lessonsLink);
         add(logoutLink);
 	}
 }

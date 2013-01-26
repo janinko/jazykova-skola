@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:security="http://www.springframework.org/schema/security"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
 	http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
     http://www.springframework.org/schema/aop
@@ -17,50 +17,79 @@
     http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<context:component-scan base-package="cz.muni.fi.pa165.languageschool"/>
+    <context:component-scan base-package="cz.muni.fi.pa165.languageschool"/>
         
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
 
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-	<tx:annotation-driven/>
+    <tx:annotation-driven/>
 
-	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-		<property name="url" value="jdbc:hsqldb:mem:testdb"/>
-		<property name="username" value="sa"/>
-		<property name="password" value=""/>
-	</bean>
-
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>cz.muni.fi.pa165.languageschool.api.entities.Course</value>
-				<value>cz.muni.fi.pa165.languageschool.api.entities.Lesson</value>
-				<value>cz.muni.fi.pa165.languageschool.api.entities.Teacher</value>
-				<value>cz.muni.fi.pa165.languageschool.api.entities.Student</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-			</props>
-		</property>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-    
-    <bean id="languageSchoolUserDetailsService"
-      class="cz.muni.fi.pa165.languageschool.services.LanguageschoolUserDetailsService">
+    <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        <property name="url" value="jdbc:hsqldb:mem:testdb"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
     </bean>
 
-	<security:global-method-security secured-annotations="enabled" />
-	<security:authentication-manager id= "authenticationManager" alias="authenticationManager">
-		<security:authentication-provider user-service-ref="languageSchoolUserDetailsService"/>
-	</security:authentication-manager>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>cz.muni.fi.pa165.languageschool.api.entities.Course</value>
+                <value>cz.muni.fi.pa165.languageschool.api.entities.Lesson</value>
+                <value>cz.muni.fi.pa165.languageschool.api.entities.Teacher</value>
+                <value>cz.muni.fi.pa165.languageschool.api.entities.Student</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    
+    
+    
+<!--    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+        <security:filter-chain-map path-type="ant">
+            <security:filter-chain pattern="/**" filters="authenticationFilter"/>
+        </security:filter-chain-map>
+    </bean>
+    <bean id="authenticationFilter" class="security.LoginController">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
+    </bean>-->
+    
+    
+    
+    
+    
+    
+    
+    <bean id="languageSchoolUserDetailsService"
+          class="cz.muni.fi.pa165.languageschool.services.LanguageschoolUserDetailsService">
+    </bean>
+    
+    
+    <security:global-method-security secured-annotations="enabled" />
+    
+<!--    <security:http>
+        <security:intercept-url pattern="/**" access="permitAll" />
+        <security:form-login/>
+    </security:http>-->
+
+    
+    <security:authentication-manager id= "authenticationManager" alias="authenticationManager">
+        <security:authentication-provider user-service-ref="languageSchoolUserDetailsService"/>
+    </security:authentication-manager>
+    
+    
 </beans>

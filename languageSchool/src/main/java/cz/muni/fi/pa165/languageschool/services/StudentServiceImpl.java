@@ -27,7 +27,6 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
     public void createStudent(Student student){
-		student.setPassword("deffpass");
         studentDao.create(student);
     }
     
@@ -47,14 +46,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
 	@Override
-	//@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Student read(long id) {
         return studentDao.read(id);
     }
 
 	@Override
-	@Secured({"ROLE_STUDENT", "ROLE_TEACHER"})
 	@Transactional(readOnly=true)
     public Set<Lesson> getAllLessons(Student student) {
         Set<Lesson> studentsLessons = new HashSet<Lesson>();
