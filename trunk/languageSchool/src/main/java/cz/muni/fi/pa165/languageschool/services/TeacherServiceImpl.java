@@ -28,7 +28,6 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void createTeacher(Teacher teacher) {
-		teacher.setPassword("deffpass");
         teacherDao.create(teacher);
     }
 

@@ -77,7 +77,7 @@ public class HeaderPanel extends Panel {
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
             
 			registrationLink.add(new Label("label", new ResourceModel("register"))).setVisible(ura.hasAnyRole(new Roles("ROLE_ADMIN")));            
-		
+            lessonsLink.setVisible(ura.hasAnyRole(new Roles("ROLE_STUDENT")));  
 		}
         
         add(accountLink);        

@@ -45,7 +45,7 @@ public class LanguageschoolUserDetailsService implements UserDetailsService{
 				authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
 			}else{
 				Student s = studentDao.findStudentByEmail(email);
-				if(s == null) throw new UsernameNotFoundException("Username Not Found");
+				if(s == null) {throw new UsernameNotFoundException("Username Not Found");}
 				password = s.getPassword();
 				authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
 			}

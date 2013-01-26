@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.metadata.MetaDataRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -44,7 +45,7 @@ public class CourseList extends Panel{
 	}
 
 	private void fillRepeatingLine(RepeatingView repeating, CourseDto course) {
-		UserRolesAuthorizer ura = new UserRolesAuthorizer();
+		//UserRolesAuthorizer ura = new UserRolesAuthorizer();
 
         AbstractItem item = new AbstractItem(repeating.newChildId());
 
@@ -58,7 +59,7 @@ public class CourseList extends Panel{
 		params2.set("courseid", course.getId());
 		params2.set("act", "delete");
 		Link deleteLink = new BookmarkablePageLink("deleteLink", CoursesPage.class, params2);
-        deleteLink.setVisible(ura.hasAnyRole(new Roles("ROLE_TEACHER")));
+        MetaDataRoleAuthorizationStrategy.authorize(deleteLink, RENDER, "ROLE_TEACHER");
 
 		link.add(new Label("name", course.getName()));
 		item.add(link);

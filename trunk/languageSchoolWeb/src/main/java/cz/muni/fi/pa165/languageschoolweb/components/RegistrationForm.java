@@ -106,7 +106,7 @@ public class RegistrationForm extends Panel{
 
 					try{
 						students.createStudent(student);
-						session.authenticate(model.getEmail(), "deffpass");
+						session.authenticate(model.getEmail(), "pass");
 						students.setPassword(student, model.getPassword());
 						getSession().info(getString("studentCreated"));
 					}catch(Exception ex){
@@ -140,7 +140,7 @@ public class RegistrationForm extends Panel{
 
 					try{
 						teachers.createTeacher(teacher);
-						session.authenticate(model.getEmail(), "deffpass");
+						session.authenticate(model.getEmail(), "pass");
 						teachers.setPassword(teacher, model.getPassword());
 						getSession().info(getString("teacherCreated"));
 					}catch(Exception ex){
