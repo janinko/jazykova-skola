@@ -16,6 +16,8 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,7 +123,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 			studentService.createStudent(s);
 			enrollStudend(s);
 			this.students.add(s);
-            System.out.println(s);
+            Logger.getLogger("Student").log(Level.INFO,s.toString());
 		}
 	}
 
