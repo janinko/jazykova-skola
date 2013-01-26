@@ -43,13 +43,15 @@ public class HeaderPanel extends Panel {
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
         Link accountLink; //= new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
         Link<HomePage> logoutLink;
+        Link registrationLink = new BookmarkablePageLink<HomePage>("registration", RegistrationPage.class);
 
 		if(session.getLogged() == null){
-			accountLink = new BookmarkablePageLink<LoginPage>("myAccount", LoginPage.class);
+            accountLink = new BookmarkablePageLink<LoginPage>("myAccount", LoginPage.class);
             accountLink.add(new Label("label", new ResourceModel("Prihlasit")));
             lessonsLink.setVisible(false);
-			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
-			logoutLink.add(new Label("label", new ResourceModel("register"))).setVisible(ura.hasAnyRole(new Roles(Roles.ADMIN)));
+            logoutLink = new BookmarkablePageLink<HomePage>("newAccount", RegistrationPage.class);
+            logoutLink.setVisible(false);
+			registrationLink.setVisible(false);
 		} else {
 			String email = session.getLogged();
 			
@@ -73,9 +75,13 @@ public class HeaderPanel extends Panel {
 
 			logoutLink = new BookmarkablePageLink<HomePage>("newAccount", LogoutPage.class);
 			logoutLink.add(new Label("label", new ResourceModel("logout")));
+            
+			registrationLink.add(new Label("label", new ResourceModel("register"))).setVisible(ura.hasAnyRole(new Roles("ROLE_ADMIN")));            
+		
 		}
         
-        add(accountLink);
+        add(accountLink);        
+        add(registrationLink);
         add(lessonsLink);
         add(logoutLink);
 	}
