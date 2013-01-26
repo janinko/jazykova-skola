@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.languageschoolweb;           
 
-import cz.muni.fi.pa165.languageschoolweb.security.User;
 import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
-import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;

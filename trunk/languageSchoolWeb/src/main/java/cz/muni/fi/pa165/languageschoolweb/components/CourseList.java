@@ -3,10 +3,12 @@ package cz.muni.fi.pa165.languageschoolweb.components;
 import cz.muni.fi.pa165.languageschool.api.dto.CourseDto;
 import cz.muni.fi.pa165.languageschoolweb.CoursePage;
 import cz.muni.fi.pa165.languageschoolweb.CoursesPage;
+import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -42,7 +44,9 @@ public class CourseList extends Panel{
 	}
 
 	private void fillRepeatingLine(RepeatingView repeating, CourseDto course) {
-		AbstractItem item = new AbstractItem(repeating.newChildId());
+		UserRolesAuthorizer ura = new UserRolesAuthorizer();
+
+        AbstractItem item = new AbstractItem(repeating.newChildId());
 
 		PageParameters params = new PageParameters();
 		params.set("courseid", course.getId());
@@ -55,7 +59,7 @@ public class CourseList extends Panel{
 		params2.set("act", "delete");
 		// TODO only when logged
 		Link deleteLink = new BookmarkablePageLink("deleteLink", CoursesPage.class, params2);
-
+        deleteLink.setVisible(ura.hasAnyRole(new Roles("ROLE_TEACHER")));
 
 		link.add(new Label("name", course.getName()));
 		item.add(link);
