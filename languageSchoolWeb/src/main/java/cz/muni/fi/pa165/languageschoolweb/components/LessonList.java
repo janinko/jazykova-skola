@@ -5,11 +5,13 @@ import cz.muni.fi.pa165.languageschool.api.dto.LessonDto;
 import cz.muni.fi.pa165.languageschoolweb.LessonPage;
 import cz.muni.fi.pa165.languageschoolweb.LessonsPage;
 import cz.muni.fi.pa165.languageschoolweb.TeacherPage;
+import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -42,7 +44,8 @@ public class LessonList extends Panel{
 	}
 
 	private void fillRepeating(RepeatingView repeating, Set<LessonDto> lessons) {
-		TreeSet<LessonDto> lessonsOrdered = new TreeSet<LessonDto>(new LessonComparator());
+		UserRolesAuthorizer ura = new UserRolesAuthorizer();
+        TreeSet<LessonDto> lessonsOrdered = new TreeSet<LessonDto>(new LessonComparator());
 		lessonsOrdered.addAll(lessons);
         
         
@@ -71,6 +74,9 @@ public class LessonList extends Panel{
 			item.add(new Label("time", timeFormat.format(lesson.getDate().getTime())));
             lessonLink.add(new Label("name", lesson.getCourse().getName()));
             teacherLink.add(new Label("teacherName", lesson.getTeacherName()));
+            
+            deleteLink.setVisible(ura.hasAnyRole(new Roles("ROLE_TEACHER")));
+            
 			item.add(teacherLink);
             item.add(lessonLink);
             item.add(deleteLink);
