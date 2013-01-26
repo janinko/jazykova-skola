@@ -121,6 +121,7 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 			studentService.createStudent(s);
 			enrollStudend(s);
 			this.students.add(s);
+            System.out.println(s);
 		}
 	}
 

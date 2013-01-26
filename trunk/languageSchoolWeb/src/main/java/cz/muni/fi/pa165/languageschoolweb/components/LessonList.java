@@ -45,7 +45,6 @@ public class LessonList extends Panel{
 	}
 
 	private void fillRepeating(RepeatingView repeating, Set<LessonDto> lessons) {
-		//UserRolesAuthorizer ura = new UserRolesAuthorizer();
         TreeSet<LessonDto> lessonsOrdered = new TreeSet<LessonDto>(new LessonComparator());
 		lessonsOrdered.addAll(lessons);
         
