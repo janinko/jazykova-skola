@@ -37,6 +37,7 @@ public class LanguageschoolUserDetailsService implements UserDetailsService{
 		if("admin@admin.com".equals(email)) {
 			password = "admin";
 			authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
 			Teacher t = teacherDao.findTeacherByEmail(email);
 			if(t != null){

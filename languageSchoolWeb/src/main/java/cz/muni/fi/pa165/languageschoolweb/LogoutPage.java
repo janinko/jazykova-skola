@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.languageschoolweb;
 
-import cz.muni.fi.pa165.languageschoolweb.components.RegistrationForm;
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

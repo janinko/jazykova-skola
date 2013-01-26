@@ -28,7 +28,7 @@ public abstract class BasePage extends WebPage {
 		add(new BookmarkablePageLink<LessonsPage>("lessons", LessonsPage.class));
 		
 
-		add(new BookmarkablePageLink<TeachersPage>("teachers", TeachersPage.class).setVisible(ura.hasAnyRole(new Roles(Roles.ADMIN))));
+		add(new BookmarkablePageLink<TeachersPage>("teachers", TeachersPage.class));//.setVisible(ura.hasAnyRole(new Roles(Roles.ADMIN))));
 		
     } 
 }
