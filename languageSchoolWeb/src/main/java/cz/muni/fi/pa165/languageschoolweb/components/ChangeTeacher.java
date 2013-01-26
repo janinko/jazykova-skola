@@ -21,7 +21,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 /**
  * @author
  */
-@AuthorizeAction(action = "RENDER", roles = { Roles.ADMIN })
 public class ChangeTeacher extends Panel{
 	private static final long serialVersionUID = 1L;
 
