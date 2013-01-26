@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.languageschoolweb.security;
 
-import cz.muni.fi.pa165.languageschool.api.dto.StudentDto;
-import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -23,6 +23,7 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 	private static final long serialVersionUID = 1L;
 
 	private String logged;
+    private Roles loggedRoles = new Roles();
 
 	@SpringBean(name="authenticationManager")
 	private AuthenticationManager authenticationManager;
@@ -34,7 +35,7 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 
 	@Override
 	public boolean authenticate(String username, String password) {		
-		boolean authenticated = false;
+		boolean authenticated;
 		try{
 			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -44,7 +45,8 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 			Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.WARNING, "Failed to generate data", ex);
 			authenticated = false;
 		}
-		return authenticated;
+        System.out.println(authenticated);
+        return authenticated;
 	}
 
 	@Override
@@ -54,14 +56,23 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 		if(authentication != null){
 			this.signIn(true);
 			for(GrantedAuthority authority : authentication.getAuthorities()){
-				roles.add(authority.getAuthority());
+				roles.add(authority.toString());
+                System.out.println("auth: "+authority.getAuthority());
 			}
-		}
+            if(!roles.isEmpty()) {
+            System.out.println("roles are not empty");
+        
+    } else {
+                System.out.println("roles are empty");
+            }
+		} else {System.out.println("not authenticated");}
+        
 		return roles;
 	}
 
 	public void logout(){
-		this.invalidate();
+		if (loggedRoles!=null) { loggedRoles.clear(); }
+        this.invalidate();
 		if(SecurityContextHolder.getContext() != null){
 			SecurityContextHolder.getContext().setAuthentication(null);
 			this.signOut();
@@ -71,4 +82,13 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 	public String getLogged() {
 		return logged;
 	}
+    
+    public Roles getLoggedRoles() {
+        return loggedRoles;
+    }
+    
+    public void fillRoles() {
+        if(loggedRoles.isEmpty()) {loggedRoles.addAll(getRoles());
+        }
+    }
 }

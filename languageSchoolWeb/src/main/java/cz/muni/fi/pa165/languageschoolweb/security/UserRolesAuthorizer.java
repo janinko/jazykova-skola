@@ -15,9 +15,7 @@
  */
 package cz.muni.fi.pa165.languageschoolweb.security;
 
-import org.apache.wicket.Session;
 import java.io.Serializable;
-import javax.swing.Spring;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.IRoleCheckingStrategy;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -47,14 +45,20 @@ public class UserRolesAuthorizer implements IRoleCheckingStrategy,Serializable
     @Override
     public boolean hasAnyRole(Roles roles)
     {
-        //AuthenticatedWebSession session = AuthenticatedWebSession.get();
 		SpringAuthenticatedWebSession session = (SpringAuthenticatedWebSession) AuthenticatedWebSession.get();
 		
 		if ( (session.getLogged() != null) && ("admin@admin.com".equals(session.getLogged()))) {
-			return true;
+			
+            /*if (authRoles.isEmpty()){
+                System.out.println("roles are empty");}
+            for(String r:authRoles) {
+                System.out.println(r+" ");
+            }*/
+            return true;
 		} else {
-			Roles authRoles = session.getRoles();
-			return authRoles.hasAnyRole(roles);
+            Roles loggedRoles = session.getLoggedRoles() ;         
+			return loggedRoles.hasAnyRole(roles);
 		}
+        
     }
 }

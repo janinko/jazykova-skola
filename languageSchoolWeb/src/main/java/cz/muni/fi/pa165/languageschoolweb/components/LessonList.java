@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.metadata.MetaDataRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -44,7 +45,7 @@ public class LessonList extends Panel{
 	}
 
 	private void fillRepeating(RepeatingView repeating, Set<LessonDto> lessons) {
-		UserRolesAuthorizer ura = new UserRolesAuthorizer();
+		//UserRolesAuthorizer ura = new UserRolesAuthorizer();
         TreeSet<LessonDto> lessonsOrdered = new TreeSet<LessonDto>(new LessonComparator());
 		lessonsOrdered.addAll(lessons);
         
@@ -75,7 +76,9 @@ public class LessonList extends Panel{
             lessonLink.add(new Label("name", lesson.getCourse().getName()));
             teacherLink.add(new Label("teacherName", lesson.getTeacherName()));
             
-            deleteLink.setVisible(ura.hasAnyRole(new Roles("ROLE_TEACHER")));
+            if (!my) {
+                MetaDataRoleAuthorizationStrategy.authorize(deleteLink, RENDER, "ROLE_TEACHER");
+            }
             
 			item.add(teacherLink);
             item.add(lessonLink);

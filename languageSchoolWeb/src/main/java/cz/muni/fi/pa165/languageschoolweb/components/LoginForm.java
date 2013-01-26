@@ -1,7 +1,8 @@
-package cz.muni.fi.pa165.languageschoolweb.components;
+    package cz.muni.fi.pa165.languageschoolweb.components;
 
 import cz.muni.fi.pa165.languageschoolweb.HomePage;
 import cz.muni.fi.pa165.languageschoolweb.model.LoginModel;
+import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -52,9 +53,11 @@ public class LoginForm extends Panel{
 			setResponsePage(HomePage.class);
 			
 			LoginModel model = (LoginModel) getDefaultModelObject();
-			AuthenticatedWebSession session = AuthenticatedWebSession.get();
+			SpringAuthenticatedWebSession session = (SpringAuthenticatedWebSession)AuthenticatedWebSession.get();
 			if(session.authenticate(model.getEmail(), model.getPassword())){
-				getSession().info("Přihlášen!");// jako student: " + student.getFirstName() + student.getLastName());
+				session.fillRoles();
+                getSession().info("Přihlášen!");// jako student: " + student.getFirstName() + student.getLastName());
+                
 			}else{
 				getSession().error("Špatné email nebo heslo");
 			}
