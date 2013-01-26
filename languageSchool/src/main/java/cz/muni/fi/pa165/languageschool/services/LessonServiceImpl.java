@@ -32,13 +32,11 @@ public class LessonServiceImpl implements LessonService {
     }	
     
 	@Override
-	@Secured("ROLE_TEACHER")
     public void removeLesson(Lesson l) {
 		lessonDao.delete(l);
 	}
 
 	@Override
-	@Secured("ROLE_TEACHER")
 	public void removeStudent(Lesson l, Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().remove(student);
@@ -46,7 +44,6 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
-	@Secured("ROLE_TEACHER")
 	public void addStudent(Lesson l,Student student) {
 		Lesson lesson = lessonDao.read(l.getId());
 		lesson.getStudents().add(student);

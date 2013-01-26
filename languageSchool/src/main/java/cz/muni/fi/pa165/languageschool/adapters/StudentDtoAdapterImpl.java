@@ -60,6 +60,11 @@ public class StudentDtoAdapterImpl implements StudentDtoAdapter{
 	public void lessonCancel(StudentDto student, LessonDto lesson){
 		studentService.lessonCancel(dto2e(student), lessonDtoAdapter.dto2e(lesson));
 	}
+    
+    @Override
+	public void lessonEnroll(StudentDto student, LessonDto lesson){
+		studentService.lessonEnroll(dto2e(student), lessonDtoAdapter.dto2e(lesson));
+	}
 
 	@Override
 	public void setPassword(StudentDto student, String password) {

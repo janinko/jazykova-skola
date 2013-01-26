@@ -33,7 +33,6 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	@Secured("ROLE_TEACHER")
 	public void deleteCourse(Course course) {
 		courseDao.delete(course);
 		List<Lesson> l = lessonDao.findLessonByCourse(course);

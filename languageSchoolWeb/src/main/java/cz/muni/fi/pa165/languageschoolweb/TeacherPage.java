@@ -47,7 +47,7 @@ public class TeacherPage extends BasePage {
 			nativeLabel.setVisible(false);
 		}
 
-		LessonList lessonList = new LessonList("lessonList",teachers.getTeachersLessons(teacher),false);
+		LessonList lessonList = new LessonList("lessonList",teachers.getTeachersLessons(teacher),false,"");
 
 		add(header);
 		add(emailLabel);
