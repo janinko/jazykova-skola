@@ -56,36 +56,12 @@
     </bean>
     
     
-    
-    
-<!--    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
-        <security:filter-chain-map path-type="ant">
-            <security:filter-chain pattern="/**" filters="authenticationFilter"/>
-        </security:filter-chain-map>
-    </bean>
-    <bean id="authenticationFilter" class="security.LoginController">
-        <property name="authenticationManager" ref="authenticationManager"/>
-        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
-    </bean>-->
-    
-    
-    
-    
-    
-    
-    
     <bean id="languageSchoolUserDetailsService"
           class="cz.muni.fi.pa165.languageschool.services.LanguageschoolUserDetailsService">
     </bean>
     
     
     <security:global-method-security secured-annotations="enabled" />
-    
-<!--    <security:http>
-        <security:intercept-url pattern="/**" access="permitAll" />
-        <security:form-login/>
-    </security:http>-->
-
     
     <security:authentication-manager id= "authenticationManager" alias="authenticationManager">
         <security:authentication-provider user-service-ref="languageSchoolUserDetailsService"/>

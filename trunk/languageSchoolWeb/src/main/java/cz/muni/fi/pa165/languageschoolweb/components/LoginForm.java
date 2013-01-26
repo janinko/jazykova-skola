@@ -55,7 +55,7 @@ public class LoginForm extends Panel{
 			LoginModel model = (LoginModel) getDefaultModelObject();
 			SpringAuthenticatedWebSession session = (SpringAuthenticatedWebSession)AuthenticatedWebSession.get();
 			if(session.authenticate(model.getEmail(), model.getPassword())){
-				session.fillRoles();
+				session.fill();
                 getSession().info("Přihlášen!");// jako student: " + student.getFirstName() + student.getLastName());
                 
 			}else{

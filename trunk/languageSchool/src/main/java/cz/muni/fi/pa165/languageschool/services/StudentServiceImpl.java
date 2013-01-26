@@ -65,14 +65,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
 	@Override
-	@Secured("ROLE_STUDENT")
     public void lessonEnroll(Student student, Lesson lesson) {
 	lesson.getStudents().add(student);
 	lessonDao.update(lesson);
     }
 
 	@Override
-	@Secured("ROLE_STUDENT")
     public void lessonCancel(Student student, Lesson lesson) {
         lesson.getStudents().remove(student);
 	lessonDao.update(lesson);

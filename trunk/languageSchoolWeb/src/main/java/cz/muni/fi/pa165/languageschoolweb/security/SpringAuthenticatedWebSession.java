@@ -87,7 +87,7 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
         return loggedRoles;
     }
     
-    public void fillRoles() {
+    public void fill() {
         if(loggedRoles.isEmpty()) {loggedRoles.addAll(getRoles());
         }
     }

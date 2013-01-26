@@ -38,6 +38,14 @@ public interface StudentDtoAdapter {
      * @param lesson lesson to be calcelled
      */
     void lessonCancel(StudentDto student, LessonDto lesson);
+    
+    /**
+     * Enrolls lesson for a given student
+     * 
+     * @param student student for which lesson will be enrolled
+     * @param lesson lesson to be calcelled
+     */
+    void lessonEnroll(StudentDto student, LessonDto lesson);
 
     /**
      * Retrieves a one specific student from a database
