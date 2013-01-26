@@ -99,6 +99,7 @@ public class LessonList extends Panel {
             }
 
             MetaDataRoleAuthorizationStrategy.authorize(deleteLink, RENDER, "ROLE_TEACHER");
+            MetaDataRoleAuthorizationStrategy.authorize(deleteLink, RENDER, "ROLE_ADMIN");
             MetaDataRoleAuthorizationStrategy.authorize(signLink, RENDER, "ROLE_STUDENT");
 
             item.add(teacherLink);
