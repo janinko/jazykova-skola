@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.languageschool.api.dto.TeacherDto;
 import cz.muni.fi.pa165.languageschoolweb.security.SpringAuthenticatedWebSession;
 import cz.muni.fi.pa165.languageschoolweb.security.UserRolesAuthorizer;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.authroles.authorization.strategies.role.metadata.MetaDataRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -38,7 +37,6 @@ public class HeaderPanel extends Panel {
         PageParameters accountParams = new PageParameters();
 		PageParameters lessonsParams = new PageParameters();
         
-       	lessonsParams.set("my", true);
         
 		Link<LessonsPage> lessonsLink = new BookmarkablePageLink<LessonsPage>("myLessons", LessonsPage.class, lessonsParams);
         Link accountLink; 
@@ -57,6 +55,8 @@ public class HeaderPanel extends Panel {
 			
 			System.out.println("------- registrovany: " + email);
 
+            lessonsParams.set("my", true);
+            lessonsParams.set("email", email);
             accountParams.set("email", email);
             accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
 

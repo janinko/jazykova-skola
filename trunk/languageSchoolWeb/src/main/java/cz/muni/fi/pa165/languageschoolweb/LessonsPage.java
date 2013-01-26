@@ -33,8 +33,8 @@ public class LessonsPage extends BasePage {
 			}
 		}
         
-		if(!parameters.get("my").isNull() && students.read(1) != null){
-			lsns = students.getAllLessons(students.read(1));
+		if(!parameters.get("my").isNull() && !parameters.get("email").isNull() && students.read(parameters.get("email").toString()) != null){
+			lsns = students.getAllLessons(students.read(parameters.get("email").toString()));
             my = true;
 		}else{
 			lsns = lessons.getUpcomingLessons(new Date((new java.util.Date()).getTime()+86400000*21));

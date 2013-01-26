@@ -20,11 +20,7 @@
 
   		The value might be either "development" (reloading when templates change) or 
   		"deployment". If no configuration is found, "development" is the default. -->
-<!--    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy
-        </filter-class>
-    </filter>-->
+
     <filter>
         <filter-name>wicket.languageSchoolWeb</filter-name>
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
@@ -33,10 +29,6 @@
             <param-value>cz.muni.fi.pa165.languageschoolweb.WicketApplication</param-value>
         </init-param>
     </filter>
-<!--    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/pa165/*</url-pattern>
-    </filter-mapping>-->
     <filter-mapping>
         <filter-name>wicket.languageSchoolWeb</filter-name>
         <url-pattern>/pa165/*</url-pattern>
