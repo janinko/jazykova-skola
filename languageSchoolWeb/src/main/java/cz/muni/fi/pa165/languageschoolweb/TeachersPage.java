@@ -39,7 +39,7 @@ public class TeachersPage extends BasePage {
 			PageParameters params = new PageParameters();
 			params.set("email", teacherDto.getEmail());
 
-			Link link = new BookmarkablePageLink("link", TeacherPage.class, params);
+			Link<TeacherPage> link = new BookmarkablePageLink<TeacherPage>("link", TeacherPage.class, params);
 			
 			
 			item.add(new Label("email", teacherDto.getEmail()));

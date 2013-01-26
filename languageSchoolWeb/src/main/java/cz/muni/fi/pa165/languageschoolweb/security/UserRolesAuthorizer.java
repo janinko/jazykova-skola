@@ -47,18 +47,6 @@ public class UserRolesAuthorizer implements IRoleCheckingStrategy,Serializable
     {
 		SpringAuthenticatedWebSession session = (SpringAuthenticatedWebSession) AuthenticatedWebSession.get();
 		
-//		if ( (session.getLogged() != null) && ("admin@admin.com".equals(session.getLogged()))) {
-//			
-//            /*if (authRoles.isEmpty()){
-//                System.out.println("roles are empty");}
-//            for(String r:authRoles) {
-//                System.out.println(r+" ");
-//            }*/
-//            return true;
-//		} else {
-//            Roles loggedRoles = session.getLoggedRoles() ;         
-//			return loggedRoles.hasAnyRole(roles);
-//		}
         Roles loggedRoles = session.getLoggedRoles() ;         
 			return loggedRoles.hasAnyRole(roles);
     }

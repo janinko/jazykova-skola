@@ -1,7 +1,5 @@
 package cz.muni.fi.pa165.languageschoolweb.security;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -45,7 +43,6 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 			Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.WARNING, "Failed to generate data", ex);
 			authenticated = false;
 		}
-        System.out.println(authenticated);
         return authenticated;
 	}
 
@@ -57,15 +54,16 @@ public class SpringAuthenticatedWebSession extends AuthenticatedWebSession {
 			this.signIn(true);
 			for(GrantedAuthority authority : authentication.getAuthorities()){
 				roles.add(authority.toString());
-                System.out.println("auth: "+authority.getAuthority());
+				Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.FINE, "auth: {0}", authority.getAuthority());
 			}
             if(!roles.isEmpty()) {
-            System.out.println("roles are not empty");
-        
-    } else {
-                System.out.println("roles are empty");
-            }
-		} else {System.out.println("not authenticated");}
+				Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.FINE, "roles are not empty");
+			} else {
+				Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.FINE, "roles are empty");
+			}
+		} else {
+			Logger.getLogger(SpringAuthenticatedWebSession.class.getName()).log(Level.FINE, "not authenticated");
+		}
         
 		return roles;
 	}
