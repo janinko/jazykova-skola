@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 /**
@@ -142,6 +141,8 @@ public class GenerateDataServiceImpl implements GenerateDataService {
 		teacher.setLanguages(languages);
 
 		teacher.setEmail(genEmail(teacher.getFirstName(), teacher.getLastName()));
+        
+        teacher.setPassword("pass");
 
 		return teacher;
 	}

@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<wicket:panel>
+    <wicket:panel>
 
-		<div>
-			<h2><wicket:message key="Lekce"/> <span style="display: none" id="expand-457">(<wicket:message key="rozbalit"/>)</span></h2>
-				<div wicket:id="repeating" class="lesson-box">
-					<div class="box-content-l">
-						<span class="date"><span wicket:id="date">[edit]</span></span>
-						<br />
-						<span class="time"><span wicket:id="time">[contactid]</span></span>
-					</div>
+        <div>
+            <h2><wicket:message key="Lekce"/> <span style="display: none" id="expand-457">(<wicket:message key="rozbalit"/>)</span></h2>
+            <div wicket:id="repeating" class="lesson-box">
+                <div class="box-content-l">
+                    <span class="date"><span wicket:id="date">[edit]</span></span>
+                    <br />
+                    <span class="time"><span wicket:id="time">[contactid]</span></span>
+                </div>
 
-					<div class="box-content">
-						<a wicket:id="lessonLink">
-							<h3 class="courseName"><span wicket:id="name">[name]</span></h3>
-						</a><br />
-						<div class="teacher"><a wicket:id="teacherLink"><span wicket:id="teacherName">[teacherName]</span></a> </div>
-					</div>
-					<div class="box-content-r">
-						<a wicket:id="deleteLink"><wicket:message key="Smazat"/></a>
-					</div>
-				</div>
-            
-		</div>
+                <div class="box-content">
+                    <a wicket:id="lessonLink">
+                        <h3 class="courseName"><span wicket:id="name">[name]</span></h3>
+                    </a><br />
+                    <div class="teacher"><a wicket:id="teacherLink"><span wicket:id="teacherName">[teacherName]</span></a> </div>
+                </div>					
+                <wicket:enclosure class="box-content-r">
+                    <div class="box-content-r">
+                        <a wicket:id="deleteLink"><wicket:message key="Smazat"/></a>
+                    </div>
+                </wicket:enclosure>
+            </div>
 
-	</wicket:panel>
+        </div>
+
+    </wicket:panel>
 </html>
