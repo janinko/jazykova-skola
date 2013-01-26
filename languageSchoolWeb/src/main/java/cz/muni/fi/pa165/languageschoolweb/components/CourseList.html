@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<wicket:panel>
+    <wicket:panel>
 
-		<div>
-			<h2><wicket:message key="Kurzy"/></h2>
-			<div class="courses">
-				
-				<div wicket:id="repeating" class="course-box">
-					<div class="box-content-l">
-						Level<br />
-						<span wicket:id="level">[level]</span>
-					</div>
-					
-					<div class="box-content">
-						<h3><a wicket:id="link"><span wicket:id="name">[name]</span></a></h3><br />
-						<div class="teacher"><span wicket:id="language">[language]</span></div>
-					</div>
-					<div class="box-content-r">
-						<a wicket:id="deleteLink"><wicket:message key="Smazat"/></a>
-					</div>
-				</div>
-				
-			</div>
-		</div>
+        <div>
+            <h2><wicket:message key="Kurzy"/></h2>
+            <div class="courses">
 
-	</wicket:panel>
+                <div wicket:id="repeating" class="course-box">
+                    <div class="box-content-l">
+                        Level<br />
+                        <span wicket:id="level">[level]</span>
+                    </div>
+
+                    <div class="box-content">
+                        <h3><a wicket:id="link"><span wicket:id="name">[name]</span></a></h3><br />
+                        <div class="teacher"><span wicket:id="language">[language]</span></div>
+                    </div>
+                    <wicket:enclosure class="box-content-r">
+                        <a wicket:id="deleteLink"><wicket:message key="Smazat"/></a>
+                    </wicket:enclosure>
+                </div>
+
+            </div>
+        </div>
+
+    </wicket:panel>
 </html>

@@ -57,7 +57,6 @@ public class CourseList extends Panel{
 		PageParameters params2 = new PageParameters();
 		params2.set("courseid", course.getId());
 		params2.set("act", "delete");
-		// TODO only when logged
 		Link deleteLink = new BookmarkablePageLink("deleteLink", CoursesPage.class, params2);
         deleteLink.setVisible(ura.hasAnyRole(new Roles("ROLE_TEACHER")));
 
@@ -74,9 +73,9 @@ public class CourseList extends Panel{
 		@Override
 		public int compare(CourseDto o1, CourseDto o2) {
 			int ret = o1.getLanguage().compareTo(o2.getLanguage());
-			if(ret != 0) return ret;
+			if(ret != 0) {return ret;}
 			ret = Integer.valueOf(o1.getLevel()).compareTo(o2.getLevel());
-			if(ret != 0) return ret;
+			if(ret != 0) {return ret;}
 			ret = o1.getName().compareTo(o2.getName());
 			return ret;
 		}
