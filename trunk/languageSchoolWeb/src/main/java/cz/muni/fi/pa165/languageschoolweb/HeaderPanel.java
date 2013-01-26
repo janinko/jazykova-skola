@@ -52,8 +52,6 @@ public class HeaderPanel extends Panel {
 			registrationLink.setVisible(false);
 		} else {
 			String email = session.getLogged();
-			
-			System.out.println("------- registrovany: " + email);
 
             lessonsParams.set("my", true);
             lessonsParams.set("email", email);
