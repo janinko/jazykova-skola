@@ -28,8 +28,8 @@ public class LessonsPage extends BasePage {
         if ( (act != null) && act.equals("delete") && (lessonId != null) ) {
 			if(parameters.get("my").isNull()){
 				lessons.removeLesson(lessons.read(lessonId));
-			}else{
-				students.lessonCancel(students.read(1), lessons.read(lessonId));
+			}else if (!parameters.get("email").isNull() && students.read(parameters.get("email").toString()) != null){
+				students.lessonCancel(students.read(parameters.get("email").toString()), lessons.read(lessonId));
 			}
 		}
         
