@@ -55,7 +55,7 @@ public class HeaderPanel extends Panel {
 		} else {
 			String email = session.getLogged();
 			
-			System.out.println("------- toto je regle: " + email);
+			System.out.println("------- registrovany: " + email);
 
             accountParams.set("email", email);
             accountLink = new BookmarkablePageLink<AccountPage>("myAccount", AccountPage.class, accountParams);
@@ -82,7 +82,7 @@ public class HeaderPanel extends Panel {
         
         add(accountLink);        
         add(registrationLink);
-        add(lessonsLink);
+        add(lessonsLink.setVisible(ura.hasAnyRole(new Roles(Roles.USER))));
         add(logoutLink);
 	}
 }
